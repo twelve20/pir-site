@@ -4,173 +4,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог PIR Плит</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>PIR-плиты - Утепление саун и бань</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
     <!-- Шапка -->
-    <header>
+    <header class="header">
         <div class="container">
-            <div class="logo">PIR Плита</div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="catalog.html">Каталог</a></li>
-                    <li><a href="documents.html">Документы</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
-                </ul>
-            </nav>
-            <button class="call-button">
-                <span class="phone-icon">📞</span> Заказать звонок
-            </button>
-            <div class="burger-menu" onclick="toggleMenu()">☰</div>
+            <div class="header__inner">
+                <!-- Логотип -->
+                <div class="logo">PIR-плиты</div>
+    
+                <!-- Меню -->
+                <nav class="menu">
+                    <ul class="menu__list">
+                        <li><a href="#hero">Главная</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#documents">Документы</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+    
+                <!-- Контакты и кнопка -->
+                <div class="header__contacts">
+                    <a href="tel:+79991234567" class="phone">+7 (999) 123-45-67</a>
+                    <button class="btn btn--blue" onclick="openCallModal()">Заказать звонок</button>
+                </div>
+    
+                <!-- Иконка меню для мобильных устройств -->
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+    
+                <!-- Мобильное меню -->
+                <nav class="menu-mobile">
+                    <ul class="menu__list">
+                        <li><a href="#hero">Главная</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#documents">Документы</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <!-- Фильтры и сортировка -->
-    <section class="filters">
+    <!-- Герой-баннер -->
+    <section id="hero" class="hero">
         <div class="container">
-            <h2>Фильтры и сортировка</h2>
-            <div class="filter-section">
-                <h3>Категории</h3>
-                <select>
-                    <option value="all">Все категории</option>
-                    <option value="sauna">PIR плиты для саун</option>
-                    <option value="house">PIR плиты для домов</option>
-                    <option value="bath">PIR плиты для бань</option>
-                </select>
-            </div>
-            <div class="filter-section">
-                <h3>Цена</h3>
-                <input type="range" min="0" max="5000" value="2500" class="price-slider">
-                <p>Цена: <span id="price-value">2500</span> руб.</p>
-            </div>
-            <div class="filter-section">
-                <h3>Размеры плит</h3>
-                <input type="text" placeholder="Ширина x Длина">
-            </div>
-            <div class="filter-section">
-                <h3>Толщина</h3>
-                <input type="number" placeholder="Толщина (мм)">
-            </div>
-            <div class="filter-section">
-                <h3>Сортировка</h3>
-                <select>
-                    <option value="price-asc">По цене (от дешевых к дорогим)</option>
-                    <option value="price-desc">По цене (от дорогих к дешевым)</option>
-                    <option value="popularity">По популярности</option>
-                    <option value="newest">По новизне</option>
-                </select>
+            <div class="hero__content">
+                <h1 class="hero__title">Утепление саун и бань PIR-плитами от производителя</h1>
+                <p class="hero__subtitle">Сертифицированные материалы, доставка по всей России</p>
+                <div class="hero__buttons">
+                    <a href="#catalog" class="btn btn--blue">Выбрать плиты</a>
+                    <a href="#consultation" class="btn btn--orange" onclick="openConsultationModal()">Получить консультацию</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Сетка товаров -->
-    <section class="catalog">
+    <!-- Преимущества -->
+    <section id="advantages" class="advantages">
         <div class="container">
-            <h2>Каталог товаров</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="product1.jpg" alt="PIR плита для саун">
-                    <h3>PIR плита для саун</h3>
-                    <p>Толщина: 50 мм</p>
-                    <p>Цена: 1500 руб./м²</p>
-                    <div class="buttons">
-                        <button class="details">Подробнее</button>
-                        <button class="order">Заказать</button>
-                    </div>
+            <h2 class="section-title">Преимущества наших PIR-плит</h2>
+            <div class="advantages__list">
+                <div class="advantage">
+                    <img src="icons/fire.svg" alt="Огнестойкость" class="advantage__icon">
+                    <p class="advantage__text">Огнестойкость</p>
                 </div>
-                <div class="product-card">
-                    <img src="product2.jpg" alt="PIR плита для домов">
-                    <h3>PIR плита для домов</h3>
-                    <p>Толщина: 100 мм</p>
-                    <p>Цена: 1700 руб./м²</p>
-                    <div class="buttons">
-                        <button class="details">Подробнее</button>
-                        <button class="order">Заказать</button>
-                    </div>
+                <div class="advantage">
+                    <img src="icons/leaf.svg" alt="Экологичность" class="advantage__icon">
+                    <p class="advantage__text">Экологичность</p>
                 </div>
-                <div class="product-card">
-                    <img src="product3.jpg" alt="PIR плита для бань">
-                    <h3>PIR плита для бань</h3>
-                    <p>Толщина: 75 мм</p>
-                    <p>Цена: 1600 руб./м²</p>
-                    <div class="buttons">
-                        <button class="details">Подробнее</button>
-                        <button class="order">Заказать</button>
-                    </div>
+                <div class="advantage">
+                    <img src="icons/house.svg" alt="Долговечность" class="advantage__icon">
+                    <p class="advantage__text">Долговечность 50 лет</p>
                 </div>
-                <!-- Добавьте больше товаров по аналогии -->
-            </div>
-            <!-- Пагинация -->
-            <div class="pagination">
-                <button class="page">1</button>
-                <button class="page">2</button>
-                <button class="page">3</button>
-                <button class="page">...</button>
-                <button class="page">10</button>
+                <div class="advantage">
+                    <img src="icons/clock.svg" alt="Легкость монтажа" class="advantage__icon">
+                    <p class="advantage__text">Легкость монтажа</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Блок с акциями -->
-    <section class="promotions">
+    <!-- Акции -->
+    <section id="promotions" class="promotions">
         <div class="container">
-            <h2>Акции и спецпредложения</h2>
-            <div class="promotion-grid">
+            <h2 class="section-title">Акции</h2>
+            <div class="promotions__grid">
+                <!-- Карточка 1 -->
                 <div class="promotion-card">
-                    <img src="promo1.jpg" alt="Акция 1">
-                    <h3>Скидка 20% на PIR плиты для домов</h3>
-                    <p>Только до конца месяца!</p>
-                    <button class="details">Подробнее</button>
+                    <img src="images/promo1.jpg" alt="Скидка 10%" class="promotion-card__image">
+                    <div class="promotion-card__content">
+                        <h3 class="promotion-card__title">Скидка 10%</h3>
+                        <p class="promotion-card__description">На утепление бань и саун PIR-плитами.</p>
+                        <a href="#" class="btn btn--orange">Узнать больше</a>
+                    </div>
                 </div>
+    
+                <!-- Карточка 2 -->
                 <div class="promotion-card">
-                    <img src="promo2.jpg" alt="Акция 2">
-                    <h3>Бесплатная доставка при заказе от 50 м²</h3>
-                    <p>Акция действует на все товары.</p>
-                    <button class="details">Подробнее</button>
+                    <img src="images/promo2.jpg" alt="Бесплатная доставка" class="promotion-card__image">
+                    <div class="promotion-card__content">
+                        <h3 class="promotion-card__title">Бесплатная доставка</h3>
+                        <p class="promotion-card__description">При заказе от 50 000 рублей.</p>
+                        <a href="#" class="btn btn--orange">Узнать больше</a>
+                    </div>
+                </div>
+    
+                <!-- Карточка 3 -->
+                <div class="promotion-card">
+                    <img src="images/promo3.jpg" alt="Подарок при заказе" class="promotion-card__image">
+                    <div class="promotion-card__content">
+                        <h3 class="promotion-card__title">Подарок при заказе</h3>
+                        <p class="promotion-card__description">Получите дополнительные материалы бесплатно.</p>
+                        <a href="#" class="btn btn--orange">Узнать больше</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Наши работы -->
+    <section id="cases" class="cases">
+        <div class="container">
+            <h2 class="section-title">Наши работы</h2>
+            <div class="cases__grid">
+                <!-- Карточка 1 -->
+                <div class="case-card">
+                    <div class="case-card__image">
+                        <img src="images/case1.jpg" alt="Утепление бани" class="case-card__img">
+                    </div>
+                    <div class="case-card__content">
+                        <h3 class="case-card__title">Баня в Подмосковье</h3>
+                        <p class="case-card__description">Сроки: 2 дня. Материалы: PIR-плиты.</p>
+                        <a href="#" class="btn btn--blue">Подробнее</a>
+                    </div>
+                </div>
+    
+                <!-- Карточка 2 -->
+                <div class="case-card">
+                    <div class="case-card__image">
+                        <img src="images/case2.jpg" alt="Утепление сауны" class="case-card__img">
+                    </div>
+                    <div class="case-card__content">
+                        <h3 class="case-card__title">Сауна в Санкт-Петербурге</h3>
+                        <p class="case-card__description">Сроки: 3 дня. Материалы: PIR-плиты.</p>
+                        <a href="#" class="btn btn--blue">Подробнее</a>
+                    </div>
+                </div>
+    
+                <!-- Карточка 3 -->
+                <div class="case-card">
+                    <div class="case-card__image">
+                        <img src="images/case3.jpg" alt="Утепление дома" class="case-card__img">
+                    </div>
+                    <div class="case-card__content">
+                        <h3 class="case-card__title">Дом в Новгороде</h3>
+                        <p class="case-card__description">Сроки: 5 дней. Материалы: PIR-плиты.</p>
+                        <a href="#" class="btn btn--blue">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Призыв к действию -->
+    <section id="cta" class="cta">
+        <div class="container">
+            <h2 class="cta__title">Оставьте заявку — рассчитаем стоимость за 1 час</h2>
+            <form class="cta__form">
+                <input type="text" placeholder="Имя" required>
+                <input type="tel" placeholder="Телефон" required>
+                <textarea placeholder="Комментарий"></textarea>
+                <button type="submit" class="btn btn--orange">Отправить заявку</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close" onclick="closeModal()">&times;</span>
+            <h2>Заказать звонок</h2>
+            <form class="modal__form">
+                <input type="text" placeholder="Имя" required>
+                <input type="tel" placeholder="Телефон" required>
+                <button type="submit" class="btn btn--blue">Отправить</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Футер -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <div class="footer-logo">PIR Плита</div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="catalog.html">Каталог</a></li>
-                    <li><a href="contacts.html">Контакты</a></li>
-                </ul>
-            </nav>
-            <div class="social-icons">
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-                <a href="#">VK</a>
+            <div class="footer__inner">
+                <!-- Логотип и краткое описание -->
+                <div class="footer__brand">
+                    <div class="logo">PIR-плиты</div>
+                    <p>Производство и продажа PIR-плит для утепления саун и бань.</p>
+                </div>
+    
+                <!-- Навигация -->
+                <div class="footer__nav">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="#hero">Главная</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#documents">Документы</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Контакты -->
+                <div class="footer__contacts">
+                    <h3>Контакты</h3>
+                    <p><a href="tel:+79991234567" class="phone">+7 (999) 123-45-67</a></p>
+                    <p><a href="mailto:info@pir-plates.ru">info@pir-plates.ru</a></p>
+                    <p>Адрес: г. Москва, ул. Промышленная, д. 10</p>
+                </div>
+    
+                <!-- Подписка на рассылку -->
+                <div class="footer__subscribe">
+                    <h3>Подпишитесь на новости</h3>
+                    <form class="footer__form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn--blue">Подписаться</button>
+                    </form>
+                </div>
             </div>
-            <p>© 2023 PIR Плита. Все права защищены.</p>
+    
+            <!-- Социальные сети -->
+            <div class="footer__social">
+                <a href="https://vk.com" target="_blank"><i class="fab fa-vk"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
+    
+            <!-- Правовая информация -->
+            <div class="footer__copyright">
+                <p>&copy; 2023 PIR-плиты. Все права защищены.</p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        // Фильтр цены
-        const priceSlider = document.querySelector('.price-slider');
-        const priceValue = document.getElementById('price-value');
+    <!-- Модальное окно для получения консультации -->
+    <div id="consultationModal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close" onclick="closeConsultationModal()">&times;</span>
+            <h2>Получить консультацию</h2>
+            <form class="modal__form">
+                <input type="text" placeholder="Имя" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Ваш вопрос" rows="4" required></textarea>
+                <button type="submit" class="btn btn--blue">Отправить</button>
+            </form>
+        </div>
+    </div>
 
-        priceSlider.addEventListener('input', () => {
-            priceValue.textContent = priceSlider.value;
-        });
+    <!-- Модальное окно для заказа звонка -->
+    <div id="callModal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close" onclick="closeCallModal()">&times;</span>
+            <h2>Заказать звонок</h2>
+            <form class="modal__form">
+                <input type="text" placeholder="Имя" required>
+                <input type="tel" placeholder="Телефон" required>
+                <button type="submit" class="btn btn--blue">Отправить</button>
+            </form>
+        </div>
+    </div>
 
-        // Бургер-меню
-        function toggleMenu() {
-            const nav = document.querySelector('header nav ul');
-            nav.classList.toggle('active');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
