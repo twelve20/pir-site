@@ -76,6 +76,7 @@
                         <p class="hero-card__price">от 500 ₽/м²</p>
                         <p class="hero-card__discount">Скидка 10%</p>
                         <a href="#catalog" class="btn btn--blue">Подробнее</a>
+                        <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
                     </div>
                 </div>
     
@@ -90,6 +91,7 @@
                         <p class="hero-card__price">от 800 ₽/м²</p>
                         <p class="hero-card__discount">Скидка 15%</p>
                         <a href="#catalog" class="btn btn--blue">Подробнее</a>
+                        <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
                     </div>
                 </div>
     
@@ -104,6 +106,7 @@
                         <p class="hero-card__price">от 200 ₽/шт</p>
                         <p class="hero-card__discount">Скидка 20%</p>
                         <a href="#catalog" class="btn btn--blue">Подробнее</a>
+                        <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
                     </div>
                 </div>
             </div>
@@ -125,6 +128,7 @@
                         <p class="catalog-card__description">Идеально подходят для утепления бань и саун.</p>
                         <p class="catalog-card__price">от 500 ₽/м²</p>
                         <a href="#catalog" class="btn btn--blue">Подробнее</a>
+                        <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
                     </div>
                 </div>
     
@@ -138,6 +142,7 @@
                         <p class="catalog-card__description">Высокая прочность и долговечность до 50 лет.</p>
                         <p class="catalog-card__price">от 800 ₽/м²</p>
                         <a href="#catalog" class="btn btn--blue">Подробнее</a>
+                        <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
                     </div>
                 </div>
     
@@ -151,6 +156,7 @@
                         <p class="catalog-card__description">Дополнительные материалы для монтажа.</p>
                         <p class="catalog-card__price">от 200 ₽/шт</p>
                         <a href="#catalog" class="btn btn--blue">Подробнее</a>
+                        <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
                     </div>
                 </div>
             </div>
@@ -246,15 +252,17 @@
         </div>
     </section>
 
-    <!-- Модальное окно -->
-    <div id="modal" class="modal">
+    <!-- Модальное окно для покупки -->
+    <div id="buyModal" class="modal">
         <div class="modal__content">
-            <span class="modal__close" onclick="closeModal()">&times;</span>
-            <h2>Заказать звонок</h2>
+            <span class="modal__close" onclick="closeBuyModal()">&times;</span>
+            <h2>Оформить заказ</h2>
             <form class="modal__form">
                 <input type="text" placeholder="Имя" required>
                 <input type="tel" placeholder="Телефон" required>
-                <button type="submit" class="btn btn--blue">Отправить</button>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Комментарий к заказу"></textarea>
+                <button type="submit" class="btn btn--blue">Отправить заказ</button>
             </form>
         </div>
     </div>

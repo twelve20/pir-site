@@ -633,7 +633,20 @@ body {
     font-size: 0.9rem;
 }
 
-/* Стили для модальных окон */
+/* Стили для кнопки "Купить сейчас" */
+.btn--orange {
+    background-color: #FF6B35;
+    color: white;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn--orange:hover {
+    background-color: #E65C2B;
+    transform: scale(1.05);
+}
+
+/* Стили для модального окна */
 .modal {
     display: none;
     position: fixed;
@@ -683,7 +696,6 @@ body {
 .modal__form button {
     margin-top: 1rem;
 }
-
 @media (max-width: 768px) {
 
     /* Скрываем основное меню */

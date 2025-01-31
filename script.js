@@ -9,11 +9,11 @@ function toggleMenu() {
 }
 
 function openModal() {
-    document.getElementById('modal').style.display = 'flex';
+    document.getElementById('buymodal').style.display = 'flex';
 }
 
 function closeModal() {
-    document.getElementById('modal').style.display = 'none';
+    document.getElementById('buymodal').style.display = 'none';
 }
 
 // Функции для модального окна "Заказать звонок"
