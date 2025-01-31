@@ -53,6 +53,18 @@
                 </nav>
             </div>
         </div>
+        <!-- Модальное окно для заказа звонка -->
+        <div id="callModal" class="modal">
+            <div class="modal__content">
+                <span class="modal__close" onclick="closeCallModal()">&times;</span>
+                <h2>Заказать звонок</h2>
+                <form class="modal__form">
+                    <input type="text" placeholder="Имя" required>
+                    <input type="tel" placeholder="Телефон" required>
+                    <button type="submit" class="btn btn--blue">Отправить</button>
+                </form>
+            </div>
+        </div>
     </header>
 
     <!-- Hero-блок с выплывающими карточками -->
@@ -329,19 +341,6 @@
                 <input type="text" placeholder="Имя" required>
                 <input type="email" placeholder="Email" required>
                 <textarea placeholder="Ваш вопрос" rows="4" required></textarea>
-                <button type="submit" class="btn btn--blue">Отправить</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Модальное окно для заказа звонка -->
-    <div id="callModal" class="modal">
-        <div class="modal__content">
-            <span class="modal__close" onclick="closeCallModal()">&times;</span>
-            <h2>Заказать звонок</h2>
-            <form class="modal__form">
-                <input type="text" placeholder="Имя" required>
-                <input type="tel" placeholder="Телефон" required>
                 <button type="submit" class="btn btn--blue">Отправить</button>
             </form>
         </div>
