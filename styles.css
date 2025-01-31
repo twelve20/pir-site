@@ -11,6 +11,22 @@ body {
     background-color: #F5F5F5;
 }
 
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    /* Основной контент занимает всё доступное пространство */
+}
+
 .container {
     width: 90%;
     max-width: 1200px;
@@ -560,6 +576,10 @@ body {
     background-color: #2A5CAA;
     color: white;
     padding: 2rem 0;
+}
+
+.footer {
+    flex-shrink: 0;
 }
 
 .footer__inner {
@@ -1168,5 +1188,17 @@ body {
 
     .document-card__name {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .documents-list {
+        padding-bottom: 2rem;
+        /* Уменьшаем отступ для мобильных устройств */
+    }
+
+    .footer {
+        margin-top: 2rem;
+        /* Уменьшаем отступ для мобильных устройств */
     }
 }
