@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIR-плиты - Утепление саун и бань</title>
+    <title>Статьи - PIR-плиты</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
         rel="stylesheet">
@@ -68,55 +68,50 @@
     </header>
 
     <!-- Главный заголовок -->
-    <section id="documents-hero" class="documents-hero">
+    <section id="contacts-hero" class="contacts-hero">
         <div class="container">
-            <h1 class="documents-hero__title">Документы и сертификаты</h1>
-            <p class="documents-hero__subtitle">Повышение доверия через сертификаты и технические описания.</p>
+            <h1 class="contacts-hero__title">Контакты</h1>
+            <p class="contacts-hero__subtitle">Свяжитесь с нами для получения дополнительной информации.</p>
         </div>
     </section>
-
-    <!-- Список документов -->
-    <section id="documents-list" class="documents-list">
+    
+    <!-- Контактная информация и карта -->
+    <section id="contact-info" class="contact-info">
         <div class="container">
-            <div class="documents-list__grid">
-                <!-- Документ 1 -->
-                <div class="document-card">
-                    <img src="icons/pdf-icon.svg" alt="PDF" class="document-card__icon">
-                    <div class="document-card__content">
-                        <p class="document-card__name">Сертификат пожарной безопасности</p>
-                        <a href="files/fire-safety.pdf" download class="btn btn--blue">Скачать</a>
-                    </div>
+            <div class="contact-info__grid">
+                <!-- Контактные данные -->
+                <div class="contact-info__details">
+                    <h2>Контактные данные</h2>
+                    <p><strong>Адрес:</strong> г. Москва, ул. Промышленная, д. 10</p>
+                    <p><strong>Телефон:</strong> <a href="tel:+79991234567">+7 (999) 123-45-67</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:info@pir-plates.ru">info@pir-plates.ru</a></p>
                 </div>
-
-                <!-- Документ 2 -->
-                <div class="document-card">
-                    <img src="icons/pdf-icon.svg" alt="PDF" class="document-card__icon">
-                    <div class="document-card__content">
-                        <p class="document-card__name">Экологический сертификат</p>
-                        <a href="files/eco-certificate.pdf" download class="btn btn--blue">Скачать</a>
-                    </div>
+    
+                <!-- Карта -->
+                <div class="contact-info__map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2243.997785344149!2d37.617635!3d55.755826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54afc5c8a4e39%3A0x3d44d6cc5757cf4c!2z0JzQvtGB0LrQstCwINC_0YAuLCAxMCwg0JzQvtGB0LrQstCwLCDQnNC-0YHQutCy0LAsIDEwNzk5OA!5e0!3m2!1sru!2sru!4v1698743295456!5m2!1sru!2sru"
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
-
-                <!-- Документ 3 -->
-                <div class="document-card">
-                    <img src="icons/pdf-icon.svg" alt="PDF" class="document-card__icon">
-                    <div class="document-card__content">
-                        <p class="document-card__name">Техническое описание PIR-плит</p>
-                        <a href="files/technical-description.pdf" download class="btn btn--blue">Скачать</a>
-                    </div>
-                </div>
-
-                <!-- Добавьте больше документов по аналогии -->
-            </div>
-
-            <!-- Кнопка "Скачать все документы" -->
-            <div class="documents-list__download-all">
-                <a href="files/all-documents.zip" download class="btn btn--blue">Скачать все документы</a>
             </div>
         </div>
     </section>
+    
+    <!-- Форма обратной связи -->
+    <section id="contact-form" class="contact-form">
+        <div class="container">
+            <h2>Форма обратной связи</h2>
+            <form class="contact-form__content">
+                <input type="text" placeholder="Имя" required>
+                <input type="tel" placeholder="Телефон" required>
+                <textarea placeholder="Сообщение" rows="5" required></textarea>
+                <button type="submit" class="btn btn--orange">Отправить</button>
+            </form>
+        </div>
+    </section>
 
-    <!-- Футер -->
     <footer class="footer">
         <div class="container">
             <div class="footer__inner">
