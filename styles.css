@@ -331,6 +331,28 @@ body {
     transform: scale(1.05);
 }
 
+/* Стили для цены */
+.catalog-card__price {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.2rem;
+    color: #FF6B35;
+    /* Оранжевый цвет для акцента */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .catalog-card__price {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-card__price {
+        font-size: 0.9rem;
+    }
+}
+
 /* Основные стили для блока с преимуществами */
 .advantages {
     padding: 4rem 0;
