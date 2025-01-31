@@ -973,6 +973,11 @@ body {
     margin-bottom: 1rem;
 }
 
+.articles-grid {
+    padding-bottom: 4rem;
+    /* Добавляем отступ снизу */
+}
+
 .btn--orange {
     background-color: #FF6B35;
     color: white;
