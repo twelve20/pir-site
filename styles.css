@@ -1074,3 +1074,94 @@ body {
         /* Уменьшаем отступ для мобильных устройств */
     }
 }
+
+/* Основные стили для Документов */
+.documents-hero {
+    padding: 4rem 0;
+    background-color: #F5F5F5;
+    text-align: center;
+}
+
+.documents-hero__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 2.5rem;
+    color: #2A5CAA;
+    margin-bottom: 1rem;
+}
+
+.documents-hero__subtitle {
+    font-size: 1.5rem;
+    color: #555;
+}
+
+.documents-list__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.document-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.document-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.document-card__icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+}
+
+.document-card__content {
+    flex: 1;
+}
+
+.document-card__name {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #2A5CAA;
+}
+
+.documents-list__download-all {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.btn--blue {
+    background-color: #2A5CAA;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn--blue:hover {
+    background-color: #1A4C8A;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .documents-hero__title {
+        font-size: 2rem;
+    }
+
+    .documents-hero__subtitle {
+        font-size: 1.2rem;
+    }
+
+    .document-card__name {
+        font-size: 1rem;
+    }
+}
