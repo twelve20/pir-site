@@ -43,10 +43,13 @@ body {
 }
 
 /* Шапка */
+/* Основные стили для шапки */
 .header {
     background-color: white;
     padding: 1rem 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* Добавляем относительное позиционирование */
 }
 
 .header__inner {
@@ -61,13 +64,18 @@ body {
     color: #2A5CAA;
 }
 
-.menu ul {
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu__list {
     display: flex;
     gap: 20px;
     list-style: none;
 }
 
-.menu a {
+.menu__list a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
@@ -77,6 +85,64 @@ body {
     color: #2A5CAA;
     text-decoration: none;
     margin-right: 1rem;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn--blue {
+    background-color: #2A5CAA;
+    color: white;
+}
+
+/* Иконка меню для мобильных устройств */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    transition: transform 0.3s ease;
+}
+
+/* Стили для мобильного меню */
+.menu-mobile {
+    display: none;
+    /* По умолчанию скрыто */
+    position: absolute;
+    /* Абсолютное позиционирование */
+    top: 100%;
+    /* Размещаем под шапкой */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    /* Убедитесь, что меню выше других элементов */
+}
+
+.menu-mobile ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.menu-mobile a {
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
 }
 
 /* Герой-баннер */
@@ -430,4 +496,22 @@ body {
 
 .modal__form button {
     margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+
+    /* Скрываем основное меню */
+    .menu {
+        display: none;
+    }
+
+    /* Показываем иконку меню */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Скрываем контакты и кнопку */
+    .header__contacts {
+        display: none;
+    }
 }
