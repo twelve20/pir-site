@@ -16,19 +16,41 @@
     <header class="header">
         <div class="container">
             <div class="header__inner">
+                <!-- Логотип -->
                 <div class="logo">PIR-плиты</div>
+    
+                <!-- Меню -->
                 <nav class="menu">
-                    <ul>
+                    <ul class="menu__list">
                         <li><a href="#hero">Главная</a></li>
                         <li><a href="#catalog">Каталог</a></li>
                         <li><a href="#documents">Документы</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </nav>
+    
+                <!-- Контакты и кнопка -->
                 <div class="header__contacts">
                     <a href="tel:+79991234567" class="phone">+7 (999) 123-45-67</a>
                     <button class="btn btn--blue" onclick="openCallModal()">Заказать звонок</button>
                 </div>
+    
+                <!-- Иконка меню для мобильных устройств -->
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+    
+                <!-- Мобильное меню -->
+                <nav class="menu-mobile">
+                    <ul class="menu__list">
+                        <li><a href="#hero">Главная</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#documents">Документы</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </header>
