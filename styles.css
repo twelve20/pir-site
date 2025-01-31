@@ -1138,6 +1138,11 @@ body {
     margin-top: 2rem;
 }
 
+.documents-list {
+    padding-bottom: 4rem;
+    /* Добавляем отступ снизу */
+}
+
 .btn--blue {
     background-color: #2A5CAA;
     color: white;
