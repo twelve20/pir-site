@@ -1,3 +1,13 @@
+/// Функция для переключения мобильного меню
+function toggleMenu() {
+    const menuMobile = document.querySelector('.menu-mobile');
+    if (menuMobile.style.display === 'block') {
+        menuMobile.style.display = 'none';
+    } else {
+        menuMobile.style.display = 'block';
+    }
+}
+
 function openModal() {
     document.getElementById('modal').style.display = 'flex';
 }
