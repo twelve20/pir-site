@@ -49,23 +49,31 @@ window.onclick = function (event) {
 };
 
 let currentSlide = 0;
-const slides = document.querySelectorAll('.promotion');
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
 
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
+function changeSlide(direction) {
+    currentSlide += direction;
+    if (currentSlide >= totalSlides) currentSlide = 0;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
+    updateSlider();
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+}
+
+function updateSlider() {
+    const sliderContainer = document.querySelector('.slider-container');
+    sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Обновляем активные индикаторы
+    const indicators = document.querySelectorAll('.indicator');
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
     });
 }
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-// Инициализация первого слайда
-showSlide(currentSlide);
+// Автоматическая прокрутка слайдов (опционально)
+setInterval(() => changeSlide(1), 5000);

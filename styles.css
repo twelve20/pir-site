@@ -145,29 +145,99 @@ body {
     color: #333;
 }
 
-/* Герой-баннер */
-.hero {
-    background: linear-gradient(to bottom, rgba(42, 92, 172, 0.7), transparent),
-        url('images/hero-bg.jpg') no-repeat center/cover;
-    color: white;
-    padding: 4rem 0;
-    text-align: center;
+/* Основные стили для слайдера */
+.hero-slider {
+    position: relative;
+    overflow: hidden;
+    background-color: #F5F5F5;
 }
 
-.hero__title {
+.slider-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide__image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.slide__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+.slide__title {
+    font-family: 'Roboto Bold', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.hero__subtitle {
-    font-size: 1.5rem;
+.slide__description {
+    font-size: 1.2rem;
     margin-bottom: 2rem;
 }
 
-.hero__buttons {
+.slide__buttons {
     display: flex;
     justify-content: center;
     gap: 1rem;
+}
+
+/* Кнопки навигации */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 3;
+}
+
+.slider-btn--prev {
+    left: 10px;
+}
+
+.slider-btn--next {
+    right: 10px;
+}
+
+/* Индикаторы слайдов */
+.slider-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.indicator.active {
+    background-color: white;
 }
 
 /* Основные стили для блока с преимуществами */
@@ -572,5 +642,19 @@ body {
     .advantage__text {
         font-size: 0.8rem;
         /* Дополнительно уменьшаем текст */
+    }
+}
+
+@media (max-width: 768px) {
+    .slide__title {
+        font-size: 2rem;
+    }
+
+    .slide__description {
+        font-size: 1rem;
+    }
+
+    .slide__image {
+        height: 300px;
     }
 }

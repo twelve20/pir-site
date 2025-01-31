@@ -55,18 +55,58 @@
         </div>
     </header>
 
-    <!-- Герой-баннер -->
-    <section id="hero" class="hero">
-        <div class="container">
-            <div class="hero__content">
-                <h1 class="hero__title">Утепление саун и бань PIR-плитами от производителя</h1>
-                <p class="hero__subtitle">Сертифицированные материалы, доставка по всей России</p>
-                <div class="hero__buttons">
-                    <a href="#catalog" class="btn btn--blue">Выбрать плиты</a>
-                    <a href="#consultation" class="btn btn--orange" onclick="openConsultationModal()">Получить
-                        консультацию</a>
+    <!-- Слайдер -->
+    <section id="hero-slider" class="hero-slider">
+        <div class="slider-container">
+            <!-- Слайд 1 -->
+            <div class="slide active">
+                <img src="images/slide1.jpg" alt="Скидка 10%" class="slide__image">
+                <div class="slide__content">
+                    <h1 class="slide__title">Скидка 10% на утепление бань</h1>
+                    <p class="slide__description">Используйте PIR-плиты для долговечного утепления.</p>
+                    <div class="slide__buttons">
+                        <a href="#catalog" class="btn btn--blue">Перейти в каталог</a>
+                        <button class="btn btn--orange" onclick="openCallModal()">Заказать звонок</button>
+                    </div>
                 </div>
             </div>
+    
+            <!-- Слайд 2 -->
+            <div class="slide">
+                <img src="images/slide2.jpg" alt="Бесплатная доставка" class="slide__image">
+                <div class="slide__content">
+                    <h1 class="slide__title">Бесплатная доставка по Москве</h1>
+                    <p class="slide__description">При заказе от 50 000 рублей.</p>
+                    <div class="slide__buttons">
+                        <a href="#catalog" class="btn btn--blue">Перейти в каталог</a>
+                        <button class="btn btn--orange" onclick="openCallModal()">Заказать звонок</button>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Слайд 3 -->
+            <div class="slide">
+                <img src="images/slide3.jpg" alt="Подарок при заказе" class="slide__image">
+                <div class="slide__content">
+                    <h1 class="slide__title">Подарок при заказе</h1>
+                    <p class="slide__description">Получите дополнительные материалы бесплатно.</p>
+                    <div class="slide__buttons">
+                        <a href="#catalog" class="btn btn--blue">Перейти в каталог</a>
+                        <button class="btn btn--orange" onclick="openCallModal()">Заказать звонок</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Кнопки навигации -->
+        <button class="slider-btn slider-btn--prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="slider-btn slider-btn--next" onclick="changeSlide(1)">&#10095;</button>
+    
+        <!-- Индикаторы слайдов -->
+        <div class="slider-indicators">
+            <span class="indicator active" onclick="goToSlide(0)"></span>
+            <span class="indicator" onclick="goToSlide(1)"></span>
+            <span class="indicator" onclick="goToSlide(2)"></span>
         </div>
     </section>
 
