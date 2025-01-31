@@ -59,3 +59,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }, index * 300); // Задержка между карточками
     });
 });
+
+// Функция для открытия модального окна
+function openBuyModal() {
+    document.getElementById('buyModal').style.display = 'flex';
+}
+
+// Функция для закрытия модального окна
+function closeBuyModal() {
+    document.getElementById('buyModal').style.display = 'none';
+}
+
+// Закрытие модального окна при клике вне его области
+window.onclick = function (event) {
+    const modal = document.getElementById('buyModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+};
