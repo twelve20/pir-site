@@ -234,6 +234,79 @@ body {
 .btn--orange {
     background-color: #FF6B35;
 }
+
+/* Основные стили для мини-каталога */
+.mini-catalog {
+    padding: 4rem 0;
+    background-color: #F5F5F5;
+}
+
+.section-title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.mini-catalog__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+/* Стили для карточек товаров */
+.catalog-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.catalog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.catalog-card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.catalog-card__content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.catalog-card__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2A5CAA;
+}
+
+.catalog-card__description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.catalog-card .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    background-color: #2A5CAA;
+    transition: background-color 0.3s ease;
+}
+
+.catalog-card .btn:hover {
+    background-color: #FF6B35;
+}
+
 /* Основные стили для блока с преимуществами */
 .advantages {
     padding: 4rem 0;
@@ -278,66 +351,6 @@ body {
 .advantage__text {
     font-size: 1rem;
     color: #333;
-}
-
-/* Стили для блока акций */
-.promotions {
-    padding: 4rem 0;
-    background-color: #F5F5F5;
-}
-
-.promotions__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-/* Стили для карточек */
-.promotion-card {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.promotion-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.promotion-card__image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.promotion-card__content {
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.promotion-card__title {
-    font-family: 'Roboto Bold', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #2A5CAA;
-}
-
-.promotion-card__description {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 1.5rem;
-}
-
-.promotion-card .btn {
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.promotion-card .btn:hover {
-    background-color: #FF6B35;
-    transform: scale(1.05);
 }
 
 /* Стили для блока "Наши работы" */
@@ -684,5 +697,37 @@ body {
         /* Отключаем равное распределение пространства */
         width: 100%;
         /* Кнопки занимают всю ширину */
+    }
+}
+
+@media (max-width: 768px) {
+    .mini-catalog__grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .catalog-card__title {
+        font-size: 1.2rem;
+    }
+
+    .catalog-card__description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mini-catalog__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-card__image {
+        height: 150px;
+    }
+
+    .catalog-card__title {
+        font-size: 1.1rem;
+    }
+
+    .catalog-card__description {
+        font-size: 0.8rem;
     }
 }
