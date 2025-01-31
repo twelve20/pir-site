@@ -170,21 +170,50 @@ body {
     gap: 1rem;
 }
 
-/* Преимущества */
-.advantages__list {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2rem;
+/* Основные стили для блока с преимуществами */
+.advantages {
+    padding: 4rem 0;
+    background-color: #F5F5F5;
+}
+
+.section-title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.advantages__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Адаптивная сетка */
+    gap: 2rem;
+    justify-content: center;
 }
 
 .advantage {
     text-align: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advantage:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .advantage__icon {
     width: 50px;
     height: 50px;
     margin-bottom: 1rem;
+}
+
+.advantage__text {
+    font-size: 1rem;
+    color: #333;
 }
 
 /* Стили для блока акций */
@@ -513,5 +542,35 @@ body {
     /* Скрываем контакты и кнопку */
     .header__contacts {
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .advantages__grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        /* Уменьшаем ширину карточек */
+    }
+
+    .advantage__text {
+        font-size: 0.9rem;
+        /* Уменьшаем текст */
+    }
+}
+
+@media (max-width: 480px) {
+    .advantages__grid {
+        grid-template-columns: 1fr;
+        /* Одна колонка на очень маленьких экранах */
+    }
+
+    .advantage__icon {
+        width: 40px;
+        height: 40px;
+        /* Уменьшаем иконки */
+    }
+
+    .advantage__text {
+        font-size: 0.8rem;
+        /* Дополнительно уменьшаем текст */
     }
 }
