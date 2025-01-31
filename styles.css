@@ -246,12 +246,14 @@ body {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 2rem;
+    color: #2A5CAA;
 }
 
 .mini-catalog__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    justify-content: center;
 }
 
 /* Стили для карточек товаров */
@@ -269,9 +271,19 @@ body {
 }
 
 .catalog-card__image {
+    position: relative;
+    overflow: hidden;
+}
+
+.catalog-card__img {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.catalog-card:hover .catalog-card__img {
+    transform: scale(1.1);
 }
 
 .catalog-card__content {
@@ -286,10 +298,21 @@ body {
     color: #2A5CAA;
 }
 
+.catalog-card__title {
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.catalog-card:hover .catalog-card__title {
+    opacity: 1;
+    transform: translateY(-5px);
+}
+
 .catalog-card__description {
     font-size: 1rem;
     color: #555;
     margin-bottom: 1.5rem;
+    line-height: 1.6;
 }
 
 .catalog-card .btn {
@@ -300,11 +323,12 @@ body {
     text-decoration: none;
     color: white;
     background-color: #2A5CAA;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .catalog-card .btn:hover {
     background-color: #FF6B35;
+    transform: scale(1.05);
 }
 
 /* Основные стили для блока с преимуществами */
@@ -720,6 +744,42 @@ body {
     }
 
     .catalog-card__image {
+        height: 150px;
+    }
+
+    .catalog-card__title {
+        font-size: 1.1rem;
+    }
+
+    .catalog-card__description {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mini-catalog__grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .catalog-card__img {
+        height: 200px;
+    }
+
+    .catalog-card__title {
+        font-size: 1.2rem;
+    }
+
+    .catalog-card__description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mini-catalog__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-card__img {
         height: 150px;
     }
 
