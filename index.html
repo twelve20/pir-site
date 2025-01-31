@@ -56,53 +56,40 @@
     </header>
 
     <!-- Блок с акциями -->
-    <section id="hero-promotions" class="hero-promotions">
+    <!-- Hero-блок с выплывающими акциями -->
+    <section id="hero" class="hero">
         <div class="container">
-            <h2 class="section-title">Специальные предложения</h2>
-            <div class="promotions__grid">
-                <!-- Акция 1 -->
-                <div class="promotion-card">
-                    <img src="images/promo1.jpg" alt="Скидка 10%" class="promotion-card__image">
-                    <div class="promotion-card__content">
-                        <h3 class="promotion-card__title">Скидка 10%</h3>
-                        <p class="promotion-card__description">На утепление бань и саун PIR-плитами.</p>
-                        <div class="promotion-card__buttons">
-                            <a href="#catalog" class="btn btn--blue">Перейти в каталог</a>
-                            <button class="btn btn--orange" onclick="openCallModal()">Заказать звонок</button>
-                        </div>
-                    </div>
+            <div class="hero__content">
+                <h1 class="hero__title">Утепление саун и бань PIR-плитами от производителя</h1>
+                <p class="hero__subtitle">Сертифицированные материалы, доставка по всей России</p>
+                <div class="hero__buttons">
+                    <a href="#catalog" class="btn btn--blue">Выбрать плиты</a>
+                    <button class="btn btn--orange" onclick="openCallModal()">Получить консультацию</button>
                 </div>
+            </div>
     
-                <!-- Акция 2 -->
-                <div class="promotion-card">
-                    <img src="images/promo2.jpg" alt="Бесплатная доставка" class="promotion-card__image">
-                    <div class="promotion-card__content">
-                        <h3 class="promotion-card__title">Бесплатная доставка</h3>
-                        <p class="promotion-card__description">При заказе от 50 000 рублей.</p>
-                        <div class="promotion-card__buttons">
-                            <a href="#catalog" class="btn btn--blue">Перейти в каталог</a>
-                            <button class="btn btn--orange" onclick="openCallModal()">Заказать звонок</button>
-                        </div>
+            <!-- Блок с выплывающими акциями -->
+            <div class="hero__promotions">
+                <div class="promotion-slider">
+                    <!-- Акция 1 -->
+                    <div class="promotion-slide active">
+                        <p class="promotion-slide__text">Скидка 10% на утепление бань и саун!</p>
                     </div>
-                </div>
     
-                <!-- Акция 3 -->
-                <div class="promotion-card">
-                    <img src="images/promo3.jpg" alt="Подарок при заказе" class="promotion-card__image">
-                    <div class="promotion-card__content">
-                        <h3 class="promotion-card__title">Подарок при заказе</h3>
-                        <p class="promotion-card__description">Получите дополнительные материалы бесплатно.</p>
-                        <div class="promotion-card__buttons">
-                            <a href="#catalog" class="btn btn--blue">Перейти в каталог</a>
-                            <button class="btn btn--orange" onclick="openCallModal()">Заказать звонок</button>
-                        </div>
+                    <!-- Акция 2 -->
+                    <div class="promotion-slide">
+                        <p class="promotion-slide__text">Бесплатная доставка при заказе от 50 000 рублей!</p>
+                    </div>
+    
+                    <!-- Акция 3 -->
+                    <div class="promotion-slide">
+                        <p class="promotion-slide__text">Подарок при заказе комплектующих!</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Мини-каталог -->
     <!-- Мини-каталог -->
     <section id="mini-catalog" class="mini-catalog">
         <div class="container">

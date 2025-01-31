@@ -145,94 +145,80 @@ body {
     color: #333;
 }
 
-/* Основные стили для блока с акциями */
-.hero-promotions {
+/* Основные стили для hero-блока */
+.hero {
+    position: relative;
+    background: linear-gradient(to bottom, rgba(42, 92, 172, 0.7), transparent),
+        url('images/hero-bg.jpg') no-repeat center/cover;
+    color: white;
     padding: 4rem 0;
-    background-color: #F5F5F5;
+    text-align: center;
 }
 
-.section-title {
-    font-family: 'Roboto Bold', sans-serif;
-    font-size: 2rem;
-    text-align: center;
+.hero__content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero__title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+    font-size: 1.5rem;
     margin-bottom: 2rem;
 }
 
-.promotions__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-/* Стили для карточек */
-.promotion-card {
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.promotion-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.promotion-card__image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.promotion-card__content {
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.promotion-card__title {
-    font-family: 'Roboto Bold', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #2A5CAA;
-}
-
-.promotion-card__description {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 1.5rem;
-}
-
-.promotion-card__buttons {
+.hero__buttons {
     display: flex;
     justify-content: center;
-    /* Центрируем кнопки */
     gap: 1rem;
-    /* Добавляем расстояние между кнопками */
-    margin-top: 1rem;
-    /* Отступ сверху */
 }
 
-.promotion-card .btn {
-    flex: 1;
-    /* Кнопки занимают равное пространство */
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+.hero__promotions {
+    margin-top: 2rem;
+    position: relative;
+    height: 50px;
+    /* Высота для выплывающих акций */
+    overflow: hidden;
+}
+
+.promotion-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.promotion-slide {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.promotion-slide.active {
+    display: flex;
+}
+
+.promotion-slide__text {
+    font-size: 1.2rem;
     font-weight: bold;
-    text-align: center;
-    /* Текст по центру */
-    text-decoration: none;
-    /* Убираем подчеркивание для ссылок */
-    color: white;
-    /* Белый текст */
+    color: #FF6B35;
+    /* Оранжевый цвет для акцента */
 }
 
-.btn--blue {
-    background-color: #2A5CAA;
+.promotion-slide {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.btn--orange {
-    background-color: #FF6B35;
+.promotion-slide.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Основные стили для мини-каталога */

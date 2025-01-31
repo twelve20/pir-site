@@ -48,32 +48,20 @@ window.onclick = function (event) {
     }
 };
 
+// Логика для выплывающих акций
 let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
+const slides = document.querySelectorAll('.promotion-slide');
 
-function changeSlide(direction) {
-    currentSlide += direction;
-    if (currentSlide >= totalSlides) currentSlide = 0;
-    if (currentSlide < 0) currentSlide = totalSlides - 1;
-    updateSlider();
+function showNextSlide() {
+    // Скрываем текущую акцию
+    slides[currentSlide].classList.remove('active');
+
+    // Переходим к следующей акции
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    // Показываем следующую акцию
+    slides[currentSlide].classList.add('active');
 }
 
-function goToSlide(index) {
-    currentSlide = index;
-    updateSlider();
-}
-
-function updateSlider() {
-    const sliderContainer = document.querySelector('.slider-container');
-    sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-    // Обновляем активные индикаторы
-    const indicators = document.querySelectorAll('.indicator');
-    indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentSlide);
-    });
-}
-
-// Автоматическая прокрутка слайдов (опционально)
-setInterval(() => changeSlide(1), 5000);
+// Запускаем автоматическую смену акций каждые 3 секунды
+setInterval(showNextSlide, 3000);
