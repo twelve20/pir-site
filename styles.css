@@ -205,26 +205,35 @@ body {
 .promotion-card__buttons {
     display: flex;
     justify-content: center;
+    /* Центрируем кнопки */
     gap: 1rem;
+    /* Добавляем расстояние между кнопками */
+    margin-top: 1rem;
+    /* Отступ сверху */
 }
 
 .promotion-card .btn {
+    flex: 1;
+    /* Кнопки занимают равное пространство */
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    text-align: center;
+    /* Текст по центру */
+    text-decoration: none;
+    /* Убираем подчеркивание для ссылок */
+    color: white;
+    /* Белый текст */
 }
 
 .btn--blue {
     background-color: #2A5CAA;
-    color: white;
 }
 
 .btn--orange {
     background-color: #FF6B35;
-    color: white;
 }
-
 /* Основные стили для блока с преимуществами */
 .advantages {
     padding: 4rem 0;
@@ -659,5 +668,21 @@ body {
 
     .promotion-card__description {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .promotion-card__buttons {
+        flex-direction: column;
+        /* Кнопки в колонку на маленьких экранах */
+        gap: 0.5rem;
+        /* Уменьшаем расстояние между кнопками */
+    }
+
+    .promotion-card .btn {
+        flex: none;
+        /* Отключаем равное распределение пространства */
+        width: 100%;
+        /* Кнопки занимают всю ширину */
     }
 }
