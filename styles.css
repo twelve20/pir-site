@@ -904,7 +904,7 @@ body {
     }
 }
 
-/* Основные стили для блога */
+/* Основные стили для Блога*/
 .articles-hero {
     padding: 4rem 0;
     background-color: #F5F5F5;
@@ -921,39 +921,6 @@ body {
 .articles-hero__subtitle {
     font-size: 1.5rem;
     color: #555;
-}
-
-.filters {
-    padding: 2rem 0;
-    background-color: white;
-}
-
-.filters__inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.filters__categories {
-    display: flex;
-    gap: 1rem;
-}
-
-.filter-category {
-    font-family: 'Roboto Bold', sans-serif;
-    color: #2A5CAA;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.filter-category.active {
-    color: #FF6B35;
-}
-
-.search-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 .articles-grid__list {
@@ -1006,66 +973,30 @@ body {
     margin-bottom: 1rem;
 }
 
-.sidebar {
-    padding: 2rem 0;
-    background-color: #F5F5F5;
-}
-
-.sidebar__title {
-    font-family: 'Roboto Bold', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.sidebar__popular {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar__popular li {
-    margin-bottom: 0.5rem;
-}
-
-.sidebar__popular a {
-    color: #2A5CAA;
-    text-decoration: none;
-}
-
-.pagination {
-    padding: 2rem 0;
-    text-align: center;
-}
-
-.pagination__controls {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.pagination__link {
-    font-family: 'Roboto Bold', sans-serif;
-    color: #2A5CAA;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.pagination__link.active {
-    background-color: #2A5CAA;
+.btn--orange {
+    background-color: #FF6B35;
     color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn--orange:hover {
+    background-color: #E65C2B;
+    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-    .filters__inner {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
     .articles-grid__list {
         grid-template-columns: 1fr;
     }
 
-    .sidebar {
-        display: none;
+    .articles-hero__title {
+        font-size: 2rem;
+    }
+
+    .articles-hero__subtitle {
+        font-size: 1.2rem;
     }
 }

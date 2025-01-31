@@ -62,27 +62,7 @@
             <p class="articles-hero__subtitle">Советы от профессионалов, обзоры материалов, ответы на вопросы.</p>
         </div>
     </section>
-
-    <!-- Фильтры и поиск -->
-    <section id="filters" class="filters">
-        <div class="container">
-            <div class="filters__inner">
-                <div class="filters__categories">
-                    <span>Категории:</span>
-                    <a href="#" class="filter-category active">Все</a>
-                    <a href="#" class="filter-category">Монтаж</a>
-                    <a href="#" class="filter-category">Советы</a>
-                    <a href="#" class="filter-category">Технологии</a>
-                    <a href="#" class="filter-category">Кейсы</a>
-                </div>
-                <div class="filters__search">
-                    <input type="text" placeholder="Поиск по статьям..." class="search-input">
-                    <button class="btn btn--blue">Найти</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- Сетка статей -->
     <section id="articles-grid" class="articles-grid">
         <div class="container">
@@ -92,8 +72,8 @@
                     <img src="images/article1.jpg" alt="Как выбрать PIR-плиту для бани?" class="article-card__image">
                     <div class="article-card__content">
                         <h3 class="article-card__title">Как выбрать PIR-плиту для бани?</h3>
-                        <p class="article-card__description">Разбираем основные критерии выбора PIR-плит для утепления
-                            бань.</p>
+                        <p class="article-card__description">Разбираем основные критерии выбора PIR-плит для утепления бань.
+                        </p>
                         <div class="article-card__meta">
                             <span class="article-card__date">15 октября 2023</span>
                             <span class="article-card__tags">#монтаж #бани</span>
@@ -101,7 +81,7 @@
                         <a href="#" class="btn btn--orange">Читать далее</a>
                     </div>
                 </div>
-
+    
                 <!-- Статья 2 -->
                 <div class="article-card">
                     <img src="images/article2.jpg" alt="5 ошибок при утеплении бани" class="article-card__image">
@@ -115,57 +95,25 @@
                         <a href="#" class="btn btn--orange">Читать далее</a>
                     </div>
                 </div>
-
+    
+                <!-- Статья 3 -->
+                <div class="article-card">
+                    <img src="images/article3.jpg" alt="Сравнение PIR с минеральной ватой" class="article-card__image">
+                    <div class="article-card__content">
+                        <h3 class="article-card__title">Сравнение PIR с минеральной ватой</h3>
+                        <p class="article-card__description">Что лучше для утепления: PIR или минеральная вата?</p>
+                        <div class="article-card__meta">
+                            <span class="article-card__date">5 октября 2023</span>
+                            <span class="article-card__tags">#технологии #сравнение</span>
+                        </div>
+                        <a href="#" class="btn btn--orange">Читать далее</a>
+                    </div>
+                </div>
+    
                 <!-- Добавьте больше карточек статей по аналогии -->
             </div>
         </div>
     </section>
-
-    <!-- Боковая панель -->
-    <aside id="sidebar" class="sidebar">
-        <div class="container">
-            <div class="sidebar__inner">
-                <h3 class="sidebar__title">Популярные статьи</h3>
-                <ul class="sidebar__popular">
-                    <li><a href="#">Сравнение PIR с минеральной ватой</a></li>
-                    <li><a href="#">Пошаговая инструкция по монтажу</a></li>
-                    <li><a href="#">Как правильно хранить PIR-плиты?</a></li>
-                </ul>
-
-                <h3 class="sidebar__title">Подписка на рассылку</h3>
-                <form class="sidebar__form">
-                    <input type="email" placeholder="Ваш email" required>
-                    <button type="submit" class="btn btn--blue">Подписаться</button>
-                </form>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Пагинация -->
-    <section id="pagination" class="pagination">
-        <div class="container">
-            <div class="pagination__controls">
-                <a href="#" class="pagination__link">← Назад</a>
-                <a href="#" class="pagination__link">1</a>
-                <a href="#" class="pagination__link active">2</a>
-                <a href="#" class="pagination__link">3</a>
-                <a href="#" class="pagination__link">Вперед →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Модальное окно для заказа звонка -->
-    <div id="callModal" class="modal">
-        <div class="modal__content">
-            <span class="modal__close" onclick="closeCallModal()">&times;</span>
-            <h2>Заказать звонок</h2>
-            <form class="modal__form">
-                <input type="text" placeholder="Имя" required>
-                <input type="tel" placeholder="Телефон" required>
-                <button type="submit" class="btn btn--blue">Отправить</button>
-            </form>
-        </div>
-    </div>
 
     <footer class="footer">
         <div class="container">
