@@ -341,6 +341,16 @@ body {
     text-align: center;
 }
 
+.catalog-card__price {
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.catalog-card:hover .catalog-card__price {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
 @media (max-width: 768px) {
     .catalog-card__price {
         font-size: 1rem;
