@@ -145,99 +145,84 @@ body {
     color: #333;
 }
 
-/* Основные стили для слайдера */
-.hero-slider {
-    position: relative;
-    overflow: hidden;
+/* Основные стили для блока с акциями */
+.hero-promotions {
+    padding: 4rem 0;
     background-color: #F5F5F5;
 }
 
-.slider-container {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-
-.slide {
-    min-width: 100%;
-    position: relative;
-}
-
-.slide__image {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-}
-
-.slide__content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    z-index: 2;
-}
-
-.slide__title {
+.section-title {
     font-family: 'Roboto Bold', sans-serif;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.slide__description {
-    font-size: 1.2rem;
+    font-size: 2rem;
+    text-align: center;
     margin-bottom: 2rem;
 }
 
-.slide__buttons {
+.promotions__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Стили для карточек */
+.promotion-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promotion-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.promotion-card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.promotion-card__content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.promotion-card__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2A5CAA;
+}
+
+.promotion-card__description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.promotion-card__buttons {
     display: flex;
     justify-content: center;
     gap: 1rem;
 }
 
-/* Кнопки навигации */
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+.promotion-card .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn--blue {
+    background-color: #2A5CAA;
     color: white;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 3;
 }
 
-.slider-btn--prev {
-    left: 10px;
-}
-
-.slider-btn--next {
-    right: 10px;
-}
-
-/* Индикаторы слайдов */
-.slider-indicators {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-.indicator {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.indicator.active {
-    background-color: white;
+.btn--orange {
+    background-color: #FF6B35;
+    color: white;
 }
 
 /* Основные стили для блока с преимуществами */
@@ -646,15 +631,33 @@ body {
 }
 
 @media (max-width: 768px) {
-    .slide__title {
-        font-size: 2rem;
+    .promotions__grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 
-    .slide__description {
-        font-size: 1rem;
+    .promotion-card__title {
+        font-size: 1.2rem;
     }
 
-    .slide__image {
-        height: 300px;
+    .promotion-card__description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .promotions__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .promotion-card__image {
+        height: 150px;
+    }
+
+    .promotion-card__title {
+        font-size: 1.1rem;
+    }
+
+    .promotion-card__description {
+        font-size: 0.8rem;
     }
 }
