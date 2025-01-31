@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
@@ -15,20 +16,41 @@
     <header class="header">
         <div class="container">
             <div class="header__inner">
+                <!-- Логотип -->
                 <div class="logo">PIR-плиты</div>
+    
+                <!-- Меню -->
                 <nav class="menu">
-                    <ul>
-                        <li><a href="#hero">Главная</a></li>
-                        <li><a href="#catalog">Каталог</a></li>
+                    <ul class="menu__list">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="blog.html">Статьи</a></li>
                         <li><a href="#documents">Документы</a></li>
-                        <li><a href="#articles">Статьи</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </nav>
+    
+                <!-- Контакты и кнопка -->
                 <div class="header__contacts">
                     <a href="tel:+79991234567" class="phone">+7 (999) 123-45-67</a>
                     <button class="btn btn--blue" onclick="openCallModal()">Заказать звонок</button>
                 </div>
+    
+                <!-- Иконка меню для мобильных устройств -->
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+    
+                <!-- Мобильное меню -->
+                <nav class="menu-mobile">
+                    <ul class="menu__list">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#documents">Документы</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </header>
@@ -145,7 +167,59 @@
         </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <!-- Логотип и краткое описание -->
+                <div class="footer__brand">
+                    <div class="logo">PIR-плиты</div>
+                    <p>Производство и продажа PIR-плит для утепления саун и бань.</p>
+                </div>
+    
+                <!-- Навигация -->
+                <div class="footer__nav">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="blog.html">Статьи</a></li>
+                        <li><a href="#documents">Документы</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Контакты -->
+                <div class="footer__contacts">
+                    <h3>Контакты</h3>
+                    <p><a href="tel:+79991234567" class="phone">+7 (999) 123-45-67</a></p>
+                    <p><a href="mailto:info@pir-plates.ru">info@pir-plates.ru</a></p>
+                    <p>Адрес: г. Москва, ул. Промышленная, д. 10</p>
+                </div>
+    
+                <!-- Подписка на рассылку -->
+                <div class="footer__subscribe">
+                    <h3>Подпишитесь на новости</h3>
+                    <form class="footer__form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn--blue">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Социальные сети -->
+            <div class="footer__social">
+                <a href="https://vk.com" target="_blank"><i class="fab fa-vk"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
+    
+            <!-- Правовая информация -->
+            <div class="footer__copyright">
+                <p>&copy; 2023 PIR-плиты. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
