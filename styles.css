@@ -1005,3 +1005,15 @@ body {
         font-size: 1.2rem;
     }
 }
+
+@media (max-width: 768px) {
+    .footer {
+        margin-top: 2rem;
+        /* Уменьшаем отступ для мобильных устройств */
+    }
+
+    .articles-grid {
+        padding-bottom: 2rem;
+        /* Уменьшаем отступ для мобильных устройств */
+    }
+}
