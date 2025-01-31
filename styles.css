@@ -147,78 +147,116 @@ body {
 
 /* Основные стили для hero-блока */
 .hero {
-    position: relative;
-    background: linear-gradient(to bottom, rgba(42, 92, 172, 0.7), transparent),
-        url('images/hero-bg.jpg') no-repeat center/cover;
-    color: white;
     padding: 4rem 0;
+    background-color: #F5F5F5;
     text-align: center;
 }
 
 .hero__content {
-    max-width: 600px;
-    margin: 0 auto;
+    margin-bottom: 2rem;
 }
 
 .hero__title {
+    font-family: 'Roboto Bold', sans-serif;
     font-size: 2.5rem;
+    color: #2A5CAA;
     margin-bottom: 1rem;
 }
 
 .hero__subtitle {
     font-size: 1.5rem;
+    color: #555;
     margin-bottom: 2rem;
 }
 
-.hero__buttons {
-    display: flex;
+.hero__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
     justify-content: center;
-    gap: 1rem;
 }
 
-.hero__promotions {
-    margin-top: 2rem;
+/* Стили для карточек товаров */
+.hero-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    /* Начальная прозрачность */
+    transform: translateY(20px);
+    /* Начальное смещение */
+}
+
+.hero-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-card__image {
     position: relative;
-    height: 50px;
-    /* Высота для выплывающих акций */
     overflow: hidden;
 }
 
-.promotion-slider {
-    position: absolute;
-    top: 0;
-    left: 0;
+.hero-card__img {
     width: 100%;
-    transition: transform 0.5s ease;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.promotion-slide {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
+.hero-card:hover .hero-card__img {
+    transform: scale(1.1);
 }
 
-.promotion-slide.active {
-    display: flex;
+.hero-card__content {
+    padding: 1.5rem;
+    text-align: center;
 }
 
-.promotion-slide__text {
+.hero-card__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2A5CAA;
+}
+
+.hero-card__description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.hero-card__price {
+    font-family: 'Roboto Bold', sans-serif;
     font-size: 1.2rem;
-    font-weight: bold;
     color: #FF6B35;
-    /* Оранжевый цвет для акцента */
+    margin-bottom: 0.5rem;
 }
 
-.promotion-slide {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+.hero-card__discount {
+    font-size: 1rem;
+    color: #FF6B35;
+    font-weight: bold;
+    margin-bottom: 1rem;
 }
 
-.promotion-slide.active {
-    opacity: 1;
-    transform: translateY(0);
+.hero-card .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    background-color: #2A5CAA;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-card .btn:hover {
+    background-color: #FF6B35;
+    transform: scale(1.05);
 }
 
 /* Основные стили для мини-каталога */
@@ -806,6 +844,50 @@ body {
     }
 
     .catalog-card__description {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero__title {
+        font-size: 2rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-card__img {
+        height: 200px;
+    }
+
+    .hero-card__title {
+        font-size: 1.2rem;
+    }
+
+    .hero-card__description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__title {
+        font-size: 1.5rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-card__img {
+        height: 150px;
+    }
+
+    .hero-card__title {
+        font-size: 1.1rem;
+    }
+
+    .hero-card__description {
         font-size: 0.8rem;
     }
 }

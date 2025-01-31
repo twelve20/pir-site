@@ -48,20 +48,14 @@ window.onclick = function (event) {
     }
 };
 
-// Логика для выплывающих акций
-let currentSlide = 0;
-const slides = document.querySelectorAll('.promotion-slide');
+// Функция для анимации выплывающих карточек
+document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll(".hero-card");
 
-function showNextSlide() {
-    // Скрываем текущую акцию
-    slides[currentSlide].classList.remove('active');
-
-    // Переходим к следующей акции
-    currentSlide = (currentSlide + 1) % slides.length;
-
-    // Показываем следующую акцию
-    slides[currentSlide].classList.add('active');
-}
-
-// Запускаем автоматическую смену акций каждые 3 секунды
-setInterval(showNextSlide, 3000);
+    // Добавляем класс "show" к каждой карточке с задержкой
+    cards.forEach((card, index) => {
+        setTimeout(() => {
+            card.classList.add("show");
+        }, index * 300); // Задержка между карточками
+    });
+});
