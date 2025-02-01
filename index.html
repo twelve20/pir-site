@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -67,6 +68,28 @@
         </div>
     </header>
 
+    <!-- Слайдер с распродажами -->
+    <section id="sales-slider" class="sales-slider">
+        <div class="swiper sales-slider__swiper">
+            <div class="swiper-wrapper">
+                <!-- Слайд 1 -->
+                <div class="swiper-slide">
+                    <img src="images/sale1.jpg" alt="Распродажа PIR-плит" class="sale-card__image">
+                </div>
+    
+                <!-- Слайд 2 -->
+                <div class="swiper-slide">
+                    <img src="images/sale2.jpg" alt="Бесплатная доставка" class="sale-card__image">
+                </div>
+    
+                <!-- Слайд 3 -->
+                <div class="swiper-slide">
+                    <img src="images/sale3.jpg" alt="Подарок при заказе" class="sale-card__image">
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Hero-блок с выплывающими карточками -->
     <section id="hero" class="hero">
         <div class="container">
@@ -347,6 +370,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </body>
 
 </html>

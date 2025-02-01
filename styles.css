@@ -161,6 +161,141 @@ main {
     color: #333;
 }
 
+/* Основные стили для слайдера */
+.sales-slider {
+    padding: 4rem 0;
+    background-color: #F5F5F5;
+}
+
+.section-title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2A5CAA;
+}
+
+.swiper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.sale-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 350px;
+    width: 100%;
+}
+
+.sale-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.sale-card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.sale-card__content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.sale-card__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2A5CAA;
+}
+
+.sale-card__description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.sale-card__price {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.2rem;
+    color: #FF6B35;
+    margin-bottom: 1rem;
+}
+
+.btn--blue {
+    background-color: #2A5CAA;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn--blue:hover {
+    background-color: #1A4C8A;
+    transform: scale(1.05);
+}
+
+/* Основные стили для слайдера */
+.sales-slider {
+    padding: 4rem 0;
+    background-color: #F5F5F5;
+}
+
+.swiper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sale-card__image {
+    width: 100%;
+    /* Растягиваем изображение на всю ширину слайда */
+    height: auto;
+    /* Сохраняем пропорции изображения */
+    object-fit: cover;
+    /* Обрезаем изображение, если оно не помещается */
+    border-radius: 10px;
+    /* Добавляем скругление углов */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Тень для эффекта объема */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sale-card__image:hover {
+    transform: scale(1.05);
+    /* Небольшое увеличение при наведении */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .swiper {
+        max-width: 100%;
+        /* На маленьких экранах слайдер занимает всю ширину */
+    }
+
+    .sale-card__image {
+        border-radius: 5px;
+        /* Уменьшаем скругление углов */
+    }
+}
+
 /* Основные стили для hero-блока */
 .hero {
     padding: 4rem 0;
