@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статьи - PIR-плиты</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <!-- Логотип -->
+                <div class="logo">OLNAST</div>
+
+                <!-- Меню -->
+                <nav class="menu">
+                    <ul class="menu__list">
+                        <li><a href="../index.html">Главная</a></li>
+                        <li><a href="../blog.html">Статьи</a></li>
+                        <li><a href="../projects.html">Галерея</a></li>
+                        <li><a href="../documents.html">Документы</a></li>
+                        <li><a href="../contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Контакты и кнопка -->
+                <div class="header__contacts">
+                    <a href="tel:+79639273124" class="phone">+7 (963) 927-31-24</a>
+                    <button class="btn btn--blue" onclick="openCallModal()">Заказать звонок</button>
+                </div>
+
+                <!-- Иконка меню для мобильных устройств -->
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <!-- Мобильное меню -->
+                <nav class="menu-mobile">
+                    <ul class="menu__list">
+                        <li><a href="../index.html">Главная</a></li>
+                        <li><a href="../blog.html">Статьи</a></li>
+                        <li><a href="../projects.html">Галерея</a></li>
+                        <li><a href="../documents.html">Документы</a></li>
+                        <li><a href="../contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- Модальное окно для заказа звонка -->
+        <div id="callModal" class="modal">
+            <div class="modal__content">
+                <span class="modal__close" onclick="closeCallModal()">&times;</span>
+                <h2>Заказать звонок</h2>
+                <form class="modal__form">
+                    <input type="text" placeholder="Имя" required>
+                    <input type="tel" placeholder="Телефон" required>
+                    <button type="submit" class="btn btn--blue">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Шапка статьи -->
+    <section id="article-header" class="article-header">
+        <div class="container">
+            <h1 class="article-header__title">Как правильно утеплить баню PIR-плитами: пошаговая инструкция</h1>
+            <div class="article-header__meta">
+                <span class="article-header__date">15 сентября 2023</span>
+                <span class="article-header__reading-time">5 минут чтения</span>
+                <span class="article-header__tags">#монтаж #бани #PIR-плиты</span>
+            </div>
+            <p class="article-header__badge">Проверено экспертами</p>
+        </div>
+    </section>
+    
+    <!-- Введение -->
+    <section id="article-intro" class="article-intro">
+        <div class="container">
+            <p class="article-intro__text">
+                PIR-плиты — современный материал для утепления саун и бань. В этой статье вы узнаете, как избежать ошибок
+                при монтаже и добиться максимальной теплоизоляции.
+            </p>
+            <div class="article-intro__toc">
+                <h3>Оглавление</h3>
+                <ul>
+                    <li><a href="#advantages">Преимущества PIR-плит для бань</a></li>
+                    <li><a href="#preparation">Подготовка поверхности</a></li>
+                    <li><a href="#installation">Монтаж плит: шаг за шагом</a></li>
+                    <li><a href="#mistakes">Частые ошибки и как их избежать</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Основной контент -->
+    <section id="article-content" class="article-content">
+        <div class="container">
+            <!-- Раздел 1 -->
+            <div id="advantages" class="article-section">
+                <h2 class="article-section__title">Преимущества PIR-плит для бань</h2>
+                <p>
+                    PIR-плиты обладают рядом преимуществ, которые делают их идеальным выбором для утепления бань:
+                </p>
+                <ul>
+                    <li>Высокая теплоизоляция.</li>
+                    <li>Огнестойкость.</li>
+                    <li>Долговечность.</li>
+                </ul>
+                <img src="images/advantages.jpg" alt="Преимущества PIR-плит" class="article-section__image">
+                <p class="article-section__caption">Сравнение PIR-плит с минватой: цена, срок службы, огнестойкость.</p>
+            </div>
+    
+            <!-- Раздел 2 -->
+            <div id="preparation" class="article-section">
+                <h2 class="article-section__title">Подготовка поверхности</h2>
+                <p>
+                    Перед монтажом важно правильно подготовить поверхность:
+                </p>
+                <ol>
+                    <li>Очистите стены от пыли и грязи.</li>
+                    <li>Убедитесь, что поверхность сухая.</li>
+                    <li>Установите каркас для крепления плит.</li>
+                </ol>
+                <div class="article-section__tip">
+                    💡 Не используйте металлический крепеж — он создает мостики холода.
+                </div>
+            </div>
+    
+            <!-- Раздел 3 -->
+            <div id="installation" class="article-section">
+                <h2 class="article-section__title">Монтаж плит: шаг за шагом</h2>
+                <p>
+                    Пошаговая инструкция по монтажу PIR-плит:
+                </p>
+                <img src="images/installation.jpg" alt="Монтаж PIR-плит" class="article-section__image">
+                <p class="article-section__caption">Этап 3: крепление PIR-плит к каркасу.</p>
+            </div>
+    
+            <!-- Раздел 4 -->
+            <div id="mistakes" class="article-section">
+                <h2 class="article-section__title">Частые ошибки и как их избежать</h2>
+                <p>
+                    Избегайте следующих ошибок при монтаже:
+                </p>
+                <ul>
+                    <li>Неправильная подготовка поверхности.</li>
+                    <li>Использование некачественного крепежа.</li>
+                    <li>Нарушение технологии укладки.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Заключение -->
+    <section id="article-conclusion" class="article-conclusion">
+        <div class="container">
+            <h2 class="article-conclusion__title">Итоги</h2>
+            <ul class="article-conclusion__summary">
+                <li>PIR-плиты: долговечность, безопасность, простота монтажа.</li>
+                <li>Правильная подготовка поверхности — ключ к успеху.</li>
+                <li>Избегайте распространенных ошибок для достижения максимальной теплоизоляции.</li>
+            </ul>
+            <div class="article-conclusion__actions">
+                <a href="../contacts.html" class="btn btn--orange">Заказать консультацию</a>
+                <a href="../projects.html" class="article-conclusion__link">Смотреть примеры наших работ</a>
+            </div>
+            <div class="article-conclusion__subscribe">
+                <h3>Получайте новые статьи первыми!</h3>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Введите ваш email" required>
+                    <button type="submit" class="btn btn--blue">Подписаться</button>
+                </form>
+            </div>
+            <div class="article-conclusion__socials">
+                <p>Поделиться:</p>
+                <a href="#" class="social-link">VK</a>
+                <a href="#" class="social-link">Telegram</a>
+                <a href="#" class="social-link">WhatsApp</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Подвал статьи -->
+    <footer class="article-footer">
+        <div class="container">
+            <div class="article-footer__links">
+                <a href="../blog.html">Вернуться в блог</a>
+                <a href="../index.html">Каталог PIR-плит</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Модальное окно для заказа звонка -->
+    <div id="callModal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close" onclick="closeCallModal()">&times;</span>
+            <h2>Заказать звонок</h2>
+            <form class="modal__form">
+                <input type="text" placeholder="Имя" required>
+                <input type="tel" placeholder="Телефон" required>
+                <button type="submit" class="btn btn--blue">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <!-- Логотип и краткое описание -->
+                <div class="footer__brand">
+                    <div class="logo">OLNAST</div>
+                    <p>Производство и продажа PIR-плит для утепления саун и бань.</p>
+                </div>
+
+                <!-- Навигация -->
+                <div class="footer__nav">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="../index.html">Главная</a></li>
+                        <li><a href="../blog.html">Статьи</a></li>
+                        <li><a href="../projects.html">Галерея</a></li>
+                        <li><a href="../documents.html">Документы</a></li>
+                        <li><a href="../contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <!-- Контакты -->
+                <div class="footer__contacts">
+                    <h3>Контакты</h3>
+                    <p><a href="tel:+79639273124" class="phone">+7 (963) 927-31-24</a></p>
+                    <p><a href="mailto:info@pir-plates.ru">info@pir-plates.ru</a></p>
+                    <p>Адрес: г. Москва, ул. Промышленная, д. 10</p>
+                </div>
+
+                <!-- Подписка на рассылку -->
+                <div class="footer__subscribe">
+                    <h3>Подпишитесь на новости</h3>
+                    <form class="footer__form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit" class="btn btn--blue">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Социальные сети -->
+            <div class="footer__social">
+                <a href="https://vk.com" target="_blank"><i class="fab fa-vk"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            </div>
+
+            <!-- Правовая информация -->
+            <div class="footer__copyright">
+                <p>&copy; 2025 OLNAST. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

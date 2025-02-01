@@ -410,6 +410,19 @@ main {
     transform: scale(1.05);
 }
 
+.hero-card__price.highlight-price {
+    opacity: 0.9;
+    /* Начальная прозрачность */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hero-card:hover .hero-card__price.highlight-price {
+    opacity: 1;
+    /* Полная видимость при наведении */
+    transform: scale(1.1);
+    /* Увеличение */
+}
+
 /* Основные стили для мини-каталога */
 .mini-catalog {
     padding: 4rem 0;
@@ -526,6 +539,45 @@ main {
     transform: scale(1.1);
 }
 
+.catalog-card__price.highlight-price {
+    font-size: 1.8rem;
+    /* Больший размер шрифта */
+    text-align: center;
+    /* Центрирование текста */
+    margin-top: 1rem;
+    /* Отступ сверху */
+}
+
+/* Выделение цен */
+.highlight-price {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.5rem;
+    /* Увеличенный размер шрифта */
+    color: #FF6B35;
+    /* Яркий оранжевый цвет */
+    background-color: #FFF3E0;
+    /* Светлый фон для контраста */
+    padding: 0.5rem 1rem;
+    /* Внутренние отступы */
+    border-radius: 5px;
+    /* Скругление углов */
+    display: inline-block;
+    /* Чтобы цена была блоком */
+    margin-bottom: 1rem;
+    /* Отступ снизу */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Легкая тень для объема */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Анимация при наведении */
+}
+
+.highlight-price:hover {
+    transform: scale(1.05);
+    /* Небольшое увеличение при наведении */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    /* Усиление тени */
+}
+
 @media (max-width: 768px) {
     .catalog-card__price {
         font-size: 1rem;
@@ -537,6 +589,8 @@ main {
         font-size: 0.9rem;
     }
 }
+
+
 
 /* Основные стили для блока с преимуществами */
 .advantages {
@@ -1443,4 +1497,309 @@ main {
     .contacts-hero__subtitle {
         font-size: 1.2rem;
     }
+}
+
+/* Основные стили Галереи*/
+.projects-hero {
+    padding: 4rem 0;
+    background-color: #F5F5F5;
+    text-align: center;
+}
+
+.projects-hero__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 2.5rem;
+    color: #2A5CAA;
+    margin-bottom: 1rem;
+}
+
+.projects-hero__subtitle {
+    font-size: 1.5rem;
+    color: #555;
+}
+
+.projects-grid__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-card__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-card__image {
+    transform: scale(1.1);
+}
+
+.project-card__content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.project-card__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2A5CAA;
+}
+
+.project-card__description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+/* Добавляем отступ снизу для секции проектов */
+.projects-grid {
+    padding-bottom: 4rem;
+    /* Отступ снизу */
+}
+
+@media (max-width: 768px) {
+    .projects-hero__title {
+        font-size: 2rem;
+    }
+
+    .projects-hero__subtitle {
+        font-size: 1.2rem;
+    }
+
+    .project-card__image {
+        height: 200px;
+    }
+
+    .project-card__title {
+        font-size: 1.2rem;
+    }
+
+    .project-card__description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        padding-bottom: 2rem;
+        /* Уменьшаем отступ для мобильных устройств */
+    }
+
+    .footer {
+        margin-top: 2rem;
+        /* Уменьшаем отступ для мобильных устройств */
+    }
+}
+
+/* Стили для шапки статьи */
+.article-header {
+    padding: 4rem 0;
+    background-color: #F5F5F5;
+    text-align: center;
+}
+
+.article-header__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 2rem;
+    color: #2A5CAA;
+    margin-bottom: 1rem;
+}
+
+.article-header__meta {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.article-header__badge {
+    background-color: #FF6B35;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+/* Стили для введения */
+.article-intro {
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.article-intro__text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.article-intro__toc {
+    background-color: #F5F5F5;
+    padding: 1rem;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.article-intro__toc h3 {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.article-intro__toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.article-intro__toc li {
+    margin-bottom: 0.5rem;
+}
+
+.article-intro__toc a {
+    color: #2A5CAA;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.article-intro__toc a:hover {
+    color: #1A4C8A;
+}
+
+/* Стили для основного контента */
+.article-section {
+    margin-bottom: 4rem;
+}
+
+.article-section__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.8rem;
+    color: #2A5CAA;
+    margin-bottom: 1rem;
+}
+
+.article-section__image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.article-section__caption {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.article-section__tip {
+    background-color: #FFF3E0;
+    color: #FF6B35;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+/* Стили для заключения */
+.article-conclusion {
+    padding: 4rem 0;
+    background-color: #F5F5F5;
+    text-align: center;
+}
+
+.article-conclusion__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.8rem;
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.article-conclusion__summary {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.article-conclusion__summary li {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.article-conclusion__actions {
+    margin-bottom: 2rem;
+}
+
+.article-conclusion__link {
+    display: block;
+    margin-top: 1rem;
+    color: #2A5CAA;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.article-conclusion__link:hover {
+    color: #1A4C8A;
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.subscribe-form input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.social-link {
+    color: #2A5CAA;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: #1A4C8A;
+}
+
+/* Стили для подвала статьи */
+.article-footer {
+    padding: 2rem 0;
+    background-color: #2A5CAA;
+    color: white;
+    text-align: center;
+}
+
+.article-footer__links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.article-footer__links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.article-footer__links a:hover {
+    color: #FF6B35;
 }

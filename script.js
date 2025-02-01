@@ -90,3 +90,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 });
+
+function openCallModal() {
+    document.getElementById('callModal').style.display = 'flex';
+}
+
+function closeCallModal() {
+    document.getElementById('callModal').style.display = 'none';
+}
+
