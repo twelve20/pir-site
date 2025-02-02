@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+
 // Импортируем данные о товарах
 const { specialProducts, regularProducts } = require('./data/products');
 const { featuredProjects, allProjects } = require('./data/projects');
