@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статьи - PIR-плиты</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Шапка -->
+    <%- include('partials/header') %>
+
+    <!-- Главный заголовок -->
+    <section id="projects-hero" class="projects-hero">
+        <div class="container">
+            <h1 class="projects-hero__title">Наши проекты: утепление саун, бань и домов PIR-плитами</h1>
+            <p class="projects-hero__subtitle">Реальные объекты с гарантией качества.</p>
+        </div>
+    </section>
+
+    <%- include('partials/projects-grid') %>
+
+    <%- include('partials/footer') %>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

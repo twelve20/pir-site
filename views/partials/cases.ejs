@@ -1,0 +1,23 @@
+<section id="cases" class="cases">
+    <div class="container">
+        <h2 class="section-title">Наши работы</h2>
+        <div class="cases__grid">
+            <% projects.forEach(project=> { %>
+                <div class="case-card">
+                    <div class="case-card__image">
+                        <img src="<%= project.image %>" alt="<%= project.title %>" class="case-card__img">
+                    </div>
+                    <div class="case-card__content">
+                        <h3 class="case-card__title">
+                            <%= project.title %>
+                        </h3>
+                        <p class="case-card__description">
+                            <%= project.description %>
+                        </p>
+                        <a href="<%= project.link %>" class="btn btn--blue">Подробнее</a>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+</section>

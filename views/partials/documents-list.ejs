@@ -1,0 +1,22 @@
+<section id="documents-list" class="documents-list">
+    <div class="container">
+        <div class="documents-list__grid">
+            <% documents.forEach(document=> { %>
+                <div class="document-card">
+                    <img src="<%= document.icon %>" alt="PDF" class="document-card__icon">
+                    <div class="document-card__content">
+                        <p class="document-card__name">
+                            <%= document.name %>
+                        </p>
+                        <a href="<%= document.link %>" download class="btn btn--blue">Скачать</a>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+
+        <!-- Кнопка "Скачать все документы" -->
+        <div class="documents-list__download-all">
+            <a href="<%= allDocumentsLink %>" download class="btn btn--blue">Скачать все документы</a>
+        </div>
+    </div>
+</section>

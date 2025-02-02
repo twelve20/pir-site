@@ -1,0 +1,19 @@
+<section id="projects-grid" class="projects-grid">
+    <div class="container">
+        <div class="projects-grid__list">
+            <% projects.forEach(project=> { %>
+                <div class="project-card">
+                    <img src="<%= project.image %>" alt="<%= project.title %>" class="project-card__image">
+                    <div class="project-card__content">
+                        <h3 class="project-card__title">
+                            <%= project.title %>
+                        </h3>
+                        <p class="project-card__description">
+                            <%= project.description %>
+                        </p>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+</section>
