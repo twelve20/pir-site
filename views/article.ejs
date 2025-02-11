@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= article.title %> - OLNAST
+    </title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <!-- Подключение шапки -->
+    <%- include('partials/header') %>
+
+        <!-- Основной контент -->
+        <main>
+            <!-- Шапка статьи -->
+            <section class="article-header">
+                <div class="container">
+                    <h1 class="article-header__title">
+                        <%= article.title %>
+                    </h1>
+                    <div class="article-header__meta">
+                        <span class="article-header__date">
+                            <%= article.date %>
+                        </span>
+                        <span class="article-header__read-time">
+                            <%= article.readTime %>
+                        </span>
+                    </div>
+                    <p class="article-header__description"><%- article.intro %></p>
+                    <!-- Изображение в шапке статьи -->
+                    <% if (article.image) { %>
+                        <div class="article-header__image">
+                            <img src="<%= article.image.src %>" alt="<%= article.image.alt %>" class="article-image">
+                        </div>
+                        <% } %>
+                            <div class="article-header__badge">Проверено экспертами</div>
+                </div>
+            </section>
+
+            <!-- Основной контент статьи -->
+            <section class="article-content">
+                <div class="container">
+                    <% article.sections.forEach(section=> { %>
+                        <div class="article-section">
+                            <h2 class="article-section__title">
+                                <%= section.title %>
+                            </h2>
+                            <div class="article-section__text">
+                                <%- section.text %>
+                            </div>
+
+                            <!-- Визуальные элементы -->
+                            <% if (section.image) { %>
+                                <div class="article-section__image">
+                                    <img src="<%= section.image.src %>" alt="<%= section.image.alt %>"
+                                        class="article-card__image">
+                                    <p class="article-section__caption">
+                                        <%= section.image.caption %>
+                                    </p>
+                                </div>
+                                <% } %>
+
+                                    <!-- Инфографика -->
+                                    <% if (section.infographic) { %>
+                                        <div class="article-section__infographic">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Критерий</th>
+                                                        <th>PIR-плиты</th>
+                                                        <th>Минвата</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Цена</td>
+                                                        <td>
+                                                            <%= section.infographic.price.pir %>
+                                                        </td>
+                                                        <td>
+                                                            <%= section.infographic.price.minvata %>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Срок службы</td>
+                                                        <td>
+                                                            <%= section.infographic.lifespan.pir %>
+                                                        </td>
+                                                        <td>
+                                                            <%= section.infographic.lifespan.minvata %>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Огнестойкость</td>
+                                                        <td>
+                                                            <%= section.infographic.fireResistance.pir %>
+                                                        </td>
+                                                        <td>
+                                                            <%= section.infographic.fireResistance.minvata %>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <% } %>
+
+                                            <!-- Советы -->
+                                            <% if (section.tips) { %>
+                                                <div class="article-section__tips">
+                                                    <% section.tips.forEach(tip=> { %>
+                                                        <div class="tip">
+                                                            <span class="tip__icon">💡</span>
+                                                            <p class="tip__text">
+                                                                <%= tip %>
+                                                            </p>
+                                                        </div>
+                                                        <% }) %>
+                                                </div>
+                                                <% } %>
+                        </div>
+                        <% }) %>
+                </div>
+            </section>
+
+            <!-- Заключение -->
+            <section class="article-conclusion">
+                <div class="container">
+                    <h3>Заключение</h3>
+                    <ul>
+                        <% article.conclusion.forEach(point=> { %>
+                            <li>
+                                <%= point %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <a href="/contacts" class="btn btn--orange">Заказать консультацию</a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Подвал статьи -->
+        <footer class="article-footer">
+            <div class="container">
+                <div class="article-footer__links">
+                    <a href="/blog">Вернуться в блог</a>
+                    <a href="/">Главная</a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Подключение футера -->
+        <%- include('partials/footer') %>
+
+            <script src="/js/script.js"></script>
+</body>
+
+</html>

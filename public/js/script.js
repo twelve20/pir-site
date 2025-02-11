@@ -25,6 +25,38 @@ function closeCallModal() {
     document.getElementById('callModal').style.display = 'none';
 }
 
+// Обработчик отправки формы
+document.querySelector('.modal__form').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Предотвращаем стандартное поведение формы
+
+    // Собираем данные из формы
+    const formData = {
+        name: document.querySelector('.modal__form input[type="text"]').value,
+        phone: document.querySelector('.modal__form input[type="tel"]').value
+    };
+
+    try {
+        // Отправляем данные на сервер
+        const response = await fetch('/submit-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('Заявка успешно отправлена!');
+            closeCallModal(); // Закрываем модальное окно
+        } else {
+            alert('Произошла ошибка при отправке заявки.');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Не удалось отправить заявку. Попробуйте позже.');
+    }
+});
+
 // Функции для модального окна "Получить консультацию"
 function openConsultationModal() {
     document.getElementById('consultationModal').style.display = 'flex';
@@ -47,6 +79,39 @@ window.onclick = function (event) {
         consultationModal.style.display = 'none';
     }
 };
+
+// Обработчик отправки формы "Призыв к действию"
+document.querySelector('.cta__form').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Предотвращаем стандартное поведение формы
+
+    // Собираем данные из формы
+    const formData = {
+        name: document.querySelector('.cta__form input[type="text"]').value,
+        phone: document.querySelector('.cta__form input[type="tel"]').value,
+        comment: document.querySelector('.cta__form textarea').value
+    };
+
+    try {
+        // Отправляем данные на сервер
+        const response = await fetch('/submit-cta-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('Заявка успешно отправлена!');
+            document.querySelector('.cta__form').reset(); // Очищаем форму
+        } else {
+            alert('Произошла ошибка при отправке заявки.');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Не удалось отправить заявку. Попробуйте позже.');
+    }
+});
 
 // Функция для анимации выплывающих карточек
 document.addEventListener("DOMContentLoaded", function () {
@@ -77,6 +142,41 @@ window.onclick = function (event) {
         modal.style.display = 'none';
     }
 };
+
+// Обработчик отправки формы "Оформить заказ"
+document.querySelector('#buyModal .modal__form').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Предотвращаем стандартное поведение формы
+
+    // Собираем данные из формы
+    const formData = {
+        name: document.querySelector('#buyModal input[type="text"]').value,
+        phone: document.querySelector('#buyModal input[type="tel"]').value,
+        email: document.querySelector('#buyModal input[type="email"]').value,
+        comment: document.querySelector('#buyModal textarea').value
+    };
+
+    try {
+        // Отправляем данные на сервер
+        const response = await fetch('/submit-buy-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('Заказ успешно отправлен!');
+            document.querySelector('#buyModal .modal__form').reset(); // Очищаем форму
+            closeBuyModal(); // Закрываем модальное окно
+        } else {
+            alert('Произошла ошибка при отправке заказа.');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Не удалось отправить заказ. Попробуйте позже.');
+    }
+});
 
 // Инициализация слайдера
 document.addEventListener("DOMContentLoaded", function () {

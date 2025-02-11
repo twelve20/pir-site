@@ -24,3 +24,30 @@
         </div>
     </div>
 </section>
+
+<!-- Модальное окно для покупки -->
+<div id="buyModal" class="modal">
+    <div class="modal__content">
+        <span class="modal__close" onclick="closeBuyModal()">&times;</span>
+        <h2>Оформить заказ</h2>
+        <form class="modal__form">
+            <input type="text" placeholder="Имя" required>
+            <input type="tel" placeholder="Телефон" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Комментарий к заказу"></textarea>
+            <button type="submit" class="btn btn--blue">Отправить заказ</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Функция для открытия модального окна
+    function openBuyModal() {
+        document.getElementById('buyModal').style.display = 'block';
+    }
+
+    // Функция для закрытия модального окна
+    function closeBuyModal() {
+        document.getElementById('buyModal').style.display = 'none';
+    }
+</script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIR-плиты - Утепление саун и бань</title>
+    <title>OLNAST - Утепление саун и бань</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
         rel="stylesheet">
@@ -16,30 +16,28 @@
     <!-- Шапка -->
     <%- include('partials/header') %>
 
-    <!-- Слайдер с распродажами -->
+    <!--
     <section id="sales-slider" class="sales-slider">
         <div class="swiper sales-slider__swiper">
             <div class="swiper-wrapper">
-                <!-- Слайд 1 -->
                 <div class="swiper-slide">
                     <img src="/images/sale1.jpg" alt="Распродажа PIR-плит" class="sale-card__image">
                 </div>
     
-                <!-- Слайд 2 -->
                 <div class="swiper-slide">
                     <img src="/images/sale2.jpg" alt="Бесплатная доставка" class="sale-card__image">
                 </div>
     
-                <!-- Слайд 3 -->
                 <div class="swiper-slide">
                     <img src="/images/sale3.jpg" alt="Подарок при заказе" class="sale-card__image">
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <!-- Hero-блок с выплывающими карточками -->
-    <%- include('partials/hero') %>
+    <!-- 
+    %- include('partials/hero') %> 
+     -->
 
     <%- include('partials/mini-catalog') %>
 
@@ -91,37 +89,8 @@
         </div>
     </section>
 
-    <!-- Модальное окно для покупки -->
-    <div id="buyModal" class="modal">
-        <div class="modal__content">
-            <span class="modal__close" onclick="closeBuyModal()">&times;</span>
-            <h2>Оформить заказ</h2>
-            <form class="modal__form">
-                <input type="text" placeholder="Имя" required>
-                <input type="tel" placeholder="Телефон" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Комментарий к заказу"></textarea>
-                <button type="submit" class="btn btn--blue">Отправить заказ</button>
-            </form>
-        </div>
-    </div>
-
     <!-- Футер -->
     <%- include('partials/footer') %>
-
-    <!-- Модальное окно для получения консультации -->
-    <div id="consultationModal" class="modal">
-        <div class="modal__content">
-            <span class="modal__close" onclick="closeConsultationModal()">&times;</span>
-            <h2>Получить консультацию</h2>
-            <form class="modal__form">
-                <input type="text" placeholder="Имя" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Ваш вопрос" rows="4" required></textarea>
-                <button type="submit" class="btn btn--blue">Отправить</button>
-            </form>
-        </div>
-    </div>
 
     <script src="/js/script.js"></script>
     <script src="/js/call-modal.js"></script>

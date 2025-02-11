@@ -27,22 +27,16 @@ const specialProducts = [
 const regularProducts = [
     {
         image: '/images/product1.jpg',
-        title: 'PIR-плиты эконом',
-        description: 'Бюджетное решение для утепления.',
-        price: 'от 400 ₽/м²'
+        title: 'PIRRO Термо ФОЛЬГА Г1 600х1200х30 мм L4',
+        description: '📏30 мм | 🟫5,04 м²/лист | 📦7 шт./уп.',
+        price: '560₽/ШТ'
     },
     {
-        image: '/images/product1.jpg',
-        title: 'Пароизоляция',
-        description: 'Защита от влаги и конденсата.',
-        price: 'от 150 ₽/м²'
+        image: '/images/product2.jpg',
+        title: 'PIRRO Термо ФОЛЬГА Г1 600х1200х50 мм L4',
+        description: '📏50 мм | 🟫4,32 м²/уп. | 📦6 шт./уп.',
+        price: '785₽/ШТ'
     },
-    {
-        image: '/images/product1.jpg',
-        title: 'Теплоизоляция для крыш',
-        description: 'Универсальное решение для кровли.',
-        price: 'от 600 ₽/м²'
-    }
 ];
 
 module.exports = { specialProducts, regularProducts };

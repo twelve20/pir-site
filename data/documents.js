@@ -2,18 +2,28 @@
 const documents = [
     {
         icon: '/icons/pdf-icon.svg',
-        name: 'Сертификат пожарной безопасности',
-        link: '/files/fire-safety.pdf'
+        name: 'RU Д-RU.РА01.В.01535-24',
+        link: '/files/RU Д-RU.РА01.В.01535-24.pdf'
     },
     {
         icon: '/icons/pdf-icon.svg',
-        name: 'Экологический сертификат',
-        link: '/files/eco-certificate.pdf'
+        name: 'Тех. лист Pirromembrane',
+        link: '/files/тех лист Pirromembrane.pdf'
     },
     {
         icon: '/icons/pdf-icon.svg',
-        name: 'Техническое описание PIR-плит',
-        link: '/files/technical-description.pdf'
+        name: 'ТЛ №1.10 PIR-плита PirroТермо',
+        link: '/files/ТЛ №1.10 PIR-плита PirroТермо.pdf'
+    },
+    {
+        icon: '/icons/pdf-icon.svg',
+        name: 'ТЛ №1.11 PIR-плита PirroСтена',
+        link: '/files/ТЛ №1.11 PIR-плита PirroСтена.pdf'
+    },
+    {
+        icon: '/icons/pdf-icon.svg',
+        name: 'ТЛ №1.13 PIR-плита Pirro®️Крафт',
+        link: '/files/ТЛ №1.13 PIR-плита Pirro®️Крафт.pdf'
     }
 ];
 

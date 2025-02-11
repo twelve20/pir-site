@@ -1,26 +1,49 @@
 <section id="articles-grid" class="articles-grid">
     <div class="container">
         <div class="articles-grid__list">
-            <% articles.forEach(article=> { %>
+            <% articles.forEach(article=> { %> <!-- Используем articles -->
                 <div class="article-card">
-                    <img src="<%= article.image %>" alt="<%= article.title %>" class="article-card__image">
-                    <div class="article-card__content">
-                        <h3 class="article-card__title">
-                            <%= article.title %>
-                        </h3>
-                        <p class="article-card__description">
-                            <%= article.description %>
-                        </p>
-                        <div class="article-card__meta">
-                            <span class="article-card__date">
-                                <%= article.date %>
-                            </span>
-                            <span class="article-card__tags">
-                                <%= article.tags %>
-                            </span>
-                        </div>
-                        <a href="<%= article.link %>" class="btn btn--orange">Читать далее</a>
-                    </div>
+                    <!-- Изображение статьи -->
+                    <% if (article.image) { %>
+                        <img src="<%= article.image.src %>" alt="<%= article.image.alt %>" class="article-card__image">
+                        <% } else { %>
+                            <div class="article-card__placeholder">Нет изображения</div>
+                            <% } %>
+
+                                <!-- Контент карточки -->
+                                <div class="article-card__content">
+                                    <!-- Заголовок -->
+                                    <h3 class="article-card__title">
+                                        <%= article.title %>
+                                    </h3>
+
+                                    <!-- Описание -->
+                                    <p class="article-card__description">
+                                        <%= article.intro %>
+                                    </p>
+
+                                    <!-- Метаинформация -->
+                                    <div class="article-card__meta">
+                                        <span class="article-card__date">
+                                            <%= article.date %>
+                                        </span>
+                                        <span class="article-card__read-time">
+                                            <%= article.readTime %>
+                                        </span>
+                                    </div>
+
+                                    <!-- Теги -->
+                                    <div class="article-card__tags">
+                                        <% if (article.tags) { %>
+                                            <% article.tags.forEach(tag=> { %>
+                                                <span class="tag">#<%= tag %></span>
+                                                <% }) %>
+                                                    <% } %>
+                                    </div>
+
+                                    <!-- Кнопка "Читать далее" -->
+                                    <a href="/article/<%= article.id %>" class="btn btn--orange">Читать далее</a>
+                                </div>
                 </div>
                 <% }) %>
         </div>
