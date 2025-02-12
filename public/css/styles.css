@@ -22,11 +22,6 @@ body {
     flex-direction: column;
 }
 
-main {
-    flex: 2;
-    /* Основной контент занимает всё доступное пространство */
-}
-
 .container {
     width: 90%;
     max-width: 1200px;
