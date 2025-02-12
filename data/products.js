@@ -1,27 +1,27 @@
-// // Акционные товары (для Hero-блока)
-// const specialProducts = [
-//     {
-//         image: '/images/product1.jpg',
-//         title: 'PIR-плиты стандарт',
-//         description: 'Идеально подходят для утепления бань и саун.',
-//         price: 'от 500 ₽/м²',
-//         discount: 10
-//     },
-//     {
-//         image: '/images/product2.jpg',
-//         title: 'PIR-плиты премиум',
-//         description: 'Высокая плотность и долговечность.',
-//         price: 'от 800 ₽/м²',
-//         discount: 15
-//     },
-//     {
-//         image: '/images/product3.jpg',
-//         title: 'Комплектующие',
-//         description: 'Дополнительные материалы для монтажа.',
-//         price: 'от 200 ₽/шт',
-//         discount: 20
-//     }
-// ];
+// Акционные товары (для Hero-блока)
+const specialProducts = [
+    {
+        image: '/images/product1.jpg',
+        title: 'PIR-плиты стандарт',
+        description: 'Идеально подходят для утепления бань и саун.',
+        price: 'от 500 ₽/м²',
+        discount: 10
+    },
+    {
+        image: '/images/product2.jpg',
+        title: 'PIR-плиты премиум',
+        description: 'Высокая плотность и долговечность.',
+        price: 'от 800 ₽/м²',
+        discount: 15
+    },
+    {
+        image: '/images/product3.jpg',
+        title: 'Комплектующие',
+        description: 'Дополнительные материалы для монтажа.',
+        price: 'от 200 ₽/шт',
+        discount: 20
+    }
+];
 
 // Обычные товары (для мини-каталога)
 const regularProducts = [
