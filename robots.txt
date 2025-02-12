@@ -1,0 +1,14 @@
+# Разрешаем всем ботам доступ ко всему сайту
+User-agent: *
+
+# Разрешаем индексацию всего сайта
+Allow: /
+
+# Запрещаем индексацию определенных папок или файлов
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /private/
+Disallow: /tmp/
+
+# Указываем путь к карте сайта
+Sitemap: https://pir-planet.ru/sitemap.xml
