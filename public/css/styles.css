@@ -11,6 +11,13 @@ body {
     background-color: #F5F5F5;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Минимальная высота равна высоте экрана */
+}
+
 html,
 body {
     height: 100%;
