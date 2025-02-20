@@ -48,8 +48,17 @@ const regularProducts = [
         title: 'PIR Плита Бумага/Бумага 600х1200х50 мм',
         description: '📏50 мм',
         price: '619₽/ШТ'
-    },
-
+    }
 ];
 
-module.exports = { specialProducts, regularProducts };
+// Товары для монтажа
+const installationProducts = [
+    {
+        image: '/images/product4.jpg',
+        title: 'Клей-пена для PIR',
+        description: '🎯Профессиональный | 📦750 мл',
+        price: '1050₽/ШТ'
+    },
+];
+
+module.exports = { specialProducts, regularProducts, installationProducts };

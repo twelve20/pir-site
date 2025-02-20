@@ -3,7 +3,7 @@ const path = require('path');
 const axios = require('axios'); // Для отправки HTTP-запросов
 
 // Импортируем данные о товарах
-const { specialProducts, regularProducts } = require('./data/products');
+const { specialProducts, regularProducts, installationProducts } = require('./data/products');
 const { featuredProjects, allProjects } = require('./data/projects');
 const { documents, allDocumentsLink } = require('./data/documents');
 const blogPosts = require('./data/blog-posts'); // Переименовано в blogPosts
@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
     res.render('index', {
         specialProducts, // Акционные товары
         regularProducts, // Обычные товары
+        installationProducts, // Товары для монтажа
         projects: featuredProjects // Проекты для главной страницы
     });
 });

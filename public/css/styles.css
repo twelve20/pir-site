@@ -640,6 +640,71 @@ body {
     color: #333;
 }
 
+/* Стили для блока отзывов */
+.testimonials {
+    padding: 4rem 0;
+    background-color: #fff;
+}
+
+.testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.testimonial-card {
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card__image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
+.testimonial-card__name {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.2rem;
+    color: #2A5CAA;
+    margin-bottom: 0.5rem;
+}
+
+.testimonial-card__text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .testimonials__grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+    
+    .testimonial-card__name {
+        font-size: 1.1rem;
+    }
+    
+    .testimonial-card__text {
+        font-size: 0.9rem;
+    }
+}
+
 /* Стили для блока "Наши работы" */
 .cases {
     padding: 4rem 0;

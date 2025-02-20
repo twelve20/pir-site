@@ -1,0 +1,26 @@
+<section id="installation-products" class="mini-catalog installation-products">
+    <div class="container">
+        <h2 class="section-title">Товары для монтажа</h2>
+        <div class="mini-catalog__grid">
+            <% installationProducts.forEach(product => { %>
+                <div class="catalog-card">
+                    <div class="catalog-card__image">
+                        <img src="<%= product.image %>" alt="<%= product.title %>" class="catalog-card__img">
+                    </div>
+                    <div class="catalog-card__content">
+                        <h3 class="catalog-card__title">
+                            <%= product.title %>
+                        </h3>
+                        <p class="catalog-card__description">
+                            <%= product.description %>
+                        </p>
+                        <p class="catalog-card__price highlight-price">
+                            <%= product.price %>
+                        </p>
+                        <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
