@@ -60,6 +60,106 @@ body {
     color: white;
 }
 
+.btn--orange:hover {
+    background-color: #2A5CAA;
+}
+
+.btn--blue:hover {
+    background-color: #FF6B35;
+}
+
+/* Калькулятор */
+.calculator-form-wrapper {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.calculator {
+    flex: 1;
+    background: #F5F5F5;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.calculator__title {
+    font-family: 'Roboto Bold', sans-serif;
+    color: #2A5CAA;
+    margin-bottom: 1.5rem;
+}
+
+.calculator__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input[type="number"],
+.form-group select {
+    padding: 0.5rem;
+    border: 2px solid #2A5CAA;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.calc-result__content {
+    background: white;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.calc-result__total {
+    font-weight: bold;
+    color: #2A5CAA;
+    margin-top: 0.5rem;
+}
+
+.calc-error {
+    color: red;
+    font-weight: bold;
+}
+
+.cta__content {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .calculator-form-wrapper {
+        flex-direction: column;
+    }
+    
+    .calculator,
+    .cta__content {
+        width: 100%;
+    }
+}
+
 /* Шапка */
 /* Основные стили для шапки */
 .header {
