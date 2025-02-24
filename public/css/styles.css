@@ -166,7 +166,7 @@ body {
 /* Основные стили для слайдера */
 .sales-slider {
     padding: 4rem 0;
-    background-color: #F5F5F5;
+    background-color: #FFFFFF;
 }
 
 .section-title {
@@ -251,7 +251,7 @@ body {
 /* Основные стили для слайдера */
 .sales-slider {
     padding: 4rem 0;
-    background-color: #F5F5F5;
+    background-color: #FFFFFF;
 }
 
 .swiper {
@@ -453,6 +453,11 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
 }
 
 .catalog-card:hover {
@@ -479,6 +484,10 @@ body {
 .catalog-card__content {
     padding: 1.5rem;
     text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .catalog-card__title {
@@ -1593,7 +1602,7 @@ body {
     }
 }
 
-/* Основные стили для Документов */
+/* Основные стили Для Документов */
 .documents-hero {
     padding: 4rem 0;
     background-color: #F5F5F5;
@@ -2360,4 +2369,247 @@ body {
     padding: 10px 20px;
     font-size: 18px;
 }
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
+    background-color: #FFFFFF;
+}
+
+.installation-products .section-title {
+    color: #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.installation-products {
+    padding: 4rem 0;
 
