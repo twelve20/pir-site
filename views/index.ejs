@@ -10,6 +10,7 @@
     <meta name="keywords"
     content="PIR плиты, пир плиты, теплоизоляционные PIR плиты, теплоизоляционные плиты, купить PIR плиты, купить теплоизоляционные PIR плиты, купить пир плиты, пир плиты для бани, пир плиты для сауны, пир плиты для балкона, пир плиты для лоджий, PIR плиты Pirro, PIR плиты для бани, PIR плиты для сауны, PIR плиты для балкона, PIR плиты для лоджий, утеплитель PIR, плиты PIR утеплитель, PIR плиты для кровли, ПИР плиты для стен, PIR плиты для пола, ПИР плиты для фундамента, плиты PIR для мансарды, огнестойкие PIR плиты, влагостойкие ПИР плиты, высокотемпературные PIR плиты, энергоэффективные плиты ПИР, экологичные PIR плиты, купить PIR плиты недорого, плиты ПИР цена за м², PIR плиты стоимость с доставкой, где купить ПИР плиты в Москве, плиты PIR оптом, продажа теплоизоляционных PIR плит, интернет-магазин PIR плит, плита PIR 50 мм, ПИР плиты 100 мм, тонкие PIR плиты 20-30 мм, PIR плиты с фольгированным покрытием, плиты ПИР для звукоизоляции, ПИР плиты Технониколь, PIR плиты Logstroy, плиты ПИР Ursa.">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/product-details.css">
     <meta name="description"
         content="Продажа теплоизоляционных PIR плит (ПИР плит) от производителя. Низкие цены на оптовые и розничные партии с доставкой по всей России. Огнестойкие, влагостойкие и энергоэффективные плиты для кровли, стен, пола, балконов, лоджий, бань и саун. В наличии PIR плиты с фольгированным покрытием, толщиной 20-100 мм. Бренды: Pirro, Технониколь, Ursa. Звоните для расчета объема и скидок на крупные заказы!">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
@@ -151,12 +152,29 @@
         </div>
     </section>
 
+    <!-- Модальное окно с подробной информацией о товаре -->
+    <div id="detailsModal" class="product-modal">
+        <div class="product-modal__content">
+            <span class="product-modal__close" onclick="closeDetailsModal()">&times;</span>
+            <h2 class="product-modal__title"></h2>
+            <div class="product-modal__image">
+                <img src="" alt="Изображение товара">
+            </div>
+            <p class="product-modal__description"></p>
+            <p class="product-modal__price"></p>
+            <h3 class="product-modal__advantages-title">Преимущества:</h3>
+            <ul class="product-modal__advantages"></ul>
+            <button class="btn btn--orange" onclick="openBuyModal(); closeDetailsModal();">Купить сейчас</button>
+        </div>
+    </div>
+
     <!-- Футер -->
     <%- include('partials/footer') %>
 
     <script src="/js/script.js"></script>
     <script src="/js/call-modal.js"></script>
     <script src="/js/calculator.js"></script>
+    <script src="/js/details.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </body>
 

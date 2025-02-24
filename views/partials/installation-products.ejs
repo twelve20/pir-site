@@ -18,6 +18,7 @@
                             <%= product.price %>
                         </p>
                         <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
+                        <button class="btn btn--details" onclick="openDetailsModal('<%= product.id %>')">Подробнее</button>
                     </div>
                 </div>
             <% }) %>

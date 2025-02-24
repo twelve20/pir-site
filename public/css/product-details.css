@@ -1,0 +1,150 @@
+/* Стили для кнопки "Подробнее" */
+.btn--details {
+    background-color: #2A5CAA;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn--details:hover {
+    background-color: #FF6B35;
+}
+
+/* Стили для модального окна с подробным описанием товара */
+.product-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s;
+}
+
+.product-modal__content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    width: 400px;
+    max-width: 90%;
+    animation: slideIn 0.4s;
+}
+
+.product-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #2A5CAA;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.product-modal__close:hover {
+    color: #FF6B35;
+}
+
+.product-modal__title {
+    color: #2A5CAA;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.product-modal__image {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.product-modal__image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: 4px;
+}
+
+.product-modal__description {
+    color: #000;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.product-modal__price {
+    font-weight: 700;
+    color: #FF6B35;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.product-modal__advantages-title {
+    color: #2A5CAA;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.product-modal__advantages {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 15px;
+}
+
+.product-modal__advantages li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.product-modal__advantages li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    background-image: url('/icons/check.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Анимации для модального окна */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Адаптивность для модального окна */
+@media (max-width: 768px) {
+    .product-modal__content {
+        width: 90%;
+        margin: 15% auto;
+        padding: 15px;
+    }
+    
+    .product-modal__image img {
+        max-height: 200px;
+    }
+} 
