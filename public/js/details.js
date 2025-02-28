@@ -28,6 +28,13 @@ const productDetails = {
         price: '429 руб./шт.',
         advantages: ['Доступная цена', 'Простота монтажа', 'Экологичность']
     },
+    'pir-foil-100': {
+        title: 'PIR Плита Фольга/Фольга 100 мм',
+        image: '/images/product2.jpg',
+        description: 'Плита с двусторонним фольгированным покрытием для высокоэффективного утепления стен, потолков, перегородок и кровельных конструкций. Обеспечивает превосходную тепло- и звукоизоляцию, идеально подходит для применения в жилых, коммерческих и промышленных помещениях. Размеры: 2400х1200х100 мм, площадь 2,88 м². Вес: 9,5 кг/шт. Для надежной фиксации рекомендуется использовать клей-пену или механический крепеж.',
+        price: '2100 руб./шт.',
+        advantages: ['Высокая теплоизоляционная эффективность', 'Водоотталкивающие свойства', 'Экологически безопасный материал']
+    },
     'glue-foam': {
         title: 'Клей-пена для PIR',
         image: '/images/product4.jpg',
@@ -41,14 +48,14 @@ const productDetails = {
 function openDetailsModal(productId) {
     const product = productDetails[productId];
     if (!product) return;
-    
+
     // Заполняем модальное окно данными о товаре
     const modal = document.getElementById('detailsModal');
     modal.querySelector('.product-modal__title').textContent = product.title;
     modal.querySelector('.product-modal__image img').src = product.image;
     modal.querySelector('.product-modal__description').textContent = product.description;
     modal.querySelector('.product-modal__price').textContent = product.price;
-    
+
     // Заполняем преимущества
     const advantagesList = modal.querySelector('.product-modal__advantages');
     advantagesList.innerHTML = '';
@@ -57,10 +64,10 @@ function openDetailsModal(productId) {
         li.textContent = advantage;
         advantagesList.appendChild(li);
     });
-    
+
     // Отображаем модальное окно
     modal.style.display = 'block';
-    
+
     // Блокируем прокрутку страницы
     document.body.style.overflow = 'hidden';
 }
@@ -69,13 +76,13 @@ function openDetailsModal(productId) {
 function closeDetailsModal() {
     const modal = document.getElementById('detailsModal');
     modal.style.display = 'none';
-    
+
     // Разблокируем прокрутку страницы
     document.body.style.overflow = '';
 }
 
 // Закрытие модального окна при клике вне его содержимого
-window.addEventListener('click', function(event) {
+window.addEventListener('click', function (event) {
     const modal = document.getElementById('detailsModal');
     if (event.target === modal) {
         closeDetailsModal();
@@ -83,7 +90,7 @@ window.addEventListener('click', function(event) {
 });
 
 // Закрытие модального окна при нажатии клавиши Esc
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
         closeDetailsModal();
     }

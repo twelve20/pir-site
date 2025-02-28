@@ -1,69 +1,49 @@
-// Акционные товары (для Hero-блока)
-const specialProducts = [
+module.exports = {
+  "regularProducts": [
     {
-        image: '/images/product1.jpg',
-        title: 'PIR-плиты стандарт',
-        description: 'Идеально подходят для утепления бань и саун.',
-        price: 'от 500 ₽/м²',
-        discount: 10
+      "id": "pirro-termo-30",
+      "image": "/images/product1.jpg",
+      "title": "PIRRO Термо ФОЛЬГА 30 мм",
+      "description": "Площадь 0,72 м², для утепления стен и потолков.",
+      "price": "560 руб./шт."
     },
     {
-        image: '/images/product2.jpg',
-        title: 'PIR-плиты премиум',
-        description: 'Высокая плотность и долговечность.',
-        price: 'от 800 ₽/м²',
-        discount: 15
+      "id": "pirro-termo-50",
+      "image": "/images/product1.jpg",
+      "title": "PIRRO Термо ФОЛЬГА 50 мм",
+      "description": "Площадь 0,72 м², для сложных конструкций и фасадов.",
+      "price": "785 руб./шт."
     },
     {
-        image: '/images/product3.jpg',
-        title: 'Комплектующие',
-        description: 'Дополнительные материалы для монтажа.',
-        price: 'от 200 ₽/шт',
-        discount: 20
+      "id": "pir-paper-30",
+      "image": "/images/product1.jpg",
+      "title": "PIR Плита Бумага/Бумага 30 мм",
+      "description": "Площадь 0,72 м², для утепления стен и перегородок.",
+      "price": "429 руб./шт."
+    },
+    {
+      "id": "pir-paper-50",
+      "image": "/images/product1.jpg",
+      "title": "PIR Плита Бумага/Бумага 50 мм",
+      "description": "Площадь 0,72 м², для полов и перекрытий.",
+      "price": "619 руб./шт."
+    },
+    {
+      "id": "pir-foil-100",
+      "image": "/images/product2.jpg",
+      "title": "PIR Плита Фольга/Фольга 100 мм",
+      "description": "Площадь 2,88 м², для утепления стен, потолков и кровли.",
+      "price": "2100 руб./шт."
     }
-];
-
-// Обычные товары (для мини-каталога)
-const regularProducts = [
+  ],
+  "installationProducts": [
     {
-        id: 'pirro-termo-30',
-        image: '/images/product1.jpg',
-        title: 'PIRRO Термо ФОЛЬГА 30 мм',
-        description: 'Площадь 0,72 м², для утепления стен и потолков.',
-        price: '560 руб./шт.'
-    },
-    {
-        id: 'pirro-termo-50',
-        image: '/images/product1.jpg',
-        title: 'PIRRO Термо ФОЛЬГА 50 мм',
-        description: 'Площадь 0,72 м², для сложных конструкций и фасадов.',
-        price: '785 руб./шт.'
-    },
-    {
-        id: 'pir-paper-30',
-        image: '/images/product1.jpg',
-        title: 'PIR Плита Бумага/Бумага 30 мм',
-        description: 'Площадь 0,72 м², для утепления стен и перегородок.',
-        price: '429 руб./шт.'
-    },
-    {
-        id: 'pir-paper-50',
-        image: '/images/product1.jpg',
-        title: 'PIR Плита Бумага/Бумага 50 мм',
-        description: 'Площадь 0,72 м², для полов и перекрытий.',
-        price: '619 руб./шт.'
+      "id": "glue-foam",
+      "image": "/images/product4.jpg",
+      "title": "Клей-пена для PIR",
+      "description": "Расход 1 баллон на 10 м², для надежного монтажа PIR-плит.",
+      "price": "1050 руб./баллон"
     }
-];
-
-// Товары для монтажа
-const installationProducts = [
-    {
-        id: 'glue-foam',
-        image: '/images/product4.jpg',
-        title: 'Клей-пена для PIR',
-        description: 'Расход 1 баллон на 10 м², для надежного монтажа PIR-плит.',
-        price: '1050 руб./баллон'
-    },
-];
-
-module.exports = { specialProducts, regularProducts, installationProducts };
+  ],
+  "specialProducts": []
+};
