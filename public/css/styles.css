@@ -2479,3 +2479,64 @@ body {
     color: #2A5CAA;
     margin-bottom: 2rem;
 }
+
+/* Стили для валидации форм */
+.error-message {
+    color: #FF6B35;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #F5F5F580;
+    border-radius: 4px;
+    display: block;
+}
+
+input.error,
+textarea.error {
+    border-color: #FF6B35 !important;
+    outline-color: #FF6B35 !important;
+}
+
+input:not(.error),
+textarea:not(.error) {
+    border-color: #2A5CAA !important;
+    outline-color: #2A5CAA !important;
+}
+
+button[type="submit"] {
+    background-color: #2A5CAA;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+    background-color: #FF6B35;
+}
+
+button[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    input,
+    textarea {
+        width: 100%;
+        margin: 5px 0;
+        padding: 10px;
+    }
+
+    .error-message {
+        font-size: 12px;
+        margin: 3px 0;
+    }
+}

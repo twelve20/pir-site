@@ -48,8 +48,8 @@
             <span class="modal__close" onclick="closeCallModal()">&times;</span>
             <h2>Заказать звонок</h2>
             <form class="modal__form">
-                <input type="text" placeholder="Имя" required>
-                <input type="tel" placeholder="Телефон" required>
+                <input type="text" name="name" placeholder="Имя" required minlength="2" maxlength="50">
+                <input type="tel" name="phone" placeholder="Телефон" required pattern="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}">
                 <button type="submit" class="btn btn--blue">Отправить</button>
             </form>
         </div>

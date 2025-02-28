@@ -145,11 +145,13 @@
                 <div class="cta__content">
                     <h2 class="cta__title">Оставьте заявку и получите расчет за 15 минут</h2>
                     <form class="cta__form">
-                <input type="text" placeholder="Имя" required>
-                <input type="tel" placeholder="Телефон" required>
-                <textarea placeholder="Комментарий"></textarea>
-                <button type="submit" class="btn btn--orange">Отправить заявку</button>
-            </form>
+                        <input type="text" name="name" placeholder="Имя" required minlength="2" maxlength="50">
+                        <input type="tel" name="phone" placeholder="Телефон" required pattern="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}">
+                        <textarea name="comment" placeholder="Комментарий" required minlength="5" maxlength="500"></textarea>
+                        <button type="submit" class="btn btn--orange">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -176,6 +178,7 @@
     <script src="/js/call-modal.js"></script>
     <script src="/js/calculator.js"></script>
     <script src="/js/details.js"></script>
+    <script src="/js/validation.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </body>
 
