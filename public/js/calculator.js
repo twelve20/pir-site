@@ -19,6 +19,11 @@ const products = {
         name: 'PIR Плита Бумага/Бумага 50 мм',
         price: 619,
         area: 0.72
+    },
+    'pir-foil-100': {
+        name: 'PIR Плита Фольга/Фольга 100 мм',
+        price: 2100,
+        area: 2.88
     }
 };
 
