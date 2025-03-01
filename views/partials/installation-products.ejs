@@ -1,27 +1,68 @@
 <section id="installation-products" class="mini-catalog installation-products">
     <div class="container">
-        <h2 class="section-title">Товары для монтажа</h2>
-        <div class="mini-catalog__grid">
+        <div class="catalog-header">
+            <h2 class="section-title">Товары для монтажа PIR плит</h2>
+            <p class="catalog-subtitle">Профессиональные материалы для быстрой и надежной установки</p>
+        </div>
+        
+        <div class="catalog-grid">
             <% installationProducts.forEach(product => { %>
-                <div class="catalog-card">
-                    <div class="catalog-card__image">
-                        <img src="<%= product.image %>" alt="<%= product.title %>" class="catalog-card__img">
+                <div class="catalog-item" data-id="<%= product.id %>">
+                    <div class="catalog-item__badge catalog-item__badge--blue">Необходимо</div>
+                    <div class="catalog-item__image">
+                        <img src="<%= product.image %>" alt="<%= product.title %>" loading="lazy">
                     </div>
-                    <div class="catalog-card__content">
-                        <h3 class="catalog-card__title">
-                            <%= product.title %>
-                        </h3>
-                        <p class="catalog-card__description">
-                            <%= product.description %>
-                        </p>
-                        <p class="catalog-card__price highlight-price">
-                            <%= product.price %>
-                        </p>
-                        <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
-                        <button class="btn btn--details" onclick="openDetailsModal('<%= product.id %>')">Подробнее</button>
+                    <div class="catalog-item__content">
+                        <h3 class="catalog-item__title"><%= product.title %></h3>
+                        <ul class="catalog-item__features">
+                            <li><i class="fas fa-check-circle"></i> <%= product.description.split(',')[0] %></li>
+                            <li><i class="fas fa-tools"></i> Профессиональный монтаж</li>
+                            <li><i class="fas fa-clock"></i> Быстрое застывание</li>
+                        </ul>
+                        <div class="catalog-item__footer">
+                            <div class="catalog-item__price">
+                                <span class="current-price"><%= product.price %></span>
+                            </div>
+                            <div class="catalog-item__actions">
+                                <button class="btn-details" onclick="openDetailsModal('<%= product.id %>')">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Детали</span>
+                                </button>
+                                <button class="btn-buy" onclick="openBuyModal()">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span>Купить</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             <% }) %>
         </div>
     </div>
 </section>
+
+<style>
+    .installation-products {
+        background-color: #f0f5f9;
+    }
+    
+    .catalog-item__badge--blue {
+        background-color: #0070c0;
+    }
+    
+    /* Специальные стили для блока товаров для монтажа */
+    .installation-products .catalog-grid {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .installation-products .catalog-item {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid transparent;
+    }
+    
+    .installation-products .catalog-item:hover {
+        border-color: #0070c0;
+        transform: translateY(-10px) scale(1.02);
+    }
+</style>

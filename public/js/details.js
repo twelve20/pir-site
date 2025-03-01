@@ -52,7 +52,8 @@ function openDetailsModal(productId) {
     // Заполняем модальное окно данными о товаре
     const modal = document.getElementById('detailsModal');
     modal.querySelector('.product-modal__title').textContent = product.title;
-    modal.querySelector('.product-modal__image img').src = product.image;
+    modal.querySelector('.product-modal__image-img').src = product.image;
+    modal.querySelector('.product-modal__image-img').alt = product.title;
     modal.querySelector('.product-modal__description').textContent = product.description;
     modal.querySelector('.product-modal__price').textContent = product.price;
 
@@ -68,6 +69,11 @@ function openDetailsModal(productId) {
     // Отображаем модальное окно
     modal.style.display = 'block';
 
+    // Добавляем анимацию появления
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+
     // Блокируем прокрутку страницы
     document.body.style.overflow = 'hidden';
 }
@@ -76,6 +82,7 @@ function openDetailsModal(productId) {
 function closeDetailsModal() {
     const modal = document.getElementById('detailsModal');
     modal.style.display = 'none';
+    modal.classList.remove('active');
 
     // Разблокируем прокрутку страницы
     document.body.style.overflow = '';

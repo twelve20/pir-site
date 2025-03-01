@@ -1,27 +1,51 @@
 <section id="mini-catalog" class="mini-catalog">
     <div class="container">
-        <h2 class="section-title">Каталог PIR</h2>
-        <div class="mini-catalog__grid">
-            <% regularProducts.forEach(product=> { %>
-                <div class="catalog-card">
-                    <div class="catalog-card__image">
-                        <img src="<%= product.image %>" alt="<%= product.title %>" class="catalog-card__img">
+        <div class="catalog-header">
+            <h2 class="section-title">Каталог PIR-плит</h2>
+            <p class="catalog-subtitle">Выберите оптимальные материалы для вашего проекта</p>
+            
+            <div class="catalog-tabs">
+                <button class="catalog-tab active" data-category="all">Все товары</button>
+                <button class="catalog-tab" data-category="roof">Для кровли</button>
+                <button class="catalog-tab" data-category="wall">Для стен</button>
+                <button class="catalog-tab" data-category="floor">Для пола</button>
+            </div>
+        </div>
+        
+        <div class="catalog-grid">
+            <% regularProducts.forEach(product => { %>
+                <div class="catalog-item" 
+                     data-id="<%= product.id %>"
+                     data-category="<%= product.id.includes('termo') ? 'wall roof' : (product.id.includes('paper') ? 'wall floor' : 'roof wall floor') %>">
+                    <div class="catalog-item__badge">Популярный</div>
+                    <div class="catalog-item__image">
+                        <img src="<%= product.image %>" alt="<%= product.title %>" loading="lazy">
                     </div>
-                    <div class="catalog-card__content">
-                        <h3 class="catalog-card__title">
-                            <%= product.title %>
-                        </h3>
-                        <p class="catalog-card__description">
-                            <%= product.description %>
-                        </p>
-                        <p class="catalog-card__price highlight-price">
-                            <%= product.price %>
-                        </p>
-                        <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
-                        <button class="btn btn--details" onclick="openDetailsModal('<%= product.id %>')">Подробнее</button>
+                    <div class="catalog-item__content">
+                        <h3 class="catalog-item__title"><%= product.title %></h3>
+                        <ul class="catalog-item__features">
+                            <li><i class="fas fa-check-circle"></i> <%= product.description.split(',')[0] %></li>
+                            <li><i class="fas fa-fire-alt"></i> Класс горючести Г1</li>
+                            <li><i class="fas fa-tint-slash"></i> Влагостойкость</li>
+                        </ul>
+                        <div class="catalog-item__footer">
+                            <div class="catalog-item__price">
+                                <span class="current-price"><%= product.price %></span>
+                            </div>
+                            <div class="catalog-item__actions">
+                                <button class="btn-details" onclick="openDetailsModal('<%= product.id %>')">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Детали</span>
+                                </button>
+                                <button class="btn-buy" onclick="openBuyModal()">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span>Купить</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <% }) %>
+            <% }) %>
         </div>
     </div>
 </section>
@@ -41,14 +65,261 @@
     </div>
 </div>
 
+<style>
+    .mini-catalog {
+        padding: 60px 0;
+        background-color: #f8f9fa;
+        position: relative;
+    }
+    
+    .mini-catalog::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/images/pattern.png');
+        background-size: 200px;
+        opacity: 0.03;
+        pointer-events: none;
+    }
+    
+    .catalog-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .catalog-subtitle {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 25px;
+    }
+    
+    .catalog-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    
+    .catalog-tab {
+        padding: 10px 20px;
+        border: 2px solid #e0e0e0;
+        background: white;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .catalog-tab.active, .catalog-tab:hover {
+        background-color: #0070c0;
+        color: white;
+        border-color: #0070c0;
+    }
+    
+    .catalog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .catalog-item {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+    
+    .catalog-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .catalog-item__badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #ff6b00;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        z-index: 1;
+    }
+    
+    .catalog-item__image {
+        height: 200px;
+        overflow: hidden;
+    }
+    
+    .catalog-item__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .catalog-item:hover .catalog-item__image img {
+        transform: scale(1.1);
+    }
+    
+    .catalog-item__content {
+        padding: 20px;
+    }
+    
+    .catalog-item__title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 15px;
+        min-height: 44px;
+    }
+    
+    .catalog-item__features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+    }
+    
+    .catalog-item__features li {
+        margin-bottom: 8px;
+        color: #555;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .catalog-item__features i {
+        color: #0070c0;
+        margin-right: 8px;
+        font-size: 16px;
+    }
+    
+    .catalog-item__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+    }
+    
+    .catalog-item__price {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .current-price {
+        font-size: 18px;
+        font-weight: 700;
+        color: #333;
+    }
+    
+    .catalog-item__actions {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .btn-details, .btn-buy {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 14px;
+        color: #333;
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-details {
+        background-color: #e0e0e0;
+    }
+    
+    .btn-buy {
+        background-color: #0070c0;
+        color: white;
+    }
+    
+    .btn-details:hover {
+        background-color: #d0d0d0;
+    }
+    
+    .btn-buy:hover {
+        background-color: #005ba3;
+    }
+    
+    .btn-details i, .btn-buy i {
+        margin-right: 5px;
+    }
+    
+    @media (max-width: 768px) {
+        .catalog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+        
+        .catalog-tab {
+            padding: 8px 15px;
+            font-size: 13px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .catalog-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .catalog-tabs {
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .catalog-tab {
+            width: 100%;
+        }
+    }
+</style>
+
 <script>
-    // Функция для открытия модального окна
+    // Функции для модального окна
     function openBuyModal() {
         document.getElementById('buyModal').style.display = 'block';
     }
-
-    // Функция для закрытия модального окна
+    
     function closeBuyModal() {
         document.getElementById('buyModal').style.display = 'none';
     }
+    
+    // Фильтрация товаров по категориям
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.catalog-tab');
+        const items = document.querySelectorAll('.catalog-item');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                // Активный класс для вкладок
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Фильтрация товаров
+                items.forEach(item => {
+                    if (category === 'all' || item.dataset.category.includes(category)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
 </script>

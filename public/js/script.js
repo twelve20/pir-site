@@ -178,18 +178,7 @@ document.querySelector('#buyModal .modal__form').addEventListener('submit', asyn
     }
 });
 
-// Инициализация слайдера
-document.addEventListener("DOMContentLoaded", function () {
-    const swiper = new Swiper('.sales-slider__swiper', {
-        slidesPerView: 1, // Показывать только один слайд
-        spaceBetween: 20, // Отступ между слайдами
-        loop: true, // Бесконечный цикл
-        autoplay: {
-            delay: 5000, // Автоматическая смена слайдов каждые 5 секунд
-            disableOnInteraction: false, // Продолжать автопрокрутку после взаимодействия пользователя
-        },
-    });
-});
+// Инициализация слайдера hero-swiper находится в partials/hero.ejs
 
 function openCallModal() {
     document.getElementById('callModal').style.display = 'flex';

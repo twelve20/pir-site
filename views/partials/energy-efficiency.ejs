@@ -1,0 +1,74 @@
+<section id="energy-efficiency" class="energy-efficiency">
+    <div class="container">
+        <h2 class="section-title">Энергоэффективность и экономия</h2>
+        <div class="energy-efficiency__content">
+            <div class="energy-efficiency__info">
+                <p class="energy-efficiency__intro">PIR плиты — это инвестиция в будущее вашего дома, которая окупается за счет значительной экономии на отоплении.</p>
+                
+                <div class="energy-calculator">
+                    <h3 class="energy-calculator__title">Рассчитайте свою экономию</h3>
+                    <div class="energy-calculator__form">
+                        <div class="form-group">
+                            <label for="house-type">Тип здания</label>
+                            <select id="house-type">
+                                <option value="house">Частный дом</option>
+                                <option value="apartment">Квартира</option>
+                                <option value="commercial">Коммерческое помещение</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="square-meters">Площадь помещения (м²)</label>
+                            <input type="number" id="square-meters" min="1" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Регион</label>
+                            <select id="region">
+                                <option value="central">Центральный регион</option>
+                                <option value="north">Северный регион</option>
+                                <option value="south">Южный регион</option>
+                            </select>
+                        </div>
+                        <button type="button" id="calculate-savings" class="btn btn--blue">Рассчитать экономию</button>
+                    </div>
+                    <div id="savings-result" class="energy-calculator__result">
+                        <div class="savings-card">
+                            <div class="savings-card__title">Экономия в год</div>
+                            <div class="savings-card__value" id="yearly-savings">до 30 000 ₽</div>
+                        </div>
+                        <div class="savings-card">
+                            <div class="savings-card__title">Срок окупаемости</div>
+                            <div class="savings-card__value" id="payback-period">2-3 года</div>
+                        </div>
+                        <div class="savings-card">
+                            <div class="savings-card__title">Снижение теплопотерь</div>
+                            <div class="savings-card__value" id="heat-loss-reduction">до 40%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="energy-comparison">
+                <h3 class="energy-comparison__title">Сравнение толщин разных утеплителей</h3>
+                <div class="energy-comparison__chart">
+                    <div class="comparison-item">
+                        <div class="comparison-item__label">PIR плита</div>
+                        <div class="comparison-item__bar" style="width: 30%;"><span>30 мм</span></div>
+                    </div>
+                    <div class="comparison-item">
+                        <div class="comparison-item__label">Минвата</div>
+                        <div class="comparison-item__bar" style="width: 50%;"><span>50 мм</span></div>
+                    </div>
+                    <div class="comparison-item">
+                        <div class="comparison-item__label">Пенополистирол</div>
+                        <div class="comparison-item__bar" style="width: 45%;"><span>45 мм</span></div>
+                    </div>
+                    <div class="comparison-item">
+                        <div class="comparison-item__label">Дерево</div>
+                        <div class="comparison-item__bar" style="width: 80%;"><span>80 мм</span></div>
+                    </div>
+                </div>
+                <p class="energy-comparison__note">* Толщина материала для достижения одинакового уровня теплоизоляции</p>
+            </div>
+        </div>
+    </div>
+</section> 
