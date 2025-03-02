@@ -118,6 +118,7 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
+    margin: 0.5rem 0;
 }
 
 .checkbox-group label {
@@ -125,6 +126,67 @@ body {
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+    font-weight: 600;
+    color: #444;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.checkbox-group label:hover {
+    color: #2A5CAA;
+}
+
+.checkbox-group input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Создаём кастомный чекбокс */
+.checkbox-group label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #2A5CAA;
+    border-radius: 4px;
+    background-color: white;
+    transition: all 0.2s ease;
+}
+
+/* Создаём иконку галочки внутри чекбокса */
+.checkbox-group label:after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    transform: translateY(-65%) rotate(45deg) scale(0);
+    width: 6px;
+    height: 12px;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    transition: all 0.2s ease;
+}
+
+/* Стиль при отмеченном чекбоксе */
+.checkbox-group input[type="checkbox"]:checked + label:before {
+    background-color: #2A5CAA;
+    border-color: #2A5CAA;
+}
+
+.checkbox-group input[type="checkbox"]:checked + label:after {
+    transform: translateY(-65%) rotate(45deg) scale(1);
+}
+
+.checkbox-group input[type="checkbox"]:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(42, 92, 170, 0.2);
 }
 
 .calc-result__content {
@@ -547,74 +609,54 @@ body {
 }
 
 /* Стили для карточек товаров */
-.catalog-card {
-    background-color: white;
-    border-radius: 10px;
+.catalog-item {
+    background: white;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-}
-
-.catalog-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.catalog-card__image {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     position: relative;
-    overflow: hidden;
+    border: 2px solid transparent;
 }
 
-.catalog-card__img {
+.catalog-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    border-color: #0070c0;
+}
+
+.catalog-item__image {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    transition: transform 0.3s ease;
 }
 
-.catalog-card:hover .catalog-card__img {
-    transform: scale(1.1);
-}
-
-.catalog-card__content {
+.catalog-item__content {
     padding: 1.5rem;
     text-align: center;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
-.catalog-card__title {
+.catalog-item__title {
     font-family: 'Roboto Bold', sans-serif;
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: #2A5CAA;
 }
 
-.catalog-card__title {
-    opacity: 0.9;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.catalog-card:hover .catalog-card__title {
-    opacity: 1;
-    transform: translateY(-5px);
-}
-
-.catalog-card__description {
+.catalog-item__description {
     font-size: 1rem;
     color: #555;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+    margin-bottom: 1rem;
 }
 
-.catalog-card .btn {
+.catalog-item__price {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.2rem;
+    color: #FF6B35;
+    margin-bottom: 1rem;
+}
+
+.catalog-item .btn {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -625,13 +667,25 @@ body {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.catalog-card .btn:hover {
+.catalog-item .btn:hover {
     background-color: #FF6B35;
     transform: scale(1.05);
 }
 
+/* Добавляем синюю обводку для карточек в мини-каталоге */
+.mini-catalog .catalog-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.mini-catalog .catalog-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-color: #2A5CAA;
+}
+
 /* Стили для цены */
-.catalog-card__price {
+.catalog-item__price {
     font-family: 'Roboto Bold', sans-serif;
     font-size: 1.2rem;
     color: #FF6B35;
@@ -640,17 +694,17 @@ body {
     text-align: center;
 }
 
-.catalog-card__price {
+.catalog-item__price {
     opacity: 0.9;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.catalog-card:hover .catalog-card__price {
+.catalog-item:hover .catalog-item__price {
     opacity: 1;
     transform: scale(1.1);
 }
 
-.catalog-card__price.highlight-price {
+.catalog-item__price.highlight-price {
     font-size: 1.8rem;
     /* Больший размер шрифта */
     text-align: center;
@@ -690,18 +744,16 @@ body {
 }
 
 @media (max-width: 768px) {
-    .catalog-card__price {
+    .catalog-item__price {
         font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .catalog-card__price {
+    .catalog-item__price {
         font-size: 0.9rem;
     }
 }
-
-
 
 /* Основные стили для блока с преимуществами */
 .advantages {
@@ -1182,11 +1234,11 @@ body {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
-    .catalog-card__title {
+    .catalog-item__title {
         font-size: 1.2rem;
     }
 
-    .catalog-card__description {
+    .catalog-item__description {
         font-size: 0.9rem;
     }
 }
@@ -1196,51 +1248,15 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .catalog-card__image {
+    .catalog-item__image {
         height: 150px;
     }
 
-    .catalog-card__title {
+    .catalog-item__title {
         font-size: 1.1rem;
     }
 
-    .catalog-card__description {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .mini-catalog__grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-
-    .catalog-card__img {
-        height: 200px;
-    }
-
-    .catalog-card__title {
-        font-size: 1.2rem;
-    }
-
-    .catalog-card__description {
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .mini-catalog__grid {
-        grid-template-columns: 1fr;
-    }
-
-    .catalog-card__img {
-        height: 150px;
-    }
-
-    .catalog-card__title {
-        font-size: 1.1rem;
-    }
-
-    .catalog-card__description {
+    .catalog-item__description {
         font-size: 0.8rem;
     }
 }
@@ -1617,7 +1633,6 @@ body {
         /* Уменьшаем высоту на маленьких экранах */
     }
 }
-
 
 /* Модальное окно */
 .modal {

@@ -1,33 +1,226 @@
 <section id="testimonials" class="testimonials">
     <div class="container">
         <h2 class="section-title">Отзывы наших клиентов</h2>
-        <div class="testimonials__grid">
-            <!-- Отзыв 1 -->
-            <div class="testimonial-card">
-                <img src="/images/customer1.png" alt="Клиент 1" class="testimonial-card__image">
-                <div class="testimonial-card__content">
-                    <h3 class="testimonial-card__name">Александр Петров</h3>
-                    <p class="testimonial-card__text">"Использовали PIR-плиты для утепления кровли. Очень довольны результатом - в доме стало значительно теплее, а затраты на отопление существенно снизились."</p>
+        
+        <!-- Swiper слайдер для отзывов -->
+        <div class="swiper testimonials-swiper">
+            <div class="swiper-wrapper">
+                <!-- Отзыв 1 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__header">
+                            <img src="/images/customer1.png" alt="Клиент 1" class="testimonial-card__image">
+                            <div class="testimonial-card__info">
+                                <h3 class="testimonial-card__name">Александр Петров</h3>
+                                <div class="testimonial-card__rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="testimonial-card__date">15 февраля 2023</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">"Использовали PIR-плиты для утепления кровли. Очень довольны результатом - в доме стало значительно теплее, а затраты на отопление существенно снизились."</p>
+                            <div class="testimonial-card__project">
+                                <span class="testimonial-card__project-label">Проект:</span>
+                                <span class="testimonial-card__project-name">Утепление кровли частного дома</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Отзыв 2 -->
-            <div class="testimonial-card">
-                <img src="/images/customer2.png" alt="Клиент 2" class="testimonial-card__image">
-                <div class="testimonial-card__content">
-                    <h3 class="testimonial-card__name">Мария Иванова</h3>
-                    <p class="testimonial-card__text">"Отличный материал! Легкий монтаж, отсутствие мостиков холода. Консультанты помогли с выбором и расчетом необходимого количества материала."</p>
+                <!-- Отзыв 2 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__header">
+                            <img src="/images/customer2.png" alt="Клиент 2" class="testimonial-card__image">
+                            <div class="testimonial-card__info">
+                                <h3 class="testimonial-card__name">Мария Иванова</h3>
+                                <div class="testimonial-card__rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <div class="testimonial-card__date">23 марта 2023</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">"Отличный материал! Легкий монтаж, отсутствие мостиков холода. Консультанты помогли с выбором и расчетом необходимого количества материала."</p>
+                            <div class="testimonial-card__project">
+                                <span class="testimonial-card__project-label">Проект:</span>
+                                <span class="testimonial-card__project-name">Утепление балкона в квартире</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Отзыв 3 -->
-            <div class="testimonial-card">
-                <img src="/images/customer3.png" alt="Клиент 3" class="testimonial-card__image">
-                <div class="testimonial-card__content">
-                    <h3 class="testimonial-card__name">Дмитрий Соколов</h3>
-                    <p class="testimonial-card__text">"Использовали PIR-плиты при строительстве склада. Материал полностью оправдал ожидания - отличные теплоизоляционные свойства и пожаробезопасность."</p>
+                <!-- Отзыв 3 -->
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__header">
+                            <img src="/images/customer3.png" alt="Клиент 3" class="testimonial-card__image">
+                            <div class="testimonial-card__info">
+                                <h3 class="testimonial-card__name">Дмитрий Соколов</h3>
+                                <div class="testimonial-card__rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="testimonial-card__date">8 апреля 2023</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">"Использовали PIR-плиты при строительстве склада. Материал полностью оправдал ожидания - отличные теплоизоляционные свойства и пожаробезопасность."</p>
+                            <div class="testimonial-card__project">
+                                <span class="testimonial-card__project-label">Проект:</span>
+                                <span class="testimonial-card__project-name">Утепление коммерческого склада</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Добавляем навигацию для слайдера -->
+            <div class="swiper-pagination testimonials-pagination"></div>
+            <div class="swiper-button-next testimonials-button-next"></div>
+            <div class="swiper-button-prev testimonials-button-prev"></div>
         </div>
     </div>
+
+    <!-- Добавляем стили для нового блока отзывов -->
+    <style>
+        .testimonials {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .testimonials-swiper {
+            padding: 20px 40px;
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .testimonial-card__header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-card__image {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 3px solid #2A5CAA;
+        }
+        
+        .testimonial-card__info {
+            flex-grow: 1;
+        }
+        
+        .testimonial-card__name {
+            font-family: 'Roboto Bold', sans-serif;
+            font-size: 1.2rem;
+            color: #2A5CAA;
+            margin-bottom: 0.3rem;
+        }
+        
+        .testimonial-card__rating {
+            color: #FF6B35;
+            margin-bottom: 0.3rem;
+        }
+        
+        .testimonial-card__date {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .testimonial-card__content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .testimonial-card__text {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .testimonial-card__project {
+            background-color: #f0f5f9;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-card__project-label {
+            font-weight: bold;
+            color: #2A5CAA;
+            margin-right: 0.3rem;
+        }
+        
+        .testimonial-card__project-name {
+            color: #555;
+        }
+        
+        /* Стили для навигации слайдера */
+        .testimonials-button-next,
+        .testimonials-button-prev {
+            color: #2A5CAA !important;
+        }
+        
+        .testimonials-button-next:after,
+        .testimonials-button-prev:after {
+            font-size: 1.5rem !important;
+        }
+        
+        .testimonials-pagination .swiper-pagination-bullet-active {
+            background-color: #2A5CAA;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+            
+            .testimonial-card__image {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .testimonial-card__name {
+                font-size: 1.1rem;
+            }
+            
+            .testimonial-card__text {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </section>

@@ -22,8 +22,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Конфигурация Telegram Bot
-const TELEGRAM_BOT_TOKEN = '7606877003:AAFgoTDB23-GSuQVcqmECZywH-FrNk2UDj8'; // Замените на ваш токен
-const TELEGRAM_CHAT_ID = '-4648477237'; // Замените на ваш chat_id
+const TELEGRAM_BOT_TOKEN = '7782157467:AAGFxw4zsg8y5jV5Hg6TJZajiq5iR0kD660'; // Замените на ваш токен
+const TELEGRAM_CHAT_ID = '-4667528349'; // Замените на ваш chat_id
 
 // Статические файлы
 app.use(express.static(path.join(__dirname, 'public')))
