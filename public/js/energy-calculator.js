@@ -22,6 +22,10 @@ function calculateSavings() {
     } else if (houseType === 'commercial') {
         baseSavingsPerSqm *= 1.5;
         basePaybackYears *= 0.8;
+    } else if (houseType === 'sauna') {
+        baseSavingsPerSqm *= 1.8; // Бани требуют больше энергии на отопление
+        basePaybackYears *= 0.7; // Срок окупаемости меньше из-за высокой экономии
+        baseHeatLossReduction *= 1.2; // Больше снижение теплопотерь из-за высоких температур
     }
     
     // Корректировки по региону
