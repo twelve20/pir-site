@@ -25,7 +25,7 @@
                         <h3 class="catalog-item__title"><%= product.title %></h3>
                         <ul class="catalog-item__features">
                             <li><i class="fas fa-check-circle"></i> <%= product.description.split(',')[0] %></li>
-                            <li><i class="fas fa-fire-alt"></i> Класс горючести Г1</li>
+                            <li><i class="fas fa-fire-alt"></i> Класс горючести <%= product.id.includes('paper') ? 'Г3' : 'Г1' %></li>
                             <li><i class="fas fa-tint-slash"></i> Влагостойкость</li>
                         </ul>
                         <div class="catalog-item__footer">

@@ -1,0 +1,362 @@
+<div id="promoModal" class="promo-modal">
+    <div class="promo-modal__content">
+        <span class="promo-modal__close" onclick="closePromoModal()">&times;</span>
+        <div class="promo-modal__header">
+            <div class="promo-modal__badge">Акция!</div>
+            <h2 class="promo-modal__title">Специальное предложение для бань и саун!</h2>
+        </div>
+        <div class="promo-modal__body">
+            <div class="promo-modal__image-container">
+                <img src="/images/product1.jpg" alt="PIR плита 1200*600*30 фольга/фольга" class="promo-modal__image">
+                <div class="promo-modal__discount">-30%</div>
+            </div>
+            <div class="promo-modal__info">
+                <h3 class="promo-modal__product-title">PIR плита 1200*600*30 фольга/фольга</h3>
+                <p class="promo-modal__description">Идеальное решение для утепления бань и саун. Выдерживает высокие температуры, не впитывает влагу, обеспечивает отличную теплоизоляцию.</p>
+                <ul class="promo-modal__features">
+                    <li><i class="fas fa-check-circle"></i> Термостойкость до +120°C</li>
+                    <li><i class="fas fa-check-circle"></i> Влагостойкость 100%</li>
+                    <li><i class="fas fa-check-circle"></i> Класс горючести Г1</li>
+                    <li><i class="fas fa-check-circle"></i> Экономия пространства</li>
+                </ul>
+                <div class="promo-modal__price-block">
+                    <div class="promo-modal__old-price">790 ₽</div>
+                    <div class="promo-modal__new-price">550 ₽</div>
+                </div>
+                <div class="promo-modal__limited">
+                    <i class="fas fa-exclamation-circle"></i> Количество товара по акции ограничено!
+                </div>
+                <button class="promo-modal__button" onclick="openBuyModal(); closePromoModal();">
+                    Заказать по акции
+                </button>
+                <div class="promo-modal__note">* Предложение действует до 31 апреля 2025 г. или до окончания товара на складе.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .promo-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.7);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .promo-modal.active {
+        opacity: 1;
+    }
+    
+    .promo-modal__content {
+        background-color: #fff;
+        margin: 5% auto;
+        width: 90%;
+        max-width: 900px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        position: relative;
+        transform: translateY(-50px);
+        opacity: 0;
+        transition: all 0.5s ease;
+        overflow: hidden;
+    }
+    
+    .promo-modal.active .promo-modal__content {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .promo-modal__close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+        z-index: 10;
+        transition: color 0.2s ease;
+    }
+    
+    .promo-modal__close:hover {
+        color: #ff6b00;
+    }
+    
+    .promo-modal__header {
+        background-color: #0070c0;
+        padding: 20px;
+        color: white;
+        position: relative;
+    }
+    
+    .promo-modal__badge {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        background-color: #ff6b00;
+        color: white;
+        padding: 10px 20px;
+        font-weight: bold;
+        font-size: 18px;
+        border-radius: 0 0 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        transform: rotate(-5deg);
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: rotate(-5deg) scale(1);
+        }
+        50% {
+            transform: rotate(-5deg) scale(1.1);
+        }
+        100% {
+            transform: rotate(-5deg) scale(1);
+        }
+    }
+    
+    .promo-modal__title {
+        font-size: 24px;
+        margin: 0;
+        text-align: center;
+    }
+    
+    .promo-modal__body {
+        padding: 20px;
+        display: flex;
+        gap: 30px;
+    }
+    
+    .promo-modal__image-container {
+        flex: 0 0 40%;
+        position: relative;
+    }
+    
+    .promo-modal__image {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .promo-modal__discount {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #ff6b00;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        animation: rotate 10s linear infinite;
+    }
+    
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .promo-modal__info {
+        flex: 0 0 55%;
+    }
+    
+    .promo-modal__product-title {
+        font-size: 22px;
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: #333;
+    }
+    
+    .promo-modal__description {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #555;
+        margin-bottom: 20px;
+    }
+    
+    .promo-modal__features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+    }
+    
+    .promo-modal__features li {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .promo-modal__features i {
+        color: #0070c0;
+        margin-right: 10px;
+    }
+    
+    .promo-modal__price-block {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .promo-modal__old-price {
+        font-size: 20px;
+        color: #999;
+        text-decoration: line-through;
+        margin-right: 15px;
+    }
+    
+    .promo-modal__new-price {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ff6b00;
+    }
+    
+    .promo-modal__limited {
+        background-color: #f5f5f5;
+        padding: 10px 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #ff6b00;
+        text-align: center;
+        animation: blink 2s infinite;
+    }
+    
+    @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0.7; }
+        100% { opacity: 1; }
+    }
+    
+    .promo-modal__button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #ff6b00;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 15px;
+    }
+    
+    .promo-modal__button:hover {
+        background-color: #e55f00;
+    }
+    
+    .promo-modal__note {
+        font-size: 12px;
+        color: #999;
+        text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+        .promo-modal__body {
+            flex-direction: column;
+        }
+        
+        .promo-modal__image-container,
+        .promo-modal__info {
+            flex: 0 0 100%;
+        }
+        
+        .promo-modal__title {
+            font-size: 20px;
+        }
+        
+        .promo-modal__product-title {
+            font-size: 18px;
+        }
+        
+        .promo-modal__discount {
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+        }
+    }
+</style>
+
+<script>
+    // Функция для открытия модального окна с акцией
+    function openPromoModal() {
+        const modal = document.getElementById('promoModal');
+        if (!modal) {
+            console.error('Модальное окно не найдено');
+            return;
+        }
+        
+        modal.style.display = 'block';
+        
+        // Добавляем класс active для анимации
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+    }
+    
+    // Функция для закрытия модального окна с акцией
+    function closePromoModal() {
+        const modal = document.getElementById('promoModal');
+        if (!modal) {
+            console.error('Модальное окно не найдено');
+            return;
+        }
+        
+        modal.classList.remove('active');
+        
+        // Задержка перед скрытием модального окна для завершения анимации
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    }
+    
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM загружен, инициализация акционного модального окна');
+        
+        // Открываем модальное окно через 3 секунды
+        setTimeout(function() {
+            console.log('Открываем акционное модальное окно');
+            openPromoModal();
+        }, 3000);
+        
+        // Закрытие модального окна при клике вне его содержимого
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('promoModal');
+            if (modal && event.target === modal) {
+                closePromoModal();
+            }
+        });
+        
+        // Закрытие модального окна при нажатии клавиши Esc
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePromoModal();
+            }
+        });
+    });
+    
+    // Добавляем кнопку для ручного открытия модального окна (для тестирования)
+    window.openPromoModalManually = function() {
+        console.log('Ручное открытие акционного модального окна');
+        openPromoModal();
+    };
+</script> 

@@ -50,6 +50,9 @@
             
             <div class="energy-comparison">
                 <h3 class="energy-comparison__title">Сравнение толщин разных утеплителей</h3>
+                <div class="energy-comparison__image">
+                    <img src="/images/sravnenie.jpg" alt="Сравнение толщин разных утеплителей" class="comparison-image">
+                </div>
                 <div class="energy-comparison__chart">
                     <div class="comparison-item">
                         <div class="comparison-item__label">PIR плита</div>
@@ -72,4 +75,175 @@
             </div>
         </div>
     </div>
-</section> 
+</section>
+
+<style>
+    .energy-efficiency {
+        padding: 60px 0;
+        background-color: #f5f5f5;
+    }
+    
+    .energy-efficiency__content {
+        display: flex;
+        gap: 40px;
+        margin-top: 40px;
+    }
+    
+    .energy-efficiency__info {
+        flex: 0 0 50%;
+    }
+    
+    .energy-efficiency__intro {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #333;
+        margin-bottom: 30px;
+    }
+    
+    .energy-calculator {
+        background-color: white;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .energy-calculator__title {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .energy-calculator__form {
+        margin-bottom: 20px;
+    }
+    
+    .energy-calculator__form .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .energy-calculator__form label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #555;
+    }
+    
+    .energy-calculator__form select,
+    .energy-calculator__form input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    
+    .energy-calculator__result {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    
+    .savings-card {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        flex: 0 0 30%;
+    }
+    
+    .savings-card__title {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 8px;
+    }
+    
+    .savings-card__value {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0070c0;
+    }
+    
+    .energy-comparison {
+        flex: 0 0 45%;
+        background-color: white;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .energy-comparison__title {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .energy-comparison__image {
+        margin-bottom: 20px;
+    }
+    
+    .comparison-image {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .energy-comparison__chart {
+        margin-bottom: 15px;
+    }
+    
+    .comparison-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .comparison-item__label {
+        flex: 0 0 120px;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .comparison-item__bar {
+        height: 25px;
+        background-color: #0070c0;
+        border-radius: 5px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+    }
+    
+    .comparison-item__bar span {
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    .energy-comparison__note {
+        font-size: 12px;
+        color: #666;
+        font-style: italic;
+    }
+    
+    @media (max-width: 768px) {
+        .energy-efficiency__content {
+            flex-direction: column;
+        }
+        
+        .energy-efficiency__info,
+        .energy-comparison {
+            flex: 0 0 100%;
+        }
+        
+        .energy-calculator__result {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .savings-card {
+            flex: 0 0 100%;
+            margin-bottom: 10px;
+        }
+    }
+</style> 
