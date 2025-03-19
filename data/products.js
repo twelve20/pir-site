@@ -5,7 +5,7 @@ module.exports = {
       "image": "/images/product1.jpg",
       "title": "PIRRO Термо ФОЛЬГА 30 мм",
       "description": "Площадь 0,72 м², для утепления стен и потолков.",
-      "price": "560 руб./шт."
+      "price": "562 руб./шт."
     },
     {
       "id": "pirro-termo-50",
@@ -27,6 +27,13 @@ module.exports = {
       "title": "PIR Плита Бумага/Бумага 50 мм",
       "description": "Площадь 0,72 м², для полов и перекрытий.",
       "price": "619 руб./шт."
+    },
+    {
+      "id": "pir-foil-40",
+      "image": "/images/product1.jpg",
+      "title": "PIR Плита Фольга/Фольга 40 мм",
+      "description": "Площадь 0,72 м², для утепления стен, потолков и кровли.",
+      "price": "679 руб./шт."
     },
     {
       "id": "pir-foil-100",

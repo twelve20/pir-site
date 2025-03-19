@@ -2,7 +2,7 @@
 const products = {
     'pirro-termo-30': {
         name: 'PIRRO Термо ФОЛЬГА 30 мм',
-        price: 560,
+        price: 562,
         area: 0.72
     },
     'pirro-termo-50': {
@@ -18,6 +18,11 @@ const products = {
     'pir-paper-50': {
         name: 'PIR Плита Бумага/Бумага 50 мм',
         price: 619,
+        area: 0.72
+    },
+    'pir-foil-40': {
+        name: 'PIR Плита Фольга/Фольга 40 мм',
+        price: 679,
         area: 0.72
     },
     'pir-foil-100': {
