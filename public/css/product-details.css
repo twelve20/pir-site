@@ -78,6 +78,17 @@
     z-index: 5;
 }
 
+.product-modal__badge--promo {
+    background-color: #e74c3c;
+    animation: pulseBadge 1.5s infinite;
+}
+
+@keyframes pulseBadge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
 .product-modal__info {
     flex: 1.5;
     min-width: 300px;
@@ -208,6 +219,19 @@
     margin-bottom: 5px;
 }
 
+.product-modal__old-price {
+    font-size: 18px;
+    color: #999;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.product-modal__price--promo {
+    color: #e74c3c;
+    font-size: 24px;
+}
+
 .product-modal__availability {
     color: #27ae60;
     font-size: 14px;
@@ -301,4 +325,4 @@
     .product-modal__price-block {
         margin-bottom: 15px;
     }
-} 
+}

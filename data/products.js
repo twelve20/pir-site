@@ -1,6 +1,15 @@
 module.exports = {
   "regularProducts": [
     {
+      "id": "pir-foil-30",
+      "image": "/images/product1.jpg",
+      "title": "PIR плита 1200*600*30 фольга/фольга",
+      "description": "Площадь 0,72 м², для утепления бань и саун.",
+      "price": "550 руб./шт.",
+      "oldPrice": "790 руб./шт.",
+      "isPromo": true
+    },
+    {
       "id": "pirro-termo-30",
       "image": "/images/product1.jpg",
       "title": "PIRRO Термо ФОЛЬГА 30 мм",

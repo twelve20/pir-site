@@ -60,168 +60,6 @@ body {
     color: white;
 }
 
-.btn--orange:hover {
-    background-color: #2A5CAA;
-}
-
-.btn--blue:hover {
-    background-color: #FF6B35;
-}
-
-/* Калькулятор */
-.calculator-form-wrapper {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.calculator {
-    flex: 1;
-    background: #F5F5F5;
-    padding: 2rem;
-    border-radius: 10px;
-}
-
-.calculator__title {
-    font-family: 'Roboto Bold', sans-serif;
-    color: #2A5CAA;
-    margin-bottom: 1.5rem;
-}
-
-.calculator__form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.form-group label {
-    font-weight: bold;
-    color: #333;
-}
-
-.form-group input[type="number"],
-.form-group select {
-    padding: 0.5rem;
-    border: 2px solid #2A5CAA;
-    border-radius: 5px;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.checkbox-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
-}
-
-.checkbox-group label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    position: relative;
-    padding-left: 30px;
-    font-weight: 600;
-    color: #444;
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
-}
-
-.checkbox-group label:hover {
-    color: #2A5CAA;
-}
-
-.checkbox-group input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-/* Создаём кастомный чекбокс */
-.checkbox-group label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border: 2px solid #2A5CAA;
-    border-radius: 4px;
-    background-color: white;
-    transition: all 0.2s ease;
-}
-
-/* Создаём иконку галочки внутри чекбокса */
-.checkbox-group label:after {
-    content: '';
-    position: absolute;
-    left: 7px;
-    top: 50%;
-    transform: translateY(-65%) rotate(45deg) scale(0);
-    width: 6px;
-    height: 12px;
-    border-right: 2px solid white;
-    border-bottom: 2px solid white;
-    transition: all 0.2s ease;
-}
-
-/* Стиль при отмеченном чекбоксе */
-.checkbox-group input[type="checkbox"]:checked + label:before {
-    background-color: #2A5CAA;
-    border-color: #2A5CAA;
-}
-
-.checkbox-group input[type="checkbox"]:checked + label:after {
-    transform: translateY(-65%) rotate(45deg) scale(1);
-}
-
-.checkbox-group input[type="checkbox"]:focus + label:before {
-    box-shadow: 0 0 0 3px rgba(42, 92, 170, 0.2);
-}
-
-.calc-result__content {
-    background: white;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-top: 1rem;
-}
-
-.calc-result__total {
-    font-weight: bold;
-    color: #2A5CAA;
-    margin-top: 0.5rem;
-}
-
-.calc-error {
-    color: red;
-    font-weight: bold;
-}
-
-.cta__content {
-    flex: 1;
-}
-
-@media (max-width: 768px) {
-    .calculator-form-wrapper {
-        flex-direction: column;
-    }
-    
-    .calculator,
-    .cta__content {
-        width: 100%;
-    }
-}
-
 /* Шапка */
 /* Основные стили для шапки */
 .header {
@@ -328,7 +166,7 @@ body {
 /* Основные стили для слайдера */
 .sales-slider {
     padding: 4rem 0;
-    background-color: #FFFFFF;
+    background-color: #F5F5F5;
 }
 
 .section-title {
@@ -413,7 +251,7 @@ body {
 /* Основные стили для слайдера */
 .sales-slider {
     padding: 4rem 0;
-    background-color: #FFFFFF;
+    background-color: #F5F5F5;
 }
 
 .swiper {
@@ -609,54 +447,78 @@ body {
 }
 
 /* Стили для карточек товаров */
-.catalog-item {
-    background: white;
-    border-radius: 12px;
+.catalog-card {
+    background-color: white;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    position: relative;
-    border: 2px solid transparent;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 550px;
 }
 
-.catalog-item:hover {
+.catalog-card__content {
+    padding: 1.5rem;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.catalog-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    border-color: #0070c0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.catalog-item__image {
+.catalog-card__image {
+    position: relative;
+    overflow: hidden;
+}
+
+.catalog-card__img {
     width: 100%;
     height: 250px;
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-.catalog-item__content {
+.catalog-card:hover .catalog-card__img {
+    transform: scale(1.1);
+}
+
+.catalog-card__content {
     padding: 1.5rem;
     text-align: center;
 }
 
-.catalog-item__title {
+.catalog-card__title {
     font-family: 'Roboto Bold', sans-serif;
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: #2A5CAA;
 }
 
-.catalog-item__description {
+.catalog-card__title {
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.catalog-card:hover .catalog-card__title {
+    opacity: 1;
+    transform: translateY(-5px);
+}
+
+.catalog-card__description {
     font-size: 1rem;
     color: #555;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
 }
 
-.catalog-item__price {
-    font-family: 'Roboto Bold', sans-serif;
-    font-size: 1.2rem;
-    color: #FF6B35;
-    margin-bottom: 1rem;
-}
-
-.catalog-item .btn {
+.catalog-card .btn {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -667,25 +529,13 @@ body {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.catalog-item .btn:hover {
+.catalog-card .btn:hover {
     background-color: #FF6B35;
     transform: scale(1.05);
 }
 
-/* Добавляем синюю обводку для карточек в мини-каталоге */
-.mini-catalog .catalog-item {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.mini-catalog .catalog-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    border-color: #2A5CAA;
-}
-
 /* Стили для цены */
-.catalog-item__price {
+.catalog-card__price {
     font-family: 'Roboto Bold', sans-serif;
     font-size: 1.2rem;
     color: #FF6B35;
@@ -694,17 +544,17 @@ body {
     text-align: center;
 }
 
-.catalog-item__price {
+.catalog-card__price {
     opacity: 0.9;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.catalog-item:hover .catalog-item__price {
+.catalog-card:hover .catalog-card__price {
     opacity: 1;
     transform: scale(1.1);
 }
 
-.catalog-item__price.highlight-price {
+.catalog-card__price.highlight-price {
     font-size: 1.8rem;
     /* Больший размер шрифта */
     text-align: center;
@@ -744,16 +594,18 @@ body {
 }
 
 @media (max-width: 768px) {
-    .catalog-item__price {
+    .catalog-card__price {
         font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .catalog-item__price {
+    .catalog-card__price {
         font-size: 0.9rem;
     }
 }
+
+
 
 /* Основные стили для блока с преимуществами */
 .advantages {
@@ -1234,11 +1086,11 @@ body {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
-    .catalog-item__title {
+    .catalog-card__title {
         font-size: 1.2rem;
     }
 
-    .catalog-item__description {
+    .catalog-card__description {
         font-size: 0.9rem;
     }
 }
@@ -1248,15 +1100,51 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .catalog-item__image {
+    .catalog-card__image {
         height: 150px;
     }
 
-    .catalog-item__title {
+    .catalog-card__title {
         font-size: 1.1rem;
     }
 
-    .catalog-item__description {
+    .catalog-card__description {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mini-catalog__grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .catalog-card__img {
+        height: 200px;
+    }
+
+    .catalog-card__title {
+        font-size: 1.2rem;
+    }
+
+    .catalog-card__description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mini-catalog__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-card__img {
+        height: 150px;
+    }
+
+    .catalog-card__title {
+        font-size: 1.1rem;
+    }
+
+    .catalog-card__description {
         font-size: 0.8rem;
     }
 }
@@ -1350,7 +1238,7 @@ body {
 }
 
 .article-card__image {
-        width: 100%;
+    width: 100%;
     height: 200px;
     object-fit: cover;
 }
@@ -1634,6 +1522,7 @@ body {
     }
 }
 
+
 /* Модальное окно */
 .modal {
     display: none;
@@ -1642,53 +1531,131 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .modal__content {
     background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
+    padding: 2.5rem;
+    border-radius: 15px;
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
     position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.4s ease;
+}
+
+.modal__content h2 {
+    color: #2A5CAA;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
 }
 
 .modal__close {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
+    top: 15px;
+    right: 15px;
+    font-size: 1.8rem;
     cursor: pointer;
-    color: #333;
+    color: #999;
+    transition: color 0.3s ease, transform 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+}
+
+.modal__close:hover {
+    color: #FF6B35;
+    transform: rotate(90deg);
 }
 
 .modal__form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
 }
 
 .modal__form input,
-.modal__form button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.modal__form textarea {
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.modal__form input:focus,
+.modal__form textarea:focus {
+    outline: none;
+    border-color: #2A5CAA;
+    box-shadow: 0 0 0 3px rgba(42, 92, 170, 0.1);
+    background-color: #fff;
+}
+
+.modal__form textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
 .modal__form button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
     background-color: #2A5CAA;
     color: white;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 0.5rem;
 }
 
 .modal__form button:hover {
     background-color: #1A4C8A;
+    transform: translateY(-2px);
+}
+
+.modal__form button:active {
+    transform: translateY(0);
+}
+
+/* Стили для акционных элементов в калькуляторе */
+.calc-result__promo {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #ffeaea;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
 }
 
 @media (max-width: 768px) {
@@ -2485,73 +2452,202 @@ body {
     font-size: 18px;
 }
 
-.installation-products {
-    padding: 4rem 0;
-    background-color: #FFFFFF;
+/* Стили для калькулятора */
+.calculator-form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
 }
 
-.installation-products .section-title {
+.calculator {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.calculator__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.5rem;
     color: #2A5CAA;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
-/* Стили для валидации форм */
-.error-message {
-    color: #FF6B35;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    margin-top: 5px;
-    padding: 5px;
-    background-color: #F5F5F580;
-    border-radius: 4px;
-    display: block;
+.calculator__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 }
 
-input.error,
-textarea.error {
-    border-color: #FF6B35 !important;
-    outline-color: #FF6B35 !important;
+.calculator .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-input:not(.error),
-textarea:not(.error) {
-    border-color: #2A5CAA !important;
-    outline-color: #2A5CAA !important;
-}
-
-button[type="submit"] {
-    background-color: #2A5CAA;
-    color: white;
-    font-family: 'Roboto', sans-serif;
+.calculator .form-group label {
     font-weight: bold;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
+    color: #333;
+    font-size: 1rem;
+}
+
+.calculator .form-group input,
+.calculator .form-group select {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.calculator .form-group input:focus,
+.calculator .form-group select:focus {
+    outline: none;
+    border-color: #2A5CAA;
+    box-shadow: 0 0 0 3px rgba(42, 92, 170, 0.1);
+    background-color: #fff;
+}
+
+.calculator .checkbox-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.calculator .checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+.calculator .checkbox-group label {
+    margin: 0;
+    font-weight: normal;
     cursor: pointer;
+}
+
+.calculator #calc-button {
+    margin-top: 1rem;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
     transition: all 0.3s ease;
 }
 
-button[type="submit"]:hover:not(:disabled) {
-    background-color: #FF6B35;
+.calculator #calc-button:hover {
+    background-color: #1A4C8A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(42, 92, 170, 0.3);
 }
 
-button[type="submit"]:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+#calc-result {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #2A5CAA;
+    display: none;
 }
 
-/* Адаптивные стили для мобильных устройств */
-@media (max-width: 768px) {
-    input,
-    textarea {
-        width: 100%;
-        margin: 5px 0;
-        padding: 10px;
+#calc-result.show {
+    display: block;
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-    .error-message {
-        font-size: 12px;
-        margin: 3px 0;
+.calc-result__content {
+    color: #333;
+    line-height: 1.6;
+}
+
+.calc-result__content p {
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+.calc-result__total {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.3rem;
+    color: #2A5CAA;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid #e0e0e0;
+}
+
+.calc-error {
+    color: #e74c3c;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+    background-color: #ffeaea;
+    border-radius: 8px;
+    border: 1px solid #e74c3c;
+}
+
+#send-with-calc {
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+#send-with-calc:hover {
+    background-color: #E65C2B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+/* Адаптивность для калькулятора */
+@media (max-width: 768px) {
+    .calculator-form-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .calculator {
+        padding: 1.5rem;
+    }
+    
+    .calculator__title {
+        font-size: 1.3rem;
+    }
+    
+    .calculator .form-group input,
+    .calculator .form-group select {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .calc-result__total {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator {
+        padding: 1rem;
+    }
+    
+    .calculator__title {
+        font-size: 1.2rem;
+    }
+    
+    .calculator .checkbox-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 }

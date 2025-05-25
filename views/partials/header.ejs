@@ -51,10 +51,11 @@
         <div class="modal__content">
             <span class="modal__close" onclick="closeCallModal()">&times;</span>
             <h2>Заказать звонок</h2>
+            <p>Оставьте свой номер, и мы перезвоним вам в ближайшее время</p>
             <form class="modal__form">
-                <input type="text" name="name" placeholder="Имя" required minlength="2" maxlength="50">
-                <input type="tel" name="phone" placeholder="Телефон" required pattern="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}">
-                <button type="submit" class="btn btn--blue">Отправить</button>
+                <input type="text" name="name" placeholder="Ваше имя" required minlength="2" maxlength="50">
+                <input type="tel" name="phone" placeholder="Ваш телефон" required pattern="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}">
+                <button type="submit" class="btn btn--blue">Заказать звонок</button>
             </form>
         </div>
     </div>

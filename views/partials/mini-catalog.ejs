@@ -17,7 +17,7 @@
                 <div class="catalog-item" 
                      data-id="<%= product.id %>"
                      data-category="<%= product.id.includes('termo') ? 'wall roof' : (product.id.includes('paper') ? 'wall floor' : 'roof wall floor') %>">
-                    <div class="catalog-item__badge">Популярный</div>
+                    <div class="catalog-item__badge <%= product.isPromo ? 'catalog-item__badge--promo' : '' %>"><%= product.isPromo ? 'Акция!' : 'Популярный' %></div>
                     <div class="catalog-item__image">
                         <img src="<%= product.image %>" alt="<%= product.title %>" loading="lazy">
                     </div>
@@ -30,7 +30,12 @@
                         </ul>
                         <div class="catalog-item__footer">
                             <div class="catalog-item__price">
-                                <span class="current-price"><%= product.price %></span>
+                                <% if (product.isPromo) { %>
+                                    <span class="old-price"><%= product.oldPrice %></span>
+                                    <span class="current-price promo-price"><%= product.price %></span>
+                                <% } else { %>
+                                    <span class="current-price"><%= product.price %></span>
+                                <% } %>
                             </div>
                             <div class="catalog-item__actions">
                                 <button class="btn-details" onclick="openDetailsModal('<%= product.id %>')">
@@ -55,11 +60,12 @@
     <div class="modal__content">
         <span class="modal__close" onclick="closeBuyModal()">&times;</span>
         <h2>Оформить заказ</h2>
+        <p>Заполните форму, и мы свяжемся с вами для уточнения деталей</p>
         <form class="modal__form">
-            <input type="text" placeholder="Имя" required>
-            <input type="tel" placeholder="Телефон" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Комментарий к заказу"></textarea>
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="tel" placeholder="Ваш телефон" required pattern="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}">
+            <input type="email" placeholder="Ваш email" required>
+            <textarea placeholder="Комментарий к заказу (тип материала, количество, адрес доставки)"></textarea>
             <button type="submit" class="btn btn--blue">Отправить заказ</button>
         </form>
     </div>
@@ -155,6 +161,26 @@
         z-index: 1;
     }
     
+    .catalog-item__badge--promo {
+        background: #e30613;
+        animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(227, 6, 19, 0.7);
+        }
+        70% {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 10px rgba(227, 6, 19, 0);
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(227, 6, 19, 0);
+        }
+    }
+    
     .catalog-item__image {
         height: 200px;
         overflow: hidden;
@@ -220,6 +246,18 @@
         font-size: 18px;
         font-weight: 700;
         color: #333;
+    }
+    
+    .old-price {
+        font-size: 14px;
+        text-decoration: line-through;
+        color: #999;
+        margin-bottom: 4px;
+    }
+    
+    .promo-price {
+        color: #e30613;
+        font-size: 20px;
     }
     
     .catalog-item__actions {

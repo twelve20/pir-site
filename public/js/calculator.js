@@ -1,39 +1,51 @@
 // Данные о продуктах
 const products = {
-    'pirro-termo-30': {
+    'pir-foil-30': { 
+        price: 550, 
+        oldPrice: 790, 
+        name: 'PIR плита 1200*600*30 фольга/фольга', 
+        isPromo: true,
+        area: 0.72
+    },
+    'pirro-termo-30': { 
+        price: 590, 
         name: 'PIRRO Термо ФОЛЬГА 30 мм',
-        price: 562,
         area: 0.72
     },
-    'pirro-termo-50': {
+    'pirro-termo-50': { 
+        price: 820, 
         name: 'PIRRO Термо ФОЛЬГА 50 мм',
-        price: 785,
         area: 0.72
     },
-    'pir-paper-30': {
+    'pir-paper-30': { 
+        price: 450, 
         name: 'PIR Плита Бумага/Бумага 30 мм',
-        price: 429,
         area: 0.72
     },
-    'pir-paper-50': {
+    'pir-paper-50': { 
+        price: 650, 
         name: 'PIR Плита Бумага/Бумага 50 мм',
-        price: 619,
         area: 0.72
     },
-    'pir-foil-40': {
+    'pir-foil-40': { 
+        price: 700, 
         name: 'PIR Плита Фольга/Фольга 40 мм',
-        price: 679,
         area: 0.72
     },
-    'pir-foil-100': {
+    'pir-foil-100': { 
+        price: 5564, 
         name: 'PIR Плита Фольга/Фольга 100 мм',
-        price: 2100,
         area: 2.88
+    },
+    'pir-600x1200-30': {
+        price: 720,
+        name: 'PIR плита 600*1200*30 (8 шт в упаковке)',
+        area: 5.76
     }
 };
 
 // Цена клей-пены
-const GLUE_PRICE = 1050;
+const GLUE_PRICE = 1100;
 const GLUE_COVERAGE = 10; // м² на баллон
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -68,6 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
             gluePrice = glueCount * GLUE_PRICE;
             totalPrice += gluePrice;
         }
+        
+        let promoMessage = '';
+        if (selectedProduct.isPromo) {
+            const savings = (selectedProduct.oldPrice - selectedProduct.price) * platesCount;
+            promoMessage = `<p class="calc-result__promo">✨ Акционный товар! Экономия: ${savings} руб. ✨</p>`;
+        }
 
         const result = `
             <div class="calc-result__content">
@@ -75,10 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${selectedProduct.name} — ${platesCount} плит, ${platesPrice} руб.</p>
                 ${glueCheckbox.checked ? `<p>Клей-пена: ${glueCount} баллон(ов) — ${gluePrice} руб.</p>` : ''}
                 <p class="calc-result__total">Итого: ${totalPrice} руб.</p>
+                ${promoMessage}
             </div>
         `;
 
         resultDiv.innerHTML = result;
+        resultDiv.classList.add('show');
         sendWithCalcBtn.style.display = 'block';
 
         // Сохраняем результат для формы

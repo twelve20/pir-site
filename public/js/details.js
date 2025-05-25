@@ -1,10 +1,20 @@
 // Данные о товарах для модальных окон
 const productDetails = {
+    'pir-foil-30': {
+        title: 'PIR плита 1200*600*30 фольга/фольга',
+        image: '/images/product1.jpg',
+        description: 'Идеальное решение для утепления бань и саун. Выдерживает высокие температуры, не впитывает влагу, обеспечивает отличную теплоизоляцию. Размеры: 1200х600х30 мм, площадь 0,72 м². Вес: 1,5 кг/шт. Рекомендуем использовать с клей-пеной для надежной фиксации.',
+        price: '550 руб./шт.',
+        oldPrice: '790 руб./шт.',
+        isPromo: true,
+        advantages: ['Термостойкость до +120°C', 'Влагостойкость 100%', 'Экономия пространства'],
+        fireClass: 'Г1'
+    },
     'pirro-termo-30': {
         title: 'PIRRO Термо ФОЛЬГА 30 мм',
         image: '/images/product1.jpg',
         description: 'Плита с фольгированным покрытием для эффективного утепления стен, потолков и перегородок. Обеспечивает отличную тепло- и звукоизоляцию, подходит для быстрого монтажа в жилых и коммерческих помещениях. Размеры: 600х1200х30 мм, площадь 0,72 м². Вес: 1,5 кг/шт. Рекомендуем использовать с клей-пеной для надежной фиксации.',
-        price: '560 руб./шт.',
+        price: '562 руб./шт.',
         advantages: ['Легкость', 'Водоотталкивающие свойства', 'Экологичность'],
         fireClass: 'Г1'
     },
@@ -31,6 +41,14 @@ const productDetails = {
         price: '429 руб./шт.',
         advantages: ['Доступная цена', 'Простота монтажа', 'Экологичность'],
         fireClass: 'Г3'
+    },
+    'pir-foil-40': {
+        title: 'PIR Плита Фольга/Фольга 40 мм',
+        image: '/images/product1.jpg',
+        description: 'Универсальная плита с двусторонним фольгированным покрытием для эффективного утепления стен, потолков и кровли. Обеспечивает отличную тепло- и звукоизоляцию, подходит для применения в жилых и коммерческих помещениях. Размеры: 600х1200х40 мм, площадь 0,72 м². Вес: 1,8 кг/шт. Рекомендуется использовать с клей-пеной для надежной фиксации.',
+        price: '679 руб./шт.',
+        advantages: ['Универсальность', 'Высокая теплоизоляция', 'Влагостойкость'],
+        fireClass: 'Г1'
     },
     'pir-foil-100': {
         title: 'PIR Плита Фольга/Фольга 100 мм',
@@ -61,7 +79,35 @@ function openDetailsModal(productId) {
     modal.querySelector('.product-modal__image-img').src = product.image;
     modal.querySelector('.product-modal__image-img').alt = product.title;
     modal.querySelector('.product-modal__description').textContent = product.description;
-    modal.querySelector('.product-modal__price').textContent = product.price;
+    
+    // Обновляем отображение цены в зависимости от наличия акции
+    const priceBlock = modal.querySelector('.product-modal__price-block');
+    if (product.isPromo) {
+        // Если это акционный товар, показываем старую и новую цену
+        if (!priceBlock.querySelector('.product-modal__old-price')) {
+            const oldPriceSpan = document.createElement('span');
+            oldPriceSpan.className = 'product-modal__old-price';
+            priceBlock.insertBefore(oldPriceSpan, priceBlock.firstChild);
+        }
+        priceBlock.querySelector('.product-modal__old-price').textContent = product.oldPrice;
+        modal.querySelector('.product-modal__price').textContent = product.price;
+        modal.querySelector('.product-modal__price').classList.add('product-modal__price--promo');
+        
+        // Добавляем акционный бейдж
+        modal.querySelector('.product-modal__badge').textContent = 'АКЦИЯ';
+        modal.querySelector('.product-modal__badge').classList.add('product-modal__badge--promo');
+    } else {
+        // Если это обычный товар, показываем только текущую цену
+        if (priceBlock.querySelector('.product-modal__old-price')) {
+            priceBlock.querySelector('.product-modal__old-price').remove();
+        }
+        modal.querySelector('.product-modal__price').textContent = product.price;
+        modal.querySelector('.product-modal__price').classList.remove('product-modal__price--promo');
+        
+        // Возвращаем обычный бейдж
+        modal.querySelector('.product-modal__badge').textContent = 'PIR';
+        modal.querySelector('.product-modal__badge').classList.remove('product-modal__badge--promo');
+    }
     
     // Обновляем класс горючести
     modal.querySelector('.product-modal__specs .product-modal__spec-item:first-child span').textContent = `Класс горючести ${product.fireClass}`;
@@ -110,4 +156,4 @@ document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
         closeDetailsModal();
     }
-}); 
+});
