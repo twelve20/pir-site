@@ -4,7 +4,7 @@ module.exports = {
       "id": "pir-foil-30",
       "image": "/images/product1.jpg",
       "title": "PIR плита 1200*600*30 фольга/фольга",
-      "description": "Площадь 0,72 м², для утепления бань и саун.",
+      "description": "Площадь 0,72 м², в упаковке 8 шт. (5,76 м²), для утепления бань и саун.",
       "price": "550 руб./шт.",
       "oldPrice": "790 руб./шт.",
       "isPromo": true
@@ -49,7 +49,7 @@ module.exports = {
       "image": "/images/product2.jpg",
       "title": "PIR Плита Фольга/Фольга 100 мм",
       "description": "Площадь 2,88 м², для утепления стен, потолков и кровли.",
-      "price": "2100 руб./шт."
+      "price": "5564 руб./шт."
     }
   ],
   "installationProducts": [
