@@ -66,6 +66,52 @@ app.get('/contacts', (req, res) => {
     res.render('contacts', { warehouse });
 });
 
+// API endpoint для получения данных о продуктах для калькулятора
+app.get('/api/products', (req, res) => {
+    // Преобразуем данные из data/products.js в формат для калькулятора
+    const calculatorProducts = {};
+    
+    // Обрабатываем обычные продукты
+    regularProducts.forEach(product => {
+        // Извлекаем числовое значение цены
+        const price = parseInt(product.price.replace(/[^\d]/g, ''));
+        const oldPrice = product.oldPrice ? parseInt(product.oldPrice.replace(/[^\d]/g, '')) : null;
+        
+        // Определяем площадь в зависимости от продукта
+        let area = 0.72; // Стандартная площадь для большинства плит
+        if (product.id === 'pir-foil-100') {
+            area = 2.88; // Специальная площадь для 100 мм плиты
+        }
+        
+        calculatorProducts[product.id] = {
+            price: price,
+            oldPrice: oldPrice,
+            name: product.title,
+            isPromo: product.isPromo || false,
+            area: area
+        };
+    });
+    
+    // Добавляем специальный продукт для упаковки 600x1200
+    calculatorProducts['pir-600x1200-30'] = {
+        price: 720,
+        name: 'PIR плита 600*1200*30 (8 шт в упаковке)',
+        area: 5.76
+    };
+    
+    // Данные о клей-пене
+    const glueProduct = installationProducts.find(p => p.id === 'glue-foam');
+    const gluePrice = glueProduct ? parseInt(glueProduct.price.replace(/[^\d]/g, '')) : 1050;
+    
+    res.json({
+        products: calculatorProducts,
+        glue: {
+            price: gluePrice,
+            coverage: 10 // м² на баллон
+        }
+    });
+});
+
 // Роут для обработки формы
 app.post('/submit-form', async (req, res) => {
     const { name, phone } = req.body;

@@ -1,56 +1,67 @@
-// Данные о продуктах
-const products = {
-    'pir-foil-30': { 
-        price: 550, 
-        oldPrice: 790, 
-        name: 'PIR плита 1200*600*30 фольга/фольга', 
-        isPromo: true,
-        area: 0.72
-    },
-    'pirro-termo-30': { 
-        price: 590, 
-        name: 'PIRRO Термо ФОЛЬГА 30 мм',
-        area: 0.72
-    },
-    'pirro-termo-50': { 
-        price: 820, 
-        name: 'PIRRO Термо ФОЛЬГА 50 мм',
-        area: 0.72
-    },
-    'pir-paper-30': { 
-        price: 450, 
-        name: 'PIR Плита Бумага/Бумага 30 мм',
-        area: 0.72
-    },
-    'pir-paper-50': { 
-        price: 650, 
-        name: 'PIR Плита Бумага/Бумага 50 мм',
-        area: 0.72
-    },
-    'pir-foil-40': { 
-        price: 700, 
-        name: 'PIR Плита Фольга/Фольга 40 мм',
-        area: 0.72
-    },
-    'pir-foil-100': { 
-        price: 5564, 
-        name: 'PIR Плита Фольга/Фольга 100 мм',
-        area: 2.88
-    },
-    'pir-600x1200-30': {
-        price: 720,
-        name: 'PIR плита 600*1200*30 (8 шт в упаковке)',
-        area: 5.76
+// Переменные для хранения данных о продуктах (загружаются из API)
+let products = {};
+let GLUE_PRICE = 1050;
+let GLUE_COVERAGE = 10; // м² на баллон
+
+// Загрузка данных о продуктах из API
+async function loadProductData() {
+    try {
+        const response = await fetch('/api/products');
+        const data = await response.json();
+        products = data.products;
+        GLUE_PRICE = data.glue.price;
+        GLUE_COVERAGE = data.glue.coverage;
+    } catch (error) {
+        console.error('Ошибка загрузки данных о продуктах:', error);
+        // Fallback данные в случае ошибки
+        products = {
+            'pir-foil-30': { 
+                price: 550, 
+                oldPrice: 790, 
+                name: 'PIR плита 1200*600*30 фольга/фольга', 
+                isPromo: true,
+                area: 0.72
+            },
+            'pirro-termo-30': { 
+                price: 562, 
+                name: 'PIRRO Термо ФОЛЬГА 30 мм', 
+                area: 0.72
+            },
+            'pirro-termo-50': { 
+                price: 785, 
+                name: 'PIRRO Термо ФОЛЬГА 50 мм', 
+                area: 0.72
+            },
+            'pir-paper-30': { 
+                price: 429, 
+                name: 'PIR Плита Бумага/Бумага 30 мм', 
+                area: 0.72
+            },
+            'pir-paper-50': { 
+                price: 619, 
+                name: 'PIR Плита Бумага/Бумага 50 мм', 
+                area: 0.72
+            },
+            'pir-foil-40': { 
+                price: 679, 
+                name: 'PIR Плита Фольга/Фольга 40 мм', 
+                area: 0.72
+            },
+            'pir-foil-100': { 
+                price: 5564, 
+                name: 'PIR Плита Фольга/Фольга 100 мм', 
+                area: 2.88
+            }
+        };
     }
-};
+}
 
-// Цена клей-пены
-const GLUE_PRICE = 1100;
-const GLUE_COVERAGE = 10; // м² на баллон
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const calculator = document.getElementById('pir-calculator');
     if (!calculator) return;
+
+    // Загружаем данные о продуктах
+    await loadProductData();
 
     const areaInput = calculator.querySelector('#calc-area');
     const typeSelect = calculator.querySelector('#calc-type');
@@ -68,6 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const selectedProduct = products[typeSelect.value];
+        if (!selectedProduct) {
+            resultDiv.innerHTML = '<p class="calc-error">Выбранный продукт не найден</p>';
+            return;
+        }
+
         const platesCount = Math.ceil(area / selectedProduct.area);
         const platesPrice = platesCount * selectedProduct.price;
 
