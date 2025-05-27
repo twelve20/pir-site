@@ -2502,6 +2502,8 @@ body {
     font-size: 1rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .calculator .form-group input:focus,
@@ -2522,12 +2524,14 @@ body {
     width: 18px;
     height: 18px;
     margin: 0;
+    flex-shrink: 0;
 }
 
 .calculator .checkbox-group label {
     margin: 0;
     font-weight: normal;
     cursor: pointer;
+    line-height: 1.4;
 }
 
 .calculator #calc-button {
@@ -2536,6 +2540,8 @@ body {
     font-size: 1.1rem;
     font-weight: bold;
     transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .calculator #calc-button:hover {
@@ -2602,6 +2608,8 @@ body {
 #send-with-calc {
     margin-top: 1rem;
     transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #send-with-calc:hover {
@@ -2610,44 +2618,208 @@ body {
     box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
 }
 
-/* Адаптивность для калькулятора */
+/* Стили для формы заявки */
+.cta__content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.cta__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.5rem;
+    color: #2A5CAA;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.cta__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.cta__form input,
+.cta__form textarea {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cta__form input:focus,
+.cta__form textarea:focus {
+    outline: none;
+    border-color: #2A5CAA;
+    box-shadow: 0 0 0 3px rgba(42, 92, 170, 0.1);
+    background-color: #fff;
+}
+
+.cta__form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.cta__form button {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cta__form button:hover {
+    background-color: #E65C2B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+/* Адаптивность для калькулятора и формы */
+@media (max-width: 1024px) {
+    .calculator-form-wrapper {
+        gap: 2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .calculator-form-wrapper {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
     
-    .calculator {
+    .calculator,
+    .cta__content {
         padding: 1.5rem;
     }
     
-    .calculator__title {
+    .calculator__title,
+    .cta__title {
         font-size: 1.3rem;
+        margin-bottom: 1.2rem;
     }
     
     .calculator .form-group input,
-    .calculator .form-group select {
-        padding: 10px 12px;
-        font-size: 0.9rem;
+    .calculator .form-group select,
+    .cta__form input,
+    .cta__form textarea {
+        padding: 14px 15px;
+        font-size: 16px; /* Предотвращает зум на iOS */
+    }
+    
+    .calculator #calc-button,
+    .cta__form button,
+    #send-with-calc {
+        padding: 14px 20px;
+        font-size: 1rem;
+        min-height: 48px; /* Минимальная высота для сенсорных экранов */
     }
     
     .calc-result__total {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+    }
+    
+    .calc-result__content p {
+        font-size: 0.95rem;
+    }
+    
+    #calc-result {
+        padding: 1.2rem;
     }
 }
 
 @media (max-width: 480px) {
-    .calculator {
+    .calculator,
+    .cta__content {
         padding: 1rem;
+        margin: 0 0.5rem;
     }
     
-    .calculator__title {
+    .calculator__title,
+    .cta__title {
         font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .calculator .form-group input,
+    .calculator .form-group select,
+    .cta__form input,
+    .cta__form textarea {
+        padding: 12px 12px;
+        font-size: 16px;
     }
     
     .calculator .checkbox-group {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.5rem;
+        gap: 0.8rem;
+        padding: 0.5rem 0;
+    }
+    
+    .calculator .checkbox-group input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .calculator .checkbox-group label {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    .calculator #calc-button,
+    .cta__form button,
+    #send-with-calc {
+        padding: 16px 20px;
+        font-size: 1rem;
+        min-height: 52px;
+    }
+    
+    .calc-result__total {
+        font-size: 1.1rem;
+    }
+    
+    .calc-result__content p {
+        font-size: 0.9rem;
+    }
+    
+    #calc-result {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 360px) {
+    .calculator,
+    .cta__content {
+        padding: 0.8rem;
+        margin: 0 0.2rem;
+    }
+    
+    .calculator__title,
+    .cta__title {
+        font-size: 1.1rem;
+    }
+    
+    .calculator .form-group label,
+    .cta__form label {
+        font-size: 0.9rem;
+    }
+    
+    .calc-result__content p {
+        font-size: 0.85rem;
+    }
+    
+    .calc-result__total {
+        font-size: 1rem;
     }
 }
