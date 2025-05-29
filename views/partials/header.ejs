@@ -1,93 +1,417 @@
-<!-- Шапка -->
 <header class="header">
     <div class="container">
-        <div class="header__inner">
+        <div class="header-content">
             <!-- Логотип -->
-            <div class="logo">ПЛАНЕТА PIR</div>
+            <a href="/" class="header-logo">
+                <img src="/favicon.svg" alt="ПЛАНЕТА PIR" class="logo-img">
+                <span class="logo-title">ПЛАНЕТА PIR</span>
+            </a>
 
-            <!-- Меню -->
-            <nav class="menu">
-                <ul class="menu__list">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/blog">Статьи</a></li>
-                    <li><a href="/projects">Галерея</a></li>
-                    <li><a href="/documents">Документы</a></li>
-                    <li><a href="/#testimonials">Отзывы</a></li>
-                    <li><a href="/contacts">Контакты</a></li>
-                    <li><a href="#" onclick="openPromoModalManually(); return false;" class="promo-link">Акция!</a></li>
-                </ul>
+            <!-- Основная навигация -->
+            <nav class="nav" id="nav">
+                <a href="/" class="nav-item">Главная</a>
+                <a href="/blog" class="nav-item">Статьи</a>
+                <a href="/projects" class="nav-item">Галерея</a>
+                <a href="/documents" class="nav-item">Документы</a>
+                <a href="/#testimonials" class="nav-item">Отзывы</a>
+                <a href="/contacts" class="nav-item">Контакты</a>
+                <a href="#" onclick="openPromoModalManually(); return false;" class="nav-item nav-item-promo">Акция!</a>
             </nav>
 
             <!-- Контакты и кнопка -->
-            <div class="header__contacts">
-                <a href="tel:+79639273124" class="phone">+7 (963) 927-31-24</a>
-                <button class="btn btn--blue" onclick="openCallModal()">Заказать звонок</button>
+            <div class="header-right">
+                <a href="tel:+79639273124" class="header-tel">+7 (963) 927-31-24</a>
+                <button class="header-button" onclick="openCallModal()">Заказать звонок</button>
             </div>
 
-            <!-- Иконка меню для мобильных устройств -->
-            <div class="menu-toggle" onclick="toggleMenu()">
+            <!-- Мобильная кнопка меню -->
+            <button class="mobile-toggle" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
+        </div>
 
-            <!-- Мобильное меню -->
-            <nav class="menu-mobile">
-                <ul class="menu__list">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/blog">Статьи</a></li>
-                    <li><a href="/projects">Галерея</a></li>
-                    <li><a href="/documents">Документы</a></li>
-                    <li><a href="/#testimonials">Отзывы</a></li>
-                    <li><a href="/contacts">Контакты</a></li>
-                    <li><a href="#" onclick="openPromoModalManually(); return false;" class="promo-link">Акция!</a></li>
-                </ul>
-            </nav>
+        <!-- Мобильное меню -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/" class="mobile-item">Главная</a>
+            <a href="/blog" class="mobile-item">Статьи</a>
+            <a href="/projects" class="mobile-item">Галерея</a>
+            <a href="/documents" class="mobile-item">Документы</a>
+            <a href="/#testimonials" class="mobile-item">Отзывы</a>
+            <a href="/contacts" class="mobile-item">Контакты</a>
+            <a href="#" onclick="openPromoModalManually(); return false;" class="mobile-item mobile-item-promo">Акция!</a>
+            
+            <div class="mobile-contact">
+                <a href="tel:+79639273124" class="mobile-tel">+7 (963) 927-31-24</a>
+                <button class="mobile-button" onclick="openCallModal()">Заказать звонок</button>
+            </div>
         </div>
     </div>
 
-    <!-- Модальное окно для заказа звонка -->
-    <div id="callModal" class="modal">
-        <div class="modal__content">
-            <span class="modal__close" onclick="closeCallModal()">&times;</span>
-            <h2>Заказать звонок</h2>
-            <p>Оставьте свой номер, и мы перезвоним вам в ближайшее время</p>
-            <form class="modal__form">
-                <input type="text" name="name" placeholder="Ваше имя" required minlength="2" maxlength="50">
-                <input type="tel" name="phone" placeholder="Ваш телефон" required pattern="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}">
-                <button type="submit" class="btn btn--blue">Заказать звонок</button>
+    <!-- Модальное окно -->
+    <div id="callModal" class="modal-overlay" onclick="closeCallModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeCallModal()">×</button>
+            <h3 class="modal-title">Заказать звонок</h3>
+            <p class="modal-text">Оставьте номер телефона и мы перезвоним в течение 15 минут</p>
+            <form class="modal-form">
+                <input type="text" placeholder="Ваше имя" required class="modal-input">
+                <input type="tel" placeholder="Телефон" required class="modal-input">
+                <button type="submit" class="modal-submit">Заказать звонок</button>
             </form>
         </div>
     </div>
+
+    <style>
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            gap: 30px;
+        }
+
+        /* Логотип */
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .logo-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0070c0;
+        }
+
+        /* Навигация */
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-item {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            color: #0070c0;
+            background: #f8f9fa;
+        }
+
+        .nav-item-promo {
+            background: #ff6b35 !important;
+            color: white !important;
+            font-weight: 600;
+        }
+
+        .nav-item-promo:hover {
+            background: #e55a2e !important;
+            color: white !important;
+        }
+
+        /* Правая часть */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .header-tel {
+            color: #0070c0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .header-tel:hover {
+            color: #005aa0;
+        }
+
+        .header-button {
+            background: #0070c0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .header-button:hover {
+            background: #005aa0;
+        }
+
+        /* Мобильная кнопка */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 22px;
+            height: 2px;
+            background: #333;
+            border-radius: 1px;
+            transition: 0.2s;
+        }
+
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+        /* Мобильное меню */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: #f8f9fa;
+            border-top: 1px solid #e5e5e5;
+            padding: 20px 0;
+        }
+
+        .mobile-menu.show {
+            display: flex;
+        }
+
+        .mobile-item {
+            color: #333;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-weight: 500;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .mobile-item:hover {
+            background: #fff;
+            color: #0070c0;
+        }
+
+        .mobile-item-promo {
+            background: #ff6b35 !important;
+            color: white !important;
+            margin: 0 20px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: none !important;
+        }
+
+        .mobile-contact {
+            padding: 20px;
+            border-top: 1px solid #e5e5e5;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .mobile-tel {
+            color: #0070c0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .mobile-button {
+            background: #0070c0;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        /* Модальное окно */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .modal-title {
+            margin: 0 0 10px 0;
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .modal-text {
+            margin: 0 0 20px 0;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .modal-input:focus {
+            outline: none;
+            border-color: #0070c0;
+        }
+
+        .modal-submit {
+            background: #0070c0;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .modal-submit:hover {
+            background: #005aa0;
+        }
+
+        /* Адаптив */
+        @media (max-width: 768px) {
+            .nav,
+            .header-right {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .logo-title {
+                font-size: 16px;
+            }
+
+            .logo-img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .header-content {
+                padding: 12px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-box {
+                padding: 25px 20px;
+            }
+
+            .modal-title {
+                font-size: 20px;
+            }
+        }
+    </style>
 </header>
 
-<style>
-    .promo-link {
-        color: #ff6b00 !important;
-        font-weight: bold;
-        position: relative;
-        animation: pulse-text 2s infinite;
-    }
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const toggle = document.querySelector('.mobile-toggle');
     
-    .promo-link::after {
-        content: '';
-        position: absolute;
-        bottom: -3px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: #ff6b00;
-    }
-    
-    @keyframes pulse-text {
-        0% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.1);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-</style>
+    menu.classList.toggle('show');
+    toggle.classList.toggle('active');
+}
+
+// Функции openCallModal и closeCallModal перенесены в script.js
+
+// Функция submitCallForm удалена - обработка формы теперь в script.js
+
+// Закрытие мобильного меню при клике на ссылку
+document.querySelectorAll('.mobile-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const menu = document.getElementById('mobileMenu');
+        const toggle = document.querySelector('.mobile-toggle');
+        menu.classList.remove('show');
+        toggle.classList.remove('active');
+    });
+});
+</script>

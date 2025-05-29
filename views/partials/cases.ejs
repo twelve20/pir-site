@@ -1,6 +1,7 @@
-<section id="cases" class="cases">
+<section id="cases" class="cases-simple">
     <div class="container">
         <h2 class="section-title">Наши работы</h2>
+        <p class="section-subtitle">Примеры успешно выполненных проектов</p>
         
         <!-- Swiper слайдер для наших работ -->
         <div class="swiper cases-swiper">
@@ -8,105 +9,124 @@
                 <% projects.forEach(project => { %>
                     <div class="swiper-slide">
                         <div class="case-card">
-                            <div class="case-card__image">
-                                <div class="case-card__badge">PIR</div>
-                                <img src="<%= project.image %>" alt="<%= project.title %>" class="case-card__img">
-                                <div class="case-card__overlay">
-                                    <a href="<%= project.link %>" class="case-card__view">
-                                        <i class="fas fa-eye"></i> Смотреть проект
-                                    </a>
+                            <div class="case-image">
+                                <img src="<%= project.image %>" alt="<%= project.title %>" class="case-img">
+                                <div class="case-overlay">
+                                    <a href="<%= project.link %>" class="view-project">Смотреть проект</a>
                                 </div>
                             </div>
-                            <div class="case-card__content">
-                                <h3 class="case-card__title"><%= project.title %></h3>
-                                <div class="case-card__stats">
-                                    <div class="case-card__stat">
-                                        <i class="fas fa-clock"></i>
-                                        <span><%= project.description.split('.')[0] %></span>
+                            <div class="case-content">
+                                <h3 class="case-title"><%= project.title %></h3>
+                                <div class="case-info">
+                                    <div class="info-item">
+                                        <span class="info-label">Выполнено:</span>
+                                        <span class="info-value"><%= project.description.split('.')[0] || 'Быстро' %></span>
                                     </div>
-                                    <div class="case-card__stat">
-                                        <i class="fas fa-layer-group"></i>
-                                        <span><%= project.description.split('.')[1] %></span>
+                                    <div class="info-item">
+                                        <span class="info-label">Объем:</span>
+                                        <span class="info-value"><%= project.description.split('.')[1] || project.description.split('.')[0] %></span>
                                     </div>
                                 </div>
-                                <a href="<%= project.link %>" class="btn btn--blue case-card__btn">Подробнее</a>
+                                <a href="<%= project.link %>" class="case-link">Подробнее →</a>
                             </div>
                         </div>
                     </div>
                 <% }) %>
             </div>
             
-            <!-- Добавляем навигацию для слайдера -->
+            <!-- Навигация -->
+            <div class="swiper-button-next cases-next"></div>
+            <div class="swiper-button-prev cases-prev"></div>
             <div class="swiper-pagination cases-pagination"></div>
-            <div class="swiper-button-next cases-button-next"></div>
-            <div class="swiper-button-prev cases-button-prev"></div>
+        </div>
+        
+        <div class="cases-footer">
+            <a href="/projects" class="all-projects-btn">Все наши проекты</a>
         </div>
     </div>
 
-    <!-- Стили для улучшенного блока Наши работы -->
     <style>
-        .cases {
-            padding: 4rem 0;
+        .cases-simple {
+            padding: 80px 0;
             background-color: #f8f9fa;
         }
         
+        .cases-simple .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .cases-simple .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #0070c0;
+            border-radius: 2px;
+        }
+        
+        .cases-simple .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
         .cases-swiper {
-            padding: 20px 40px;
+            padding: 0 50px 50px 50px;
             margin: 0 auto;
         }
         
         .case-card {
-            background-color: #fff;
-            border-radius: 15px;
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
             height: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .case-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-color: #0070c0;
         }
         
-        .case-card__image {
+        .case-image {
             position: relative;
-            overflow: hidden;
             height: 250px;
+            overflow: hidden;
         }
         
-        .case-card__badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: #FF6B35;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            z-index: 10;
-            box-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
-        }
-        
-        .case-card__img {
+        .case-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.3s ease;
         }
         
-        .case-card:hover .case-card__img {
-            transform: scale(1.1);
+        .case-card:hover .case-img {
+            transform: scale(1.05);
         }
         
-        .case-card__overlay {
+        .case-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(42, 92, 170, 0.7);
+            right: 0;
+            bottom: 0;
+            background: rgba(0,112,192,0.8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -114,97 +134,203 @@
             transition: opacity 0.3s ease;
         }
         
-        .case-card:hover .case-card__overlay {
+        .case-card:hover .case-overlay {
             opacity: 1;
         }
         
-        .case-card__view {
-            background-color: white;
-            color: #2A5CAA;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
+        .view-project {
+            background: white;
+            color: #0070c0;
+            padding: 12px 24px;
+            border-radius: 8px;
             text-decoration: none;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
         }
         
-        .case-card:hover .case-card__view {
-            transform: translateY(0);
+        .view-project:hover {
+            background: #0070c0;
+            color: white;
         }
         
-        .case-card__content {
-            padding: 1.5rem;
+        .case-content {
+            padding: 25px;
         }
         
-        .case-card__title {
-            font-family: 'Roboto Bold', sans-serif;
-            font-size: 1.3rem;
-            color: #2A5CAA;
-            margin-bottom: 1rem;
+        .case-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.3;
         }
         
-        .case-card__stats {
+        .case-info {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
+            gap: 12px;
+            margin-bottom: 20px;
         }
         
-        .case-card__stat {
+        .info-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f0f0f0;
         }
         
-        .case-card__stat i {
-            color: #FF6B35;
-            margin-right: 0.5rem;
-            font-size: 1rem;
+        .info-label {
+            font-size: 14px;
+            color: #999;
+            font-weight: 500;
         }
         
-        .case-card__stat span {
+        .info-value {
+            font-size: 14px;
             color: #555;
-            font-size: 0.95rem;
+            font-weight: 600;
         }
         
-        .case-card__btn {
-            width: 100%;
-            padding: 10px;
+        .case-link {
+            display: inline-block;
+            color: #0070c0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .case-link:hover {
+            color: #ff6b35;
+            transform: translateX(5px);
+        }
+        
+        /* Навигация слайдера */
+        .cases-next,
+        .cases-prev {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            color: #0070c0;
+        }
+        
+        .cases-next:hover,
+        .cases-prev:hover {
+            background: #0070c0;
+            color: white;
+            border-color: #0070c0;
+        }
+        
+        .cases-next::after,
+        .cases-prev::after {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .cases-pagination {
             text-align: center;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 30px;
         }
         
-        .case-card__btn:hover {
-            background-color: #FF6B35;
-            transform: translateY(-3px);
-        }
-        
-        /* Стили для навигации слайдера */
-        .cases-button-next,
-        .cases-button-prev {
-            color: #2A5CAA !important;
-        }
-        
-        .cases-button-next:after,
-        .cases-button-prev:after {
-            font-size: 1.5rem !important;
+        .cases-pagination .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: #ddd;
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: all 0.3s ease;
         }
         
         .cases-pagination .swiper-pagination-bullet-active {
-            background-color: #2A5CAA;
+            background: #0070c0;
+            transform: scale(1.2);
+        }
+        
+        .cases-footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .all-projects-btn {
+            display: inline-block;
+            background: #0070c0;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,112,192,0.3);
+        }
+        
+        .all-projects-btn:hover {
+            background: #ff6b35;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,107,53,0.4);
+        }
+        
+        @media (max-width: 1024px) {
+            .cases-swiper {
+                padding: 0 30px 50px 30px;
+            }
         }
         
         @media (max-width: 768px) {
-            .case-card__image {
+            .cases-simple {
+                padding: 60px 0;
+            }
+            
+            .cases-simple .section-title {
+                font-size: 28px;
+            }
+            
+            .cases-simple .section-subtitle {
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+            
+            .cases-swiper {
+                padding: 0 20px 40px 20px;
+            }
+            
+            .case-image {
                 height: 200px;
             }
             
-            .case-card__title {
-                font-size: 1.2rem;
+            .case-content {
+                padding: 20px;
             }
             
-            .case-card__content {
-                padding: 1.2rem;
+            .case-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .case-info {
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                padding-bottom: 10px;
+            }
+            
+            .cases-footer {
+                margin-top: 30px;
+            }
+            
+            .all-projects-btn {
+                padding: 12px 25px;
+                font-size: 14px;
             }
         }
     </style>

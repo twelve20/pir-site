@@ -1,50 +1,44 @@
 <section id="mini-catalog" class="mini-catalog">
     <div class="container">
-        <div class="catalog-header">
-            <h2 class="section-title">Каталог PIR-плит</h2>
-            <p class="catalog-subtitle">Выберите оптимальные материалы для вашего проекта</p>
-            
-            <div class="catalog-tabs">
-                <button class="catalog-tab active" data-category="all">Все товары</button>
-                <button class="catalog-tab" data-category="roof">Для кровли</button>
-                <button class="catalog-tab" data-category="wall">Для стен</button>
-                <button class="catalog-tab" data-category="floor">Для пола</button>
-            </div>
-        </div>
+        <h2 class="section-title">Каталог PIR-плит</h2>
+        <p class="section-subtitle">Выберите оптимальные материалы для вашего проекта</p>
         
         <div class="catalog-grid">
-            <% regularProducts.forEach(product => { %>
-                <div class="catalog-item" 
-                     data-id="<%= product.id %>"
-                     data-category="<%= product.id.includes('termo') ? 'wall roof' : (product.id.includes('paper') ? 'wall floor' : 'roof wall floor') %>">
-                    <div class="catalog-item__badge <%= product.isPromo ? 'catalog-item__badge--promo' : '' %>"><%= product.isPromo ? 'Акция!' : 'Популярный' %></div>
-                    <div class="catalog-item__image">
+            <% regularProducts.forEach((product, index) => { %>
+                <div class="product-card">
+                    <div class="product-image">
                         <img src="<%= product.image %>" alt="<%= product.title %>" loading="lazy">
+                        <% if (product.isPromo) { %>
+                            <div class="promo-badge">Акция</div>
+                        <% } %>
                     </div>
-                    <div class="catalog-item__content">
-                        <h3 class="catalog-item__title"><%= product.title %></h3>
-                        <ul class="catalog-item__features">
-                            <li><i class="fas fa-check-circle"></i> <%= product.description.split(',')[0] %></li>
-                            <li><i class="fas fa-fire-alt"></i> Класс горючести <%= product.id.includes('paper') ? 'Г3' : 'Г1' %></li>
-                            <li><i class="fas fa-tint-slash"></i> Влагостойкость</li>
-                        </ul>
-                        <div class="catalog-item__footer">
-                            <div class="catalog-item__price">
+                    
+                    <div class="product-content">
+                        <h3 class="product-title"><%= product.title %></h3>
+                        <p class="product-description"><%= product.description %></p>
+                        
+                        <div class="product-features">
+                            <div class="feature">Влагостойкость</div>
+                            <div class="feature">Высокая прочность</div>
+                            <div class="feature">Долговечность</div>
+                        </div>
+                        
+                        <div class="product-footer">
+                            <div class="price-section">
                                 <% if (product.isPromo) { %>
                                     <span class="old-price"><%= product.oldPrice %></span>
-                                    <span class="current-price promo-price"><%= product.price %></span>
+                                    <span class="current-price"><%= product.price %></span>
                                 <% } else { %>
                                     <span class="current-price"><%= product.price %></span>
                                 <% } %>
                             </div>
-                            <div class="catalog-item__actions">
+                            
+                            <div class="product-actions">
                                 <button class="btn-details" onclick="openDetailsModal('<%= product.id %>')">
-                                    <i class="fas fa-info-circle"></i>
-                                    <span>Детали</span>
+                                    Подробнее
                                 </button>
-                                <button class="btn-buy" onclick="openBuyModal()">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <span>Купить</span>
+                                <button class="btn-order" onclick="openOrderModal()">
+                                    Заказать
                                 </button>
                             </div>
                         </div>
@@ -52,198 +46,173 @@
                 </div>
             <% }) %>
         </div>
+        
+        <div class="catalog-cta">
+            <h3>Нужна помощь в выборе?</h3>
+            <p>Наши специалисты помогут подобрать оптимальное решение для вашего проекта</p>
+            <button class="cta-button" onclick="openCallModal()">
+                Получить консультацию
+            </button>
+        </div>
     </div>
 </section>
 
-<!-- Модальное окно для покупки -->
-<div id="buyModal" class="modal">
-    <div class="modal__content">
-        <span class="modal__close" onclick="closeBuyModal()">&times;</span>
-        <h2>Оформить заказ</h2>
-        <p>Заполните форму, и мы свяжемся с вами для уточнения деталей</p>
-        <form class="modal__form">
+<!-- Модальное окно заказа -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeOrderModal()">&times;</span>
+        <h2>Заказать материал</h2>
+        <form class="order-form">
             <input type="text" placeholder="Ваше имя" required>
-            <input type="tel" placeholder="Ваш телефон" required pattern="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}">
-            <input type="email" placeholder="Ваш email" required>
-            <textarea placeholder="Комментарий к заказу (тип материала, количество, адрес доставки)"></textarea>
-            <button type="submit" class="btn btn--blue">Отправить заказ</button>
+            <input type="tel" placeholder="Телефон" required>
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Комментарий к заказу"></textarea>
+            <button type="submit">Отправить заказ</button>
         </form>
     </div>
 </div>
 
 <style>
     .mini-catalog {
-        padding: 60px 0;
+        padding: 80px 0;
         background-color: #f8f9fa;
+    }
+    
+    .section-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #333;
+        text-align: center;
+        margin-bottom: 16px;
         position: relative;
     }
     
-    .mini-catalog::before {
+    .section-title::after {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('/images/pattern.png');
-        background-size: 200px;
-        opacity: 0.03;
-        pointer-events: none;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: #0070c0;
+        border-radius: 2px;
     }
     
-    .catalog-header {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    
-    .catalog-subtitle {
+    .section-subtitle {
         font-size: 18px;
         color: #666;
-        margin-bottom: 25px;
-    }
-    
-    .catalog-tabs {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-    
-    .catalog-tab {
-        padding: 10px 20px;
-        border: 2px solid #e0e0e0;
-        background: white;
-        border-radius: 30px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #333;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    .catalog-tab.active, .catalog-tab:hover {
-        background-color: #0070c0;
-        color: white;
-        border-color: #0070c0;
+        text-align: center;
+        margin-bottom: 60px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .catalog-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 30px;
+        margin-bottom: 80px;
     }
     
-    .catalog-item {
+    .product-card {
         background: white;
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        border: 1px solid #e0e0e0;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        border-color: #0070c0;
+    }
+    
+    .product-image {
+        height: 200px;
+        overflow: hidden;
         position: relative;
     }
     
-    .catalog-item:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-    
-    .catalog-item__badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: #ff6b00;
-        color: white;
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
-        z-index: 1;
-    }
-    
-    .catalog-item__badge--promo {
-        background: #e30613;
-        animation: pulse 1.5s infinite;
-    }
-    
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(227, 6, 19, 0.7);
-        }
-        70% {
-            transform: scale(1.05);
-            box-shadow: 0 0 0 10px rgba(227, 6, 19, 0);
-        }
-        100% {
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(227, 6, 19, 0);
-        }
-    }
-    
-    .catalog-item__image {
-        height: 200px;
-        overflow: hidden;
-    }
-    
-    .catalog-item__image img {
+    .product-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
+        transition: transform 0.3s ease;
     }
     
-    .catalog-item:hover .catalog-item__image img {
-        transform: scale(1.1);
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
     }
     
-    .catalog-item__content {
-        padding: 20px;
+    .promo-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #e30613;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
     }
     
-    .catalog-item__title {
+    .product-content {
+        padding: 25px;
+    }
+    
+    .product-title {
         font-size: 18px;
         font-weight: 600;
         color: #333;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         min-height: 44px;
+        line-height: 1.3;
     }
     
-    .catalog-item__features {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 20px 0;
-    }
-    
-    .catalog-item__features li {
-        margin-bottom: 8px;
-        color: #555;
+    .product-description {
         font-size: 14px;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        min-height: 42px;
+    }
+    
+    .product-features {
         display: flex;
-        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 25px;
     }
     
-    .catalog-item__features i {
+    .feature {
+        background: #f0f8ff;
         color: #0070c0;
-        margin-right: 8px;
-        font-size: 16px;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1px solid rgba(0,112,192,0.2);
     }
     
-    .catalog-item__footer {
+    .product-footer {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-top: 15px;
-        border-top: 1px solid #eee;
+        padding-top: 20px;
+        border-top: 1px solid #f0f0f0;
     }
     
-    .catalog-item__price {
+    .price-section {
         display: flex;
         flex-direction: column;
     }
     
     .current-price {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
         color: #333;
     }
@@ -255,109 +224,276 @@
         margin-bottom: 4px;
     }
     
-    .promo-price {
-        color: #e30613;
-        font-size: 20px;
-    }
-    
-    .catalog-item__actions {
+    .product-actions {
         display: flex;
-        gap: 10px;
+        flex-direction: column;
+        gap: 8px;
     }
     
-    .btn-details, .btn-buy {
+    .btn-details, .btn-order {
         border: none;
-        background: none;
         cursor: pointer;
-        font-size: 14px;
-        color: #333;
-        display: flex;
-        align-items: center;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: all 0.2s ease;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 100px;
     }
     
     .btn-details {
-        background-color: #e0e0e0;
+        background: #f8f9fa;
+        color: #666;
+        border: 1px solid #e0e0e0;
     }
     
-    .btn-buy {
-        background-color: #0070c0;
+    .btn-order {
+        background: #0070c0;
         color: white;
     }
     
     .btn-details:hover {
-        background-color: #d0d0d0;
+        background: #e9ecef;
+        color: #0070c0;
+        border-color: #0070c0;
     }
     
-    .btn-buy:hover {
-        background-color: #005ba3;
+    .btn-order:hover {
+        background: #005a9e;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(0,112,192,0.3);
     }
     
-    .btn-details i, .btn-buy i {
-        margin-right: 5px;
+    .catalog-cta {
+        text-align: center;
+        background: white;
+        padding: 50px 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border: 1px solid #e0e0e0;
+    }
+    
+    .catalog-cta h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+    }
+    
+    .catalog-cta p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+    
+    .cta-button {
+        background: #ff6b35;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .cta-button:hover {
+        background: #e55a2e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+    }
+    
+    /* Модальное окно */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+    
+    .modal-content {
+        background: white;
+        margin: 10% auto;
+        padding: 30px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    
+    .modal-close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #999;
+    }
+    
+    .modal-close:hover {
+        color: #333;
+    }
+    
+    .modal-content h2 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    
+    .order-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .order-form input,
+    .order-form textarea {
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+    }
+    
+    .order-form input:focus,
+    .order-form textarea:focus {
+        outline: none;
+        border-color: #0070c0;
+    }
+    
+    .order-form textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+    
+    .order-form button {
+        background: #0070c0;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    
+    .order-form button:hover {
+        background: #005a9e;
+    }
+    
+    @media (max-width: 1024px) {
+        .catalog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
     }
     
     @media (max-width: 768px) {
-        .catalog-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        .mini-catalog {
+            padding: 60px 0;
         }
         
-        .catalog-tab {
-            padding: 8px 15px;
-            font-size: 13px;
+        .section-title {
+            font-size: 28px;
         }
-    }
-    
-    @media (max-width: 480px) {
+        
+        .section-subtitle {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        
         .catalog-grid {
             grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 60px;
         }
         
-        .catalog-tabs {
-            flex-direction: column;
-            gap: 8px;
+        .product-content {
+            padding: 20px;
         }
         
-        .catalog-tab {
-            width: 100%;
+        .catalog-cta {
+            padding: 40px 20px;
+        }
+        
+        .catalog-cta h3 {
+            font-size: 20px;
+        }
+        
+        .modal-content {
+            margin: 20% auto;
+            padding: 25px;
         }
     }
 </style>
 
 <script>
-    // Функции для модального окна
-    function openBuyModal() {
-        document.getElementById('buyModal').style.display = 'block';
+    function openOrderModal() {
+        document.getElementById('orderModal').style.display = 'block';
     }
     
-    function closeBuyModal() {
-        document.getElementById('buyModal').style.display = 'none';
+    function closeOrderModal() {
+        document.getElementById('orderModal').style.display = 'none';
     }
     
-    // Фильтрация товаров по категориям
+    // Закрытие модального окна при клике вне его
+    window.onclick = function(event) {
+        const modal = document.getElementById('orderModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    // Обработка формы заказа
     document.addEventListener('DOMContentLoaded', function() {
-        const tabs = document.querySelectorAll('.catalog-tab');
-        const items = document.querySelectorAll('.catalog-item');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const category = this.dataset.category;
+        const orderForm = document.querySelector('.order-form');
+        if (orderForm) {
+            orderForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
                 
-                // Активный класс для вкладок
-                tabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+                // Собираем данные из формы
+                const formData = {
+                    name: this.querySelector('input[type="text"]').value,
+                    phone: this.querySelector('input[type="tel"]').value,
+                    email: this.querySelector('input[type="email"]').value,
+                    comment: this.querySelector('textarea').value,
+                    formType: 'order' // Указываем тип формы
+                };
                 
-                // Фильтрация товаров
-                items.forEach(item => {
-                    if (category === 'all' || item.dataset.category.includes(category)) {
-                        item.style.display = 'block';
+                try {
+                    // Отправляем данные на сервер
+                    const response = await fetch('/submit-form', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    if (response.ok) {
+                        alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
+                        closeOrderModal();
+                        this.reset();
                     } else {
-                        item.style.display = 'none';
+                        alert('Произошла ошибка при отправке заказа. Попробуйте позже.');
                     }
-                });
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                    alert('Не удалось отправить заказ. Попробуйте позже.');
+                }
             });
-        });
+        }
     });
 </script>

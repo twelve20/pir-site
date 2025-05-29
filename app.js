@@ -25,8 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 const TELEGRAM_BOT_TOKEN = '7782157467:AAGFxw4zsg8y5jV5Hg6TJZajiq5iR0kD660'; // Замените на ваш токен
 const TELEGRAM_CHAT_ID = '-4667528349'; // Замените на ваш chat_id
 
-// Статические файлы
-app.use(express.static(path.join(__dirname, 'public')))
+
 
 // Роутинг
 app.get('/', (req, res) => {
@@ -114,14 +113,19 @@ app.get('/api/products', (req, res) => {
 
 // Роут для обработки формы
 app.post('/submit-form', async (req, res) => {
-    const { name, phone } = req.body;
+    const { name, phone, email, comment, formType } = req.body;
 
     if (!name || !phone) {
         return res.status(400).json({ message: 'Пожалуйста, заполните все поля.' });
     }
 
-    // Формируем текст сообщения
-    const message = `Новая заявка:\nИмя: ${name}\nТелефон: ${phone}`;
+    // Формируем текст сообщения в зависимости от типа формы
+    let message = '';
+    if (formType === 'order') {
+        message = `🛒 НОВЫЙ ЗАКАЗ МАТЕРИАЛА:\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email || 'Не указан'}\nКомментарий: ${comment || 'Нет комментария'}`;
+    } else {
+        message = `📞 Новая заявка на звонок:\n\nИмя: ${name}\nТелефон: ${phone}`;
+    }
 
     try {
         // Отправляем сообщение в Telegram
@@ -130,7 +134,7 @@ app.post('/submit-form', async (req, res) => {
             text: message
         });
 
-        console.log('Заявка успешно отправлена в Telegram:', { name, phone });
+        console.log('Заявка успешно отправлена в Telegram:', { name, phone, email, comment, formType });
 
         // Отправляем успешный ответ клиенту
         res.status(200).json({ message: 'Заявка успешно отправлена!' });

@@ -1,77 +1,84 @@
 <section id="energy-efficiency" class="energy-efficiency">
     <div class="container">
         <h2 class="section-title">Энергоэффективность и экономия</h2>
+        <p class="section-intro">PIR плиты — это инвестиция в будущее вашего дома, которая окупается за счет значительной экономии на отоплении</p>
+        
         <div class="energy-efficiency__content">
-            <div class="energy-efficiency__info">
-                <p class="energy-efficiency__intro">PIR плиты — это инвестиция в будущее вашего дома, которая окупается за счет значительной экономии на отоплении.</p>
-                
-                <div class="energy-calculator">
-                    <h3 class="energy-calculator__title">Рассчитайте свою экономию</h3>
-                    <div class="energy-calculator__form">
-                        <div class="form-group">
-                            <label for="house-type">Тип здания</label>
-                            <select id="house-type">
-                                <option value="house">Частный дом</option>
-                                <option value="apartment">Квартира</option>
-                                <option value="commercial">Коммерческое помещение</option>
-                                <option value="sauna">Баня</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="square-meters">Площадь помещения (м²)</label>
-                            <input type="number" id="square-meters" min="1" value="100">
-                        </div>
-                        <div class="form-group">
-                            <label for="region">Регион</label>
-                            <select id="region">
-                                <option value="central">Центральный регион</option>
-                                <option value="north">Северный регион</option>
-                                <option value="south">Южный регион</option>
-                            </select>
-                        </div>
-                        <button type="button" id="calculate-savings" class="btn btn--blue">Рассчитать экономию</button>
+            <div class="energy-calculator">
+                <h3 class="calculator-title">Рассчитайте свою экономию</h3>
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="house-type">Тип здания</label>
+                        <select id="house-type" class="form-control">
+                            <option value="house">Частный дом</option>
+                            <option value="apartment">Квартира</option>
+                            <option value="commercial">Коммерческое помещение</option>
+                            <option value="sauna">Баня</option>
+                        </select>
                     </div>
-                    <div id="savings-result" class="energy-calculator__result">
-                        <div class="savings-card">
-                            <div class="savings-card__title">Экономия в год</div>
-                            <div class="savings-card__value" id="yearly-savings">до 30 000 ₽</div>
-                        </div>
-                        <div class="savings-card">
-                            <div class="savings-card__title">Срок окупаемости</div>
-                            <div class="savings-card__value" id="payback-period">2-3 года</div>
-                        </div>
-                        <div class="savings-card">
-                            <div class="savings-card__title">Снижение теплопотерь</div>
-                            <div class="savings-card__value" id="heat-loss-reduction">до 40%</div>
-                        </div>
+                    <div class="form-group">
+                        <label for="square-meters">Площадь помещения (м²)</label>
+                        <input type="number" id="square-meters" min="1" value="100" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Регион</label>
+                        <select id="region" class="form-control">
+                            <option value="central">Центральный регион</option>
+                            <option value="north">Северный регион</option>
+                            <option value="south">Южный регион</option>
+                        </select>
+                    </div>
+                    <button type="button" id="calculate-savings" class="btn btn--blue">Рассчитать экономию</button>
+                </div>
+                
+                <div class="calculator-results">
+                    <div class="result-item">
+                        <div class="result-value" id="yearly-savings">до 30 000 ₽</div>
+                        <div class="result-label">Экономия в год</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="payback-period">2-3 года</div>
+                        <div class="result-label">Срок окупаемости</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value" id="heat-loss-reduction">до 40%</div>
+                        <div class="result-label">Снижение теплопотерь</div>
                     </div>
                 </div>
             </div>
             
-            <div class="energy-comparison">
-                <h3 class="energy-comparison__title">Сравнение толщин разных утеплителей</h3>
-                <div class="energy-comparison__image">
-                    <img src="/images/sravnenie.jpg" alt="Сравнение толщин разных утеплителей" class="comparison-image">
+            <div class="comparison-section">
+                <h3 class="comparison-title">Сравнение толщин разных утеплителей</h3>
+                <div class="comparison-image">
+                    <img src="/images/sravnenie.jpg" alt="Сравнение толщин разных утеплителей" class="comparison-img">
                 </div>
-                <div class="energy-comparison__chart">
-                    <div class="comparison-item">
-                        <div class="comparison-item__label">PIR плита</div>
-                        <div class="comparison-item__bar" style="width: 30%;"><span>30 мм</span></div>
+                <div class="comparison-chart">
+                    <div class="chart-item">
+                        <div class="chart-label">PIR плита</div>
+                        <div class="chart-bar chart-bar--pir">
+                            <span class="bar-value">30 мм</span>
+                        </div>
                     </div>
-                    <div class="comparison-item">
-                        <div class="comparison-item__label">Минвата</div>
-                        <div class="comparison-item__bar" style="width: 50%;"><span>50 мм</span></div>
+                    <div class="chart-item">
+                        <div class="chart-label">Пенополистирол</div>
+                        <div class="chart-bar chart-bar--foam">
+                            <span class="bar-value">45 мм</span>
+                        </div>
                     </div>
-                    <div class="comparison-item">
-                        <div class="comparison-item__label">Пенополистирол</div>
-                        <div class="comparison-item__bar" style="width: 45%;"><span>45 мм</span></div>
+                    <div class="chart-item">
+                        <div class="chart-label">Минвата</div>
+                        <div class="chart-bar chart-bar--mineral">
+                            <span class="bar-value">50 мм</span>
+                        </div>
                     </div>
-                    <div class="comparison-item">
-                        <div class="comparison-item__label">Дерево</div>
-                        <div class="comparison-item__bar" style="width: 80%;"><span>80 мм</span></div>
+                    <div class="chart-item">
+                        <div class="chart-label">Дерево</div>
+                        <div class="chart-bar chart-bar--wood">
+                            <span class="bar-value">80 мм</span>
+                        </div>
                     </div>
                 </div>
-                <p class="energy-comparison__note">* Толщина материала для достижения одинакового уровня теплоизоляции</p>
+                <p class="comparison-note">* Толщина материала для достижения одинакового уровня теплоизоляции</p>
             </div>
         </div>
     </div>
@@ -79,171 +86,327 @@
 
 <style>
     .energy-efficiency {
-        padding: 60px 0;
-        background-color: #f5f5f5;
+        padding: 80px 0;
+        background-color: #f8f9fa;
+    }
+    
+    .section-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: #0070c0;
+        border-radius: 2px;
+    }
+    
+    .section-intro {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #666;
+        text-align: center;
+        margin-bottom: 60px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .energy-efficiency__content {
-        display: flex;
-        gap: 40px;
-        margin-top: 40px;
-    }
-    
-    .energy-efficiency__info {
-        flex: 0 0 50%;
-    }
-    
-    .energy-efficiency__intro {
-        font-size: 18px;
-        line-height: 1.6;
-        color: #333;
-        margin-bottom: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
     }
     
     .energy-calculator {
-        background-color: white;
-        border-radius: 10px;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        background: white;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        border: 1px solid #e0e0e0;
     }
     
-    .energy-calculator__title {
-        font-size: 20px;
-        margin-bottom: 20px;
+    .calculator-title {
+        font-size: 24px;
+        font-weight: 600;
         color: #333;
+        margin-bottom: 30px;
+        text-align: center;
     }
     
-    .energy-calculator__form {
+    .calculator-form {
+        margin-bottom: 40px;
+    }
+    
+    .form-group {
         margin-bottom: 20px;
     }
     
-    .energy-calculator__form .form-group {
-        margin-bottom: 15px;
-    }
-    
-    .energy-calculator__form label {
+    .form-group label {
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         font-size: 14px;
+        font-weight: 600;
         color: #555;
     }
     
-    .energy-calculator__form select,
-    .energy-calculator__form input {
+    .form-control {
         width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-    
-    .energy-calculator__result {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-    }
-    
-    .savings-card {
-        background-color: #f8f9fa;
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
         border-radius: 8px;
-        padding: 15px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+    }
+    
+    .form-control:focus {
+        outline: none;
+        border-color: #0070c0;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 14px 24px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
         text-align: center;
-        flex: 0 0 30%;
     }
     
-    .savings-card__title {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 8px;
+    .btn--blue {
+        background: #0070c0;
+        color: white;
     }
     
-    .savings-card__value {
-        font-size: 18px;
+    .btn--blue:hover {
+        background: #005a9e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,112,192,0.3);
+    }
+    
+    .calculator-results {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .result-item {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+    
+    .result-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-color: #0070c0;
+    }
+    
+    .result-value {
+        font-size: 24px;
         font-weight: 700;
         color: #0070c0;
+        margin-bottom: 8px;
+        line-height: 1;
     }
     
-    .energy-comparison {
-        flex: 0 0 45%;
-        background-color: white;
-        border-radius: 10px;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    .result-label {
+        font-size: 14px;
+        color: #666;
+        font-weight: 500;
     }
     
-    .energy-comparison__title {
-        font-size: 20px;
-        margin-bottom: 20px;
+    .comparison-section {
+        background: white;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        border: 1px solid #e0e0e0;
+    }
+    
+    .comparison-title {
+        font-size: 24px;
+        font-weight: 600;
         color: #333;
-    }
-    
-    .energy-comparison__image {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+        text-align: center;
     }
     
     .comparison-image {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    .comparison-img {
         width: 100%;
+        max-width: 400px;
         border-radius: 8px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     
-    .energy-comparison__chart {
-        margin-bottom: 15px;
+    .comparison-chart {
+        margin-bottom: 20px;
     }
     
-    .comparison-item {
+    .chart-item {
         display: flex;
         align-items: center;
         margin-bottom: 15px;
+        gap: 15px;
     }
     
-    .comparison-item__label {
-        flex: 0 0 120px;
+    .chart-label {
+        width: 120px;
         font-size: 14px;
+        font-weight: 600;
         color: #333;
+        flex-shrink: 0;
     }
     
-    .comparison-item__bar {
-        height: 25px;
-        background-color: #0070c0;
-        border-radius: 5px;
-        position: relative;
+    .chart-bar {
+        height: 32px;
+        border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        padding-right: 10px;
+        padding-right: 12px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
     }
     
-    .comparison-item__bar span {
+    .chart-bar--pir {
+        background: #0070c0;
+        width: 37.5%; /* 30/80 = 0.375 */
+    }
+    
+    .chart-bar--foam {
+        background: #28a745;
+        width: 56.25%; /* 45/80 = 0.5625 */
+    }
+    
+    .chart-bar--mineral {
+        background: #ffc107;
+        width: 62.5%; /* 50/80 = 0.625 */
+    }
+    
+    .chart-bar--wood {
+        background: #8b4513;
+        width: 100%; /* 80/80 = 1 */
+    }
+    
+    .chart-bar:hover {
+        transform: scaleX(1.05);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    .bar-value {
         color: white;
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 13px;
+        font-weight: 700;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
     
-    .energy-comparison__note {
+    .comparison-note {
         font-size: 12px;
         color: #666;
         font-style: italic;
+        text-align: center;
+        margin: 0;
+    }
+    
+    @media (max-width: 1024px) {
+        .energy-efficiency__content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
     }
     
     @media (max-width: 768px) {
-        .energy-efficiency__content {
+        .energy-efficiency {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 28px;
+        }
+        
+        .section-intro {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        
+        .energy-calculator,
+        .comparison-section {
+            padding: 30px 20px;
+        }
+        
+        .calculator-title,
+        .comparison-title {
+            font-size: 20px;
+        }
+        
+        .chart-item {
             flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
         }
         
-        .energy-efficiency__info,
-        .energy-comparison {
-            flex: 0 0 100%;
+        .chart-label {
+            width: auto;
+            text-align: center;
         }
         
-        .energy-calculator__result {
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .savings-card {
-            flex: 0 0 100%;
-            margin-bottom: 10px;
+        .chart-bar {
+            justify-content: center;
         }
     }
-</style> 
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const calculateBtn = document.getElementById('calculate-savings');
+        if (calculateBtn) {
+            calculateBtn.addEventListener('click', function() {
+                const houseType = document.getElementById('house-type').value;
+                const squareMeters = parseInt(document.getElementById('square-meters').value);
+                const region = document.getElementById('region').value;
+                
+                // Простая логика расчета
+                let baseRate = 300; // базовая ставка за м²
+                
+                if (region === 'north') baseRate *= 1.5;
+                if (region === 'south') baseRate *= 0.8;
+                
+                if (houseType === 'sauna') baseRate *= 2;
+                if (houseType === 'commercial') baseRate *= 1.3;
+                
+                const yearlySavings = Math.round(squareMeters * baseRate);
+                const paybackPeriod = yearlySavings > 20000 ? '2-3 года' : '3-4 года';
+                const heatLossReduction = squareMeters > 100 ? 'до 45%' : 'до 35%';
+                
+                document.getElementById('yearly-savings').textContent = `${yearlySavings.toLocaleString()} ₽`;
+                document.getElementById('payback-period').textContent = paybackPeriod;
+                document.getElementById('heat-loss-reduction').textContent = heatLossReduction;
+            });
+        }
+    });
+</script>

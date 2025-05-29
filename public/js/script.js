@@ -18,52 +18,110 @@ function closeModal() {
 
 // Функции для модального окна "Заказать звонок"
 function openCallModal() {
-    document.getElementById('callModal').style.display = 'flex';
+    const callModal = document.getElementById('callModal');
+    if (callModal) {
+        callModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeCallModal() {
-    document.getElementById('callModal').style.display = 'none';
+    const callModal = document.getElementById('callModal');
+    if (callModal) {
+        callModal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
 }
 
 // Обработчик отправки формы
-document.querySelector('.modal__form').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Предотвращаем стандартное поведение формы
+document.addEventListener('DOMContentLoaded', function() {
+    // Обработчик формы "Заказать звонок" 
+    const callModalForm = document.querySelector('.modal-form');
+    if (callModalForm) {
+        callModalForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Предотвращаем стандартное поведение формы
 
-    // Собираем данные из формы
-    const formData = {
-        name: document.querySelector('.modal__form input[type="text"]').value,
-        phone: document.querySelector('.modal__form input[type="tel"]').value
-    };
+            // Собираем данные из формы
+            const formData = {
+                name: e.target.querySelector('input[type="text"]').value,
+                phone: e.target.querySelector('input[type="tel"]').value
+            };
 
-    try {
-        // Отправляем данные на сервер
-        const response = await fetch('/submit-form', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            try {
+                // Отправляем данные на сервер
+                const response = await fetch('/submit-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('Заявка успешно отправлена!');
+                    closeCallModal(); // Закрываем модальное окно
+                } else {
+                    alert('Произошла ошибка при отправке заявки.');
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Не удалось отправить заявку. Попробуйте позже.');
+            }
         });
-
-        if (response.ok) {
-            alert('Заявка успешно отправлена!');
-            closeCallModal(); // Закрываем модальное окно
-        } else {
-            alert('Произошла ошибка при отправке заявки.');
-        }
-    } catch (error) {
-        console.error('Ошибка:', error);
-        alert('Не удалось отправить заявку. Попробуйте позже.');
     }
+
+    // Обработчик отправки формы "Призыв к действию"
+    const ctaForm = document.querySelector('.cta__form');
+    if (ctaForm) {
+        ctaForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Предотвращаем стандартное поведение формы
+
+            // Собираем данные из формы
+            const formData = {
+                name: document.querySelector('.cta__form input[type="text"]').value,
+                phone: document.querySelector('.cta__form input[type="tel"]').value,
+                comment: document.querySelector('.cta__form textarea').value
+            };
+
+            try {
+                // Отправляем данные на сервер
+                const response = await fetch('/submit-cta-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('Заявка успешно отправлена!');
+                    document.querySelector('.cta__form').reset(); // Очищаем форму
+                } else {
+                    alert('Произошла ошибка при отправке заявки.');
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert('Не удалось отправить заявку. Попробуйте позже.');
+            }
+        });
+    }
+
+    // Обработчик для buyModal будет добавлен после создания модального окна
 });
 
 // Функции для модального окна "Получить консультацию"
 function openConsultationModal() {
-    document.getElementById('consultationModal').style.display = 'flex';
+    const consultationModal = document.getElementById('consultationModal');
+    if (consultationModal) {
+        consultationModal.style.display = 'flex';
+    }
 }
 
 function closeConsultationModal() {
-    document.getElementById('consultationModal').style.display = 'none';
+    const consultationModal = document.getElementById('consultationModal');
+    if (consultationModal) {
+        consultationModal.style.display = 'none';
+    }
 }
 
 // Закрытие модальных окон при клике вне их области
@@ -72,46 +130,13 @@ window.onclick = function (event) {
     const consultationModal = document.getElementById('consultationModal');
 
     if (event.target === callModal) {
-        callModal.style.display = 'none';
+        closeCallModal();
     }
 
     if (event.target === consultationModal) {
-        consultationModal.style.display = 'none';
+        closeConsultationModal();
     }
 };
-
-// Обработчик отправки формы "Призыв к действию"
-document.querySelector('.cta__form').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Предотвращаем стандартное поведение формы
-
-    // Собираем данные из формы
-    const formData = {
-        name: document.querySelector('.cta__form input[type="text"]').value,
-        phone: document.querySelector('.cta__form input[type="tel"]').value,
-        comment: document.querySelector('.cta__form textarea').value
-    };
-
-    try {
-        // Отправляем данные на сервер
-        const response = await fetch('/submit-cta-form', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
-
-        if (response.ok) {
-            alert('Заявка успешно отправлена!');
-            document.querySelector('.cta__form').reset(); // Очищаем форму
-        } else {
-            alert('Произошла ошибка при отправке заявки.');
-        }
-    } catch (error) {
-        console.error('Ошибка:', error);
-        alert('Не удалось отправить заявку. Попробуйте позже.');
-    }
-});
 
 // Функция для анимации выплывающих карточек
 document.addEventListener("DOMContentLoaded", function () {
@@ -125,91 +150,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Функция для открытия модального окна
+// Функция для открытия модального окна заказа
+// Поскольку buyModal не существует, открываем callModal
 function openBuyModal() {
-    document.getElementById('buyModal').style.display = 'flex';
+    openCallModal();
 }
 
 // Функция для закрытия модального окна
 function closeBuyModal() {
-    document.getElementById('buyModal').style.display = 'none';
+    closeCallModal();
 }
-
-// Закрытие модального окна при клике вне его области
-window.onclick = function (event) {
-    const modal = document.getElementById('buyModal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-};
-
-// Обработчик отправки формы "Оформить заказ"
-document.querySelector('#buyModal .modal__form').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Предотвращаем стандартное поведение формы
-
-    // Собираем данные из формы
-    const formData = {
-        name: document.querySelector('#buyModal input[type="text"]').value,
-        phone: document.querySelector('#buyModal input[type="tel"]').value,
-        email: document.querySelector('#buyModal input[type="email"]').value,
-        comment: document.querySelector('#buyModal textarea').value
-    };
-
-    try {
-        // Отправляем данные на сервер
-        const response = await fetch('/submit-buy-form', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
-
-        if (response.ok) {
-            alert('Заказ успешно отправлен!');
-            document.querySelector('#buyModal .modal__form').reset(); // Очищаем форму
-            closeBuyModal(); // Закрываем модальное окно
-        } else {
-            alert('Произошла ошибка при отправке заказа.');
-        }
-    } catch (error) {
-        console.error('Ошибка:', error);
-        alert('Не удалось отправить заказ. Попробуйте позже.');
-    }
-});
-
-// Инициализация слайдера hero-swiper находится в partials/hero.ejs
-
-function openCallModal() {
-    document.getElementById('callModal').style.display = 'flex';
-}
-
-function closeCallModal() {
-    document.getElementById('callModal').style.display = 'none';
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-    const response = await fetch('/api/products');
-    const products = await response.json();
-
-    const heroCards = document.querySelector('.hero__cards');
-    heroCards.innerHTML = '';
-
-    products.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'hero-card';
-        card.innerHTML = `
-        <div class="hero-card__image">
-          <img src="${product.image}" alt="${product.title}" class="hero-card__img">
-        </div>
-        <div class="hero-card__content">
-          <h3 class="hero-card__title">${product.title}</h3>
-          <p class="hero-card__description">${product.description}</p>
-          <p class="hero-card__price highlight-price">${product.price}</p>
-          <p class="hero-card__discount">${product.discount || ''}</p>
-          <button class="btn btn--orange" onclick="openBuyModal()">Купить сейчас</button>
-        </div>
-      `;
-        heroCards.appendChild(card);
-    });
-});

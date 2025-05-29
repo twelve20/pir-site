@@ -1,36 +1,36 @@
-<section id="installation-products" class="mini-catalog installation-products">
+<section id="installation-products" class="installation-products">
     <div class="container">
-        <div class="catalog-header">
-            <h2 class="section-title">Товары для монтажа PIR плит</h2>
-            <p class="catalog-subtitle">Профессиональные материалы для быстрой и надежной установки</p>
-        </div>
+        <h2 class="section-title">Товары для монтажа PIR плит</h2>
+        <p class="section-subtitle">Профессиональные материалы для быстрой и надежной установки</p>
         
-        <div class="catalog-grid">
-            <% installationProducts.forEach(product => { %>
-                <div class="catalog-item" data-id="<%= product.id %>">
-                    <div class="catalog-item__badge catalog-item__badge--blue">Необходимо</div>
-                    <div class="catalog-item__image">
+        <div class="products-grid">
+            <% installationProducts.forEach((product, index) => { %>
+                <div class="product-card">
+                    <div class="product-image">
                         <img src="<%= product.image %>" alt="<%= product.title %>" loading="lazy">
                     </div>
-                    <div class="catalog-item__content">
-                        <h3 class="catalog-item__title"><%= product.title %></h3>
-                        <ul class="catalog-item__features">
-                            <li><i class="fas fa-check-circle"></i> <%= product.description.split(',')[0] %></li>
-                            <li><i class="fas fa-tools"></i> Профессиональный монтаж</li>
-                            <li><i class="fas fa-clock"></i> Быстрое застывание</li>
-                        </ul>
-                        <div class="catalog-item__footer">
-                            <div class="catalog-item__price">
+                    
+                    <div class="product-content">
+                        <h3 class="product-title"><%= product.title %></h3>
+                        <p class="product-description"><%= product.description %></p>
+                        
+                        <div class="product-features">
+                            <div class="feature">Профессиональный монтаж</div>
+                            <div class="feature">Быстрое застывание</div>
+                            <div class="feature">Надежная фиксация</div>
+                        </div>
+                        
+                        <div class="product-footer">
+                            <div class="price-section">
                                 <span class="current-price"><%= product.price %></span>
                             </div>
-                            <div class="catalog-item__actions">
+                            
+                            <div class="product-actions">
                                 <button class="btn-details" onclick="openDetailsModal('<%= product.id %>')">
-                                    <i class="fas fa-info-circle"></i>
-                                    <span>Детали</span>
+                                    Подробнее
                                 </button>
-                                <button class="btn-buy" onclick="openBuyModal()">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    <span>Купить</span>
+                                <button class="btn-order" onclick="openInstallationModal()">
+                                    Заказать
                                 </button>
                             </div>
                         </div>
@@ -38,31 +38,409 @@
                 </div>
             <% }) %>
         </div>
+        
+        <div class="installation-cta">
+            <h3>Нужна помощь с выбором монтажных материалов?</h3>
+            <p>Наши специалисты помогут подобрать все необходимое для качественного монтажа PIR плит</p>
+            <button class="cta-button" onclick="openCallModal()">
+                Получить консультацию
+            </button>
+        </div>
     </div>
 </section>
 
+<!-- Модальное окно для заказа монтажных материалов -->
+<div id="installationModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeInstallationModal()">&times;</span>
+        <h2>Заказать монтажные материалы</h2>
+        <form class="installation-form">
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="tel" placeholder="Телефон" required>
+            <input type="email" placeholder="Email">
+            <textarea placeholder="Комментарий к заказу"></textarea>
+            <button type="submit">Отправить заказ</button>
+        </form>
+    </div>
+</div>
+
 <style>
     .installation-products {
-        background-color: #f0f5f9;
+        padding: 80px 0;
+        background-color: #f8f9fa;
     }
     
-    .catalog-item__badge--blue {
-        background-color: #0070c0;
+    .section-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #333;
+        text-align: center;
+        margin-bottom: 16px;
+        position: relative;
     }
     
-    /* Специальные стили для блока товаров для монтажа */
-    .installation-products .catalog-grid {
-        max-width: 900px;
-        margin: 0 auto;
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: #0070c0;
+        border-radius: 2px;
     }
     
-    .installation-products .catalog-item {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 2px solid transparent;
+    .section-subtitle {
+        font-size: 18px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 60px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
-    .installation-products .catalog-item:hover {
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+        margin-bottom: 80px;
+    }
+    
+    .product-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        border: 1px solid #e0e0e0;
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         border-color: #0070c0;
-        transform: translateY(-10px) scale(1.02);
+    }
+    
+    .product-image {
+        height: 200px;
+        overflow: hidden;
+    }
+    
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .product-card:hover .product-image img {
+        transform: scale(1.05);
+    }
+    
+    .product-content {
+        padding: 25px;
+    }
+    
+    .product-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+        min-height: 44px;
+        line-height: 1.3;
+    }
+    
+    .product-description {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        min-height: 42px;
+    }
+    
+    .product-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 25px;
+    }
+    
+    .feature {
+        background: #f0f8ff;
+        color: #0070c0;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+        border: 1px solid rgba(0,112,192,0.2);
+    }
+    
+    .product-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 20px;
+        border-top: 1px solid #f0f0f0;
+    }
+    
+    .price-section {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .current-price {
+        font-size: 20px;
+        font-weight: 700;
+        color: #333;
+    }
+    
+    .product-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn-details, .btn-order {
+        border: none;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 100px;
+    }
+    
+    .btn-details {
+        background: #f8f9fa;
+        color: #666;
+        border: 1px solid #e0e0e0;
+    }
+    
+    .btn-order {
+        background: #0070c0;
+        color: white;
+    }
+    
+    .btn-details:hover {
+        background: #e9ecef;
+        color: #0070c0;
+        border-color: #0070c0;
+    }
+    
+    .btn-order:hover {
+        background: #005a9e;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(0,112,192,0.3);
+    }
+    
+    .installation-cta {
+        text-align: center;
+        background: white;
+        padding: 50px 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border: 1px solid #e0e0e0;
+    }
+    
+    .installation-cta h3 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+    }
+    
+    .installation-cta p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 30px;
+        line-height: 1.5;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .cta-button {
+        background: #ff6b35;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .cta-button:hover {
+        background: #e55a2e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+    }
+    
+    /* Модальное окно */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+    
+    .modal-content {
+        background: white;
+        margin: 10% auto;
+        padding: 30px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    
+    .modal-close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #999;
+    }
+    
+    .modal-close:hover {
+        color: #333;
+    }
+    
+    .modal-content h2 {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    
+    .installation-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .installation-form input,
+    .installation-form textarea {
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+    }
+    
+    .installation-form input:focus,
+    .installation-form textarea:focus {
+        outline: none;
+        border-color: #0070c0;
+    }
+    
+    .installation-form textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+    
+    .installation-form button {
+        background: #0070c0;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    
+    .installation-form button:hover {
+        background: #005a9e;
+    }
+    
+    @media (max-width: 1024px) {
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .installation-products {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 28px;
+        }
+        
+        .section-subtitle {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        
+        .products-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+        
+        .product-content {
+            padding: 20px;
+        }
+        
+        .installation-cta {
+            padding: 40px 20px;
+        }
+        
+        .installation-cta h3 {
+            font-size: 20px;
+        }
+        
+        .modal-content {
+            margin: 20% auto;
+            padding: 25px;
+        }
     }
 </style>
+
+<script>
+    function openInstallationModal() {
+        document.getElementById('installationModal').style.display = 'block';
+    }
+    
+    function closeInstallationModal() {
+        document.getElementById('installationModal').style.display = 'none';
+    }
+    
+    // Закрытие модального окна при клике вне его
+    window.onclick = function(event) {
+        const modal = document.getElementById('installationModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    // Обработка формы заказа
+    document.addEventListener('DOMContentLoaded', function() {
+        const installationForm = document.querySelector('.installation-form');
+        if (installationForm) {
+            installationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
+                closeInstallationModal();
+                this.reset();
+            });
+        }
+    });
+</script>
