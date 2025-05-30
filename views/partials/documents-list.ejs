@@ -1,17 +1,289 @@
-<section id="documents-list" class="documents-list">
-    <div class="container">
-        <div class="documents-list__grid">
-            <% documents.forEach(document=> { %>
-                <div class="document-card">
-                    <img src="<%= document.icon %>" alt="PDF" class="document-card__icon">
-                    <div class="document-card__content">
-                        <p class="document-card__name">
-                            <%= document.name %>
-                        </p>
-                        <a href="<%= document.link %>" download class="btn btn--blue">Скачать</a>
-                    </div>
+<!-- Сетка документов -->
+<div class="documents-wrapper">
+    <div class="documents-grid">
+    <% documents.forEach((document, index) => { %>
+        <div class="modern-doc-card" data-category="<%= 
+            document.name.toLowerCase().includes('сертификат') ? 'certificates' : 
+            document.name.toLowerCase().includes('тех') || document.name.toLowerCase().includes('технический') ? 'technical' : 
+            'guides' 
+        %>">
+            <!-- Верхняя часть карточки -->
+            <div class="card-header">
+                <div class="doc-icon-wrapper">
+                    <% if (document.name.toLowerCase().includes('сертификат')) { %>
+                        <div class="doc-icon certificate">
+                            <i class="fas fa-award"></i>
+                        </div>
+                    <% } else if (document.name.toLowerCase().includes('тех') || document.name.toLowerCase().includes('технический')) { %>
+                        <div class="doc-icon technical">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    <% } else { %>
+                        <div class="doc-icon guide">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                    <% } %>
                 </div>
-                <% }) %>
+                <div class="doc-meta">
+                    <span class="doc-format">PDF</span>
+                    <span class="doc-size">2.4 MB</span>
+                </div>
+            </div>
+            
+            <!-- Основное содержимое -->
+            <div class="card-body">
+                <h3 class="doc-modern-title"><%= document.name %></h3>
+                <p class="doc-modern-desc">
+                    <%= document.description || 'Официальный документ для работы с PIR-плитами высшего качества' %>
+                </p>
+            </div>
+            
+            <!-- Действия -->
+            <div class="card-actions">
+                <a href="<%= document.link %>" 
+                   download 
+                   class="action-btn primary">
+                    <i class="fas fa-cloud-download-alt"></i>
+                    <span>Скачать</span>
+                </a>
+                <button class="action-btn secondary" 
+                        onclick="window.open('<%= document.link %>', '_blank')">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
         </div>
+    <% }) %>
     </div>
-</section>
+</div>
+
+<style>
+    /* Обертка документов */
+    .documents-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+    }
+    
+    /* Сетка документов */
+    .documents-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 32px;
+
+    }
+    
+    /* Карточка документа */
+    .modern-doc-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        animation: cardAppear 0.6s ease-out both;
+    }
+    
+    .modern-doc-card:nth-child(1) { animation-delay: 0.1s; }
+    .modern-doc-card:nth-child(2) { animation-delay: 0.15s; }
+    .modern-doc-card:nth-child(3) { animation-delay: 0.2s; }
+    .modern-doc-card:nth-child(4) { animation-delay: 0.25s; }
+    .modern-doc-card:nth-child(5) { animation-delay: 0.3s; }
+    .modern-doc-card:nth-child(6) { animation-delay: 0.35s; }
+    
+    @keyframes cardAppear {
+        from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    .modern-doc-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    /* Заголовок карточки */
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 24px 0;
+    }
+    
+    .doc-icon-wrapper {
+        position: relative;
+    }
+    
+    .doc-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .doc-icon::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        opacity: 0.1;
+    }
+    
+    .doc-icon.certificate {
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        color: #fbbf24;
+    }
+    
+    .doc-icon.technical {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: #3b82f6;
+    }
+    
+    .doc-icon.guide {
+        background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+        color: #a855f7;
+    }
+    
+    .doc-icon i {
+        position: relative;
+        z-index: 1;
+        color: white;
+    }
+    
+    .doc-meta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .doc-format,
+    .doc-size {
+        font-size: 13px;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 100px;
+        background: #f1f5f9;
+        color: #64748b;
+    }
+    
+    /* Тело карточки */
+    .card-body {
+        padding: 24px;
+        flex-grow: 1;
+    }
+    
+    .doc-modern-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 12px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .doc-modern-desc {
+        font-size: 15px;
+        color: #64748b;
+        line-height: 1.6;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    /* Действия */
+    .card-actions {
+        padding: 0 24px 24px;
+        display: flex;
+        gap: 12px;
+    }
+    
+    .action-btn {
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+    }
+    
+    .action-btn.primary {
+        flex: 1;
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+        box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.25);
+    }
+    
+    .action-btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+    }
+    
+    .action-btn.secondary {
+        width: 48px;
+        padding: 0;
+        background: #f1f5f9;
+        color: #64748b;
+        justify-content: center;
+    }
+    
+    .action-btn.secondary:hover {
+        background: #e2e8f0;
+        color: #475569;
+    }
+    
+
+    
+    /* Адаптивность */
+    @media (max-width: 1024px) {
+        .documents-grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+    }
+    
+    @media (max-width: 768px) {
+        .documents-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .modern-doc-card {
+            border-radius: 16px;
+        }
+        
+        .card-header,
+        .card-body,
+        .card-actions {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        .doc-modern-title {
+            font-size: 18px;
+        }
+
+    }
+</style>
