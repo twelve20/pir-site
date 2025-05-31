@@ -3,7 +3,7 @@
     <!-- Главная страница -->
     <url>
         <loc>https://pir-planet.ru/</loc>
-        <lastmod>2025-02-11</lastmod>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -11,55 +11,71 @@
     <!-- Страница блога -->
     <url>
         <loc>https://pir-planet.ru/blog</loc>
-        <lastmod>2025-02-11</lastmod>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
-    <!-- Статья: Как утеплить пол над холодным подвалом с помощью PIR-плит -->
+    <!-- Статья: Утепление пола над холодным подвалом -->
     <url>
-        <loc>https://pir-planet.ru/article/insulating-floor-over-cold-basement</loc>
-        <lastmod>2025-02-11</lastmod>
+        <loc>https://pir-planet.ru/uteplenie-pola-nad-podvalom</loc>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Статья: Как правильно утеплить баню или сауну с помощью PIR-плит -->
+    <!-- Статья: Утепление бани -->
     <url>
-        <loc>https://pir-planet.ru/article/how-to-insulate-bath</loc>
-        <lastmod>2025-02-11</lastmod>
+        <loc>https://pir-planet.ru/uteplenie-bani-pir</loc>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Статья: Как утеплить фасад дома под штукатурку с помощью PIR-плит -->
+    <!-- Статья: Утепление бани и сауны -->
     <url>
-        <loc>https://pir-planet.ru/article/insulating-facade</loc>
-        <lastmod>2025-02-11</lastmod>
+        <loc>https://pir-planet.ru/uteplenie-bani-sauny-pir</loc>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Статья: Как утеплить крышу, кровлю и мансарду с помощью PIR-плит -->
+    <!-- Статья: Утепление фасада -->
     <url>
-        <loc>https://pir-planet.ru/article/insulating-roof</loc>
-        <lastmod>2025-02-11</lastmod>
+        <loc>https://pir-planet.ru/uteplenie-fasada-pir</loc>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Статья: Как утеплить мансарду с помощью PIR-плит -->
+    <!-- Статья: Утепление крыши и кровли -->
     <url>
-        <loc>https://pir-planet.ru/article/insulating-mansard</loc>
-        <lastmod>2025-02-11</lastmod>
+        <loc>https://pir-planet.ru/uteplenie-kryshi-pir</loc>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Статья: ККак утеплить балкон или лоджию с помощью PIR-плит -->
+    <!-- Статья: Утепление мансарды -->
     <url>
-        <loc>https://pir-planet.ru/article/insulating-balcony</loc>
-        <lastmod>2025-02-11</lastmod>
+        <loc>https://pir-planet.ru/uteplenie-mansardy-pir</loc>
+        <lastmod>2025-05-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Статья: Преимущества склада PIR -->
+    <url>
+        <loc>https://pir-planet.ru/preimushchestva-sklada-pir</loc>
+        <lastmod>2025-05-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Статья: Утепление складов PIR -->
+    <url>
+        <loc>https://pir-planet.ru/uteplenie-skladov-pir</loc>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -67,7 +83,7 @@
     <!-- Контакты -->
     <url>
         <loc>https://pir-planet.ru/contacts</loc>
-        <lastmod>2025-02-11</lastmod>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -75,24 +91,16 @@
     <!-- Документы -->
     <url>
         <loc>https://pir-planet.ru/documents</loc>
-        <lastmod>2025-02-11</lastmod>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
-    <!-- Галерея -->
+    <!-- Проекты -->
     <url>
         <loc>https://pir-planet.ru/projects</loc>
-        <lastmod>2025-02-11</lastmod>
+        <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <!-- Мини-каталог -->
-    <url>
-        <loc>https://pir-planet.ru/#mini-catalog</loc>
-        <lastmod>2025-02-11</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
     </url>
 </urlset>
