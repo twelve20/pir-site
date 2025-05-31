@@ -160,3 +160,21 @@ function openBuyModal() {
 function closeBuyModal() {
     closeCallModal();
 }
+
+// Функция для открытия модального окна с акцией
+// Дублируем функцию из promo-modal.ejs для доступа на всех страницах
+function openPromoModalManually() {
+    console.log('Ручное открытие акционного модального окна');
+    const modal = document.getElementById('promoModal');
+    if (!modal) {
+        console.error('Модальное окно не найдено');
+        return;
+    }
+    
+    modal.style.display = 'block';
+    
+    // Добавляем класс active для анимации
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+}

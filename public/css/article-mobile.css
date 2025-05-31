@@ -1,0 +1,231 @@
+/* Мобильная адаптация для статей */
+
+@media (max-width: 768px) {
+    /* Общие стили для мобильных устройств */
+    .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .article-content img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    .article-section__text {
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    
+    .article-main {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        padding: 0 5px !important;
+    }
+    
+    /* Заголовки */
+    .article-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .article-section h2 {
+        font-size: 1.2rem !important;
+    }
+    
+    .article-section h3 {
+        font-size: 1rem !important;
+    }
+    
+    /* Основной текст */
+    .article-section p {
+        font-size: 0.9rem !important;
+    }
+    
+    .article-lead {
+        font-size: 0.95rem !important;
+    }
+    
+    /* Таблицы с адаптацией для мобильных */
+    .comparison-table,
+    .economics-table {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 10px !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+    
+    .comparison-table table,
+    .economics-table table {
+        font-size: 0.7rem !important;
+        width: 100% !important;
+        white-space: normal !important;
+    }
+    
+    /* Стили для мобильных карточек, создаваемых JS */
+    .mobile-cards-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        margin-top: 16px !important;
+    }
+    
+    .table-mobile-card {
+        border: 1px solid #e0e0e0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    }
+    
+    .table-mobile-header {
+        background: #f5f5f5 !important;
+        padding: 12px !important;
+        font-weight: 600 !important;
+        border-bottom: 1px solid #e0e0e0 !important;
+    }
+    
+    .table-mobile-row {
+        display: flex !important;
+        padding: 8px 12px !important;
+        border-bottom: 1px solid #f0f0f0 !important;
+    }
+    
+    .table-mobile-row:last-child {
+        border-bottom: none !important;
+    }
+    
+    .table-mobile-label {
+        flex: 0 0 40% !important;
+        font-weight: 500 !important;
+        color: #666 !important;
+    }
+    
+    .table-mobile-value {
+        flex: 0 0 60% !important;
+    }
+    
+    .table-mobile-value.best {
+        color: #0070c0 !important;
+        font-weight: 600 !important;
+    }
+    
+    .comparison-table th,
+    .comparison-table td,
+    .economics-table th,
+    .economics-table td {
+        padding: 4px 6px !important;
+        font-size: 0.65rem !important;
+        white-space: normal !important;
+        hyphens: auto !important;
+    }
+    
+    /* Первая колонка закреплена */
+    .comparison-table th:first-child,
+    .comparison-table td:first-child,
+    .economics-table th:first-child,
+    .economics-table td:first-child {
+        position: sticky !important;
+        left: 0 !important;
+        background: white !important;
+        z-index: 1 !important;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Списки */
+    .article-section li {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Карточки преимуществ */
+    .benefit-item h4 {
+        font-size: 1rem !important;
+    }
+    
+    .benefit-item p {
+        font-size: 0.85rem !important;
+    }
+    
+    /* Шаги */
+    .step-content h4 {
+        font-size: 1rem !important;
+    }
+    
+    .step-content p {
+        font-size: 0.85rem !important;
+    }
+    
+    /* Сетка преимуществ в одну колонку */
+    .benefits-list {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Сетка индустрий в одну колонку */
+    .industries-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Улучшенная адаптация для маленьких экранов */
+    .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    .article-section__text {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+    
+    .article-main {
+        padding: 0 8px !important;
+    }
+    
+    .article-title {
+        font-size: 1.3rem !important;
+    }
+    
+    .article-section h2 {
+        font-size: 1.1rem !important;
+    }
+    
+    .article-section p {
+        font-size: 0.85rem !important;
+    }
+    
+    /* Таблицы для маленьких экранов */
+    .comparison-table,
+    .economics-table {
+        padding: 8px !important;
+        margin-left: -12px !important;
+        margin-right: -12px !important;
+        width: calc(100% + 24px) !important;
+        border-radius: 0 !important;
+    }
+    
+    .comparison-table table,
+    .economics-table table {
+        font-size: 0.6rem !important;
+        width: 100% !important;
+    }
+    
+    .comparison-table th,
+    .comparison-table td,
+    .economics-table th,
+    .economics-table td {
+        padding: 3px 4px !important;
+        font-size: 0.55rem !important;
+        min-width: 70px !important;
+    }
+    
+    .comparison-table th:first-child,
+    .comparison-table td:first-child,
+    .economics-table th:first-child,
+    .economics-table td:first-child {
+        min-width: 90px !important;
+    }
+}

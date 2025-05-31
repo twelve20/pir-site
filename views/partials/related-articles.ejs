@@ -1,0 +1,275 @@
+<section class="related-articles">
+    <div class="related-articles-container">
+        <h2 class="related-articles-title">
+            <i class="fas fa-newspaper"></i>
+            Похожие статьи
+        </h2>
+        
+        <div class="related-articles-grid">
+            <% if (typeof relatedArticles !== 'undefined' && relatedArticles.length > 0) { %>
+                <% relatedArticles.forEach(article => { %>
+                    <article class="related-article-card">
+                        <a href="<%= article.url %>" class="related-article-link">
+                            <div class="related-article-image">
+                                <img src="<%= article.image.src %>" alt="<%= article.image.alt %>" loading="lazy">
+                            </div>
+                            <div class="related-article-content">
+                                <h3 class="related-article-title"><%= article.title %></h3>
+                                <p class="related-article-description"><%= article.description %></p>
+                                <div class="related-article-meta">
+                                    <span class="related-article-date">
+                                        <i class="fas fa-calendar"></i>
+                                        <%= article.date %>
+                                    </span>
+                                    <span class="related-article-time">
+                                        <i class="fas fa-clock"></i>
+                                        <%= article.readTime %>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                <% }) %>
+            <% } else { %>
+                <!-- Статичные похожие статьи по умолчанию -->
+                <article class="related-article-card">
+                    <a href="/uteplenie-pola-nad-podvalom" class="related-article-link">
+                        <div class="related-article-image">
+                            <img src="/images/blog1.jpg" alt="Утепление пола над холодным подвалом PIR-плитами" loading="lazy">
+                        </div>
+                        <div class="related-article-content">
+                            <h3 class="related-article-title">Как утеплить пол над холодным подвалом с помощью PIR-плит</h3>
+                            <p class="related-article-description">Узнайте, как эффективно утеплить пол над холодным подвалом с помощью PIR-плит. Преимущества материала: влагостойкость, огнестойкость, экологичность.</p>
+                            <div class="related-article-meta">
+                                <span class="related-article-date">
+                                    <i class="fas fa-calendar"></i>
+                                    2 января 2025
+                                </span>
+                                <span class="related-article-time">
+                                    <i class="fas fa-clock"></i>
+                                    4 минуты
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="related-article-card">
+                    <a href="/uteplenie-fasada-pir" class="related-article-link">
+                        <div class="related-article-image">
+                            <img src="/images/blog3.jpg" alt="Утепление фасада дома PIR-плитами" loading="lazy">
+                        </div>
+                        <div class="related-article-content">
+                            <h3 class="related-article-title">Утепление фасада дома под штукатурку с помощью PIR-плит</h3>
+                            <p class="related-article-description">Узнайте, как правильно утеплить фасад дома под штукатурку с помощью PIR-плит. Преимущества материала: влагостойкость, долговечность, экологичность.</p>
+                            <div class="related-article-meta">
+                                <span class="related-article-date">
+                                    <i class="fas fa-calendar"></i>
+                                    17 января 2025
+                                </span>
+                                <span class="related-article-time">
+                                    <i class="fas fa-clock"></i>
+                                    5 минут
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="related-article-card">
+                    <a href="/uteplenie-kryshi-pir" class="related-article-link">
+                        <div class="related-article-image">
+                            <img src="/images/blog4.jpg" alt="Утепление крыши PIR-плитами" loading="lazy">
+                        </div>
+                        <div class="related-article-content">
+                            <h3 class="related-article-title">Как утеплить крышу, кровлю и мансарду с помощью PIR-плит</h3>
+                            <p class="related-article-description">Узнайте, почему PIR-плиты – лучший выбор для утепления крыши, кровли и мансарды. Преимущества материала: высокая теплоизоляция, долговечность, влагостойкость.</p>
+                            <div class="related-article-meta">
+                                <span class="related-article-date">
+                                    <i class="fas fa-calendar"></i>
+                                    2 февраля 2025
+                                </span>
+                                <span class="related-article-time">
+                                    <i class="fas fa-clock"></i>
+                                    6 минут
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<style>
+.related-articles {
+    background: #f8f9fa;
+    padding: 60px 0;
+    margin-top: 40px;
+    border-top: 1px solid #e9ecef;
+}
+
+.related-articles-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.related-articles-title {
+    font-size: 1.8rem;
+    color: #1A4C8A;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.related-articles-title i {
+    font-size: 1.5rem;
+}
+
+.related-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.related-article-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.related-article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.related-article-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.related-article-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.related-article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.related-article-card:hover .related-article-image img {
+    transform: scale(1.05);
+}
+
+.related-article-content {
+    padding: 20px;
+}
+
+.related-article-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1A4C8A;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.related-article-description {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.related-article-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.related-article-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.related-article-meta i {
+    font-size: 0.7rem;
+}
+
+@media (max-width: 768px) {
+    .related-articles {
+        padding: 40px 0;
+    }
+    
+    .related-articles-container {
+        padding: 0 15px;
+    }
+    
+    .related-articles-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+    
+    .related-articles-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .related-article-image {
+        height: 160px;
+    }
+    
+    .related-article-content {
+        padding: 15px;
+    }
+    
+    .related-article-title {
+        font-size: 1rem;
+    }
+    
+    .related-article-description {
+        font-size: 0.85rem;
+    }
+    
+    .related-article-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .related-articles-title {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .related-article-image {
+        height: 140px;
+    }
+}
+</style>

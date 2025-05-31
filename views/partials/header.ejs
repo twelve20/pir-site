@@ -10,9 +10,9 @@
             <!-- Основная навигация -->
             <nav class="nav" id="nav">
                 <a href="/" class="nav-item">Главная</a>
+                <a href="/#mini-catalog" class="nav-item">Каталог</a>
                 <a href="/blog" class="nav-item">Статьи</a>
                 <a href="/projects" class="nav-item">Галерея</a>
-                <a href="/documents" class="nav-item">Документы</a>
                 <a href="/#testimonials" class="nav-item">Отзывы</a>
                 <a href="/contacts" class="nav-item">Контакты</a>
                 <a href="#" onclick="openPromoModalManually(); return false;" class="nav-item nav-item-promo">Акция!</a>
@@ -35,9 +35,9 @@
         <!-- Мобильное меню -->
         <div class="mobile-menu" id="mobileMenu">
             <a href="/" class="mobile-item">Главная</a>
+            <a href="/#mini-catalog" class="mobile-item">Каталог</a>
             <a href="/blog" class="mobile-item">Статьи</a>
             <a href="/projects" class="mobile-item">Галерея</a>
-            <a href="/documents" class="mobile-item">Документы</a>
             <a href="/#testimonials" class="mobile-item">Отзывы</a>
             <a href="/contacts" class="mobile-item">Контакты</a>
             <a href="#" onclick="openPromoModalManually(); return false;" class="mobile-item mobile-item-promo">Акция!</a>
@@ -67,10 +67,17 @@
         .header {
             background: #fff;
             border-bottom: 1px solid #e5e5e5;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        body {
+            padding-top: 65px; /* Компенсация для фиксированной шапки */
         }
 
         .header-content {

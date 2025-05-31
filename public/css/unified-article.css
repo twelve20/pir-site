@@ -1,0 +1,430 @@
+/* Общие стили для статей */
+.unified-article {
+    background-color: #F5F5F5;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Hero секция */
+.unified-hero {
+    padding: 4rem 0;
+    background-color: #F5F5F5;
+    text-align: center;
+}
+
+.unified-hero__content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.unified-hero__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #2A5CAA;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.unified-hero__title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 2.5rem;
+    color: #2A5CAA;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.unified-hero__subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+.unified-hero__stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.unified-stat-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 120px;
+}
+
+.unified-stat-card__number {
+    display: block;
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.8rem;
+    color: #FF6B35;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.unified-stat-card__text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Основной контент */
+.unified-content {
+    padding: 4rem 0;
+    background-color: white;
+}
+
+.unified-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.unified-main {
+    background-color: white;
+}
+
+/* Секции */
+.unified-section {
+    margin-bottom: 3rem;
+}
+
+.unified-section-title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 2rem;
+    color: #2A5CAA;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.unified-highlight {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+    padding: 1.5rem;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    border-left: 4px solid #2A5CAA;
+    margin-bottom: 2rem;
+}
+
+.unified-section p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Преимущества */
+.unified-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.unified-benefit {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.unified-benefit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.unified-benefit-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #2A5CAA;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.unified-benefit-title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.2rem;
+    color: #2A5CAA;
+    margin-bottom: 0.5rem;
+}
+
+.unified-benefit-text {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Пошаговая инструкция */
+.unified-steps {
+    margin-top: 2rem;
+}
+
+.unified-step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.unified-step-number {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #FF6B35;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.unified-step-content h4 {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.3rem;
+    color: #2A5CAA;
+    margin-bottom: 0.5rem;
+}
+
+.unified-step-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* CTA блок */
+.unified-cta {
+    background-color: #F5F5F5;
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.unified-cta-title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 2rem;
+    color: #2A5CAA;
+    margin-bottom: 1rem;
+}
+
+.unified-cta-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.unified-cta-btn {
+    background-color: #FF6B35;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.unified-cta-btn:hover {
+    background-color: #E65C2B;
+    transform: scale(1.05);
+}
+
+/* Сайдбар */
+.unified-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.unified-widget {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.unified-widget-title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 1.3rem;
+    color: #2A5CAA;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.unified-widget-text {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.unified-widget-btn {
+    background-color: #2A5CAA;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
+
+.unified-widget-btn:hover {
+    background-color: #1A4C8A;
+    transform: translateY(-2px);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .unified-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .unified-hero__stats {
+        gap: 1.5rem;
+    }
+    
+    .unified-benefits {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .unified-hero {
+        padding: 3rem 0;
+    }
+    
+    .unified-hero__title {
+        font-size: 2rem;
+    }
+    
+    .unified-hero__subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .unified-hero__stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .unified-stat-card {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .unified-layout {
+        padding: 0 1rem;
+        gap: 2rem;
+    }
+    
+    .unified-section-title {
+        font-size: 1.5rem;
+    }
+    
+    .unified-benefits {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .unified-step {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .unified-step-number {
+        align-self: flex-start;
+    }
+    
+    .unified-cta {
+        padding: 2rem;
+    }
+    
+    .unified-cta-title {
+        font-size: 1.5rem;
+    }
+    
+    .unified-widget {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .unified-hero {
+        padding: 2rem 0;
+    }
+    
+    .unified-hero__title {
+        font-size: 1.5rem;
+    }
+    
+    .unified-hero__subtitle {
+        font-size: 1rem;
+    }
+    
+    .unified-layout {
+        padding: 0 0.5rem;
+    }
+    
+    .unified-highlight {
+        padding: 1rem;
+    }
+    
+    .unified-benefit {
+        padding: 1rem;
+    }
+    
+    .unified-benefit-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .unified-cta {
+        padding: 1.5rem;
+    }
+    
+    .unified-cta-title {
+        font-size: 1.3rem;
+    }
+    
+    .unified-widget {
+        padding: 1rem;
+    }
+}

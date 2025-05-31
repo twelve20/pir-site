@@ -44,14 +44,182 @@
     <!-- Главный заголовок -->
     <section id="projects-hero" class="projects-hero">
         <div class="container">
-            <h1 class="projects-hero__title">Наши проекты: утепление саун, бань и домов PIR-плитами</h1>
-            <p class="projects-hero__subtitle">Реальные объекты с гарантией качества.</p>
+            <div class="projects-hero__content">
+                <h1 class="projects-hero__title">Наши проекты: утепление саун, бань и домов PIR-плитами</h1>
+                <div class="projects-hero__divider"></div>
+                <p class="projects-hero__subtitle">Реальные объекты с гарантией качества и проверенными результатами</p>
+            </div>
         </div>
     </section>
 
     <%- include('partials/projects-grid') %>
 
+    <!-- CTA секция -->
+    <section class="projects-cta">
+        <div class="container">
+            <div class="projects-cta__content">
+                <div class="projects-cta__text">
+                    <h3>Хотите увидеть свой проект в нашей галерее?</h3>
+                    <p>Закажите консультацию и получите индивидуальное решение для утепления</p>
+                </div>
+                <button class="btn btn--orange" onclick="openBuyModal()">
+                    <i class="fas fa-phone"></i>
+                    Заказать консультацию
+                </button>
+            </div>
+        </div>
+    </section>
+
     <%- include('partials/footer') %>
+    <%- include('partials/promo-modal') %>
+
+    <style>
+        .projects-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+            padding: 140px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 1200px;
+            height: 300px;
+            background: radial-gradient(ellipse at center, rgba(0, 112, 192, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .projects-hero__content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .projects-hero__title {
+            font-size: 52px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .projects-hero__divider {
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #0070c0, #ff6b35);
+            margin: 0 auto 20px;
+            border-radius: 2px;
+        }
+
+        .projects-hero__subtitle {
+            font-size: 22px;
+            color: #666;
+            line-height: 1.4;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .projects-cta {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 0;
+        }
+
+        .projects-cta__content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 112, 192, 0.1);
+        }
+
+        .projects-cta__text h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .projects-cta__text p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .projects-cta .btn {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            padding: 18px 32px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .projects-hero {
+                padding: 120px 0 30px;
+            }
+
+            .projects-hero__content {
+                padding: 0 20px;
+            }
+
+            .projects-hero__title {
+                font-size: 36px;
+                line-height: 1.2;
+            }
+
+            .projects-hero__divider {
+                width: 80px;
+            }
+
+            .projects-hero__subtitle {
+                font-size: 18px;
+            }
+
+            .projects-cta {
+                padding: 60px 0;
+            }
+
+            .projects-cta__content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+                margin: 0 20px;
+                padding: 40px 30px;
+            }
+
+            .projects-cta__text h3 {
+                font-size: 24px;
+            }
+
+            .projects-cta__text p {
+                font-size: 16px;
+            }
+
+            .projects-cta .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 
     <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>

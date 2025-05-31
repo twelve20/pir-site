@@ -9,8 +9,10 @@
         content="Всё о PIR плитах: свойства, сферы применения, преимущества перед другими утеплителями. Где купить теплоизоляционные PIR плиты для кровли, стен, пола, балконов и саун? Огнестойкие, влагостойкие и экологичные плиты от производителя с доставкой по РФ. Акции и скидки до 30%!!">
     <meta name="keywords"
         content="PIR плиты, пир плиты, теплоизоляционные PIR плиты, купить PIR плиты, огнестойкие PIR плиты, влагостойкие ПИР плиты, PIR плиты для кровли, PIR плиты для стен, PIR плиты для пола, PIR плиты для балкона, PIR плиты для сауны, PIR плиты Pirro, плиты ПИР Технониколь, экологичные PIR плиты, энергоэффективные плиты ПИР, PIR плиты цена, PIR плиты с доставкой, теплоизоляционные плиты купить, PIR плиты оптом, PIR плиты для лоджий.">
-        <link rel="icon" href="https://pir-planet.ru/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="https://pir-planet.ru/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
@@ -38,12 +40,17 @@
     <!-- Подключение шапки -->
     <%- include('partials/header') %>
 
-        <!-- Основной контент -->
+    <!-- Основной контент -->
     <main>
-        <section class="articles-hero">
+        <section class="blog-header">
             <div class="container">
-                <h1 class="articles-hero__title">Блог</h1>
-                <p class="articles-hero__subtitle">Полезные статьи о теплоизоляции и утеплении.</p>
+                <div class="blog-header__content">
+                    <h1 class="blog-header__title">Полезные статьи о теплоизоляции</h1>
+                    <div class="blog-header__divider"></div>
+                    <p class="blog-header__subtitle">
+                        Экспертные материалы для эффективного утепления вашего дома
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -53,6 +60,67 @@
 
     <!-- Подключение футера -->
     <%- include('partials/footer') %>
+    <%- include('partials/promo-modal') %>
+
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+
+        .blog-header__content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-header__title {
+            font-size: 52px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .blog-header__divider {
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #0070c0, #ff6b35);
+            margin: 0 auto 20px;
+            border-radius: 2px;
+        }
+
+        .blog-header__subtitle {
+            font-size: 22px;
+            color: #666;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .blog-header {
+                padding: 120px 0 60px;
+            }
+
+            .blog-header__content {
+                padding: 0 20px;
+            }
+
+            .blog-header__title {
+                font-size: 36px;
+                line-height: 1.2;
+            }
+
+            .blog-header__divider {
+                width: 80px;
+            }
+
+            .blog-header__subtitle {
+                font-size: 18px;
+            }
+        }
+    </style>
 
     <script src="/js/script.js"></script>
 </body>

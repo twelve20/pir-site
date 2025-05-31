@@ -6,7 +6,6 @@ const axios = require('axios'); // Для отправки HTTP-запросов
 const { specialProducts, regularProducts, installationProducts } = require('./data/products');
 const { featuredProjects, allProjects } = require('./data/projects');
 const { documents, allDocumentsLink } = require('./data/documents');
-const blogPosts = require('./data/blog-posts'); // Переименовано в blogPosts
 const warehouse = require('./data/warehouse'); // Данные о складе
 
 const app = express();
@@ -25,8 +24,6 @@ app.set('views', path.join(__dirname, 'views'));
 const TELEGRAM_BOT_TOKEN = '7782157467:AAGFxw4zsg8y5jV5Hg6TJZajiq5iR0kD660'; // Замените на ваш токен
 const TELEGRAM_CHAT_ID = '-4667528349'; // Замените на ваш chat_id
 
-
-
 // Роутинг
 app.get('/', (req, res) => {
     res.render('index', {
@@ -38,19 +35,66 @@ app.get('/', (req, res) => {
 });
 
 app.get('/blog', (req, res) => {
-    res.render('blog', { articles: blogPosts }); // Передаем данные о статьях (переименовано в blogPosts)
-});
-
-// Роутинг для отдельных статей
-app.get('/article/:id', (req, res) => {
-    const articleId = req.params.id; // Получаем ID статьи из URL
-    const article = blogPosts.find(a => a.id === articleId); // Находим статью по ID
-
-    if (article) {
-        res.render('article', { article }); // Передаем данные о статье
-    } else {
-        res.status(404).render('404'); // Если статья не найдена, показываем страницу 404
-    }
+    // Статические данные для блога
+    const articles = [
+        {
+            title: 'Как утеплить пол над холодным подвалом с помощью PIR-плит: инструкция и преимущества',
+            description: 'Узнайте, как эффективно утеплить пол над холодным подвалом с помощью PIR-плит. Преимущества материала: влагостойкость, огнестойкость, экологичность.',
+            date: '2 января 2025',
+            readTime: '4 минуты',
+            image: { src: '/images/blog1.jpg', alt: 'Утепление пола над холодным подвалом PIR-плитами' },
+            url: '/uteplenie-pola-nad-podvalom'
+        },
+        {
+            title: 'Утепление бани и сауны PIR-плитами: полное руководство от экспертов',
+            description: 'Как правильно утеплить баню и сауну PIR-плитами. Технология монтажа в условиях высоких температур и влажности. Экспертное руководство!',
+            date: '30 мая 2025',
+            readTime: '7 минут',
+            image: { src: '/images/sauna.jpg', alt: 'Утепление бани и сауны PIR-плитами' },
+            url: '/uteplenie-bani-sauny-pir'
+        },
+        {
+            title: 'Утепление фасада дома под штукатурку с помощью PIR-плит: инструкция и преимущества',
+            description: 'Узнайте, как правильно утеплить фасад дома под штукатурку с помощью PIR-плит. Преимущества материала: влагостойкость, долговечность, экологичность.',
+            date: '17 января 2025',
+            readTime: '5 минут',
+            image: { src: '/images/blog3.jpg', alt: 'Утепление фасада дома PIR-плитами' },
+            url: '/uteplenie-fasada-pir'
+        },
+        {
+            title: 'Как утеплить крышу, кровлю и мансарду с помощью PIR-плит: преимущества и инструкция',
+            description: 'Узнайте, почему PIR-плиты – лучший выбор для утепления крыши, кровли и мансарды. Преимущества материала: высокая теплоизоляция, долговечность, влагостойкость.',
+            date: '2 февраля 2025',
+            readTime: '6 минут',
+            image: { src: '/images/blog4.jpg', alt: 'Утепление крыши PIR-плитами' },
+            url: '/uteplenie-kryshi-pir'
+        },
+        {
+            title: 'Как утеплить мансарду с помощью PIR-плит: полное руководство от экспертов',
+            description: 'Пошаговая инструкция по утеплению мансарды PIR-плитами. Схемы утепления, расчет материалов, практические советы. Читайте экспертное руководство!',
+            date: '30 мая 2025',
+            readTime: '8 минут',
+            image: { src: '/images/blog5.jpg', alt: 'Утепление мансарды PIR-плитами' },
+            url: '/uteplenie-mansardy-pir'
+        },
+        {
+            title: 'Преимущества утепления складов и промышленных объектов PIR-плитами',
+            description: 'Узнайте о преимуществах утепления складов и промышленных объектов с помощью PIR-плит. Экономия до 60% на отоплении, быстрая окупаемость, долговечность.',
+            date: '15 января 2025',
+            readTime: '7 минут',
+            image: { src: '/images/warehouse-map1.jpg', alt: 'Утепление складов PIR-плитами' },
+            url: '/uteplenie-skladov-pir'
+        },
+        {
+            title: 'Преимущества покупки PIR-плит с нашего склада: быстрая доставка и гарантия качества',
+            description: 'Узнайте о преимуществах покупки PIR-плит с нашего склада. Быстрая доставка по Москве и области, гарантия качества, конкурентные цены.',
+            date: '15 января 2025',
+            readTime: '3 минуты',
+            image: { src: '/images/blog6.jpg', alt: 'Склад PIR-плит' },
+            url: '/preimushchestva-sklada-pir'
+        }
+    ];
+    res.render('blog', { articles });
 });
 
 app.get('/documents', (req, res) => {
@@ -63,6 +107,39 @@ app.get('/projects', (req, res) => {
 
 app.get('/contacts', (req, res) => {
     res.render('contacts', { warehouse });
+});
+
+// Роуты для отдельных статей
+app.get('/uteplenie-pola-nad-podvalom', (req, res) => {
+    res.render('floor-insulation-article');
+});
+
+app.get('/uteplenie-bani-pir', (req, res) => {
+    res.render('bath-insulation-article');
+});
+
+app.get('/uteplenie-bani-sauny-pir', (req, res) => {
+    res.render('sauna-insulation-article');
+});
+
+app.get('/uteplenie-fasada-pir', (req, res) => {
+    res.render('facade-insulation-article');
+});
+
+app.get('/uteplenie-kryshi-pir', (req, res) => {
+    res.render('roof-insulation-article');
+});
+
+app.get('/uteplenie-mansardy-pir', (req, res) => {
+    res.render('mansard-insulation-article');
+});
+
+app.get('/preimushchestva-sklada-pir', (req, res) => {
+    res.render('warehouse-advantages-article');
+});
+
+app.get('/uteplenie-skladov-pir', (req, res) => {
+    res.render('warehouse-advantages-article');
 });
 
 // API endpoint для получения данных о продуктах для калькулятора
@@ -206,7 +283,6 @@ app.post('/submit-cta-form', async (req, res) => {
 app.use((req, res) => {
     res.status(404).render('404');
 });
-
 
 // Запуск сервера
 app.listen(PORT, () => {

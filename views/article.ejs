@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://pir-planet.ru/favicon.svg" type="image/svg+xml">
-    <title>
-        <%= article.title %>
-    </title>
-    <meta name="keywords"
-        content=<%= article.keywords %>>
-    <meta name="description" 
-    content=<%=article.description %>>
+    <title><%= article.title %></title>
+    <meta name="keywords" content="<%= article.keywords %>">
+    <meta name="description" content="<%= article.description %>">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/article-mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
@@ -40,148 +39,888 @@
     <!-- Подключение шапки -->
     <%- include('partials/header') %>
 
-        <!-- Основной контент -->
-        <main>
-            <!-- Шапка статьи -->
-            <section class="article-header">
-                <div class="container">
-                    <h1 class="article-header__title">
-                        <%= article.title %>
-                    </h1>
-                    <div class="article-header__meta">
-                        <span class="article-header__date">
-                            <%= article.date %>
-                        </span>
-                        <span class="article-header__read-time">
-                            <%= article.readTime %>
-                        </span>
-                    </div>
-                    <p class="article-header__description"><%- article.intro %></p>
-                    <!-- Изображение в шапке статьи -->
-                    <% if (article.image) { %>
-                        <div class="article-header__image">
-                            <img src="<%= article.image.src %>" alt="<%= article.image.alt %>" class="article-image">
-                        </div>
-                        <% } %>
-                            <div class="article-header__badge">Проверено экспертами</div>
+    <!-- Основной контент -->
+    <main>
+        <!-- Шапка статьи -->
+        <section class="article-header">
+            <div class="container">
+                <div class="article-header__breadcrumbs">
+                    <a href="/" class="breadcrumb-link">Главная</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="/blog" class="breadcrumb-link">Блог</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span class="breadcrumb-current">Статья</span>
                 </div>
-            </section>
 
-            <!-- Основной контент статьи -->
-            <section class="article-content">
-                <div class="container">
-                    <% article.sections.forEach(section=> { %>
-                        <div class="article-section">
-                            <h2 class="article-section__title">
-                                <%= section.title %>
-                            </h2>
-                            <div class="article-section__text">
-                                <%- section.text %>
-                            </div>
+                <div class="article-header__content">
+                    <div class="article-header__badge">
+                        <i class="fas fa-shield-check"></i>
+                        <span>Проверено экспертами</span>
+                    </div>
 
-                            <!-- Визуальные элементы -->
-                            <% if (section.image) { %>
-                                <div class="article-section__image">
-                                    <img src="<%= section.image.src %>" alt="<%= section.image.alt %>"
-                                        class="article-card__image">
-                                    <p class="article-section__caption">
-                                        <%= section.image.caption %>
-                                    </p>
+                    <h1 class="article-header__title"><%= article.title %></h1>
+                    
+                    <div class="article-header__meta">
+                        <div class="meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span><%= article.date %></span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span><%= article.readTime %></span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-eye"></i>
+                            <span><%= Math.floor(Math.random() * 500) + 100 %> просмотров</span>
+                        </div>
+                    </div>
+
+                    <p class="article-header__description"><%- article.intro %></p>
+                </div>
+
+                <!-- Изображение в шапке статьи -->
+                <% if (article.image) { %>
+                    <div class="article-header__image">
+                        <img src="<%= article.image.src %>" alt="<%= article.image.alt %>" class="article-image">
+                        <div class="article-header__image-overlay"></div>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+
+        <!-- Основной контент статьи -->
+        <section class="article-content">
+            <div class="container">
+                <div class="article-layout">
+                    <div class="article-main">
+                        <% article.sections.forEach((section, index) => { %>
+                            <div class="article-section" data-section="<%= index %>">
+                                <h2 class="article-section__title">
+                                    <span class="section-number"><%= index + 1 %></span>
+                                    <%= section.title %>
+                                </h2>
+                                <div class="article-section__text">
+                                    <%- section.text %>
                                 </div>
+
+                                <!-- Визуальные элементы -->
+                                <% if (section.image) { %>
+                                    <div class="article-section__image">
+                                        <img src="<%= section.image.src %>" alt="<%= section.image.alt %>" class="section-image">
+                                        <p class="article-section__caption"><%= section.image.caption %></p>
+                                    </div>
                                 <% } %>
 
-                                    <!-- Инфографика -->
-                                    <% if (section.infographic) { %>
-                                        <div class="article-section__infographic">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Критерий</th>
-                                                        <th>PIR-плиты</th>
-                                                        <th>Минвата</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Цена</td>
-                                                        <td>
-                                                            <%= section.infographic.price.pir %>
-                                                        </td>
-                                                        <td>
-                                                            <%= section.infographic.price.minvata %>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Срок службы</td>
-                                                        <td>
-                                                            <%= section.infographic.lifespan.pir %>
-                                                        </td>
-                                                        <td>
-                                                            <%= section.infographic.lifespan.minvata %>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Огнестойкость</td>
-                                                        <td>
-                                                            <%= section.infographic.fireResistance.pir %>
-                                                        </td>
-                                                        <td>
-                                                            <%= section.infographic.fireResistance.minvata %>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <% } %>
+                                <!-- Инфографика -->
+                                <% if (section.infographic) { %>
+                                    <div class="article-section__infographic">
+                                        <h4>Сравнение характеристик</h4>
+                                        <table class="comparison-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Критерий</th>
+                                                    <th>PIR-плиты</th>
+                                                    <th>Минвата</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Цена</td>
+                                                    <td class="advantage"><%= section.infographic.price.pir %></td>
+                                                    <td><%= section.infographic.price.minvata %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Срок службы</td>
+                                                    <td class="advantage"><%= section.infographic.lifespan.pir %></td>
+                                                    <td><%= section.infographic.lifespan.minvata %></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Огнестойкость</td>
+                                                    <td class="advantage"><%= section.infographic.fireResistance.pir %></td>
+                                                    <td><%= section.infographic.fireResistance.minvata %></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <% } %>
 
-                                            <!-- Советы -->
-                                            <% if (section.tips) { %>
-                                                <div class="article-section__tips">
-                                                    <% section.tips.forEach(tip=> { %>
-                                                        <div class="tip">
-                                                            <span class="tip__icon">💡</span>
-                                                            <p class="tip__text">
-                                                                <%= tip %>
-                                                            </p>
-                                                        </div>
-                                                        <% }) %>
+                                <!-- Советы -->
+                                <% if (section.tips) { %>
+                                    <div class="article-section__tips">
+                                        <h4><i class="fas fa-lightbulb"></i> Полезные советы</h4>
+                                        <div class="tips-grid">
+                                            <% section.tips.forEach(tip => { %>
+                                                <div class="tip">
+                                                    <div class="tip__icon">
+                                                        <i class="fas fa-check-circle"></i>
+                                                    </div>
+                                                    <p class="tip__text"><%= tip %></p>
                                                 </div>
-                                                <% } %>
-                        </div>
+                                            <% }) %>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
                         <% }) %>
-                </div>
-            </section>
 
-            <!-- Заключение -->
-            <section class="article-conclusion">
-                <div class="container">
-                    <h3>Заключение</h3>
-                    <ul>
-                        <% article.conclusion.forEach(point=> { %>
-                            <li>
-                                <%= point %>
-                            </li>
-                            <% }) %>
-                    </ul>
-                    <a href="/contacts" class="btn btn--orange">Заказать консультацию</a>
-                </div>
-            </section>
-        </main>
+                        <!-- Заключение -->
+                        <section class="article-conclusion">
+                            <div class="conclusion-header">
+                                <i class="fas fa-check-double"></i>
+                                <h3>Заключение</h3>
+                            </div>
+                            <ul class="conclusion-list">
+                                <% article.conclusion.forEach(point => { %>
+                                    <li class="conclusion-item">
+                                        <i class="fas fa-arrow-right"></i>
+                                        <span><%= point %></span>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                            <div class="conclusion-cta">
+                                <h4>Готовы сделать ваш дом теплее?</h4>
+                                <p>Получите персональную консультацию и расчет стоимости PIR-плит</p>
+                                <a href="/contacts" class="btn btn--orange btn--large">
+                                    <i class="fas fa-phone"></i>
+                                    Заказать консультацию
+                                </a>
+                            </div>
+                        </section>
+                    </div>
 
-        <!-- Подвал статьи -->
-        <footer class="article-footer">
-            <div class="container">
-                <div class="article-footer__links">
-                    <a href="/blog">Вернуться в блог</a>
-                    <a href="/">Главная</a>
+                    <!-- Сайдбар -->
+                    <aside class="article-sidebar">
+                        <div class="sidebar-widget">
+                            <h4 class="widget-title">Содержание</h4>
+                            <nav class="article-toc">
+                                <% article.sections.forEach((section, index) => { %>
+                                    <a href="#section-<%= index %>" class="toc-link" data-section="<%= index %>">
+                                        <span class="toc-number"><%= index + 1 %></span>
+                                        <span class="toc-title"><%= section.title %></span>
+                                    </a>
+                                <% }) %>
+                            </nav>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h4 class="widget-title">Нужна консультация?</h4>
+                            <div class="consultation-card">
+                                <div class="consultation-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <h5>Бесплатная консультация</h5>
+                                <p>Наши эксперты помогут выбрать оптимальное решение для вашего проекта</p>
+                                <button class="btn btn--outline btn--small" onclick="openBuyModal()">
+                                    Получить консультацию
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h4 class="widget-title">Поделиться</h4>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn share-btn--telegram" title="Поделиться в Telegram">
+                                    <i class="fab fa-telegram-plane"></i>
+                                </a>
+                                <a href="#" class="share-btn share-btn--whatsapp" title="Поделиться в WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="#" class="share-btn share-btn--vk" title="Поделиться ВКонтакте">
+                                    <i class="fab fa-vk"></i>
+                                </a>
+                                <a href="#" class="share-btn share-btn--copy" title="Скопировать ссылку">
+                                    <i class="fas fa-link"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </aside>
                 </div>
             </div>
-        </footer>
+        </section>
 
-        <!-- Подключение футера -->
-        <%- include('partials/footer') %>
+        <!-- Навигация между статьями -->
+        <section class="article-navigation">
+            <div class="container">
+                <div class="article-nav">
+                    <a href="/blog" class="nav-link nav-link--back">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Вернуться в блог</span>
+                    </a>
+                    <a href="/" class="nav-link nav-link--home">
+                        <i class="fas fa-home"></i>
+                        <span>На главную</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-            <script src="/js/script.js"></script>
-</body>
+    <!-- Подключение футера -->
+    <%- include('partials/footer') %>
 
-</html>
+    <!-- Скрипт для адаптации таблиц на мобильных устройствах -->
+    <script src="/js/mobile-tables.js"></script>
+
+    <style>
+        .article-header {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+            padding: 140px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(0, 112, 192, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .article-header__breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+
+        .breadcrumb-link {
+            color: #0070c0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-link:hover {
+            color: #005aa0;
+        }
+
+        .article-header__breadcrumbs i {
+            color: #ccc;
+            font-size: 12px;
+        }
+
+        .breadcrumb-current {
+            color: #888;
+            font-weight: 500;
+        }
+
+        .article-header__content {
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .article-header__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(0, 112, 192, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            color: #0070c0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 112, 192, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(0, 112, 192, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(0, 112, 192, 0);
+            }
+        }
+
+        .article-header__title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .article-header__meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .meta-item i {
+            color: #0070c0;
+        }
+
+        .article-header__description {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #555;
+            font-weight: 400;
+        }
+
+        .article-header__image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .article-header__image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.2) 100%);
+        }
+
+        .article-content {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .article-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .article-main {
+            max-width: none;
+        }
+
+        .article-section {
+            margin-bottom: 60px;
+            scroll-margin-top: 120px;
+        }
+
+        .article-section__title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            line-height: 1.3;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0070c0 0%, #ff6b35 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .article-section__text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 32px;
+        }
+
+        .article-section__text h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 32px 0 16px;
+        }
+
+        .article-section__text p {
+            margin-bottom: 20px;
+        }
+
+        .article-section__text ul {
+            margin: 20px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .article-section__text li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .article-section__text li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            background: #0070c0;
+            border-radius: 50%;
+        }
+
+        .article-section__image {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .section-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-section__caption {
+            font-size: 14px;
+            color: #888;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        .article-section__infographic {
+            background: #f8f9fa;
+            padding: 32px;
+            border-radius: 16px;
+            margin: 40px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .article-section__infographic h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #0070c0 0%, #005aa0 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table .advantage {
+            background: rgba(0, 112, 192, 0.05);
+            color: #0070c0;
+            font-weight: 600;
+        }
+
+        .article-section__tips {
+            background: linear-gradient(135deg, rgba(0, 112, 192, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 40px 0;
+            border: 1px solid rgba(0, 112, 192, 0.1);
+        }
+
+        .article-section__tips h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .article-section__tips h4 i {
+            color: #ff6b35;
+            font-size: 22px;
+        }
+
+        .tips-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .tip__icon {
+            color: #28a745;
+            font-size: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .tip__text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+        }
+
+        .article-conclusion {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 60px;
+            border: 1px solid #e9ecef;
+        }
+
+        .conclusion-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .conclusion-header i {
+            font-size: 28px;
+            color: #28a745;
+        }
+
+        .conclusion-header h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .conclusion-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 32px;
+        }
+
+        .conclusion-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .conclusion-item i {
+            color: #0070c0;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .conclusion-cta {
+            background: linear-gradient(135deg, #0070c0 0%, #005aa0 100%);
+            color: white;
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .conclusion-cta h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .conclusion-cta p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .conclusion-cta .btn {
+            background: white;
+            color: #0070c0;
+            border: none;
+        }
+
+        .conclusion-cta .btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .article-sidebar {
+            position: sticky;
+            top: 120px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+
+        .widget-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .article-toc {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .toc-link:hover,
+        .toc-link.active {
+            background: linear-gradient(135deg, rgba(0, 112, 192, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            color: #0070c0;
+        }
+
+        .toc-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #f0f0f0;
+            color: #666;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .toc-link:hover .toc-number,
+        .toc-link.active .toc-number {
+            background: #0070c0;
+            color: white;
+        }
+
+        .consultation-card {
+            text-align: center;
+        }
+
+        .consultation-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0070c0 0%, #ff6b35 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .consultation-card h5 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .consultation-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn--telegram {
+            background: #0088cc;
+        }
+
+        .share-btn--whatsapp {
+            background: #25d366;
+        }
+
+        .share-btn--vk {
+            background: #4680c2;
+        }
+
+        .share-btn--copy {
+            background: #6c757d;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .article-navigation {
+            background: #f8f9fa;
+            padding: 40px 0;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .article-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #0070c0;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn--large {
+            padding: 16px 32px;
+            font-size: 16px;
+        }
+
+        .btn--outline {
+            background: transparent;
+            color: #0070c0;
+            border: 2px solid #0070c0;
+        }
+
+        .btn--outline:hover {
+            background: #0070c0;
+            color: white;
+        }
+
+        .btn--small {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                padding: 120px 0 40px;
+            }
+
+            .article-header__content {
+                padding: 0 20px;
+            }
+
+            .article-header__title {
+                font-size: 32px;
+            }
+
+            .article-header__meta {
+                gap: 16px;
+            }
+
+            .article-header__description {
+                font-size: 18px;
+            }
+
+            .article-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .article-sidebar {
+                position: static;
+                order: 2;
+            }
+
+            .article-section__title {
+                font-size: 24px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .section-number {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .article-nav {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
