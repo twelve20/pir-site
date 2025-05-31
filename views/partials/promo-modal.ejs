@@ -332,11 +332,19 @@
     document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM загружен, инициализация акционного модального окна');
         
-        // Открываем модальное окно через 3 секунды
-        setTimeout(function() {
-            console.log('Открываем акционное модальное окно');
-            openPromoModal();
-        }, 3000);
+        // Проверяем, показывали ли уже модальное окно в этой сессии
+        const promoShown = sessionStorage.getItem('promoModalShown');
+        
+        // Показываем только если еще не показывали и только на главной странице
+        if (!promoShown && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+            // Открываем модальное окно через 3 секунды
+            setTimeout(function() {
+                console.log('Открываем акционное модальное окно');
+                openPromoModal();
+                // Запоминаем, что показали модальное окно
+                sessionStorage.setItem('promoModalShown', 'true');
+            }, 3000);
+        }
         
         // Закрытие модального окна при клике вне его содержимого
         window.addEventListener('click', function(event) {
@@ -359,4 +367,4 @@
         console.log('Ручное открытие акционного модального окна');
         openPromoModal();
     };
-</script> 
+</script>
