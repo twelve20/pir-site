@@ -80,6 +80,14 @@
         <priority>0.8</priority>
     </url>
 
+    <!-- Статья: Утепление балкона и лоджии -->
+    <url>
+        <loc>https://pir-planet.ru/uteplenie-balkona-pir</loc>
+        <lastmod>2025-05-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
     <!-- Контакты -->
     <url>
         <loc>https://pir-planet.ru/contacts</loc>

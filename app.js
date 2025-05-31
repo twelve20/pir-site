@@ -38,6 +38,14 @@ app.get('/blog', (req, res) => {
     // Статические данные для блога
     const articles = [
         {
+            title: 'Утепление балкона и лоджии PIR-плитами: от холодного склада к уютной комнате',
+            description: 'Пошаговое руководство по утеплению балкона PIR-плитами. Превратите холодное помещение в уютную комнату. Инструкция, расчеты, советы экспертов.',
+            date: '31 мая 2025',
+            readTime: '6 минут',
+            image: { src: '/images/blog7.png', alt: 'Утепление балкона PIR-плитами' },
+            url: '/uteplenie-balkona-pir'
+        },
+        {
             title: 'Как утеплить пол над холодным подвалом с помощью PIR-плит: инструкция и преимущества',
             description: 'Узнайте, как эффективно утеплить пол над холодным подвалом с помощью PIR-плит. Преимущества материала: влагостойкость, огнестойкость, экологичность.',
             date: '2 января 2025',
@@ -82,7 +90,7 @@ app.get('/blog', (req, res) => {
             description: 'Узнайте о преимуществах утепления складов и промышленных объектов с помощью PIR-плит. Экономия до 60% на отоплении, быстрая окупаемость, долговечность.',
             date: '15 января 2025',
             readTime: '7 минут',
-            image: { src: '/images/warehouse-map1.jpg', alt: 'Утепление складов PIR-плитами' },
+            image: { src: '/images/warehouse-pir.png', alt: 'Утепление складов PIR-плитами' },
             url: '/uteplenie-skladov-pir'
         },
         {
@@ -140,6 +148,10 @@ app.get('/preimushchestva-sklada-pir', (req, res) => {
 
 app.get('/uteplenie-skladov-pir', (req, res) => {
     res.render('warehouse-advantages-article');
+});
+
+app.get('/uteplenie-balkona-pir', (req, res) => {
+    res.render('balcony-insulation-article');
 });
 
 // API endpoint для получения данных о продуктах для калькулятора

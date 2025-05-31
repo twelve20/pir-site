@@ -1,0 +1,78 @@
+# Список URL для индексирования в поисковых системах
+# Сайт: pir-planet.ru
+# Дата: 31.05.2025
+
+## ПРИОРИТЕТНЫЕ СТРАНИЦЫ (Priority: 1.0-0.9)
+
+# Главная страница
+https://pir-planet.ru/
+
+# Блог (основная страница со статьями)
+https://pir-planet.ru/blog
+
+## ВАЖНЫЕ СТАТЬИ (Priority: 0.8)
+
+# Утепление различных объектов
+https://pir-planet.ru/uteplenie-balkona-pir
+https://pir-planet.ru/uteplenie-pola-nad-podvalom
+https://pir-planet.ru/uteplenie-bani-pir
+https://pir-planet.ru/uteplenie-bani-sauny-pir
+https://pir-planet.ru/uteplenie-fasada-pir
+https://pir-planet.ru/uteplenie-kryshi-pir
+https://pir-planet.ru/uteplenie-mansardy-pir
+
+# Коммерческие объекты
+https://pir-planet.ru/preimushchestva-sklada-pir
+https://pir-planet.ru/uteplenie-skladov-pir
+
+## СЕРВИСНЫЕ СТРАНИЦЫ (Priority: 0.7)
+
+# Информационные страницы
+https://pir-planet.ru/contacts
+https://pir-planet.ru/documents
+https://pir-planet.ru/projects
+
+## ФОРМАТЫ ДЛЯ РАЗЛИЧНЫХ ПОИСКОВЫХ СИСТЕМ
+
+### Google Search Console (по одному URL на строке):
+https://pir-planet.ru/
+https://pir-planet.ru/blog
+https://pir-planet.ru/uteplenie-pola-nad-podvalom
+https://pir-planet.ru/uteplenie-bani-pir
+https://pir-planet.ru/uteplenie-bani-sauny-pir
+https://pir-planet.ru/uteplenie-fasada-pir
+https://pir-planet.ru/uteplenie-kryshi-pir
+https://pir-planet.ru/uteplenie-mansardy-pir
+https://pir-planet.ru/preimushchestva-sklada-pir
+https://pir-planet.ru/uteplenie-skladov-pir
+https://pir-planet.ru/contacts
+https://pir-planet.ru/documents
+https://pir-planet.ru/projects
+
+### Яндекс.Вебмастер (по одному URL на строке):
+https://pir-planet.ru/
+https://pir-planet.ru/blog
+https://pir-planet.ru/uteplenie-pola-nad-podvalom
+https://pir-planet.ru/uteplenie-bani-pir
+https://pir-planet.ru/uteplenie-bani-sauny-pir
+https://pir-planet.ru/uteplenie-fasada-pir
+https://pir-planet.ru/uteplenie-kryshi-pir
+https://pir-planet.ru/uteplenie-mansardy-pir
+https://pir-planet.ru/preimushchestva-sklada-pir
+https://pir-planet.ru/uteplenie-skladov-pir
+https://pir-planet.ru/contacts
+https://pir-planet.ru/documents
+https://pir-planet.ru/projects
+
+## РЕКОМЕНДАЦИИ ПО ИНДЕКСИРОВАНИЮ
+
+1. Начните с приоритетных страниц (главная и блог)
+2. Добавляйте статьи поэтапно - по 3-5 URL в день
+3. Отслеживайте статус индексирования в Search Console
+4. При изменении контента переотправляйте URL на индексирование
+5. Используйте sitemap.xml для автоматической подачи новых страниц
+
+## SITEMAP
+Основной sitemap доступен по адресу: https://pir-planet.ru/sitemap.xml
+
+## ОБЩЕЕ КОЛИЧЕСТВО СТРАНИЦ: 14
