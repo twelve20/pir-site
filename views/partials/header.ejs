@@ -20,6 +20,10 @@
 
             <!-- Контакты и кнопка -->
             <div class="header-right">
+                <a href="/cart" class="header-cart" id="headerCart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </a>
                 <a href="tel:+79639273124" class="header-tel">+7 (963) 927-31-24</a>
                 <button class="header-button" onclick="openCallModal()">Заказать звонок</button>
             </div>
@@ -43,6 +47,10 @@
             <a href="#" onclick="openPromoModalManually(); return false;" class="mobile-item mobile-item-promo">Акция!</a>
             
             <div class="mobile-contact">
+                <a href="/cart" class="mobile-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    Корзина (<span id="mobileCartBadge">0</span>)
+                </a>
                 <a href="tel:+79639273124" class="mobile-tel">+7 (963) 927-31-24</a>
                 <button class="mobile-button" onclick="openCallModal()">Заказать звонок</button>
             </div>
@@ -151,6 +159,52 @@
             flex-shrink: 0;
         }
 
+        /* Корзина */
+        .header-cart {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            color: #0070c0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .header-cart:hover {
+            background: #0070c0;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 112, 192, 0.3);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b35;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .cart-badge.has-items {
+            transform: scale(1);
+        }
+
         .header-tel {
             color: #0070c0;
             text-decoration: none;
@@ -245,6 +299,28 @@
             flex-direction: column;
             gap: 15px;
             align-items: center;
+        }
+
+        .mobile-cart {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #0070c0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 12px 24px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 200px;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-cart:hover {
+            background: #0070c0;
+            color: white;
         }
 
         .mobile-tel {
@@ -408,9 +484,36 @@ function toggleMobileMenu() {
     toggle.classList.toggle('active');
 }
 
-// Функции openCallModal и closeCallModal перенесены в script.js
+// Функция для обновления счетчика корзины
+function updateCartBadge(count) {
+    const badge = document.getElementById('cartBadge');
+    const mobileBadge = document.getElementById('mobileCartBadge');
+    
+    if (badge) {
+        badge.textContent = count;
+        if (count > 0) {
+            badge.classList.add('has-items');
+        } else {
+            badge.classList.remove('has-items');
+        }
+    }
+    
+    if (mobileBadge) {
+        mobileBadge.textContent = count;
+    }
+}
 
-// Функция submitCallForm удалена - обработка формы теперь в script.js
+// Загрузка данных корзины при загрузке страницы
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const response = await fetch('/api/cart');
+        const cart = await response.json();
+        updateCartBadge(cart.count || 0);
+    } catch (error) {
+        console.error('Ошибка загрузки корзины:', error);
+        updateCartBadge(0);
+    }
+});
 
 // Закрытие мобильного меню при клике на ссылку
 document.querySelectorAll('.mobile-item').forEach(item => {

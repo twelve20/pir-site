@@ -29,8 +29,9 @@
                                 <button class="btn-details" onclick="openDetailsModal('<%= product.id %>')">
                                     Подробнее
                                 </button>
-                                <button class="btn-order" onclick="openInstallationModal()">
-                                    Заказать
+                                <button class="btn-cart" onclick="addToCart('<%= product.id %>')" data-product-id="<%= product.id %>">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    В корзину
                                 </button>
                             </div>
                         </div>
@@ -202,7 +203,7 @@
         gap: 8px;
     }
     
-    .btn-details, .btn-order {
+    .btn-details, .btn-cart {
         border: none;
         cursor: pointer;
         font-size: 13px;
@@ -212,6 +213,12 @@
         transition: all 0.3s ease;
         text-align: center;
         min-width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        position: relative;
+        overflow: hidden;
     }
     
     .btn-details {
@@ -220,9 +227,27 @@
         border: 1px solid #e0e0e0;
     }
     
-    .btn-order {
-        background: #0070c0;
+    .btn-cart {
+        background: #ff6b35;
         color: white;
+    }
+    
+    .btn-cart.loading {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+    
+    .btn-cart.added {
+        background: #28a745;
+    }
+    
+    .btn-cart.loading .fas {
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
     
     .btn-details:hover {
@@ -231,10 +256,16 @@
         border-color: #0070c0;
     }
     
-    .btn-order:hover {
-        background: #005a9e;
+    .btn-cart:hover:not(.loading) {
+        background: #e55a2e;
         transform: translateY(-1px);
-        box-shadow: 0 3px 10px rgba(0,112,192,0.3);
+        box-shadow: 0 3px 10px rgba(255,107,53,0.3);
+    }
+    
+    .btn-cart.added:hover {
+        background: #218838;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(40,167,69,0.3);
     }
     
     .installation-cta {
@@ -428,6 +459,67 @@
         const modal = document.getElementById('installationModal');
         if (event.target == modal) {
             modal.style.display = 'none';
+        }
+    }
+    
+    // Функция добавления товара в корзину
+    async function addToCart(productId) {
+        const button = document.querySelector(`button[data-product-id="${productId}"]`);
+        
+        if (button.classList.contains('loading')) {
+            return; // Если уже в процессе добавления
+        }
+        
+        // Состояние загрузки
+        button.classList.add('loading');
+        const originalContent = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner"></i> Добавление...';
+        
+        try {
+            const response = await fetch('/api/cart/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    productId: productId,
+                    quantity: 1
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                // Успешно добавлено
+                button.classList.remove('loading');
+                button.classList.add('added');
+                button.innerHTML = '<i class="fas fa-check"></i> Добавлено';
+                
+                // Обновляем счетчик в шапке
+                if (typeof updateCartBadge === 'function') {
+                    updateCartBadge(result.cart.count);
+                }
+                
+                // Восстанавливаем кнопку через 2 секунды
+                setTimeout(() => {
+                    button.classList.remove('added');
+                    button.innerHTML = originalContent;
+                }, 2000);
+                
+            } else {
+                throw new Error(result.message || 'Ошибка добавления в корзину');
+            }
+        } catch (error) {
+            console.error('Ошибка добавления в корзину:', error);
+            button.classList.remove('loading');
+            button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Ошибка';
+            
+            // Восстанавливаем кнопку через 2 секунды
+            setTimeout(() => {
+                button.innerHTML = originalContent;
+            }, 2000);
+            
+            alert('Не удалось добавить товар в корзину. Попробуйте позже.');
         }
     }
     

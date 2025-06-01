@@ -11,10 +11,45 @@ const warehouse = require('./data/warehouse'); // Данные о складе
 const app = express();
 const PORT = 3000;
 
+// Хранилище корзин в памяти (привязка к IP)
+const carts = {};
+
+// Функция для очистки старых корзин (старше 24 часов)
+const cleanOldCarts = () => {
+    const now = new Date();
+    const dayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    
+    Object.keys(carts).forEach(ip => {
+        if (new Date(carts[ip].lastUpdated) < dayAgo) {
+            delete carts[ip];
+        }
+    });
+};
+
+// Запускаем очистку каждый час
+setInterval(cleanOldCarts, 60 * 60 * 1000);
+
+// Middleware для получения IP адреса
+const getClientIP = (req, res, next) => {
+    req.clientIP = req.headers['x-forwarded-for'] || 
+                   req.connection.remoteAddress || 
+                   req.socket.remoteAddress ||
+                   (req.connection.socket ? req.connection.socket.remoteAddress : null) ||
+                   req.ip;
+    
+    // Обработка IPv6 localhost
+    if (req.clientIP === '::1' || req.clientIP === '::ffff:127.0.0.1') {
+        req.clientIP = '127.0.0.1';
+    }
+    
+    next();
+};
+
 // Настройка middleware
 app.use(express.json()); // Для парсинга JSON
 app.use(express.urlencoded({ extended: true })); // Для парсинга данных из форм
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(getClientIP); // Добавляем middleware для IP
 
 // Настройка EJS как шаблонизатора
 app.set('view engine', 'ejs');
@@ -24,13 +59,160 @@ app.set('views', path.join(__dirname, 'views'));
 const TELEGRAM_BOT_TOKEN = '7782157467:AAGFxw4zsg8y5jV5Hg6TJZajiq5iR0kD660'; // Замените на ваш токен
 const TELEGRAM_CHAT_ID = '-4667528349'; // Замените на ваш chat_id
 
+// Функция для получения информации о товаре по ID
+const getProductById = (productId) => {
+    // Ищем в обычных товарах
+    let product = regularProducts.find(p => p.id === productId);
+    if (product) return { ...product, category: 'regular' };
+    
+    // Ищем в товарах для монтажа
+    product = installationProducts.find(p => p.id === productId);
+    if (product) return { ...product, category: 'installation' };
+    
+    // Ищем в акционных товарах
+    product = specialProducts.find(p => p.id === productId);
+    if (product) return { ...product, category: 'special' };
+    
+    return null;
+};
+
+// API для корзины
+// Получить корзину
+app.get('/api/cart', (req, res) => {
+    const ip = req.clientIP;
+    const cart = carts[ip] || { items: [], total: 0, count: 0 };
+    res.json(cart);
+});
+
+// Добавить товар в корзину
+app.post('/api/cart/add', (req, res) => {
+    const { productId, quantity = 1 } = req.body;
+    const ip = req.clientIP;
+    
+    if (!productId) {
+        return res.status(400).json({ error: 'Product ID is required' });
+    }
+    
+    const product = getProductById(productId);
+    if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+    }
+    
+    // Инициализируем корзину если её нет
+    if (!carts[ip]) {
+        carts[ip] = { items: [], total: 0, count: 0, lastUpdated: new Date() };
+    }
+    
+    // Извлекаем цену из строки
+    const price = parseInt(product.price.replace(/[^\d]/g, ''));
+    
+    // Проверяем, есть ли уже этот товар в корзине
+    const existingItem = carts[ip].items.find(item => item.productId === productId);
+    
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        carts[ip].items.push({
+            productId: productId,
+            title: product.title,
+            price: price,
+            quantity: quantity,
+            image: product.image
+        });
+    }
+    
+    // Пересчитываем итоги
+    carts[ip].total = carts[ip].items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    carts[ip].count = carts[ip].items.reduce((sum, item) => sum + item.quantity, 0);
+    carts[ip].lastUpdated = new Date();
+    
+    res.json({ success: true, cart: carts[ip] });
+});
+
+// Обновить количество товара в корзине
+app.put('/api/cart/update', (req, res) => {
+    const { productId, quantity } = req.body;
+    const ip = req.clientIP;
+    
+    if (!carts[ip] || !productId || quantity < 0) {
+        return res.status(400).json({ error: 'Invalid request' });
+    }
+    
+    const item = carts[ip].items.find(item => item.productId === productId);
+    if (!item) {
+        return res.status(404).json({ error: 'Item not found in cart' });
+    }
+    
+    if (quantity === 0) {
+        // Удаляем товар из корзины
+        carts[ip].items = carts[ip].items.filter(item => item.productId !== productId);
+    } else {
+        item.quantity = quantity;
+    }
+    
+    // Пересчитываем итоги
+    carts[ip].total = carts[ip].items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    carts[ip].count = carts[ip].items.reduce((sum, item) => sum + item.quantity, 0);
+    carts[ip].lastUpdated = new Date();
+    
+    res.json({ success: true, cart: carts[ip] });
+});
+
+// Удалить товар из корзины
+app.delete('/api/cart/remove', (req, res) => {
+    const { productId } = req.body;
+    const ip = req.clientIP;
+    
+    if (!carts[ip] || !productId) {
+        return res.status(400).json({ error: 'Invalid request' });
+    }
+    
+    carts[ip].items = carts[ip].items.filter(item => item.productId !== productId);
+    
+    // Пересчитываем итоги
+    carts[ip].total = carts[ip].items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    carts[ip].count = carts[ip].items.reduce((sum, item) => sum + item.quantity, 0);
+    carts[ip].lastUpdated = new Date();
+    
+    res.json({ success: true, cart: carts[ip] });
+});
+
+// Очистить корзину
+app.post('/api/cart/clear', (req, res) => {
+    const ip = req.clientIP;
+    carts[ip] = { items: [], total: 0, count: 0, lastUpdated: new Date() };
+    res.json({ success: true, cart: carts[ip] });
+});
+
+// Страницы корзины и оформления заказа
+app.get('/cart', (req, res) => {
+    const ip = req.clientIP;
+    const cart = carts[ip] || { items: [], total: 0, count: 0 };
+    res.render('cart', { cart });
+});
+
+app.get('/checkout', (req, res) => {
+    const ip = req.clientIP;
+    const cart = carts[ip] || { items: [], total: 0, count: 0 };
+    
+    if (cart.items.length === 0) {
+        return res.redirect('/cart');
+    }
+    
+    res.render('checkout', { cart });
+});
+
 // Роутинг
 app.get('/', (req, res) => {
+    const ip = req.clientIP;
+    const cart = carts[ip] || { items: [], total: 0, count: 0 };
+    
     res.render('index', {
         specialProducts, // Акционные товары
         regularProducts, // Обычные товары
         installationProducts, // Товары для монтажа
-        projects: featuredProjects // Проекты для главной страницы
+        projects: featuredProjects, // Проекты для главной страницы
+        cart // Передаем корзину
     });
 });
 
@@ -198,6 +380,58 @@ app.get('/api/products', (req, res) => {
             coverage: 10 // м² на баллон
         }
     });
+});
+
+// Роут для оформления заказа из корзины
+app.post('/submit-cart-order', async (req, res) => {
+    const { name, phone, email, comment } = req.body;
+    const ip = req.clientIP;
+    
+    if (!name || !phone || !email) {
+        return res.status(400).json({ message: 'Пожалуйста, заполните все обязательные поля.' });
+    }
+    
+    const cart = carts[ip];
+    if (!cart || cart.items.length === 0) {
+        return res.status(400).json({ message: 'Корзина пуста.' });
+    }
+    
+    // Формируем детализированное сообщение для Telegram
+    let itemsList = cart.items.map(item => 
+        `• ${item.title} × ${item.quantity} шт. = ${(item.price * item.quantity).toLocaleString('ru-RU')}₽`
+    ).join('\n');
+    
+    const telegramMessage = `🛒 НОВЫЙ ЗАКАЗ ИЗ КОРЗИНЫ:
+
+👤 Клиент: ${name}
+📞 Телефон: ${phone}
+📧 Email: ${email}
+
+🛍️ Товары:
+${itemsList}
+
+💰 Итого: ${cart.total.toLocaleString('ru-RU')}₽
+💬 Комментарий: ${comment || 'Нет комментария'}
+📍 IP: ${ip}`;
+
+    try {
+        // Отправляем сообщение в Telegram
+        await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            chat_id: TELEGRAM_CHAT_ID,
+            text: telegramMessage
+        });
+
+        console.log('Заказ из корзины успешно отправлен в Telegram:', { name, phone, email, comment, cart: cart.items });
+
+        // Очищаем корзину после успешного заказа
+        carts[ip] = { items: [], total: 0, count: 0, lastUpdated: new Date() };
+
+        // Отправляем успешный ответ клиенту
+        res.status(200).json({ message: 'Заказ успешно отправлен!' });
+    } catch (error) {
+        console.error('Ошибка при отправке заказа в Telegram:', error.response?.data || error.message);
+        res.status(500).json({ message: 'Не удалось отправить заказ. Попробуйте позже.' });
+    }
 });
 
 // Роут для обработки формы

@@ -249,8 +249,9 @@
     margin-right: 6px;
 }
 
-.product-modal__buy-btn {
-    background-color: #0070c0;
+.product-modal__buy-btn,
+.product-modal__cart-btn {
+    background-color: #ff6b35;
     color: white;
     border: none;
     padding: 12px 25px;
@@ -258,16 +259,46 @@
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.product-modal__buy-btn:hover {
-    background-color: #005ba3;
+.product-modal__buy-btn:hover,
+.product-modal__cart-btn:hover:not(.loading) {
+    background-color: #e55a2e;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(255,107,53,0.3);
 }
 
-.product-modal__buy-btn i {
+.product-modal__cart-btn.loading {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.product-modal__cart-btn.added {
+    background-color: #28a745;
+}
+
+.product-modal__cart-btn.added:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(40,167,69,0.3);
+}
+
+.product-modal__cart-btn.loading .fas {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.product-modal__buy-btn i,
+.product-modal__cart-btn i {
     margin-right: 8px;
 }
 

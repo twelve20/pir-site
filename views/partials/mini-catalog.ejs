@@ -37,8 +37,9 @@
                                 <button class="btn-details" onclick="openDetailsModal('<%= product.id %>')">
                                     Подробнее
                                 </button>
-                                <button class="btn-order" onclick="openOrderModal()">
-                                    Заказать
+                                <button class="btn-cart" onclick="addToCart('<%= product.id %>')" data-product-id="<%= product.id %>">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    В корзину
                                 </button>
                             </div>
                         </div>
@@ -56,21 +57,6 @@
         </div>
     </div>
 </section>
-
-<!-- Модальное окно заказа -->
-<div id="orderModal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close" onclick="closeOrderModal()">&times;</span>
-        <h2>Заказать материал</h2>
-        <form class="order-form">
-            <input type="text" placeholder="Ваше имя" required>
-            <input type="tel" placeholder="Телефон" required>
-            <input type="email" placeholder="Email">
-            <textarea placeholder="Комментарий к заказу"></textarea>
-            <button type="submit">Отправить заказ</button>
-        </form>
-    </div>
-</div>
 
 <style>
     .mini-catalog {
@@ -230,7 +216,7 @@
         gap: 8px;
     }
     
-    .btn-details, .btn-order {
+    .btn-details, .btn-cart {
         border: none;
         cursor: pointer;
         font-size: 13px;
@@ -240,6 +226,12 @@
         transition: all 0.3s ease;
         text-align: center;
         min-width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        position: relative;
+        overflow: hidden;
     }
     
     .btn-details {
@@ -248,9 +240,27 @@
         border: 1px solid #e0e0e0;
     }
     
-    .btn-order {
-        background: #0070c0;
+    .btn-cart {
+        background: #ff6b35;
         color: white;
+    }
+    
+    .btn-cart.loading {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+    
+    .btn-cart.added {
+        background: #28a745;
+    }
+    
+    .btn-cart.loading .fas {
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
     
     .btn-details:hover {
@@ -259,10 +269,16 @@
         border-color: #0070c0;
     }
     
-    .btn-order:hover {
-        background: #005a9e;
+    .btn-cart:hover:not(.loading) {
+        background: #e55a2e;
         transform: translateY(-1px);
-        box-shadow: 0 3px 10px rgba(0,112,192,0.3);
+        box-shadow: 0 3px 10px rgba(255,107,53,0.3);
+    }
+    
+    .btn-cart.added:hover {
+        background: #218838;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(40,167,69,0.3);
     }
     
     .catalog-cta {
@@ -306,93 +322,6 @@
         box-shadow: 0 4px 15px rgba(255,107,53,0.3);
     }
     
-    /* Модальное окно */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.5);
-    }
-    
-    .modal-content {
-        background: white;
-        margin: 10% auto;
-        padding: 30px;
-        border-radius: 12px;
-        width: 90%;
-        max-width: 400px;
-        position: relative;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    }
-    
-    .modal-close {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        font-size: 24px;
-        cursor: pointer;
-        color: #999;
-    }
-    
-    .modal-close:hover {
-        color: #333;
-    }
-    
-    .modal-content h2 {
-        font-size: 24px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 25px;
-        text-align: center;
-    }
-    
-    .order-form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .order-form input,
-    .order-form textarea {
-        padding: 12px 15px;
-        border: 2px solid #e0e0e0;
-        border-radius: 8px;
-        font-size: 14px;
-        transition: border-color 0.3s ease;
-        box-sizing: border-box;
-    }
-    
-    .order-form input:focus,
-    .order-form textarea:focus {
-        outline: none;
-        border-color: #0070c0;
-    }
-    
-    .order-form textarea {
-        resize: vertical;
-        min-height: 80px;
-    }
-    
-    .order-form button {
-        background: #0070c0;
-        color: white;
-        border: none;
-        padding: 15px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
-    
-    .order-form button:hover {
-        background: #005a9e;
-    }
-    
     @media (max-width: 1024px) {
         .catalog-grid {
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -431,69 +360,68 @@
         .catalog-cta h3 {
             font-size: 20px;
         }
-        
-        .modal-content {
-            margin: 20% auto;
-            padding: 25px;
-        }
     }
 </style>
 
 <script>
-    function openOrderModal() {
-        document.getElementById('orderModal').style.display = 'block';
-    }
-    
-    function closeOrderModal() {
-        document.getElementById('orderModal').style.display = 'none';
-    }
-    
-    // Закрытие модального окна при клике вне его
-    window.onclick = function(event) {
-        const modal = document.getElementById('orderModal');
-        if (event.target == modal) {
-            modal.style.display = 'none';
+    // Функция добавления товара в корзину
+    async function addToCart(productId) {
+        const button = document.querySelector(`button[data-product-id="${productId}"]`);
+        
+        if (button.classList.contains('loading')) {
+            return; // Если уже в процессе добавления
         }
-    }
-    
-    // Обработка формы заказа
-    document.addEventListener('DOMContentLoaded', function() {
-        const orderForm = document.querySelector('.order-form');
-        if (orderForm) {
-            orderForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                // Собираем данные из формы
-                const formData = {
-                    name: this.querySelector('input[type="text"]').value,
-                    phone: this.querySelector('input[type="tel"]').value,
-                    email: this.querySelector('input[type="email"]').value,
-                    comment: this.querySelector('textarea').value,
-                    formType: 'order' // Указываем тип формы
-                };
-                
-                try {
-                    // Отправляем данные на сервер
-                    const response = await fetch('/submit-form', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formData)
-                    });
-                    
-                    if (response.ok) {
-                        alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
-                        closeOrderModal();
-                        this.reset();
-                    } else {
-                        alert('Произошла ошибка при отправке заказа. Попробуйте позже.');
-                    }
-                } catch (error) {
-                    console.error('Ошибка:', error);
-                    alert('Не удалось отправить заказ. Попробуйте позже.');
-                }
+        
+        // Состояние загрузки
+        button.classList.add('loading');
+        const originalContent = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner"></i> Добавление...';
+        
+        try {
+            const response = await fetch('/api/cart/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    productId: productId,
+                    quantity: 1
+                })
             });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                // Успешно добавлено
+                button.classList.remove('loading');
+                button.classList.add('added');
+                button.innerHTML = '<i class="fas fa-check"></i> Добавлено';
+                
+                // Обновляем счетчик в шапке
+                if (typeof updateCartBadge === 'function') {
+                    updateCartBadge(result.cart.count);
+                }
+                
+                // Восстанавливаем кнопку через 2 секунды
+                setTimeout(() => {
+                    button.classList.remove('added');
+                    button.innerHTML = originalContent;
+                }, 2000);
+                
+            } else {
+                throw new Error(result.message || 'Ошибка добавления в корзину');
+            }
+        } catch (error) {
+            console.error('Ошибка добавления в корзину:', error);
+            button.classList.remove('loading');
+            button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Ошибка';
+            
+            // Восстанавливаем кнопку через 2 секунды
+            setTimeout(() => {
+                button.innerHTML = originalContent;
+            }, 2000);
+            
+            alert('Не удалось добавить товар в корзину. Попробуйте позже.');
         }
-    });
+    }
 </script>

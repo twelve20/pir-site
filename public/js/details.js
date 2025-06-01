@@ -121,6 +121,9 @@ function openDetailsModal(productId) {
         advantagesList.appendChild(li);
     });
 
+    // Устанавливаем ID товара в кнопку корзины
+    modal.querySelector('.product-modal__cart-btn').setAttribute('data-product-id', productId);
+
     // Отображаем модальное окно
     modal.style.display = 'block';
 
@@ -157,3 +160,61 @@ document.addEventListener('keydown', function (event) {
         closeDetailsModal();
     }
 });
+
+// Функция добавления товара в корзину из модального окна
+async function addToCartFromModal() {
+    const button = document.querySelector('.product-modal__cart-btn');
+    const productId = button.getAttribute('data-product-id');
+    
+    if (!productId || button.classList.contains('loading')) {
+        return;
+    }
+    
+    // Состояние загрузки
+    button.classList.add('loading');
+    const originalContent = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner"></i> Добавление...';
+    
+    try {
+        const response = await fetch('/api/cart/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                productId: productId,
+                quantity: 1
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            button.classList.remove('loading');
+            button.classList.add('added');
+            button.innerHTML = '<i class="fas fa-check"></i> Добавлено';
+            
+            if (typeof updateCartBadge === 'function') {
+                updateCartBadge(result.cart.count);
+            }
+            
+            setTimeout(() => {
+                button.classList.remove('added');
+                button.innerHTML = originalContent;
+            }, 2000);
+            
+        } else {
+            throw new Error(result.message || 'Ошибка добавления в корзину');
+        }
+    } catch (error) {
+        console.error('Ошибка добавления в корзину:', error);
+        button.classList.remove('loading');
+        button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Ошибка';
+        
+        setTimeout(() => {
+            button.innerHTML = originalContent;
+        }, 2000);
+        
+        alert('Не удалось добавить товар в корзину. Попробуйте позже.');
+    }
+}
