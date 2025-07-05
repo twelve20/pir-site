@@ -56,7 +56,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Конфигурация Telegram Bot
-const TELEGRAM_BOT_TOKEN = '7782157467:AAGFxw4zsg8y5jV5Hg6TJZajiq5iR0kD660'; // Замените на ваш токен
+const TELEGRAM_BOT_TOKEN = '7782157467:AAEs683d-Y-IjYjBnzrWfzHklAwqecP1SWY'; // Замените на ваш токен
 const TELEGRAM_CHAT_ID = '-4667528349'; // Замените на ваш chat_id
 
 // Функция для получения информации о товаре по ID
