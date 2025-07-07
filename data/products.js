@@ -14,14 +14,14 @@ module.exports = {
       "image": "/images/product1.jpg",
       "title": "PIRRO Термо ФОЛЬГА 30 мм",
       "description": "Площадь 0,72 м², для утепления стен и потолков.",
-      "price": "562 руб./шт."
+      "price": "550 руб./шт."
     },
     {
       "id": "pirro-termo-50",
       "image": "/images/product1.jpg",
       "title": "PIRRO Термо ФОЛЬГА 50 мм",
       "description": "Площадь 0,72 м², для сложных конструкций и фасадов.",
-      "price": "785 руб./шт."
+      "price": "756 руб./шт."
     },
     {
       "id": "pir-paper-30",

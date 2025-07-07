@@ -23,12 +23,12 @@ async function loadProductData() {
                 area: 0.72
             },
             'pirro-termo-30': { 
-                price: 562, 
+                price: 550, 
                 name: 'PIRRO Термо ФОЛЬГА 30 мм', 
                 area: 0.72
             },
             'pirro-termo-50': { 
-                price: 785, 
+                price: 756, 
                 name: 'PIRRO Термо ФОЛЬГА 50 мм', 
                 area: 0.72
             },
