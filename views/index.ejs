@@ -51,6 +51,11 @@
     
     <!-- Преимущества утепления бани PIR плитой -->
     <%- include('partials/sauna-advantages') %>
+
+    <%- include('partials/mini-catalog') %>
+
+    <!-- Товары для монтажа -->
+    <%- include('partials/installation-products') %>
     
     <!-- Наша экспертиза -->
     <%- include('partials/expertise') %>
@@ -58,81 +63,76 @@
     <!-- Энергоэффективность и экономия -->
     <%- include('partials/energy-efficiency') %>
 
-    <%- include('partials/mini-catalog') %>
-
-    <!-- Товары для монтажа -->
-    <%- include('partials/installation-products') %>
-
-    <!-- Преимущества -->
-    <section id="advantages" class="advantages-new">
-        <div class="container">
-            <div class="advantages-header">
-                <h2 class="advantages-title">Преимущества наших PIR-плит высшего качества</h2>
-                <div class="advantages-divider"></div>
-            </div>
-            
-            <div class="advantages-list">
-                <div class="advantage-row">
-                    <div class="advantage-number">01</div>
-                    <div class="advantage-content">
-                        <div class="advantage-badge fire">🔥</div>
-                        <h3 class="advantage-name">Огнестойкость класса Г1</h3>
-                        <p class="advantage-text">Самозатухающий материал с температурой эксплуатации до +140°C обеспечивает максимальную пожарную безопасность</p>
+        <!-- Преимущества
+        <section id="advantages" class="advantages-new">
+            <div class="container">
+                <div class="advantages-header">
+                    <h2 class="advantages-title">Преимущества наших PIR-плит высшего качества</h2>
+                    <div class="advantages-divider"></div>
+                </div>
+                
+                <div class="advantages-list">
+                    <div class="advantage-row">
+                        <div class="advantage-number">01</div>
+                        <div class="advantage-content">
+                            <div class="advantage-badge fire">🔥</div>
+                            <h3 class="advantage-name">Огнестойкость класса Г1</h3>
+                            <p class="advantage-text">Самозатухающий материал с температурой эксплуатации до +140°C обеспечивает максимальную пожарную безопасность</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-row">
+                        <div class="advantage-number">02</div>
+                        <div class="advantage-content">
+                            <div class="advantage-badge eco">🌿</div>
+                            <h3 class="advantage-name">Экологическая безопасность</h3>
+                            <p class="advantage-text">Не содержит вредных веществ, не выделяет формальдегиды и другие токсины при любых температурах</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-row">
+                        <div class="advantage-number">03</div>
+                        <div class="advantage-content">
+                            <div class="advantage-badge durability">🏠</div>
+                            <h3 class="advantage-name">Долговечность 50+ лет</h3>
+                            <p class="advantage-text">Стабильные характеристики на протяжении всего срока службы, устойчивость к деформации и старению</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-row">
+                        <div class="advantage-number">04</div>
+                        <div class="advantage-content">
+                            <div class="advantage-badge installation">⚡</div>
+                            <h3 class="advantage-name">Быстрый и простой монтаж</h3>
+                            <p class="advantage-text">Легкий вес, удобные размеры и простая обработка позволяют ускорить монтаж в 3 раза</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="advantage-row">
-                    <div class="advantage-number">02</div>
-                    <div class="advantage-content">
-                        <div class="advantage-badge eco">🌿</div>
-                        <h3 class="advantage-name">Экологическая безопасность</h3>
-                        <p class="advantage-text">Не содержит вредных веществ, не выделяет формальдегиды и другие токсины при любых температурах</p>
+                <div class="technical-specs">
+                    <div class="spec-item">
+                        <span class="spec-value">0.022</span>
+                        <span class="spec-unit">Вт/м·К</span>
+                        <span class="spec-label">Теплопроводность</span>
                     </div>
-                </div>
-                
-                <div class="advantage-row">
-                    <div class="advantage-number">03</div>
-                    <div class="advantage-content">
-                        <div class="advantage-badge durability">🏠</div>
-                        <h3 class="advantage-name">Долговечность 50+ лет</h3>
-                        <p class="advantage-text">Стабильные характеристики на протяжении всего срока службы, устойчивость к деформации и старению</p>
+                    <div class="spec-item">
+                        <span class="spec-value">Г1</span>
+                        <span class="spec-unit">класс</span>
+                        <span class="spec-label">Горючесть</span>
                     </div>
-                </div>
-                
-                <div class="advantage-row">
-                    <div class="advantage-number">04</div>
-                    <div class="advantage-content">
-                        <div class="advantage-badge installation">⚡</div>
-                        <h3 class="advantage-name">Быстрый и простой монтаж</h3>
-                        <p class="advantage-text">Легкий вес, удобные размеры и простая обработка позволяют ускорить монтаж в 3 раза</p>
+                    <div class="spec-item">
+                        <span class="spec-value">50+</span>
+                        <span class="spec-unit">лет</span>
+                        <span class="spec-label">Срок службы</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-value">140°C</span>
+                        <span class="spec-unit">макс</span>
+                        <span class="spec-label">Температура</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="technical-specs">
-                <div class="spec-item">
-                    <span class="spec-value">0.022</span>
-                    <span class="spec-unit">Вт/м·К</span>
-                    <span class="spec-label">Теплопроводность</span>
-                </div>
-                <div class="spec-item">
-                    <span class="spec-value">Г1</span>
-                    <span class="spec-unit">класс</span>
-                    <span class="spec-label">Горючесть</span>
-                </div>
-                <div class="spec-item">
-                    <span class="spec-value">50+</span>
-                    <span class="spec-unit">лет</span>
-                    <span class="spec-label">Срок службы</span>
-                </div>
-                <div class="spec-item">
-                    <span class="spec-value">140°C</span>
-                    <span class="spec-unit">макс</span>
-                    <span class="spec-label">Температура</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section> -->
 
     <!-- Отзывы клиентов -->
     <%- include('partials/testimonials') %>
@@ -154,13 +154,14 @@
                         <div class="form-group">
                             <label for="calc-type">Тип плиты</label>
                             <select id="calc-type">
-                                <option value="pir-foil-30">🔥 PIR плита 1200*600*30 фольга/фольга (550 руб.) - АКЦИЯ!</option>
-                                <option value="pirro-termo-30">PIRRO Термо ФОЛЬГА 30 мм (550 руб.)</option>
-                                <option value="pirro-termo-50">PIRRO Термо ФОЛЬГА 50 мм (756 руб.)</option>
-                                <option value="pir-paper-30">PIR Плита Бумага/Бумага 30 мм (429 руб.)</option>
-                                <option value="pir-paper-50">PIR Плита Бумага/Бумага 50 мм (619 руб.)</option>
-                                <option value="pir-foil-40">PIR Плита Фольга/Фольга 40 мм (679 руб.)</option>
-                                <option value="pir-foil-100">PIR Плита Фольга/Фольга 100 мм (5564 руб.)</option>
+                                <option value="pir-foil-30">🔥 PIR плита для бани ФОЛЬГА 30 мм (499 руб.) - АКЦИЯ!</option>
+                                <!-- <option value="pirro-termo-30">PIRRO Термо ФОЛЬГА 30 мм (550 руб.)</option> -->
+                                <option value="pirro-termo-40">PIR плита для бани ФОЛЬГА 40 мм (580 руб.)</option>
+                                <option value="pirro-termo-50">PIR плита для бани ФОЛЬГА 50 мм (715 руб.)</option>
+                                <option value="pir-foil-100">PIR Плита ФОЛЬГА 100 мм (5564 руб.)</option>
+                                <option value="pir-craft-30">PIR Плита КРАФТ БУМАГА 30 мм (415 руб.)</option>
+                                <option value="pir-craft-40">PIR Плита КРАФТ БУМАГА 40 мм (520 руб.)</option>
+                                <option value="pir-craft-50">PIR Плита КРАФТ БУМАГА 50 мм (600 руб.)</option>
                             </select>
                         </div>
                         <div class="form-group checkbox-group">

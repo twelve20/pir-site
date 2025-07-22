@@ -16,42 +16,47 @@ async function loadProductData() {
         // Fallback данные в случае ошибки
         products = {
             'pir-foil-30': { 
-                price: 550, 
+                price: 499, 
                 oldPrice: 790, 
-                name: 'PIR плита 1200*600*30 фольга/фольга', 
+                name: 'PIR плита для бани ФОЛЬГА 30 мм', 
                 isPromo: true,
                 area: 0.72
             },
             'pirro-termo-30': { 
-                price: 550, 
-                name: 'PIRRO Термо ФОЛЬГА 30 мм', 
+                price: 503, 
+                name: 'PIR плита для бани ФОЛЬГА 30 мм', 
+                area: 0.72
+            },
+            'pirro-termo-40': {
+                price: 580,
+                name: 'PIR плита для бани ФОЛЬГА 40 мм',
                 area: 0.72
             },
             'pirro-termo-50': { 
-                price: 756, 
-                name: 'PIRRO Термо ФОЛЬГА 50 мм', 
+                price: 715, 
+                name: 'PIR плита для бани ФОЛЬГА 50 мм', 
                 area: 0.72
             },
-            'pir-paper-30': { 
-                price: 429, 
-                name: 'PIR Плита Бумага/Бумага 30 мм', 
-                area: 0.72
-            },
-            'pir-paper-50': { 
-                price: 619, 
-                name: 'PIR Плита Бумага/Бумага 50 мм', 
-                area: 0.72
-            },
-            'pir-foil-40': { 
-                price: 679, 
-                name: 'PIR Плита Фольга/Фольга 40 мм', 
-                area: 0.72
-            },
-            'pir-foil-100': { 
-                price: 5564, 
-                name: 'PIR Плита Фольга/Фольга 100 мм', 
+            'pir-foil-100': {
+                price: 5564,
+                name: 'PIR Плита ФОЛЬГА 100 мм',
                 area: 2.88
-            }
+            },
+            'pir-craft-30': {
+                price: 415,
+                name: 'PIR Плита КРАФТ БУМАГА 30 мм',
+                area: 0.72
+            },
+            'pir-craft-40': {
+                price: 520,
+                name: 'PIR Плита КРАФТ БУМАГА 40 мм',
+                area: 0.72
+            },
+            'pir-craft-50': {
+                price: 600,
+                name: 'PIR Плита КРАФТ БУМАГА 50 мм',
+                area: 0.72
+            },
         };
     }
 }
