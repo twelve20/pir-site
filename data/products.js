@@ -5,7 +5,7 @@ module.exports = {
       "image": "/images/product1.jpg",
       "title": "PIR плита для бани ФОЛЬГА 30 мм",
       "description": "Площадь 0,72 м², в упаковке 7 шт. (5,04 м²), для утепления бань и саун.",
-      "price": "499 руб./шт.",
+      "price": "490 руб./шт.",
       "oldPrice": "790 руб./шт.",
       "isPromo": true
     },
@@ -21,14 +21,14 @@ module.exports = {
       "image": "/images/product1.jpg",
       "title": "PIR плита для бани ФОЛЬГА 40 мм",
       "description": "Площадь 0,72 м², в упаковке 7 шт. (5,04 м²), для утепления бань и саун.",
-      "price": "580 руб./шт."
+      "price": "660 руб./шт."
     },
     {
       "id": "pirro-termo-50",
       "image": "/images/product1.jpg",
       "title": "PIR плита для бани ФОЛЬГА 50 мм",
       "description": "Площадь 0,72 м², в упаковке 6 шт. (4,32 м²), для утепления бань и саун.",
-      "price": "715 руб./шт."
+      "price": "700 руб./шт."
     },
     {
       "id": "pir-foil-100",

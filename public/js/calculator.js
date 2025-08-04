@@ -16,24 +16,24 @@ async function loadProductData() {
         // Fallback данные в случае ошибки
         products = {
             'pir-foil-30': { 
-                price: 499, 
+                price: 490, 
                 oldPrice: 790, 
                 name: 'PIR плита для бани ФОЛЬГА 30 мм', 
                 isPromo: true,
                 area: 0.72
             },
             'pirro-termo-30': { 
-                price: 503, 
+                price: 490, 
                 name: 'PIR плита для бани ФОЛЬГА 30 мм', 
                 area: 0.72
             },
             'pirro-termo-40': {
-                price: 580,
+                price: 660,
                 name: 'PIR плита для бани ФОЛЬГА 40 мм',
                 area: 0.72
             },
             'pirro-termo-50': { 
-                price: 715, 
+                price: 700, 
                 name: 'PIR плита для бани ФОЛЬГА 50 мм', 
                 area: 0.72
             },
