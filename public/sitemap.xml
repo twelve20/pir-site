@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <!-- Главная страница -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/</loc>
+        <loc>https://pir-planet.ru/</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -10,7 +10,7 @@
 
     <!-- Страница блога -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/blog</loc>
+        <loc>https://pir-planet.ru/blog</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -18,7 +18,7 @@
 
     <!-- Статья: Утепление пола над холодным подвалом -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/uteplenie-pola-nad-podvalom</loc>
+        <loc>https://pir-planet.ru/uteplenie-pola-nad-podvalom</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -26,7 +26,7 @@
 
     <!-- Статья: Утепление бани -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/uteplenie-bani-pir</loc>
+        <loc>https://pir-planet.ru/uteplenie-bani-pir</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -34,7 +34,7 @@
 
     <!-- Статья: Утепление бани и сауны -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/uteplenie-bani-sauny-pir</loc>
+        <loc>https://pir-planet.ru/uteplenie-bani-sauny-pir</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -42,7 +42,7 @@
 
     <!-- Статья: Утепление фасада -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/uteplenie-fasada-pir</loc>
+        <loc>https://pir-planet.ru/uteplenie-fasada-pir</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -50,7 +50,7 @@
 
     <!-- Статья: Утепление крыши и кровли -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/uteplenie-kryshi-pir</loc>
+        <loc>https://pir-planet.ru/uteplenie-kryshi-pir</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -58,7 +58,7 @@
 
     <!-- Статья: Утепление мансарды -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/uteplenie-mansardy-pir</loc>
+        <loc>https://pir-planet.ru/uteplenie-mansardy-pir</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -66,7 +66,7 @@
 
     <!-- Статья: Преимущества склада PIR -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/preimushchestva-sklada-pir</loc>
+        <loc>https://pir-planet.ru/preimushchestva-sklada-pir</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -74,7 +74,7 @@
 
     <!-- Статья: Утепление складов PIR -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/uteplenie-skladov-pir</loc>
+        <loc>https://pir-planet.ru/uteplenie-skladov-pir</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -82,7 +82,7 @@
 
     <!-- Статья: Утепление балкона и лоджии -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/uteplenie-balkona-pir</loc>
+        <loc>https://pir-planet.ru/uteplenie-balkona-pir</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -90,7 +90,7 @@
 
     <!-- Контакты -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/contacts</loc>
+        <loc>https://pir-planet.ru/contacts</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -98,7 +98,7 @@
 
     <!-- Документы -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/documents</loc>
+        <loc>https://pir-planet.ru/documents</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -106,7 +106,7 @@
 
     <!-- Проекты -->
     <url>
-        <loc>https://xn--h1aaiobfr6e.xn--p1ai/projects</loc>
+        <loc>https://pir-planet.ru/projects</loc>
         <lastmod>2025-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
