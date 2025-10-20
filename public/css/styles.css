@@ -33,6 +33,51 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Адаптивность для экранов 14 дюймов и меньше */
+@media (max-width: 1366px) {
+    .container {
+        width: 95%;
+        max-width: 1100px;
+        padding: 0 15px;
+    }
+
+    .hero__title {
+        font-size: 2.2rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1.3rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .hero__cards,
+    .mini-catalog__grid,
+    .cases__grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 1280px) {
+    .container {
+        width: 92%;
+        padding: 0 20px;
+    }
+
+    .hero-card__img,
+    .catalog-card__img {
+        height: 220px;
+    }
+
+    .calculator-form-wrapper {
+        gap: 2rem;
+    }
 }
 
 .section-title {
@@ -985,6 +1030,21 @@ body {
 .modal__form button {
     margin-top: 1rem;
 }
+@media (max-width: 1024px) {
+    .header__inner {
+        padding: 0 10px;
+    }
+
+    .menu__list {
+        gap: 15px;
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+}
+
 @media (max-width: 768px) {
 
     /* Скрываем основное меню */

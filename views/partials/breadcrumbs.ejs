@@ -1,0 +1,85 @@
+<!-- Хлебные крошки -->
+<% if (typeof breadcrumbs !== 'undefined' && breadcrumbs && breadcrumbs.length > 0) { %>
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+    <div class="container">
+        <ol class="breadcrumbs-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <% breadcrumbs.forEach((crumb, index) => { %>
+                <li class="breadcrumbs-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <% if (crumb.url) { %>
+                        <a href="<%= crumb.url %>" itemprop="item">
+                            <span itemprop="name"><%= crumb.name %></span>
+                        </a>
+                    <% } else { %>
+                        <span itemprop="name"><%= crumb.name %></span>
+                    <% } %>
+                    <meta itemprop="position" content="<%= index + 1 %>">
+                    <% if (index < breadcrumbs.length - 1) { %>
+                        <span class="breadcrumbs-separator">/</span>
+                    <% } %>
+                </li>
+            <% }) %>
+        </ol>
+    </div>
+</nav>
+
+<style>
+    .breadcrumbs {
+        background: #f8f9fa;
+        padding: 15px 0;
+        border-bottom: 1px solid #e0e0e0;
+        margin-top: 65px; /* Отступ от фиксированной шапки */
+    }
+
+    .breadcrumbs-list {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 8px;
+    }
+
+    .breadcrumbs-item {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .breadcrumbs-item a {
+        color: #0070c0;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .breadcrumbs-item a:hover {
+        color: #005aa0;
+        text-decoration: underline;
+    }
+
+    .breadcrumbs-item:last-child {
+        color: #333;
+        font-weight: 500;
+    }
+
+    .breadcrumbs-separator {
+        margin: 0 8px;
+        color: #999;
+    }
+
+    @media (max-width: 768px) {
+        .breadcrumbs {
+            padding: 12px 0;
+        }
+
+        .breadcrumbs-list {
+            font-size: 13px;
+        }
+
+        .breadcrumbs-separator {
+            margin: 0 6px;
+        }
+    }
+</style>
+<% } %>

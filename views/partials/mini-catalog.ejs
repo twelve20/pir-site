@@ -5,14 +5,31 @@
         
         <div class="catalog-grid">
             <% regularProducts.forEach((product, index) => { %>
-                <div class="product-card">
+                <div class="product-card" itemscope itemtype="https://schema.org/Product">
+                    <!-- Schema.org Product микроразметка для Яндекса и Google -->
+                    <meta itemprop="name" content="<%= product.title %>">
+                    <meta itemprop="description" content="<%= product.description %>">
+                    <link itemprop="image" href="https://pir-planet.ru<%= product.image %>">
+                    <meta itemprop="sku" content="<%= product.id %>">
+
+                    <div itemprop="brand" itemscope itemtype="https://schema.org/Brand">
+                        <meta itemprop="name" content="Планета PIR">
+                    </div>
+
+                    <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <meta itemprop="price" content="<%= product.price.replace(/[^\d]/g, '') %>">
+                        <meta itemprop="priceCurrency" content="RUB">
+                        <link itemprop="availability" href="https://schema.org/InStock">
+                        <link itemprop="url" href="https://pir-planet.ru/#<%= product.id %>">
+                    </div>
+
                     <div class="product-image">
                         <img src="<%= product.image %>" alt="<%= product.title %>" loading="lazy">
                         <% if (product.isPromo) { %>
                             <div class="promo-badge">Акция</div>
                         <% } %>
                     </div>
-                    
+
                     <div class="product-content">
                         <h3 class="product-title"><%= product.title %></h3>
                         <p class="product-description"><%= product.description %></p>
@@ -80,8 +97,8 @@
         left: 50%;
         transform: translateX(-50%);
         width: 60px;
-        height: 3px;
-        background: #0070c0;
+        height: 4px;
+        background: linear-gradient(90deg, #0070c0, #ff6b35);
         border-radius: 2px;
     }
     

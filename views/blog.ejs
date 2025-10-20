@@ -7,8 +7,25 @@
     <title>PIR плиты: характеристики, применение и преимущества | Купить теплоизоляционные плиты ПИР со скидкой</title>
     <meta name="description"
         content="Всё о PIR плитах: свойства, сферы применения, преимущества перед другими утеплителями. Где купить теплоизоляционные PIR плиты для кровли, стен, пола, балконов и саун? Огнестойкие, влагостойкие и экологичные плиты от производителя с доставкой по РФ. Акции и скидки до 30%!!">
-    <meta name="keywords"
-        content="PIR плиты, пир плиты, теплоизоляционные PIR плиты, купить PIR плиты, огнестойкие PIR плиты, влагостойкие ПИР плиты, PIR плиты для кровли, PIR плиты для стен, PIR плиты для пола, PIR плиты для балкона, PIR плиты для сауны, PIR плиты Pirro, плиты ПИР Технониколь, экологичные PIR плиты, энергоэффективные плиты ПИР, PIR плиты цена, PIR плиты с доставкой, теплоизоляционные плиты купить, PIR плиты оптом, PIR плиты для лоджий.">
+    <meta name="keywords" content="PIR плиты статьи, теплоизоляция, утепление, PIR плиты применение">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pir-planet.ru/blog">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pir-planet.ru/blog">
+    <meta property="og:title" content="Статьи о PIR плитах и теплоизоляции">
+    <meta property="og:description" content="Экспертные материалы о применении PIR плит, утеплении бань, домов, фасадов. Советы от профессионалов.">
+    <meta property="og:image" content="https://pir-planet.ru/images/blog1.jpg">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Статьи о PIR плитах и теплоизоляции">
+    <meta name="twitter:description" content="Экспертные материалы о применении PIR плит, утеплении бань, домов, фасадов.">
+    <meta name="twitter:image" content="https://pir-planet.ru/images/blog1.jpg">
+
     <link rel="icon" href="https://pir-planet.ru/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -18,6 +35,15 @@
 <body>
     <!-- Подключение шапки -->
     <%- include('partials/header') %>
+
+    <!-- Хлебные крошки -->
+    <%
+        const breadcrumbs = [
+            { name: 'Главная', url: '/' },
+            { name: 'Статьи' }
+        ];
+    %>
+    <%- include('partials/breadcrumbs', { breadcrumbs }) %>
 
     <!-- Основной контент -->
     <main>
