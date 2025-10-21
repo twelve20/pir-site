@@ -79,27 +79,58 @@
                     
                     <!-- Правая колонка с формой -->
                     <div class="contact-form-wrapper">
-                        <h2>Остались вопросы?</h2>
-                        <p>Заполните форму и мы свяжемся с вами</p>
-                        
+                        <div class="form-header">
+                            <div class="form-icon-circle">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h2>Остались вопросы?</h2>
+                            <p>Заполните форму, и наш специалист свяжется с вами в течение 15 минут</p>
+                        </div>
+
                         <form class="contact-form" id="contactForm">
-                            <div class="form-group">
-                                <input type="text" name="name" placeholder=" " required>
-                                <label>Ваше имя <span class="required">*</span></label>
+                            <div class="form-row">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" name="name" placeholder="Иван Петров" required>
+                                    <label>Ваше имя *</label>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input type="tel" name="phone" placeholder=" " required>
-                                <label>Телефон <span class="required">*</span></label>
+
+                            <div class="form-row">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-phone input-icon"></i>
+                                    <input type="tel" name="phone" placeholder="+7 (999) 123-45-67" required>
+                                    <label>Телефон *</label>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder=" ">
-                                <label>Email</label>
+
+                            <div class="form-row">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <input type="email" name="email" placeholder="example@mail.ru">
+                                    <label>Email (опционально)</label>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <textarea name="message" placeholder=" " rows="4"></textarea>
-                                <label>Сообщение</label>
+
+                            <div class="form-row">
+                                <div class="input-wrapper textarea-wrapper">
+                                    <i class="fas fa-comment-dots input-icon"></i>
+                                    <textarea name="message" placeholder="Опишите ваш вопрос..." rows="4"></textarea>
+                                    <label>Ваше сообщение</label>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn--orange">Отправить</button>
+
+                            <button type="submit" class="submit-btn">
+                                <span class="btn-text">Отправить заявку</span>
+                                <span class="btn-icon">
+                                    <i class="fas fa-paper-plane"></i>
+                                </span>
+                            </button>
+
+                            <p class="form-privacy">
+                                <i class="fas fa-lock"></i>
+                                Ваши данные защищены и не будут переданы третьим лицам
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -333,152 +364,207 @@
             font-size: 16px;
         }
         
-        /* Форма */
+        /* Форма - Полностью новый дизайн */
         .contact-form-wrapper {
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafb 100%);
-            padding: 45px;
+            background: white;
+            padding: 0;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 112, 192, 0.08);
-            border: 1px solid rgba(0, 112, 192, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             height: fit-content;
             position: relative;
             overflow: hidden;
         }
-        
-        .contact-form-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, rgba(0, 112, 192, 0.1), rgba(255, 107, 53, 0.1), rgba(0, 112, 192, 0.1));
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .contact-form-wrapper:hover::before {
-            opacity: 1;
-        }
-        
-        .contact-form-wrapper h2 {
-            font-size: 32px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #0070c0 0%, #005aa0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
+
+        /* Хедер формы */
+        .form-header {
+            background: linear-gradient(135deg, #0070c0 0%, #0056a3 100%);
+            padding: 45px 40px 40px;
             text-align: center;
-        }
-        
-        .contact-form-wrapper > p {
-            font-size: 17px;
-            color: #666;
-            margin-bottom: 35px;
-            text-align: center;
-        }
-        
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-        
-        .form-group {
-            position: relative;
-        }
-        
-        .form-group label {
-            position: absolute;
-            left: 18px;
-            top: 18px;
-            font-size: 16px;
-            color: #999;
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafb 100%);
-            padding: 0 8px;
-        }
-        
-        .form-group textarea ~ label {
-            top: 18px;
-        }
-        
-        .form-group input:focus ~ label,
-        .form-group input:not(:placeholder-shown) ~ label,
-        .form-group textarea:focus ~ label,
-        .form-group textarea:not(:placeholder-shown) ~ label {
-            top: -10px;
-            left: 14px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #0070c0;
-        }
-        
-        .form-group .required {
-            color: #ff6b35;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 18px 20px;
-            border: 2px solid #e0e6ed;
-            border-radius: 14px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.8);
-            color: #333;
-        }
-        
-        .form-group input:hover,
-        .form-group textarea:hover {
-            border-color: #c5d0db;
-            background: rgba(255, 255, 255, 0.95);
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #0070c0;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(0, 112, 192, 0.1),
-                        0 2px 8px rgba(0, 112, 192, 0.15);
-        }
-        
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: transparent;
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            font-family: inherit;
-            min-height: 110px;
-            padding-top: 20px;
-        }
-        
-        .contact-form button {
-            background: linear-gradient(135deg, #ff6b35 0%, #ff5520 100%);
-            color: white;
-            padding: 18px 40px;
-            font-size: 17px;
-            font-weight: 600;
-            border: none;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 15px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.25);
         }
-        
-        .contact-form button::before {
+
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .form-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .form-icon-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .form-icon-circle i {
+            font-size: 36px;
+            color: white;
+        }
+
+        .form-header h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            margin: 0 0 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-header p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Форма */
+        .contact-form {
+            padding: 40px;
+        }
+
+        .form-row {
+            margin-bottom: 32px;
+        }
+
+        .form-row:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0070c0;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .textarea-wrapper .input-icon {
+            top: 20px;
+            transform: none;
+        }
+
+        .input-wrapper label {
+            position: absolute;
+            left: 50px;
+            top: -10px;
+            font-size: 13px;
+            color: #666;
+            pointer-events: none;
+            background: white;
+            padding: 0 6px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .input-wrapper input,
+        .input-wrapper textarea {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e8eef5;
+            border-radius: 12px;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.3s ease;
+            background: white;
+            font-family: inherit;
+        }
+
+        .input-wrapper textarea {
+            resize: vertical;
+            min-height: 110px;
+            padding-top: 16px;
+        }
+
+        .textarea-wrapper label {
+            top: -10px;
+        }
+
+        .input-wrapper input:focus,
+        .input-wrapper textarea:focus {
+            outline: none;
+            border-color: #0070c0;
+            box-shadow: 0 0 0 3px rgba(0, 112, 192, 0.1);
+        }
+
+        .input-wrapper input:focus ~ label,
+        .input-wrapper textarea:focus ~ label {
+            color: #0070c0;
+        }
+
+        .input-wrapper input:focus ~ .input-icon,
+        .input-wrapper textarea:focus ~ .input-icon {
+            color: #0070c0;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .textarea-wrapper textarea:focus ~ .input-icon {
+            transform: scale(1.1);
+        }
+
+
+        /* Кнопка отправки */
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b35 0%, #ff5520 100%);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
             content: '';
             position: absolute;
             top: 0;
@@ -488,20 +574,46 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s ease;
         }
-        
-        .contact-form button:hover {
-            background: linear-gradient(135deg, #ff5520 0%, #e5491c 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-        }
-        
-        .contact-form button:hover::before {
+
+        .submit-btn:hover::before {
             left: 100%;
         }
-        
-        .contact-form button:active {
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(255, 107, 53, 0.4);
+        }
+
+        .submit-btn:active {
             transform: translateY(0);
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.25);
+        }
+
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover .btn-icon {
+            transform: translateX(5px);
+        }
+
+        /* Текст о конфиденциальности */
+        .form-privacy {
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+            margin: 20px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .form-privacy i {
+            color: #28a745;
+            font-size: 14px;
         }
         
         /* Секция схемы проезда */
@@ -695,13 +807,69 @@
             }
             
             .contact-block,
-            .warehouse-info,
-            .contact-form-wrapper {
+            .warehouse-info {
                 padding: 30px 25px;
+            }
+
+            .form-header {
+                padding: 35px 25px 30px;
+            }
+
+            .form-icon-circle {
+                width: 70px;
+                height: 70px;
+            }
+
+            .form-icon-circle i {
+                font-size: 30px;
+            }
+
+            .form-header h2 {
+                font-size: 26px;
+            }
+
+            .form-header p {
+                font-size: 14px;
+            }
+
+            .contact-form {
+                padding: 30px 25px;
+            }
+
+            .input-wrapper input,
+            .input-wrapper textarea {
+                padding: 14px 18px 14px 45px;
+                font-size: 15px;
+            }
+
+            .input-wrapper label {
+                left: 45px;
+                font-size: 12px;
+            }
+
+            .textarea-wrapper label {
+                left: 45px;
+            }
+
+            .input-icon {
+                left: 16px;
+                font-size: 16px;
+            }
+
+            .form-row {
+                margin-bottom: 28px;
+            }
+
+            .submit-btn {
+                padding: 16px 28px;
+                font-size: 16px;
+            }
+
+            .form-privacy {
+                font-size: 12px;
             }
             
             .contact-block h2,
-            .contact-form-wrapper h2,
             .map-section h2,
             .route-section h2 {
                 font-size: 24px;
