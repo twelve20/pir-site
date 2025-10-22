@@ -22,7 +22,7 @@
                         
                         <div class="product-footer">
                             <div class="price-section">
-                                <span class="current-price"><%= product.price %></span>
+                                <span class="current-price"><%= product.priceFormatted || (product.price + ' ' + product.currency + '/' + product.unit) %></span>
                             </div>
                             
                             <div class="product-actions">

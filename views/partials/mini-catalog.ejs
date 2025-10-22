@@ -17,9 +17,9 @@
                     </div>
 
                     <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                        <meta itemprop="price" content="<%= product.price.replace(/[^\d]/g, '') %>">
+                        <meta itemprop="price" content="<%= typeof product.price === 'number' ? product.price : product.price.replace(/[^\d]/g, '') %>">
                         <meta itemprop="priceCurrency" content="RUB">
-                        <link itemprop="availability" href="https://schema.org/InStock">
+                        <link itemprop="availability" href="<%= product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' %>">
                         <link itemprop="url" href="https://pir-planet.ru/#<%= product.id %>">
                     </div>
 
@@ -42,11 +42,11 @@
                         
                         <div class="product-footer">
                             <div class="price-section">
-                                <% if (product.isPromo) { %>
-                                    <span class="old-price"><%= product.oldPrice %></span>
-                                    <span class="current-price"><%= product.price %></span>
+                                <% if (product.isPromo && product.oldPrice) { %>
+                                    <span class="old-price"><%= product.oldPriceFormatted || (product.oldPrice + ' ' + product.currency + '/' + product.unit) %></span>
+                                    <span class="current-price"><%= product.priceFormatted || (product.price + ' ' + product.currency + '/' + product.unit) %></span>
                                 <% } else { %>
-                                    <span class="current-price"><%= product.price %></span>
+                                    <span class="current-price"><%= product.priceFormatted || (product.price + ' ' + product.currency + '/' + product.unit) %></span>
                                 <% } %>
                             </div>
                             

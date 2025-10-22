@@ -2,14 +2,32 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios'); // Для отправки HTTP-запросов
 
-// Импортируем данные о товарах
+// Импортируем данные о товарах и утилиты
 const {
   products,
   regularProducts,
   installationProducts,
   specialProducts,
   getProductById,
-  getProductsByCategory
+  getProductsByCategory,
+  // Фильтрация
+  filterProducts,
+  filterByMaterial,
+  filterByThickness,
+  filterByPriceRange,
+  filterPromoProducts,
+  filterByStock,
+  // Сортировка
+  sortByPrice,
+  sortByThickness,
+  sortByTitle,
+  sortByPriority,
+  // Поиск
+  searchProducts,
+  findProductById,
+  // Утилиты
+  addFormattedPrices,
+  getProductStats
 } = require('./data/products');
 const { featuredProjects, allProjects } = require('./data/projects');
 const { documents, allDocumentsLink } = require('./data/documents');
@@ -95,8 +113,8 @@ app.post('/api/cart/add', (req, res) => {
         carts[ip] = { items: [], total: 0, count: 0, lastUpdated: new Date() };
     }
     
-    // Извлекаем цену из строки
-    const price = parseInt(product.price.replace(/[^\d]/g, ''));
+    // Получаем цену (теперь уже в числовом формате)
+    const price = typeof product.price === 'number' ? product.price : parseInt(product.price.replace(/[^\d]/g, ''));
     
     // Проверяем, есть ли уже этот товар в корзине
     const existingItem = carts[ip].items.find(item => item.productId === productId);
@@ -291,6 +309,46 @@ app.get('/contacts', (req, res) => {
     res.render('contacts', { warehouse });
 });
 
+// Роут для страницы товара
+app.get('/product/:id', (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const product = findProductById(products, id);
+
+        if (!product) {
+            return res.status(404).render('404', {
+                message: 'Товар не найден'
+            });
+        }
+
+        // Добавляем форматированные данные
+        const formattedProduct = addFormattedPrices([product])[0];
+
+        // Находим похожие товары (той же категории или материала)
+        let similarProducts = products.filter(p =>
+            p.id !== product.id &&
+            (p.category === product.category || p.material === product.material)
+        );
+
+        // Ограничиваем количество похожих товаров
+        similarProducts = sortByPriority(similarProducts).slice(0, 4);
+        const formattedSimilar = addFormattedPrices(similarProducts);
+
+        res.render('product-detail', {
+            product: formattedProduct,
+            similarProducts: formattedSimilar,
+            warehouse
+        });
+
+    } catch (error) {
+        console.error('Ошибка при загрузке страницы товара:', error);
+        res.status(500).render('error', {
+            message: 'Произошла ошибка при загрузке товара'
+        });
+    }
+});
+
 // Роуты для отдельных статей
 app.get('/uteplenie-pola-nad-podvalom', (req, res) => {
     res.render('floor-insulation-article');
@@ -332,19 +390,18 @@ app.get('/uteplenie-balkona-pir', (req, res) => {
 app.get('/api/products', (req, res) => {
     // Преобразуем данные из data/products.js в формат для калькулятора
     const calculatorProducts = {};
-    
+
     // Обрабатываем обычные продукты
     regularProducts.forEach(product => {
-        // Извлекаем числовое значение цены
-        const price = parseInt(product.price.replace(/[^\d]/g, ''));
-        const oldPrice = product.oldPrice ? parseInt(product.oldPrice.replace(/[^\d]/g, '')) : null;
-        
-        // Определяем площадь в зависимости от продукта
-        let area = 0.72; // Стандартная площадь для большинства плит
-        if (product.id === 'pir-foil-100') {
-            area = 2.88; // Специальная площадь для 100 мм плиты
-        }
-        
+        // Получаем цену (теперь уже числовая)
+        const price = typeof product.price === 'number' ? product.price : parseInt(product.price.replace(/[^\d]/g, ''));
+        const oldPrice = product.oldPrice
+            ? (typeof product.oldPrice === 'number' ? product.oldPrice : parseInt(product.oldPrice.replace(/[^\d]/g, '')))
+            : null;
+
+        // Используем площадь из данных товара
+        const area = product.area || 0.72;
+
         calculatorProducts[product.id] = {
             price: price,
             oldPrice: oldPrice,
@@ -353,25 +410,209 @@ app.get('/api/products', (req, res) => {
             area: area
         };
     });
-    
+
     // Добавляем специальный продукт для упаковки 600x1200
     calculatorProducts['pir-600x1200-30'] = {
         price: 720,
         name: 'PIR плита 600*1200*30 (8 шт в упаковке)',
         area: 5.76
     };
-    
-    // Данные о клей-пене
+
+    // Данные о клей-пене (используем новые поля)
     const glueProduct = installationProducts.find(p => p.id === 'glue-foam');
-    const gluePrice = glueProduct ? parseInt(glueProduct.price.replace(/[^\d]/g, '')) : 1050;
-    
+    const gluePrice = glueProduct
+        ? (typeof glueProduct.price === 'number' ? glueProduct.price : parseInt(glueProduct.price.replace(/[^\d]/g, '')))
+        : 1050;
+    const glueCoverage = glueProduct?.coverage || 10;
+
     res.json({
         products: calculatorProducts,
         glue: {
             price: gluePrice,
-            coverage: 10 // м² на баллон
+            coverage: glueCoverage // м² на баллон
         }
     });
+});
+
+// ============================================
+// API ДЛЯ ФИЛЬТРАЦИИ И ПОИСКА ТОВАРОВ
+// ============================================
+
+// API endpoint для фильтрации товаров
+app.get('/api/products/filter', (req, res) => {
+    const {
+        category,
+        material,
+        thickness,
+        minPrice,
+        maxPrice,
+        inStock,
+        isPromo,
+        featured,
+        sort
+    } = req.query;
+
+    try {
+        // Создаем объект фильтров
+        const filters = {};
+
+        if (category) filters.category = category;
+        if (material) filters.material = material;
+        if (thickness) filters.thickness = parseInt(thickness);
+        if (minPrice) filters.minPrice = parseInt(minPrice);
+        if (maxPrice) filters.maxPrice = parseInt(maxPrice);
+        if (inStock !== undefined) filters.inStock = inStock === 'true';
+        if (isPromo !== undefined) filters.isPromo = isPromo === 'true';
+        if (featured !== undefined) filters.featured = featured === 'true';
+
+        // Применяем фильтры
+        let filtered = filterProducts(products, filters);
+
+        // Применяем сортировку
+        if (sort) {
+            switch (sort) {
+                case 'price_asc':
+                    filtered = sortByPrice(filtered, 'asc');
+                    break;
+                case 'price_desc':
+                    filtered = sortByPrice(filtered, 'desc');
+                    break;
+                case 'thickness_asc':
+                    filtered = sortByThickness(filtered, 'asc');
+                    break;
+                case 'thickness_desc':
+                    filtered = sortByThickness(filtered, 'desc');
+                    break;
+                case 'title_asc':
+                    filtered = sortByTitle(filtered, 'asc');
+                    break;
+                case 'title_desc':
+                    filtered = sortByTitle(filtered, 'desc');
+                    break;
+                case 'priority':
+                    filtered = sortByPriority(filtered);
+                    break;
+                default:
+                    filtered = sortByPriority(filtered);
+            }
+        } else {
+            filtered = sortByPriority(filtered); // По умолчанию
+        }
+
+        // Добавляем форматированные цены
+        const result = addFormattedPrices(filtered);
+
+        res.json({
+            success: true,
+            count: result.length,
+            products: result
+        });
+
+    } catch (error) {
+        console.error('Ошибка фильтрации товаров:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Ошибка при фильтрации товаров'
+        });
+    }
+});
+
+// API endpoint для поиска товаров
+app.get('/api/products/search', (req, res) => {
+    const { q, category, sort } = req.query;
+
+    if (!q || q.trim().length === 0) {
+        return res.status(400).json({
+            success: false,
+            error: 'Поисковый запрос не может быть пустым'
+        });
+    }
+
+    try {
+        // Выполняем поиск
+        let results = searchProducts(products, q);
+
+        // Фильтруем по категории если указана
+        if (category) {
+            results = results.filter(p => p.category === category);
+        }
+
+        // Сортируем
+        if (sort === 'price_asc') {
+            results = sortByPrice(results, 'asc');
+        } else if (sort === 'price_desc') {
+            results = sortByPrice(results, 'desc');
+        } else {
+            results = sortByPriority(results);
+        }
+
+        // Добавляем форматированные цены
+        const formatted = addFormattedPrices(results);
+
+        res.json({
+            success: true,
+            query: q,
+            count: formatted.length,
+            products: formatted
+        });
+
+    } catch (error) {
+        console.error('Ошибка поиска товаров:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Ошибка при поиске товаров'
+        });
+    }
+});
+
+// API endpoint для получения одного товара по ID
+app.get('/api/products/:id', (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const product = findProductById(products, id);
+
+        if (!product) {
+            return res.status(404).json({
+                success: false,
+                error: 'Товар не найден'
+            });
+        }
+
+        // Добавляем форматированные данные
+        const formatted = addFormattedPrices([product])[0];
+
+        res.json({
+            success: true,
+            product: formatted
+        });
+
+    } catch (error) {
+        console.error('Ошибка получения товара:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Ошибка при получении товара'
+        });
+    }
+});
+
+// API endpoint для получения статистики по товарам
+app.get('/api/products/stats/summary', (req, res) => {
+    try {
+        const stats = getProductStats(products);
+
+        res.json({
+            success: true,
+            stats
+        });
+
+    } catch (error) {
+        console.error('Ошибка получения статистики:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Ошибка при получении статистики'
+        });
+    }
 });
 
 // Роут для оформления заказа из корзины
