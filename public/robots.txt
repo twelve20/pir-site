@@ -1,14 +1,12 @@
-# Разрешаем всем ботам доступ ко всему сайту
-User-agent: *
+# Указываем главное зеркало для Яндекса
+Host: https://pir-planet.ru
 
-# Разрешаем индексацию всего сайта
+User-agent: *
 Allow: /
 
-# Запрещаем индексацию определенных папок или файлов
-Disallow: /admin/
-Disallow: /wp-admin/
-Disallow: /private/
-Disallow: /tmp/
+# Запрещаем индексацию корзины и оформления заказа
+Disallow: /cart
+Disallow: /checkout
 
-# Указываем путь к карте сайта
+# Карта сайта
 Sitemap: https://pir-planet.ru/sitemap.xml

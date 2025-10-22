@@ -3,7 +3,14 @@ const path = require('path');
 const axios = require('axios'); // Для отправки HTTP-запросов
 
 // Импортируем данные о товарах
-const { specialProducts, regularProducts, installationProducts } = require('./data/products');
+const {
+  products,
+  regularProducts,
+  installationProducts,
+  specialProducts,
+  getProductById,
+  getProductsByCategory
+} = require('./data/products');
 const { featuredProjects, allProjects } = require('./data/projects');
 const { documents, allDocumentsLink } = require('./data/documents');
 const warehouse = require('./data/warehouse'); // Данные о складе
@@ -59,22 +66,7 @@ app.set('views', path.join(__dirname, 'views'));
 const TELEGRAM_BOT_TOKEN = '7782157467:AAEs683d-Y-IjYjBnzrWfzHklAwqecP1SWY'; // Замените на ваш токен
 const TELEGRAM_CHAT_ID = '-4667528349'; // Замените на ваш chat_id
 
-// Функция для получения информации о товаре по ID
-const getProductById = (productId) => {
-    // Ищем в обычных товарах
-    let product = regularProducts.find(p => p.id === productId);
-    if (product) return { ...product, category: 'regular' };
-    
-    // Ищем в товарах для монтажа
-    product = installationProducts.find(p => p.id === productId);
-    if (product) return { ...product, category: 'installation' };
-    
-    // Ищем в акционных товарах
-    product = specialProducts.find(p => p.id === productId);
-    if (product) return { ...product, category: 'special' };
-    
-    return null;
-};
+// Функция getProductById теперь импортируется из data/products.js
 
 // API для корзины
 // Получить корзину
