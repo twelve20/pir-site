@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm start)"
+      "Bash(if [[ \"$file\" != *\"balcony\"* ]])",
+      "Bash(echo:*)"
     ],
     "deny": [],
     "ask": []

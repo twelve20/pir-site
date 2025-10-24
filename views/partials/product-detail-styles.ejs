@@ -1,0 +1,997 @@
+/* Стили для страницы товара */
+.product-detail-page {
+    padding: 40px 0 80px;
+    background: #F5F5F5;
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+    padding: 20px 0;
+    font-size: 14px;
+    color: #666;
+    background: white;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.breadcrumbs a {
+    color: #2A5CAA;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.breadcrumbs a:hover {
+    color: #FF6B35;
+    background-color: #FFF3E0;
+    text-decoration: none;
+}
+
+.breadcrumbs span:last-child {
+    color: #333;
+    font-weight: 600;
+    padding: 5px 10px;
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE8CC 100%);
+    border-radius: 5px;
+}
+
+.breadcrumbs > span:not(:last-child) {
+    margin: 0;
+    color: #999;
+    font-size: 12px;
+}
+
+/* Основная сетка */
+.product-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin: 40px 0;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+}
+
+/* Секция изображения */
+.product-image-section {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+}
+
+.main-image {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #F5F5F5;
+    aspect-ratio: 1;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.main-image:hover img {
+    transform: scale(1.05);
+}
+
+.promo-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #FF6B35 0%, #E65C2B 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.out-of-stock-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Секция информации */
+.product-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.product-title {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #2A5CAA;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.product-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.product-id {
+    color: #666;
+}
+
+.in-stock {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.in-stock i {
+    margin-right: 5px;
+}
+
+.out-of-stock {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.out-of-stock i {
+    margin-right: 5px;
+}
+
+.product-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Блок цены */
+.price-block {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE8CC 100%);
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid #FFD8B2;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.1);
+}
+
+.price-promo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.old-price {
+    font-size: 18px;
+    text-decoration: line-through;
+    color: #999;
+}
+
+.discount-badge {
+    background: linear-gradient(135deg, #FF6B35 0%, #E65C2B 100%);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
+
+.current-price {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #FF6B35;
+    margin-bottom: 5px;
+}
+
+.savings-text {
+    color: #28a745;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.price-per-m2 {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Характеристики */
+.product-specs h3 {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2A5CAA;
+    margin-bottom: 15px;
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #F5F5F5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.specs-table tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+.specs-table tr:hover {
+    background-color: #e8f4ff;
+}
+
+.specs-table td {
+    padding: 12px 15px;
+}
+
+.specs-table td:first-child {
+    color: #666;
+    width: 50%;
+}
+
+.specs-table td:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: #2A5CAA;
+}
+
+/* Кнопки действий */
+.product-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.product-actions button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-add-to-cart {
+    background: linear-gradient(135deg, #FF6B35 0%, #E65C2B 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-add-to-cart:hover:not(.loading) {
+    background: linear-gradient(135deg, #E65C2B 0%, #D14D1F 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.btn-add-to-cart.loading {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-add-to-cart.added {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+}
+
+.btn-calculator,
+.btn-call {
+    background: linear-gradient(135deg, #2A5CAA 0%, #1A4C8A 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(42, 92, 170, 0.3);
+}
+
+.btn-calculator:hover,
+.btn-call:hover {
+    background: linear-gradient(135deg, #1A4C8A 0%, #0F3D6E 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(42, 92, 170, 0.4);
+}
+
+.btn-notify {
+    background: #ffc107;
+    color: #333;
+}
+
+.btn-notify:hover {
+    background: #ffb300;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255,193,7,0.3);
+}
+
+/* Преимущества */
+.product-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, #E8F4FF 0%, #D6EBFF 100%);
+    border-radius: 15px;
+    border: 1px solid #B8DAFF;
+}
+
+.benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    transition: transform 0.3s ease;
+}
+
+.benefit:hover {
+    transform: translateY(-3px);
+}
+
+.benefit i {
+    font-size: 28px;
+    color: #2A5CAA;
+    transition: color 0.3s ease;
+}
+
+.benefit:hover i {
+    color: #FF6B35;
+}
+
+.benefit span {
+    font-size: 13px;
+    color: #666;
+    font-weight: 600;
+}
+
+/* Табы */
+.product-details-tabs {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    margin-top: 40px;
+    border: 1px solid #e0e0e0;
+}
+
+.tabs-header {
+    display: flex;
+    gap: 10px;
+    border-bottom: 3px solid #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    padding: 15px 25px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 8px 8px 0 0;
+}
+
+.tab-btn:hover:not(.active) {
+    background-color: #f5f5f5;
+    color: #2A5CAA;
+}
+
+.tab-btn.active {
+    color: #2A5CAA;
+    background-color: #E8F4FF;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, #FF6B35 0%, #E65C2B 100%);
+    border-radius: 2px;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-pane h3 {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #2A5CAA;
+    margin-bottom: 20px;
+}
+
+.tab-pane h4 {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2A5CAA;
+    margin: 20px 0 10px;
+}
+
+.tab-pane p {
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.tab-pane ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tab-pane ul li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: #666;
+    line-height: 1.6;
+}
+
+.tab-pane ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #FF6B35;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.full-specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #F5F5F5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.full-specs-table tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+.full-specs-table tr:hover {
+    background-color: #e8f4ff;
+}
+
+.full-specs-table td {
+    padding: 15px 20px;
+}
+
+.full-specs-table td:first-child {
+    color: #666;
+    width: 40%;
+}
+
+.full-specs-table td:last-child {
+    font-weight: 600;
+    color: #2A5CAA;
+}
+
+/* Модальное окно калькулятора */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.modal-show {
+    opacity: 1;
+}
+
+.modal.modal-show .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    padding: 0;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 550px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    transform: translateY(-30px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.calculator-modal {
+    max-width: 600px;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #2A5CAA 0%, #1A4C8A 100%);
+    padding: 30px;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.calculator-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #FFD700;
+    animation: pulse 2s infinite;
+}
+
+.modal-header h2 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+}
+
+.modal-subtitle {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.modal-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background-color: rgba(255, 107, 53, 0.9);
+    transform: rotate(90deg);
+}
+
+.calculator-form {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group-calc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group-calc label {
+    font-family: 'Roboto Bold', sans-serif;
+    font-weight: 600;
+    color: #2A5CAA;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group-calc label i {
+    color: #FF6B35;
+    font-size: 18px;
+}
+
+.calc-input {
+    padding: 15px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    font-weight: 500;
+}
+
+.calc-input:focus {
+    outline: none;
+    border-color: #2A5CAA;
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(42, 92, 170, 0.1);
+}
+
+.calc-input.error-shake {
+    animation: shake 0.5s;
+    border-color: #dc3545;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.input-hint {
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+}
+
+.btn-calculate {
+    background: linear-gradient(135deg, #2A5CAA 0%, #1A4C8A 100%);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(42, 92, 170, 0.3);
+}
+
+.btn-calculate:hover {
+    background: linear-gradient(135deg, #1A4C8A 0%, #0F3D6E 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(42, 92, 170, 0.4);
+}
+
+.calculation-result {
+    display: none;
+    background: white;
+    border-radius: 15px;
+    border: 2px solid #e0e0e0;
+    overflow: hidden;
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-header {
+    background: linear-gradient(135deg, #E8F4FF 0%, #D6EBFF 100%);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid #2A5CAA;
+}
+
+.success-icon {
+    font-size: 32px;
+    color: #28a745;
+}
+
+.result-header h4 {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 22px;
+    color: #2A5CAA;
+    margin: 0;
+}
+
+.result-main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.result-item:hover {
+    background: #E8F4FF;
+    border-color: #2A5CAA;
+    transform: translateX(5px);
+}
+
+.result-item.highlight {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE8CC 100%);
+    border: 2px solid #FF6B35;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+.result-item.info {
+    background: linear-gradient(135deg, #E8F4FF 0%, #D6EBFF 100%);
+    border: 2px solid #2A5CAA;
+}
+
+.result-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.result-label i {
+    color: #2A5CAA;
+    font-size: 18px;
+}
+
+.result-item.highlight .result-label i {
+    color: #FF6B35;
+}
+
+.result-value {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 20px;
+    color: #2A5CAA;
+    font-weight: 700;
+}
+
+.result-item.highlight .result-value {
+    color: #FF6B35;
+    font-size: 24px;
+}
+
+.result-footer {
+    padding: 20px;
+    background: #f9f9f9;
+    border-top: 2px solid #e0e0e0;
+}
+
+.price-breakdown {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    color: #666;
+    font-size: 15px;
+}
+
+.price-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0 0;
+    margin-top: 15px;
+    border-top: 2px dashed #e0e0e0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.total-amount {
+    font-family: 'Roboto Bold', sans-serif;
+    font-size: 24px;
+    color: #FF6B35;
+    font-weight: 700;
+}
+
+.btn-order-calc {
+    width: 100%;
+    background: linear-gradient(135deg, #FF6B35 0%, #E65C2B 100%);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.btn-order-calc:hover {
+    background: linear-gradient(135deg, #E65C2B 0%, #D14D1F 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.error-message {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 10px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #856404;
+    animation: slideDown 0.3s ease;
+}
+
+.error-message i {
+    font-size: 24px;
+    color: #ffc107;
+}
+
+.error-message p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .product-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 30px;
+    }
+
+    .product-image-section {
+        position: static;
+    }
+
+    .product-benefits {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-detail-page {
+        padding: 20px 0 60px;
+    }
+
+    .product-detail-grid {
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .product-title {
+        font-size: 24px;
+    }
+
+    .current-price {
+        font-size: 28px;
+    }
+
+    .tabs-header {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .product-details-tabs {
+        padding: 20px;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        max-height: 95vh;
+    }
+
+    .calculator-modal {
+        max-width: 95%;
+    }
+
+    .modal-header {
+        padding: 25px 20px;
+    }
+
+    .calculator-icon {
+        font-size: 36px;
+    }
+
+    .modal-header h2 {
+        font-size: 22px;
+    }
+
+    .modal-subtitle {
+        font-size: 13px;
+    }
+
+    .calculator-form {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .calc-input {
+        padding: 12px 15px;
+        font-size: 16px;
+    }
+
+    .result-value {
+        font-size: 18px;
+    }
+
+    .result-item.highlight .result-value {
+        font-size: 20px;
+    }
+
+    .total-amount {
+        font-size: 20px;
+    }
+
+    .result-main {
+        padding: 15px;
+    }
+
+    .result-footer {
+        padding: 15px;
+    }
+
+    .price-breakdown {
+        padding: 15px;
+    }
+}

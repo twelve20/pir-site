@@ -292,6 +292,14 @@ app.get('/blog', (req, res) => {
             readTime: '3 минуты',
             image: { src: '/images/blog6.jpg', alt: 'Склад PIR-плит' },
             url: '/preimushchestva-sklada-pir'
+        },
+        {
+            title: 'Утепление гаража PIR-плитами: как создать комфортное пространство круглый год',
+            description: 'Полное руководство по утеплению гаража с помощью PIR-плит. Инструкция по монтажу, расчет материалов, преимущества технологии. Сделайте гараж теплым и уютным!',
+            date: '5 июня 2025',
+            readTime: '6 минут',
+            image: { src: '/images/garage-pir.png', alt: 'Утепление гаража PIR-плитами' },
+            url: '/uteplenie-garazha-pir'
         }
     ];
     res.render('blog', { articles });
@@ -312,17 +320,23 @@ app.get('/contacts', (req, res) => {
 // Роут для страницы товара
 app.get('/product/:id', (req, res) => {
     const { id } = req.params;
+    console.log('=== Запрос страницы товара ===');
+    console.log('ID товара:', id);
+    console.log('Всего товаров в базе:', products.length);
 
     try {
         const product = findProductById(products, id);
+        console.log('Результат поиска:', product ? `Найден: ${product.title}` : 'НЕ НАЙДЕН');
 
         if (!product) {
+            console.log('Товар не найден, возвращаем 404');
             return res.status(404).render('404', {
                 message: 'Товар не найден'
             });
         }
 
         // Добавляем форматированные данные
+        console.log('Добавляем форматированные данные...');
         const formattedProduct = addFormattedPrices([product])[0];
 
         // Находим похожие товары (той же категории или материала)
@@ -334,7 +348,9 @@ app.get('/product/:id', (req, res) => {
         // Ограничиваем количество похожих товаров
         similarProducts = sortByPriority(similarProducts).slice(0, 4);
         const formattedSimilar = addFormattedPrices(similarProducts);
+        console.log('Похожих товаров найдено:', formattedSimilar.length);
 
+        console.log('Рендерим страницу товара...');
         res.render('product-detail', {
             product: formattedProduct,
             similarProducts: formattedSimilar,
@@ -342,8 +358,9 @@ app.get('/product/:id', (req, res) => {
         });
 
     } catch (error) {
-        console.error('Ошибка при загрузке страницы товара:', error);
-        res.status(500).render('error', {
+        console.error('!!! ОШИБКА при загрузке страницы товара:', error);
+        console.error('Stack trace:', error.stack);
+        res.status(500).render('404', {
             message: 'Произошла ошибка при загрузке товара'
         });
     }
@@ -384,6 +401,10 @@ app.get('/uteplenie-skladov-pir', (req, res) => {
 
 app.get('/uteplenie-balkona-pir', (req, res) => {
     res.render('balcony-insulation-article');
+});
+
+app.get('/uteplenie-garazha-pir', (req, res) => {
+    res.render('garage-insulation-article');
 });
 
 // API endpoint для получения данных о продуктах для калькулятора
