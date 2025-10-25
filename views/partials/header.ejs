@@ -280,9 +280,11 @@
             flex-direction: column;
             background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
             border-top: 2px solid #0070c0;
-            padding: 15px 0;
+            padding: 10px 0;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             animation: slideDown 0.3s ease;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
         }
 
         @keyframes slideDown {
@@ -303,14 +305,15 @@
         .mobile-item {
             color: #333;
             text-decoration: none;
-            padding: 14px 20px;
+            padding: 10px 20px;
             font-weight: 500;
+            font-size: 15px;
             border-left: 3px solid transparent;
             transition: all 0.3s ease;
             position: relative;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .mobile-item::before {
@@ -338,13 +341,14 @@
         .mobile-item-promo {
             background: linear-gradient(135deg, #ff6b35, #e55a2e) !important;
             color: white !important;
-            margin: 10px 20px;
-            border-radius: 10px;
+            margin: 8px 20px;
+            border-radius: 8px;
             text-align: center;
             font-weight: 700;
             border-left: none !important;
             box-shadow: 0 4px 15px rgba(255,107,53,0.4);
-            padding: 14px 20px !important;
+            padding: 10px 20px !important;
+            font-size: 15px;
         }
 
         .mobile-item-promo::before {
@@ -360,26 +364,26 @@
         }
 
         .mobile-contact {
-            padding: 25px 20px;
+            padding: 15px 20px;
             border-top: 2px solid #e5e5e5;
             background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
             align-items: center;
         }
 
         .mobile-cart {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             color: white;
             text-decoration: none;
             font-weight: 600;
-            font-size: 16px;
-            padding: 14px 28px;
+            font-size: 14px;
+            padding: 10px 20px;
             background: linear-gradient(135deg, #0070c0, #005aa0);
-            border-radius: 10px;
+            border-radius: 8px;
             width: 100%;
             max-width: 250px;
             justify-content: center;
@@ -397,18 +401,18 @@
             color: #0070c0;
             text-decoration: none;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 16px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px;
+            gap: 6px;
+            padding: 8px;
             border-radius: 8px;
             transition: all 0.3s ease;
         }
 
         .mobile-tel::before {
             content: '📞';
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .mobile-tel:hover {
@@ -420,15 +424,15 @@
             background: linear-gradient(135deg, #ff6b35, #e55a2e);
             color: white;
             border: none;
-            padding: 14px 28px;
-            border-radius: 10px;
+            padding: 10px 20px;
+            border-radius: 8px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
             max-width: 250px;
             box-shadow: 0 4px 12px rgba(255,107,53,0.3);
             transition: all 0.3s ease;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .mobile-button:hover {
@@ -635,6 +639,54 @@
 
             .modal-title {
                 font-size: 20px;
+            }
+
+            .mobile-item {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+
+            .mobile-item-promo {
+                margin: 6px 15px;
+                padding: 8px 15px !important;
+                font-size: 14px;
+            }
+
+            .mobile-contact {
+                padding: 12px 15px;
+                gap: 8px;
+            }
+
+            .mobile-cart,
+            .mobile-button {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .mobile-tel {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .mobile-menu {
+                max-height: calc(100vh - 65px);
+            }
+
+            .mobile-item {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+
+            .mobile-contact {
+                padding: 10px 20px;
+                gap: 8px;
+            }
+
+            .mobile-cart,
+            .mobile-button {
+                padding: 8px 16px;
+                font-size: 13px;
             }
         }
     </style>
