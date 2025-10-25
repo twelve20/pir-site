@@ -64,14 +64,6 @@
         <priority>0.8</priority>
     </url>
 
-    <!-- Статья: Преимущества склада PIR -->
-    <url>
-        <loc>https://pir-planet.ru/preimushchestva-sklada-pir</loc>
-        <lastmod>2025-01-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
     <!-- Статья: Утепление складов PIR -->
     <url>
         <loc>https://pir-planet.ru/uteplenie-skladov-pir</loc>
@@ -83,6 +75,14 @@
     <!-- Статья: Утепление балкона и лоджии -->
     <url>
         <loc>https://pir-planet.ru/uteplenie-balkona-pir</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Статья: Утепление гаража -->
+    <url>
+        <loc>https://pir-planet.ru/uteplenie-garazha-pir</loc>
         <lastmod>2025-01-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>

@@ -278,28 +278,20 @@ app.get('/blog', (req, res) => {
             url: '/uteplenie-mansardy-pir'
         },
         {
-            title: 'Преимущества утепления складов и промышленных объектов PIR-плитами',
-            description: 'Узнайте о преимуществах утепления складов и промышленных объектов с помощью PIR-плит. Экономия до 60% на отоплении, быстрая окупаемость, долговечность.',
-            date: '15 января 2025',
-            readTime: '7 минут',
-            image: { src: '/images/warehouse-pir.png', alt: 'Утепление складов PIR-плитами' },
-            url: '/uteplenie-skladov-pir'
-        },
-        {
-            title: 'Преимущества покупки PIR-плит с нашего склада: быстрая доставка и гарантия качества',
-            description: 'Узнайте о преимуществах покупки PIR-плит с нашего склада. Быстрая доставка по Москве и области, гарантия качества, конкурентные цены.',
-            date: '15 января 2025',
-            readTime: '3 минуты',
-            image: { src: '/images/blog6.jpg', alt: 'Склад PIR-плит' },
-            url: '/preimushchestva-sklada-pir'
-        },
-        {
             title: 'Утепление гаража PIR-плитами: как создать комфортное пространство круглый год',
             description: 'Полное руководство по утеплению гаража с помощью PIR-плит. Инструкция по монтажу, расчет материалов, преимущества технологии. Сделайте гараж теплым и уютным!',
             date: '5 июня 2025',
             readTime: '6 минут',
             image: { src: '/images/garage-pir.png', alt: 'Утепление гаража PIR-плитами' },
             url: '/uteplenie-garazha-pir'
+        },
+        {
+            title: 'Преимущества утепления складов и промышленных объектов PIR-плитами',
+            description: 'Узнайте о преимуществах утепления складов и промышленных объектов с помощью PIR-плит. Экономия до 60% на отоплении, быстрая окупаемость, долговечность.',
+            date: '15 января 2025',
+            readTime: '7 минут',
+            image: { src: '/images/warehouse-pir.png', alt: 'Утепление складов PIR-плитами' },
+            url: '/uteplenie-skladov-pir'
         }
     ];
     res.render('blog', { articles });
@@ -389,10 +381,6 @@ app.get('/uteplenie-kryshi-pir', (req, res) => {
 
 app.get('/uteplenie-mansardy-pir', (req, res) => {
     res.render('mansard-insulation-article');
-});
-
-app.get('/preimushchestva-sklada-pir', (req, res) => {
-    res.render('warehouse-advantages-article');
 });
 
 app.get('/uteplenie-skladov-pir', (req, res) => {
