@@ -1135,6 +1135,9 @@
     .challenge-items {
         grid-template-columns: 1fr;
     }
-    
+
     .cta-buttons {
-        flex-direction:
+        flex-direction: column;
+        gap: 10px;
+    }
+}
