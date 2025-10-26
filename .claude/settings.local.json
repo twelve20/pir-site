@@ -5,7 +5,10 @@
       "Bash(awk:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(New-Item -Path \"c:\\Users\\User\\Documents\\GitHub\\pir-site\\public\\robots.txt\" -ItemType File -Force)",
+      "Bash(git restore:*)",
+      "Bash(git clean:*)"
     ],
     "deny": [],
     "ask": []
