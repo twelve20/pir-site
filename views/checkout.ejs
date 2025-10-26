@@ -635,9 +635,14 @@
                     const result = await response.json();
                     
                     if (response.ok) {
+                        // Отправка цели в Яндекс Метрику
+                        if (typeof ym !== 'undefined') {
+                            ym(104857358, 'reachGoal', 'order_success');
+                        }
+
                         // Показываем сообщение об успехе
                         alert('Заказ успешно оформлен! Наш менеджер свяжется с вами в ближайшее время.');
-                        
+
                         // Перенаправляем на главную страницу
                         window.location.href = '/';
                     } else {

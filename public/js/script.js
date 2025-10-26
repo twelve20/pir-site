@@ -58,6 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 if (response.ok) {
+                    // Отправка цели в Яндекс Метрику
+                    if (typeof ym !== 'undefined') {
+                        ym(104857358, 'reachGoal', 'callback_request');
+                    }
                     alert('Заявка успешно отправлена!');
                     closeCallModal(); // Закрываем модальное окно
                 } else {
@@ -94,6 +98,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 if (response.ok) {
+                    // Отправка цели в Яндекс Метрику
+                    if (typeof ym !== 'undefined') {
+                        ym(104857358, 'reachGoal', 'cta_form_submit');
+                    }
                     alert('Заявка успешно отправлена!');
                     document.querySelector('.cta__form').reset(); // Очищаем форму
                 } else {
