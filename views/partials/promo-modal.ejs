@@ -270,27 +270,166 @@
     }
     
     @media (max-width: 768px) {
+        .promo-modal__content {
+            margin: 2% auto;
+            width: 95%;
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+
         .promo-modal__body {
             flex-direction: column;
+            padding: 15px;
+            gap: 15px;
         }
-        
+
+        .promo-modal__header {
+            padding: 15px;
+        }
+
         .promo-modal__image-container,
         .promo-modal__info {
             flex: 0 0 100%;
         }
-        
+
         .promo-modal__title {
-            font-size: 20px;
-        }
-        
-        .promo-modal__product-title {
             font-size: 18px;
+            line-height: 1.3;
         }
-        
+
+        .promo-modal__badge {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+
+        .promo-modal__product-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .promo-modal__description {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .promo-modal__features {
+            margin-bottom: 15px;
+        }
+
+        .promo-modal__features li {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
         .promo-modal__discount {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
+            font-size: 16px;
+        }
+
+        .promo-modal__price-block {
+            margin-bottom: 15px;
+        }
+
+        .promo-modal__old-price {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .promo-modal__new-price {
+            font-size: 22px;
+        }
+
+        .promo-modal__limited {
+            padding: 8px 12px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .promo-modal__button {
+            padding: 12px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .promo-modal__note {
+            font-size: 11px;
+        }
+
+        .promo-modal__close {
+            font-size: 24px;
+            right: 10px;
+            top: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .promo-modal__content {
+            width: 98%;
+            margin: 1% auto;
+        }
+
+        .promo-modal__body {
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .promo-modal__header {
+            padding: 12px;
+        }
+
+        .promo-modal__title {
+            font-size: 16px;
+        }
+
+        .promo-modal__badge {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .promo-modal__product-title {
+            font-size: 15px;
+        }
+
+        .promo-modal__description {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .promo-modal__features li {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .promo-modal__features i {
+            margin-right: 6px;
+            font-size: 12px;
+        }
+
+        .promo-modal__discount {
+            width: 45px;
+            height: 45px;
+            font-size: 14px;
+            top: 5px;
+            right: 5px;
+        }
+
+        .promo-modal__old-price {
+            font-size: 14px;
+        }
+
+        .promo-modal__new-price {
             font-size: 20px;
+        }
+
+        .promo-modal__button {
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        .promo-modal__limited {
+            padding: 6px 10px;
+            font-size: 12px;
         }
     }
 </style>
