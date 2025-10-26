@@ -419,6 +419,19 @@ app.get('/contacts', (req, res) => {
     res.render('contacts', { warehouse });
 });
 
+// Юридические страницы
+app.get('/privacy-policy', (req, res) => {
+    res.render('privacy-policy');
+});
+
+app.get('/terms-of-use', (req, res) => {
+    res.render('terms-of-use');
+});
+
+app.get('/public-offer', (req, res) => {
+    res.render('public-offer');
+});
+
 // Роут для страницы товара
 app.get('/product/:id', (req, res) => {
     const { id } = req.params;
