@@ -73,7 +73,20 @@ const getClientIP = (req, res, next) => {
 // Настройка middleware
 app.use(express.json()); // Для парсинга JSON
 app.use(express.urlencoded({ extended: true })); // Для парсинга данных из форм
-app.use(express.static(path.join(__dirname, 'public')));
+
+// Настройка статических файлов с контролем кеша
+app.use(express.static(path.join(__dirname, 'public'), {
+    setHeaders: (res, filePath) => {
+        // Для JS и CSS файлов устанавливаем короткое время кеша
+        if (filePath.endsWith('.js') || filePath.endsWith('.css')) {
+            res.setHeader('Cache-Control', 'public, max-age=3600'); // 1 час
+        } else if (filePath.match(/\.(jpg|jpeg|png|gif|svg|webp)$/)) {
+            // Для изображений - длинное кеширование
+            res.setHeader('Cache-Control', 'public, max-age=86400'); // 1 день
+        }
+    }
+}));
+
 app.use(getClientIP); // Добавляем middleware для IP
 
 // Настройка EJS как шаблонизатора
