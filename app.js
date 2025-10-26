@@ -1,7 +1,13 @@
+// Загрузка переменных окружения
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
-const axios = require('axios'); // Для отправки HTTP-запросов
-const compression = require('compression'); // Для gzip сжатия
+const axios = require('axios');
+const compression = require('compression');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const { body, validationResult } = require('express-validator');
 
 // Импортируем данные о товарах и утилиты
 const {
@@ -35,7 +41,7 @@ const { documents, allDocumentsLink } = require('./data/documents');
 const warehouse = require('./data/warehouse'); // Данные о складе
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Хранилище корзин в памяти (привязка к IP)
 const carts = {};
@@ -71,10 +77,75 @@ const getClientIP = (req, res, next) => {
     next();
 };
 
+// ============================================
+// БЕЗОПАСНОСТЬ
+// ============================================
+
+// Helmet - защита от известных веб-уязвимостей
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: [
+                "'self'",
+                "'unsafe-inline'", // Для inline скриптов (лучше переместить в отдельные файлы)
+                "https://telegram.org",
+                "https://cdn.jsdelivr.net",
+                "https://www.googletagmanager.com",
+                "https://mc.yandex.ru"
+            ],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+            imgSrc: ["'self'", "data:", "https:", "blob:"],
+            connectSrc: ["'self'", "https://api.telegram.org", "https://mc.yandex.ru"],
+            frameSrc: ["'self'", "https://www.youtube.com", "https://yandex.ru"],
+            objectSrc: ["'none'"],
+            upgradeInsecureRequests: []
+        }
+    },
+    hsts: {
+        maxAge: 31536000, // 1 год
+        includeSubDomains: true,
+        preload: true
+    },
+    referrerPolicy: { policy: 'strict-origin-when-cross-origin' }
+}));
+
+// Rate limiting - защита от DDoS и брутфорса
+const limiter = rateLimit({
+    windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 минут
+    max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100, // Максимум 100 запросов
+    message: 'Слишком много запросов с этого IP, попробуйте позже.',
+    standardHeaders: true,
+    legacyHeaders: false,
+    // Исключаем статические файлы из лимита
+    skip: (req) => {
+        return req.path.startsWith('/css/') ||
+               req.path.startsWith('/js/') ||
+               req.path.startsWith('/images/');
+    }
+});
+
+// Более строгий лимит для API эндпоинтов
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 минут
+    max: 20, // Максимум 20 запросов к API
+    message: 'Слишком много запросов к API, попробуйте позже.'
+});
+
+// Строгий лимит для Telegram отправки
+const telegramLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 час
+    max: 10, // Максимум 10 сообщений в час
+    message: 'Слишком много заявок. Попробуйте позже или позвоните нам.'
+});
+
+app.use(limiter);
+
 // Настройка middleware
 app.use(compression()); // Включаем gzip/deflate сжатие
-app.use(express.json()); // Для парсинга JSON
-app.use(express.urlencoded({ extended: true })); // Для парсинга данных из форм
+app.use(express.json({ limit: '10mb' })); // Ограничение размера JSON
+app.use(express.urlencoded({ extended: true, limit: '10mb' })); // Ограничение размера форм
 
 // Настройка статических файлов с контролем кеша
 app.use(express.static(path.join(__dirname, 'public'), {
@@ -95,28 +166,48 @@ app.use(getClientIP); // Добавляем middleware для IP
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Конфигурация Telegram Bot
-const TELEGRAM_BOT_TOKEN = '7782157467:AAEs683d-Y-IjYjBnzrWfzHklAwqecP1SWY'; // Замените на ваш токен
-const TELEGRAM_CHAT_ID = '-4667528349'; // Замените на ваш chat_id
+// Конфигурация Telegram Bot из переменных окружения
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
+// Проверка наличия обязательных переменных окружения
+if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.error('ОШИБКА: Не заданы TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID в .env файле');
+    process.exit(1);
+}
 
 // Функция getProductById теперь импортируется из data/products.js
 
-// API для корзины
+// ============================================
+// API ДЛЯ КОРЗИНЫ
+// ============================================
+
 // Получить корзину
-app.get('/api/cart', (req, res) => {
+app.get('/api/cart', apiLimiter, (req, res) => {
     const ip = req.clientIP;
     const cart = carts[ip] || { items: [], total: 0, count: 0 };
     res.json(cart);
 });
 
+// Валидация для корзины
+const validateCartItem = [
+    body('productId').trim().isLength({ min: 1, max: 100 }).withMessage('Product ID обязателен'),
+    body('quantity').optional().isInt({ min: 1, max: 1000 }).withMessage('Количество должно быть от 1 до 1000')
+];
+
 // Добавить товар в корзину
-app.post('/api/cart/add', (req, res) => {
+app.post('/api/cart/add', apiLimiter, validateCartItem, (req, res) => {
+    // Проверка результатов валидации
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            error: 'Ошибка валидации данных',
+            details: errors.array().map(e => e.msg)
+        });
+    }
+
     const { productId, quantity = 1 } = req.body;
     const ip = req.clientIP;
-    
-    if (!productId) {
-        return res.status(400).json({ error: 'Product ID is required' });
-    }
     
     const product = getProductById(productId);
     if (!product) {
@@ -155,12 +246,21 @@ app.post('/api/cart/add', (req, res) => {
 });
 
 // Обновить количество товара в корзине
-app.put('/api/cart/update', (req, res) => {
+app.put('/api/cart/update', apiLimiter, validateCartItem, (req, res) => {
+    // Проверка результатов валидации
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            error: 'Ошибка валидации данных',
+            details: errors.array().map(e => e.msg)
+        });
+    }
+
     const { productId, quantity } = req.body;
     const ip = req.clientIP;
-    
-    if (!carts[ip] || !productId || quantity < 0) {
-        return res.status(400).json({ error: 'Invalid request' });
+
+    if (!carts[ip]) {
+        return res.status(400).json({ error: 'Корзина не найдена' });
     }
     
     const item = carts[ip].items.find(item => item.productId === productId);
@@ -183,13 +283,27 @@ app.put('/api/cart/update', (req, res) => {
     res.json({ success: true, cart: carts[ip] });
 });
 
+// Валидация для удаления из корзины
+const validateCartRemove = [
+    body('productId').trim().isLength({ min: 1, max: 100 }).withMessage('Product ID обязателен')
+];
+
 // Удалить товар из корзины
-app.delete('/api/cart/remove', (req, res) => {
+app.delete('/api/cart/remove', apiLimiter, validateCartRemove, (req, res) => {
+    // Проверка результатов валидации
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            error: 'Ошибка валидации данных',
+            details: errors.array().map(e => e.msg)
+        });
+    }
+
     const { productId } = req.body;
     const ip = req.clientIP;
-    
-    if (!carts[ip] || !productId) {
-        return res.status(400).json({ error: 'Invalid request' });
+
+    if (!carts[ip]) {
+        return res.status(400).json({ error: 'Корзина не найдена' });
     }
     
     carts[ip].items = carts[ip].items.filter(item => item.productId !== productId);
@@ -203,7 +317,7 @@ app.delete('/api/cart/remove', (req, res) => {
 });
 
 // Очистить корзину
-app.post('/api/cart/clear', (req, res) => {
+app.post('/api/cart/clear', apiLimiter, (req, res) => {
     const ip = req.clientIP;
     carts[ip] = { items: [], total: 0, count: 0, lastUpdated: new Date() };
     res.json({ success: true, cart: carts[ip] });
@@ -644,13 +758,26 @@ app.get('/api/products/stats/summary', (req, res) => {
 });
 
 // Роут для оформления заказа из корзины
-app.post('/submit-cart-order', async (req, res) => {
+// Валидация для заказа из корзины
+const validateCartOrder = [
+    body('name').trim().isLength({ min: 2, max: 100 }).escape().withMessage('Имя должно быть от 2 до 100 символов'),
+    body('phone').trim().matches(/^[\d\s\+\-\(\)]+$/).isLength({ min: 10, max: 20 }).withMessage('Неверный формат телефона'),
+    body('email').trim().isEmail().normalizeEmail().withMessage('Неверный формат email'),
+    body('comment').optional().trim().isLength({ max: 500 }).escape().withMessage('Комментарий не должен превышать 500 символов')
+];
+
+app.post('/submit-cart-order', telegramLimiter, validateCartOrder, async (req, res) => {
+    // Проверка результатов валидации
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            message: 'Ошибка валидации данных',
+            errors: errors.array().map(e => e.msg)
+        });
+    }
+
     const { name, phone, email, comment } = req.body;
     const ip = req.clientIP;
-    
-    if (!name || !phone || !email) {
-        return res.status(400).json({ message: 'Пожалуйста, заполните все обязательные поля.' });
-    }
     
     const cart = carts[ip];
     if (!cart || cart.items.length === 0) {
@@ -695,13 +822,27 @@ ${itemsList}
     }
 });
 
-// Роут для обработки формы
-app.post('/submit-form', async (req, res) => {
-    const { name, phone, email, comment, formType } = req.body;
+// Валидация для общей формы
+const validateContactForm = [
+    body('name').trim().isLength({ min: 2, max: 100 }).escape().withMessage('Имя должно быть от 2 до 100 символов'),
+    body('phone').trim().matches(/^[\d\s\+\-\(\)]+$/).isLength({ min: 10, max: 20 }).withMessage('Неверный формат телефона'),
+    body('email').optional().trim().isEmail().normalizeEmail().withMessage('Неверный формат email'),
+    body('comment').optional().trim().isLength({ max: 500 }).escape().withMessage('Комментарий не должен превышать 500 символов'),
+    body('formType').optional().trim().isIn(['order', 'contact', 'callback']).withMessage('Неверный тип формы')
+];
 
-    if (!name || !phone) {
-        return res.status(400).json({ message: 'Пожалуйста, заполните все поля.' });
+// Роут для обработки формы
+app.post('/submit-form', telegramLimiter, validateContactForm, async (req, res) => {
+    // Проверка результатов валидации
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            message: 'Ошибка валидации данных',
+            errors: errors.array().map(e => e.msg)
+        });
     }
+
+    const { name, phone, email, comment, formType } = req.body;
 
     // Формируем текст сообщения в зависимости от типа формы
     let message = '';
@@ -731,12 +872,17 @@ app.post('/submit-form', async (req, res) => {
 });
 
 // Роут для обработки формы "Оформить заказ"
-app.post('/submit-buy-form', async (req, res) => {
-    const { name, phone, email, comment } = req.body;
-
-    if (!name || !phone || !email) {
-        return res.status(400).json({ message: 'Пожалуйста, заполните все обязательные поля.' });
+app.post('/submit-buy-form', telegramLimiter, validateCartOrder, async (req, res) => {
+    // Проверка результатов валидации
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            message: 'Ошибка валидации данных',
+            errors: errors.array().map(e => e.msg)
+        });
     }
+
+    const { name, phone, email, comment } = req.body;
 
     // Формируем текст сообщения
     const telegramMessage = `Новый заказ:\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nКомментарий: ${comment || 'Нет комментария'}`;
@@ -759,12 +905,17 @@ app.post('/submit-buy-form', async (req, res) => {
 });
 
 // Роут для обработки формы "Призыв к действию"
-app.post('/submit-cta-form', async (req, res) => {
-    const { name, phone, comment } = req.body;
-
-    if (!name || !phone) {
-        return res.status(400).json({ message: 'Пожалуйста, заполните все обязательные поля.' });
+app.post('/submit-cta-form', telegramLimiter, validateContactForm, async (req, res) => {
+    // Проверка результатов валидации
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            message: 'Ошибка валидации данных',
+            errors: errors.array().map(e => e.msg)
+        });
     }
+
+    const { name, phone, comment } = req.body;
 
     // Формируем текст сообщения
     const telegramMessage = `Новая заявка с главной страницы:\nИмя: ${name}\nТелефон: ${phone}\nКомментарий: ${comment || 'Нет комментария'}`;
