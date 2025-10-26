@@ -1,8 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(if [[ \"$file\" != *\"balcony\"* ]])",
-      "Bash(echo:*)"
+      "Bash(find:*)",
+      "Bash(awk:*)"
     ],
     "deny": [],
     "ask": []

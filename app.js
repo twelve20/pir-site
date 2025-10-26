@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios'); // Для отправки HTTP-запросов
+const compression = require('compression'); // Для gzip сжатия
 
 // Импортируем данные о товарах и утилиты
 const {
@@ -71,6 +72,7 @@ const getClientIP = (req, res, next) => {
 };
 
 // Настройка middleware
+app.use(compression()); // Включаем gzip/deflate сжатие
 app.use(express.json()); // Для парсинга JSON
 app.use(express.urlencoded({ extended: true })); // Для парсинга данных из форм
 

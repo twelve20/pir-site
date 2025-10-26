@@ -1,9 +1,23 @@
 {
+    "name": "pir-planet",
+    "version": "1.0.0",
+    "description": "PIR плиты интернет-магазин",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "optimize:images": "echo 'Используйте онлайн-инструменты для оптимизации изображений: TinyPNG, Squoosh.app'",
+        "minify:css": "cleancss -o public/css/styles.min.css public/css/styles.css && cleancss -o public/css/articles.min.css public/css/articles.css && cleancss -o public/css/product-details.min.css public/css/product-details.css && cleancss -o public/css/expertise.min.css public/css/expertise.css && cleancss -o public/css/energy-efficiency.min.css public/css/energy-efficiency.css",
+        "minify:js": "terser public/js/script.js -o public/js/script.min.js && terser public/js/details.js -o public/js/details.min.js && terser public/js/calculator.js -o public/js/calculator.min.js && terser public/js/energy-calculator.js -o public/js/energy-calculator.min.js && terser public/js/validation.js -o public/js/validation.min.js"
+    },
     "dependencies": {
         "axios": "^1.7.9",
+        "compression": "^1.7.4",
         "ejs": "^3.1.10",
         "express": "^4.21.2",
-        "package.json": "^2.0.1",
         "path": "^0.12.7"
+    },
+    "devDependencies": {
+        "clean-css-cli": "^5.6.3",
+        "terser": "^5.36.0"
     }
 }
