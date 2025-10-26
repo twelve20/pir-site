@@ -1,12 +1,39 @@
-# Указываем главное зеркало для Яндекса
-Host: https://pir-planet.ru
+# Robots.txt 4;O pir-planet.ru
 
+# A5 @>1>BK
 User-agent: *
 Allow: /
 
-# Запрещаем индексацию корзины и оформления заказа
+# 0?@5I05< 8=45:A0F8N :>@78=K 8 B5E=8G5A:8E AB@0=8F
 Disallow: /cart
 Disallow: /checkout
+Disallow: /api/
 
-# Карта сайта
+# Yandex
+User-agent: Yandex
+Allow: /
+Disallow: /cart
+Disallow: /checkout
+Disallow: /api/
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&fbclid&gclid
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /cart
+Disallow: /checkout
+Disallow: /api/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /cart
+Disallow: /checkout
+Disallow: /api/
+
+# Sitemap
 Sitemap: https://pir-planet.ru/sitemap.xml
+
+# 3@0=8G5=85 A:>@>AB8 A:0=8@>20=8O 4;O Yandex (1 70?@>A 2 A5:C=4C)
+Host: pir-planet.ru
+Crawl-delay: 1
