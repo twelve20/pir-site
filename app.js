@@ -428,10 +428,6 @@ app.get('/terms-of-use', (req, res) => {
     res.render('terms-of-use');
 });
 
-app.get('/public-offer', (req, res) => {
-    res.render('public-offer');
-});
-
 // Роут для страницы товара
 app.get('/product/:id', (req, res) => {
     const { id } = req.params;

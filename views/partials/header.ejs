@@ -66,6 +66,10 @@
             <form class="modal-form">
                 <input type="text" placeholder="Ваше имя" required class="modal-input">
                 <input type="tel" placeholder="Телефон" required class="modal-input">
+                <label class="consent-label">
+                    <input type="checkbox" required class="consent-checkbox">
+                    <span>Я согласен с <a href="/privacy-policy" target="_blank">Политикой конфиденциальности</a> и <a href="/terms-of-use" target="_blank">Пользовательским соглашением</a></span>
+                </label>
                 <button type="submit" class="modal-submit">Заказать звонок</button>
             </form>
         </div>
@@ -535,6 +539,30 @@
 
         .modal-submit:hover {
             background: #005aa0;
+        }
+
+        .consent-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12px;
+            color: #666;
+            margin: 15px 0;
+            line-height: 1.4;
+        }
+
+        .consent-checkbox {
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .consent-label a {
+            color: #0070c0;
+            text-decoration: none;
+        }
+
+        .consent-label a:hover {
+            text-decoration: underline;
         }
 
         /* Адаптив для экранов 14 дюймов и меньше */
