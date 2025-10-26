@@ -81,7 +81,12 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
+                            <label class="consent-label">
+                                <input type="checkbox" required class="consent-checkbox">
+                                <span>Я согласен с <a href="/privacy-policy" target="_blank">Политикой конфиденциальности</a> и <a href="/terms-of-use" target="_blank">Пользовательским соглашением</a></span>
+                            </label>
+
                             <button type="submit" class="btn btn--orange btn--large" id="submitOrder">
                                 <i class="fas fa-check"></i>
                                 Оформить заказ
@@ -562,6 +567,37 @@
             .payment-info__icon {
                 align-self: flex-start;
             }
+        }
+
+        /* Стили для чекбокса согласия */
+        .consent-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            color: #666;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .consent-checkbox {
+            margin-top: 3px;
+            cursor: pointer;
+            min-width: 18px;
+            min-height: 18px;
+        }
+
+        .consent-label a {
+            color: #0070c0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .consent-label a:hover {
+            text-decoration: underline;
         }
     </style>
 
