@@ -83,26 +83,7 @@ const getClientIP = (req, res, next) => {
 
 // Helmet - защита от известных веб-уязвимостей
 app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: [
-                "'self'",
-                "'unsafe-inline'", // Для inline скриптов (лучше переместить в отдельные файлы)
-                "https://telegram.org",
-                "https://cdn.jsdelivr.net",
-                "https://www.googletagmanager.com",
-                "https://mc.yandex.ru"
-            ],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-            fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
-            imgSrc: ["'self'", "data:", "https:", "blob:"],
-            connectSrc: ["'self'", "https://api.telegram.org", "https://mc.yandex.ru"],
-            frameSrc: ["'self'", "https://www.youtube.com", "https://yandex.ru"],
-            objectSrc: ["'none'"],
-            upgradeInsecureRequests: []
-        }
-    },
+    contentSecurityPolicy: false, // Временно отключаем CSP для диагностики
     hsts: {
         maxAge: 31536000, // 1 год
         includeSubDomains: true,
