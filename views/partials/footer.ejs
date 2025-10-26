@@ -466,6 +466,124 @@
     </style>
 </footer>
 
+<!-- Cookie Notice / Уведомление о Метрике -->
+<div id="cookieNotice" class="cookie-notice">
+    <div class="cookie-notice__content">
+        <div class="cookie-notice__text">
+            <p>Мы используем <strong>Яндекс.Метрику</strong> и <strong>Вебвизор</strong> для улучшения работы сайта и анализа поведения пользователей. Продолжая использовать сайт, вы соглашаетесь с использованием этих технологий.</p>
+        </div>
+        <button class="cookie-notice__button" onclick="acceptCookies()">Принять</button>
+    </div>
+</div>
+
+<style>
+.cookie-notice {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.cookie-notice.show {
+    transform: translateY(0);
+}
+
+.cookie-notice__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.cookie-notice__text {
+    flex: 1;
+}
+
+.cookie-notice__text p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.cookie-notice__text strong {
+    color: #3498db;
+}
+
+.cookie-notice__button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.cookie-notice__button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+}
+
+@media (max-width: 768px) {
+    .cookie-notice {
+        padding: 15px;
+    }
+
+    .cookie-notice__content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .cookie-notice__text p {
+        font-size: 13px;
+    }
+
+    .cookie-notice__button {
+        width: 100%;
+        padding: 14px;
+    }
+}
+</style>
+
+<script>
+// Проверяем, принял ли пользователь cookies
+function checkCookieConsent() {
+    const consent = localStorage.getItem('cookieConsent');
+    if (!consent) {
+        // Показываем уведомление через 1 секунду после загрузки
+        setTimeout(() => {
+            document.getElementById('cookieNotice').classList.add('show');
+        }, 1000);
+    }
+}
+
+// Принятие cookies
+function acceptCookies() {
+    localStorage.setItem('cookieConsent', 'accepted');
+    document.getElementById('cookieNotice').classList.remove('show');
+}
+
+// Запускаем проверку при загрузке страницы
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkCookieConsent);
+} else {
+    checkCookieConsent();
+}
+</script>
+
 <%# Яндекс.Метрика - временно отключена %>
 <%# Замените XXXXXX на реальный ID счетчика и раскомментируйте следующую строку %>
 <%# include('yandex-metrika') %>
