@@ -15,16 +15,16 @@ async function loadProductData() {
         console.error('Ошибка загрузки данных о продуктах:', error);
         // Fallback данные в случае ошибки
         products = {
-            'pir-foil-30': { 
-                price: 510, 
-                oldPrice: 535, 
-                name: 'PIR плита для бани ФОЛЬГА 30 мм', 
+            'pir-foil-30': {
+                price: 575,
+                oldPrice: 582,
+                name: 'PIR плита для бани ФОЛЬГА 30 мм',
                 isPromo: true,
                 area: 0.72
             },
-            'pirro-termo-30': { 
-                price: 510, 
-                name: 'PIR плита для бани ФОЛЬГА 30 мм', 
+            'pirro-termo-30': {
+                price: 575,
+                name: 'PIR плита для бани ФОЛЬГА 30 мм',
                 area: 0.72
             },
             'pirro-termo-40': {
@@ -32,9 +32,9 @@ async function loadProductData() {
                 name: 'PIR плита для бани ФОЛЬГА 40 мм',
                 area: 0.72
             },
-            'pirro-termo-50': { 
-                price: 755, 
-                name: 'PIR плита для бани ФОЛЬГА 50 мм', 
+            'pirro-termo-50': {
+                price: 770,
+                name: 'PIR плита для бани ФОЛЬГА 50 мм',
                 area: 0.72
             },
             'pir-foil-100': {
