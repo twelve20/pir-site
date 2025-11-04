@@ -13,6 +13,8 @@ const { body, validationResult } = require('express-validator');
 const {
   products,
   regularProducts,
+  pirrogroupProducts,
+  technonicolProducts,
   installationProducts,
   specialProducts,
   getProductById,
@@ -326,10 +328,12 @@ app.get('/checkout', (req, res) => {
 app.get('/', (req, res) => {
     const ip = req.clientIP;
     const cart = carts[ip] || { items: [], total: 0, count: 0 };
-    
+
     res.render('index', {
         specialProducts, // Акционные товары
         regularProducts, // Обычные товары
+        pirrogroupProducts, // PIR плиты PirroGroup
+        technonicolProducts, // PIR плиты Технониколь
         installationProducts, // Товары для монтажа
         projects: featuredProjects, // Проекты для главной страницы
         cart // Передаем корзину
@@ -533,6 +537,40 @@ app.get('/api/products', (req, res) => {
 
         // Используем площадь из данных товара
         const area = product.area || 0.72;
+
+        calculatorProducts[product.id] = {
+            price: price,
+            oldPrice: oldPrice,
+            name: product.title,
+            isPromo: product.isPromo || false,
+            area: area
+        };
+    });
+
+    // Обрабатываем товары PirroGroup
+    pirrogroupProducts.forEach(product => {
+        const price = typeof product.price === 'number' ? product.price : parseInt(product.price.replace(/[^\d]/g, ''));
+        const oldPrice = product.oldPrice
+            ? (typeof product.oldPrice === 'number' ? product.oldPrice : parseInt(product.oldPrice.replace(/[^\d]/g, '')))
+            : null;
+        const area = product.area || 0.72;
+
+        calculatorProducts[product.id] = {
+            price: price,
+            oldPrice: oldPrice,
+            name: product.title,
+            isPromo: product.isPromo || false,
+            area: area
+        };
+    });
+
+    // Обрабатываем товары Технониколь
+    technonicolProducts.forEach(product => {
+        const price = typeof product.price === 'number' ? product.price : parseInt(product.price.replace(/[^\d]/g, ''));
+        const oldPrice = product.oldPrice
+            ? (typeof product.oldPrice === 'number' ? product.oldPrice : parseInt(product.oldPrice.replace(/[^\d]/g, '')))
+            : null;
+        const area = product.area || 0.7;
 
         calculatorProducts[product.id] = {
             price: price,

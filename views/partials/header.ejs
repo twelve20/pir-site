@@ -57,6 +57,26 @@
         </div>
     </div>
 
+    <!-- Мини-навигация по категориям -->
+    <div class="category-nav">
+        <div class="container">
+            <div class="category-nav-content">
+                <a href="/#mini-catalog" class="category-nav-item">
+                    <span>Все товары</span>
+                </a>
+                <a href="/#mini-catalog" class="category-nav-item" onclick="scrollToCategory(event, 'technonicol')">
+                    <span>Технониколь</span>
+                </a>
+                <a href="/#mini-catalog" class="category-nav-item" onclick="scrollToCategory(event, 'pirrogroup')">
+                    <span>PirroGroup</span>
+                </a>
+                <a href="/#mini-catalog" class="category-nav-item" onclick="scrollToCategory(event, 'installation')">
+                    <span>Товары для монтажа</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Модальное окно -->
     <div id="callModal" class="modal-overlay" onclick="closeCallModal()">
         <div class="modal-box" onclick="event.stopPropagation()">
@@ -89,7 +109,81 @@
         }
 
         body {
-            padding-top: 65px; /* Компенсация для фиксированной шапки */
+            padding-top: 120px; /* Компенсация для фиксированной шапки и мини-навигации */
+        }
+
+        /* Мини-навигация по категориям */
+        .category-nav {
+            background: linear-gradient(to right, #ffffff, #f8f9fa, #ffffff);
+            border-bottom: 2px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: fixed;
+            top: 65px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .category-nav-content {
+            display: flex;
+            padding: 0;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        .category-nav-content::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .category-nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 14px 25px;
+            color: #444;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            background: transparent;
+            border-right: 1px solid #e5e5e5;
+            border-bottom: 3px solid transparent;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .category-nav-item:last-child {
+            border-right: none;
+        }
+
+        .category-nav-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0070c0, #0056a0);
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .category-nav-item:hover {
+            background: rgba(0, 112, 192, 0.05);
+            color: #0070c0;
+        }
+
+        .category-nav-item:hover::before {
+            width: 80%;
+        }
+
+        .category-nav-item:active {
+            transform: scale(0.98);
         }
 
         .header-content {
@@ -643,6 +737,11 @@
             .mobile-toggle {
                 display: flex;
             }
+
+            .category-nav-item {
+                font-size: 13px;
+                padding: 10px 15px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -657,6 +756,15 @@
 
             .header-content {
                 padding: 12px 0;
+            }
+
+            body {
+                padding-top: 115px;
+            }
+
+            .category-nav-item {
+                font-size: 12px;
+                padding: 10px 10px;
             }
         }
 
@@ -721,4 +829,21 @@ document.querySelectorAll('.mobile-item').forEach(item => {
         toggle.classList.remove('active');
     });
 });
+
+// Функция скролла к категории
+function scrollToCategory(event, categoryId) {
+    event.preventDefault();
+
+    const categorySection = document.querySelector(`[data-category="${categoryId}"]`);
+    if (categorySection) {
+        const headerOffset = 130; // Учитываем высоту шапки
+        const elementPosition = categorySection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'auto'
+        });
+    }
+}
 </script>

@@ -22,6 +22,11 @@ async function loadProductData() {
                 isPromo: true,
                 area: 0.72
             },
+            'logicpir-banya-30': {
+                price: 532,
+                name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 L 30 мм',
+                area: 0.7
+            },
             'pirro-termo-30': {
                 price: 575,
                 name: 'PIR плита для бани ФОЛЬГА 30 мм',
@@ -32,10 +37,20 @@ async function loadProductData() {
                 name: 'PIR плита для бани ФОЛЬГА 40 мм',
                 area: 0.72
             },
+            'logicpir-banya-40': {
+                price: 702,
+                name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 L 40 мм',
+                area: 0.7
+            },
             'pirro-termo-50': {
                 price: 770,
                 name: 'PIR плита для бани ФОЛЬГА 50 мм',
                 area: 0.72
+            },
+            'logicpir-banya-50': {
+                price: 878,
+                name: 'LOGICPIR БАНЯ ФОЛЬГА Г1 L 50 мм',
+                area: 0.7
             },
             'pir-foil-100': {
                 price: 5564,

@@ -9,7 +9,8 @@
       "Bash(New-Item -Path \"c:\\Users\\User\\Documents\\GitHub\\pir-site\\public\\robots.txt\" -ItemType File -Force)",
       "Bash(git restore:*)",
       "Bash(git clean:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(if exist \"public\\nul\" del \"public\\nul\")"
     ],
     "deny": [],
     "ask": []
