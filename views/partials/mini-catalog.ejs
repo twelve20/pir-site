@@ -65,9 +65,9 @@
                                     <a href="/product/<%= product.id %>" class="btn-details">
                                         Подробнее
                                     </a>
-                                    <button class="btn-cart" onclick="addToCart('<%= product.id %>')" data-product-id="<%= product.id %>">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        В корзину
+                                    <button class="btn-order" onclick="openOrderModal('<%= product.id %>', '<%= product.title %>')" data-product-id="<%= product.id %>">
+                                        <i class="fas fa-phone-alt"></i>
+                                        Заказать
                                     </button>
                                 </div>
                             </div>
@@ -140,9 +140,9 @@
                                     <a href="/product/<%= product.id %>" class="btn-details">
                                         Подробнее
                                     </a>
-                                    <button class="btn-cart" onclick="addToCart('<%= product.id %>')" data-product-id="<%= product.id %>">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        В корзину
+                                    <button class="btn-order" onclick="openOrderModal('<%= product.id %>', '<%= product.title %>')" data-product-id="<%= product.id %>">
+                                        <i class="fas fa-phone-alt"></i>
+                                        Заказать
                                     </button>
                                 </div>
                             </div>
@@ -208,9 +208,9 @@
                                 <a href="/product/<%= product.id %>" class="btn-details">
                                     Подробнее
                                 </a>
-                                <button class="btn-cart" onclick="addToCart('<%= product.id %>')" data-product-id="<%= product.id %>">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    В корзину
+                                <button class="btn-order" onclick="openOrderModal('<%= product.id %>', '<%= product.title %>')" data-product-id="<%= product.id %>">
+                                    <i class="fas fa-phone-alt"></i>
+                                    Заказать
                                 </button>
                             </div>
                         </div>
@@ -448,7 +448,7 @@
         gap: 8px;
     }
     
-    .btn-details, .btn-cart {
+    .btn-details, .btn-order {
         border: none;
         cursor: pointer;
         font-size: 13px;
@@ -465,53 +465,29 @@
         position: relative;
         overflow: hidden;
     }
-    
+
     .btn-details {
         background: #f8f9fa;
         color: #666;
         border: 1px solid #e0e0e0;
         text-decoration: none;
     }
-    
-    .btn-cart {
+
+    .btn-order {
         background: #ff6b35;
         color: white;
     }
-    
-    .btn-cart.loading {
-        background: #ccc;
-        cursor: not-allowed;
-    }
-    
-    .btn-cart.added {
-        background: #28a745;
-    }
-    
-    .btn-cart.loading .fas {
-        animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-    
+
     .btn-details:hover {
         background: #e9ecef;
         color: #0070c0;
         border-color: #0070c0;
     }
-    
-    .btn-cart:hover:not(.loading) {
+
+    .btn-order:hover {
         background: #e55a2e;
         transform: translateY(-1px);
         box-shadow: 0 3px 10px rgba(255,107,53,0.3);
-    }
-    
-    .btn-cart.added:hover {
-        background: #218838;
-        transform: translateY(-1px);
-        box-shadow: 0 3px 10px rgba(40,167,69,0.3);
     }
     
     .catalog-cta {
@@ -618,64 +594,83 @@
         });
     });
 
-    // Функция добавления товара в корзину
-    async function addToCart(productId) {
-        const button = document.querySelector(`button[data-product-id="${productId}"]`);
-        
-        if (button.classList.contains('loading')) {
-            return; // Если уже в процессе добавления
-        }
-        
-        // Состояние загрузки
-        button.classList.add('loading');
-        const originalContent = button.innerHTML;
-        button.innerHTML = '<i class="fas fa-spinner"></i> Добавление...';
-        
-        try {
-            const response = await fetch('/api/cart/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 
-                    productId: productId,
-                    quantity: 1
-                })
-            });
-            
-            const result = await response.json();
-            
-            if (response.ok) {
-                // Успешно добавлено
-                button.classList.remove('loading');
-                button.classList.add('added');
-                button.innerHTML = '<i class="fas fa-check"></i> Добавлено';
-                
-                // Обновляем счетчик в шапке
-                if (typeof updateCartBadge === 'function') {
-                    updateCartBadge(result.cart.count);
+    // Функция открытия модального окна заказа
+    function openOrderModal(productId, productTitle) {
+        // Создаем модальное окно если его еще нет
+        let modal = document.getElementById('orderModal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'orderModal';
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-box" onclick="event.stopPropagation()">
+                    <button class="modal-close" onclick="closeOrderModal()">×</button>
+                    <h3 class="modal-title">Оформление заказа</h3>
+                    <p class="modal-text">Товар: <strong id="orderProductTitle"></strong></p>
+                    <form class="modal-form" id="orderForm">
+                        <input type="text" name="name" placeholder="Ваше имя" required class="modal-input">
+                        <input type="tel" name="phone" placeholder="Телефон" required class="modal-input">
+                        <textarea name="comment" placeholder="Комментарий к заказу (необязательно)" class="modal-input" rows="3"></textarea>
+                        <label class="consent-label">
+                            <input type="checkbox" required class="consent-checkbox">
+                            <span>Я согласен с <a href="/privacy-policy" target="_blank">Политикой конфиденциальности</a> и <a href="/terms-of-use" target="_blank">Пользовательским соглашением</a></span>
+                        </label>
+                        <button type="submit" class="modal-submit">Оформить заказ</button>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Обработчик отправки формы
+            document.getElementById('orderForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const formData = {
+                    name: this.name.value,
+                    phone: this.phone.value,
+                    comment: this.comment.value,
+                    productTitle: document.getElementById('orderProductTitle').textContent
+                };
+
+                try {
+                    const response = await fetch('/submit-order-form', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.');
+                        closeOrderModal();
+                        this.reset();
+                    } else {
+                        alert(result.message || 'Ошибка при отправке заказа. Попробуйте позже.');
+                    }
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                    alert('Не удалось отправить заказ. Попробуйте позже.');
                 }
-                
-                // Восстанавливаем кнопку через 2 секунды
-                setTimeout(() => {
-                    button.classList.remove('added');
-                    button.innerHTML = originalContent;
-                }, 2000);
-                
-            } else {
-                throw new Error(result.message || 'Ошибка добавления в корзину');
-            }
-        } catch (error) {
-            console.error('Ошибка добавления в корзину:', error);
-            button.classList.remove('loading');
-            button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Ошибка';
-            
-            // Восстанавливаем кнопку через 2 секунды
-            setTimeout(() => {
-                button.innerHTML = originalContent;
-            }, 2000);
-            
-            alert('Не удалось добавить товар в корзину. Попробуйте позже.');
+            });
+
+            // Закрытие по клику на оверлей
+            modal.addEventListener('click', closeOrderModal);
+        }
+
+        // Устанавливаем название товара
+        document.getElementById('orderProductTitle').textContent = productTitle;
+
+        // Показываем модальное окно
+        modal.classList.add('show');
+    }
+
+    function closeOrderModal() {
+        const modal = document.getElementById('orderModal');
+        if (modal) {
+            modal.classList.remove('show');
         }
     }
 </script>

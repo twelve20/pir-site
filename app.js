@@ -45,23 +45,6 @@ const warehouse = require('./data/warehouse'); // Данные о складе
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Хранилище корзин в памяти (привязка к IP)
-const carts = {};
-
-// Функция для очистки старых корзин (старше 24 часов)
-const cleanOldCarts = () => {
-    const now = new Date();
-    const dayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-    
-    Object.keys(carts).forEach(ip => {
-        if (new Date(carts[ip].lastUpdated) < dayAgo) {
-            delete carts[ip];
-        }
-    });
-};
-
-// Запускаем очистку каждый час
-setInterval(cleanOldCarts, 60 * 60 * 1000);
 
 // Middleware для получения IP адреса
 const getClientIP = (req, res, next) => {
@@ -161,182 +144,16 @@ if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
 
 // Функция getProductById теперь импортируется из data/products.js
 
-// ============================================
-// API ДЛЯ КОРЗИНЫ
-// ============================================
-
-// Получить корзину
-app.get('/api/cart', apiLimiter, (req, res) => {
-    const ip = req.clientIP;
-    const cart = carts[ip] || { items: [], total: 0, count: 0 };
-    res.json(cart);
-});
-
-// Валидация для корзины
-const validateCartItem = [
-    body('productId').trim().isLength({ min: 1, max: 100 }).withMessage('Product ID обязателен'),
-    body('quantity').optional().isInt({ min: 1, max: 1000 }).withMessage('Количество должно быть от 1 до 1000')
-];
-
-// Добавить товар в корзину
-app.post('/api/cart/add', apiLimiter, validateCartItem, (req, res) => {
-    // Проверка результатов валидации
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-            error: 'Ошибка валидации данных',
-            details: errors.array().map(e => e.msg)
-        });
-    }
-
-    const { productId, quantity = 1 } = req.body;
-    const ip = req.clientIP;
-    
-    const product = getProductById(productId);
-    if (!product) {
-        return res.status(404).json({ error: 'Product not found' });
-    }
-    
-    // Инициализируем корзину если её нет
-    if (!carts[ip]) {
-        carts[ip] = { items: [], total: 0, count: 0, lastUpdated: new Date() };
-    }
-    
-    // Получаем цену (теперь уже в числовом формате)
-    const price = typeof product.price === 'number' ? product.price : parseInt(product.price.replace(/[^\d]/g, ''));
-    
-    // Проверяем, есть ли уже этот товар в корзине
-    const existingItem = carts[ip].items.find(item => item.productId === productId);
-    
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        carts[ip].items.push({
-            productId: productId,
-            title: product.title,
-            price: price,
-            quantity: quantity,
-            image: product.image
-        });
-    }
-    
-    // Пересчитываем итоги
-    carts[ip].total = carts[ip].items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    carts[ip].count = carts[ip].items.reduce((sum, item) => sum + item.quantity, 0);
-    carts[ip].lastUpdated = new Date();
-    
-    res.json({ success: true, cart: carts[ip] });
-});
-
-// Обновить количество товара в корзине
-app.put('/api/cart/update', apiLimiter, validateCartItem, (req, res) => {
-    // Проверка результатов валидации
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-            error: 'Ошибка валидации данных',
-            details: errors.array().map(e => e.msg)
-        });
-    }
-
-    const { productId, quantity } = req.body;
-    const ip = req.clientIP;
-
-    if (!carts[ip]) {
-        return res.status(400).json({ error: 'Корзина не найдена' });
-    }
-    
-    const item = carts[ip].items.find(item => item.productId === productId);
-    if (!item) {
-        return res.status(404).json({ error: 'Item not found in cart' });
-    }
-    
-    if (quantity === 0) {
-        // Удаляем товар из корзины
-        carts[ip].items = carts[ip].items.filter(item => item.productId !== productId);
-    } else {
-        item.quantity = quantity;
-    }
-    
-    // Пересчитываем итоги
-    carts[ip].total = carts[ip].items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    carts[ip].count = carts[ip].items.reduce((sum, item) => sum + item.quantity, 0);
-    carts[ip].lastUpdated = new Date();
-    
-    res.json({ success: true, cart: carts[ip] });
-});
-
-// Валидация для удаления из корзины
-const validateCartRemove = [
-    body('productId').trim().isLength({ min: 1, max: 100 }).withMessage('Product ID обязателен')
-];
-
-// Удалить товар из корзины
-app.delete('/api/cart/remove', apiLimiter, validateCartRemove, (req, res) => {
-    // Проверка результатов валидации
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-            error: 'Ошибка валидации данных',
-            details: errors.array().map(e => e.msg)
-        });
-    }
-
-    const { productId } = req.body;
-    const ip = req.clientIP;
-
-    if (!carts[ip]) {
-        return res.status(400).json({ error: 'Корзина не найдена' });
-    }
-    
-    carts[ip].items = carts[ip].items.filter(item => item.productId !== productId);
-    
-    // Пересчитываем итоги
-    carts[ip].total = carts[ip].items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    carts[ip].count = carts[ip].items.reduce((sum, item) => sum + item.quantity, 0);
-    carts[ip].lastUpdated = new Date();
-    
-    res.json({ success: true, cart: carts[ip] });
-});
-
-// Очистить корзину
-app.post('/api/cart/clear', apiLimiter, (req, res) => {
-    const ip = req.clientIP;
-    carts[ip] = { items: [], total: 0, count: 0, lastUpdated: new Date() };
-    res.json({ success: true, cart: carts[ip] });
-});
-
-// Страницы корзины и оформления заказа
-app.get('/cart', (req, res) => {
-    const ip = req.clientIP;
-    const cart = carts[ip] || { items: [], total: 0, count: 0 };
-    res.render('cart', { cart });
-});
-
-app.get('/checkout', (req, res) => {
-    const ip = req.clientIP;
-    const cart = carts[ip] || { items: [], total: 0, count: 0 };
-    
-    if (cart.items.length === 0) {
-        return res.redirect('/cart');
-    }
-    
-    res.render('checkout', { cart });
-});
 
 // Роутинг
 app.get('/', (req, res) => {
-    const ip = req.clientIP;
-    const cart = carts[ip] || { items: [], total: 0, count: 0 };
-
     res.render('index', {
         specialProducts, // Акционные товары
         regularProducts, // Обычные товары
         pirrogroupProducts, // PIR плиты PirroGroup
         technonicolProducts, // PIR плиты Технониколь
         installationProducts, // Товары для монтажа
-        projects: featuredProjects, // Проекты для главной страницы
-        cart // Передаем корзину
+        projects: featuredProjects // Проекты для главной страницы
     });
 });
 
@@ -785,70 +602,6 @@ app.get('/api/products/stats/summary', (req, res) => {
     }
 });
 
-// Роут для оформления заказа из корзины
-// Валидация для заказа из корзины
-const validateCartOrder = [
-    body('name').trim().isLength({ min: 2, max: 100 }).escape().withMessage('Имя должно быть от 2 до 100 символов'),
-    body('phone').trim().matches(/^[\d\s\+\-\(\)]+$/).isLength({ min: 10, max: 20 }).withMessage('Неверный формат телефона'),
-    body('email').trim().isEmail().normalizeEmail().withMessage('Неверный формат email'),
-    body('comment').optional().trim().isLength({ max: 500 }).escape().withMessage('Комментарий не должен превышать 500 символов')
-];
-
-app.post('/submit-cart-order', telegramLimiter, validateCartOrder, async (req, res) => {
-    // Проверка результатов валидации
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-            message: 'Ошибка валидации данных',
-            errors: errors.array().map(e => e.msg)
-        });
-    }
-
-    const { name, phone, email, comment } = req.body;
-    const ip = req.clientIP;
-    
-    const cart = carts[ip];
-    if (!cart || cart.items.length === 0) {
-        return res.status(400).json({ message: 'Корзина пуста.' });
-    }
-    
-    // Формируем детализированное сообщение для Telegram
-    let itemsList = cart.items.map(item => 
-        `• ${item.title} × ${item.quantity} шт. = ${(item.price * item.quantity).toLocaleString('ru-RU')}₽`
-    ).join('\n');
-    
-    const telegramMessage = `🛒 НОВЫЙ ЗАКАЗ ИЗ КОРЗИНЫ:
-
-👤 Клиент: ${name}
-📞 Телефон: ${phone}
-📧 Email: ${email}
-
-🛍️ Товары:
-${itemsList}
-
-💰 Итого: ${cart.total.toLocaleString('ru-RU')}₽
-💬 Комментарий: ${comment || 'Нет комментария'}
-📍 IP: ${ip}`;
-
-    try {
-        // Отправляем сообщение в Telegram
-        await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            chat_id: TELEGRAM_CHAT_ID,
-            text: telegramMessage
-        });
-
-        console.log('Заказ из корзины успешно отправлен в Telegram:', { name, phone, email, comment, cart: cart.items });
-
-        // Очищаем корзину после успешного заказа
-        carts[ip] = { items: [], total: 0, count: 0, lastUpdated: new Date() };
-
-        // Отправляем успешный ответ клиенту
-        res.status(200).json({ message: 'Заказ успешно отправлен!' });
-    } catch (error) {
-        console.error('Ошибка при отправке заказа в Telegram:', error.response?.data || error.message);
-        res.status(500).json({ message: 'Не удалось отправить заказ. Попробуйте позже.' });
-    }
-});
 
 // Валидация для общей формы
 const validateContactForm = [
@@ -899,38 +652,6 @@ app.post('/submit-form', telegramLimiter, validateContactForm, async (req, res) 
     }
 });
 
-// Роут для обработки формы "Оформить заказ"
-app.post('/submit-buy-form', telegramLimiter, validateCartOrder, async (req, res) => {
-    // Проверка результатов валидации
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({
-            message: 'Ошибка валидации данных',
-            errors: errors.array().map(e => e.msg)
-        });
-    }
-
-    const { name, phone, email, comment } = req.body;
-
-    // Формируем текст сообщения
-    const telegramMessage = `Новый заказ:\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nКомментарий: ${comment || 'Нет комментария'}`;
-
-    try {
-        // Отправляем сообщение в Telegram
-        await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            chat_id: TELEGRAM_CHAT_ID,
-            text: telegramMessage
-        });
-
-        console.log('Заказ успешно отправлен в Telegram:', { name, phone, email, comment });
-
-        // Отправляем успешный ответ клиенту
-        res.status(200).json({ message: 'Заказ успешно отправлен!' });
-    } catch (error) {
-        console.error('Ошибка при отправке заказа в Telegram:', error.response?.data || error.message);
-        res.status(500).json({ message: 'Не удалось отправить заказ. Попробуйте позже.' });
-    }
-});
 
 // Роут для обработки формы "Призыв к действию"
 app.post('/submit-cta-form', telegramLimiter, validateContactForm, async (req, res) => {
@@ -962,6 +683,52 @@ app.post('/submit-cta-form', telegramLimiter, validateContactForm, async (req, r
     } catch (error) {
         console.error('Ошибка при отправке заявки в Telegram:', error.response?.data || error.message);
         res.status(500).json({ message: 'Не удалось отправить заявку. Попробуйте позже.' });
+    }
+});
+
+// Валидация для заказа товара
+const validateOrderForm = [
+    body('name').trim().isLength({ min: 2, max: 100 }).escape().withMessage('Имя должно быть от 2 до 100 символов'),
+    body('phone').trim().matches(/^[\d\s\+\-\(\)]+$/).isLength({ min: 10, max: 20 }).withMessage('Неверный формат телефона'),
+    body('comment').optional().trim().isLength({ max: 500 }).escape().withMessage('Комментарий не должен превышать 500 символов'),
+    body('productTitle').trim().isLength({ min: 1, max: 200 }).withMessage('Название товара обязательно')
+];
+
+// Роут для обработки формы заказа товара
+app.post('/submit-order-form', telegramLimiter, validateOrderForm, async (req, res) => {
+    // Проверка результатов валидации
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            message: 'Ошибка валидации данных',
+            errors: errors.array().map(e => e.msg)
+        });
+    }
+
+    const { name, phone, comment, productTitle } = req.body;
+
+    // Формируем текст сообщения
+    const telegramMessage = `🛒 НОВЫЙ ЗАКАЗ ТОВАРА:
+
+📦 Товар: ${productTitle}
+👤 Имя: ${name}
+📞 Телефон: ${phone}
+💬 Комментарий: ${comment || 'Нет комментария'}`;
+
+    try {
+        // Отправляем сообщение в Telegram
+        await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            chat_id: TELEGRAM_CHAT_ID,
+            text: telegramMessage
+        });
+
+        console.log('Заказ товара успешно отправлен в Telegram:', { name, phone, comment, productTitle });
+
+        // Отправляем успешный ответ клиенту
+        res.status(200).json({ message: 'Заказ успешно отправлен!' });
+    } catch (error) {
+        console.error('Ошибка при отправке заказа в Telegram:', error.response?.data || error.message);
+        res.status(500).json({ message: 'Не удалось отправить заказ. Попробуйте позже.' });
     }
 });
 
