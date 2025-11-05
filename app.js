@@ -152,8 +152,7 @@ app.get('/', (req, res) => {
         regularProducts, // Обычные товары
         pirrogroupProducts, // PIR плиты PirroGroup
         technonicolProducts, // PIR плиты Технониколь
-        installationProducts, // Товары для монтажа
-        projects: featuredProjects // Проекты для главной страницы
+        installationProducts // Товары для монтажа
     });
 });
 

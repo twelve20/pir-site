@@ -10,7 +10,8 @@
       "Bash(git restore:*)",
       "Bash(git clean:*)",
       "Bash(dir:*)",
-      "Bash(if exist \"public\\nul\" del \"public\\nul\")"
+      "Bash(if exist \"public\\nul\" del \"public\\nul\")",
+      "Bash(del \"views\\partials\\cases.ejs\")"
     ],
     "deny": [],
     "ask": []

@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="container">
+    <div class="header-container">
         <div class="header-content">
             <!-- Логотип -->
             <a href="/" class="header-logo">
@@ -12,7 +12,6 @@
                 <a href="/" class="nav-item">Главная</a>
                 <a href="/#mini-catalog" class="nav-item">Каталог</a>
                 <a href="/blog" class="nav-item">Статьи</a>
-                <a href="/projects" class="nav-item">Галерея</a>
                 <a href="/#testimonials" class="nav-item">Отзывы</a>
                 <a href="/contacts" class="nav-item">Контакты</a>
                 <a href="#" onclick="openPromoModalManually(); return false;" class="nav-item nav-item-promo">Акция!</a>
@@ -37,7 +36,6 @@
             <a href="/" class="mobile-item">Главная</a>
             <a href="/#mini-catalog" class="mobile-item">Каталог</a>
             <a href="/blog" class="mobile-item">Статьи</a>
-            <a href="/projects" class="mobile-item">Галерея</a>
             <a href="/#testimonials" class="mobile-item">Отзывы</a>
             <a href="/contacts" class="mobile-item">Контакты</a>
             <a href="#" onclick="openPromoModalManually(); return false;" class="mobile-item mobile-item-promo">Акция!</a>
@@ -102,6 +100,13 @@
 
         body {
             padding-top: 120px; /* Компенсация для фиксированной шапки и мини-навигации */
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0 40px;
+            margin: 0;
         }
 
         /* Мини-навигация по категориям */
@@ -210,7 +215,7 @@
         .nav {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 70px;
             flex: 1;
             justify-content: center;
         }
@@ -218,11 +223,12 @@
         .nav-item {
             color: #333;
             text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 6px;
+            font-size: 19px;
+            font-weight: 700;
+            padding: 14px 24px;
+            border-radius: 10px;
             transition: all 0.2s;
+            letter-spacing: 0.3px;
         }
 
         .nav-item:hover {
