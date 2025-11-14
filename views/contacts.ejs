@@ -10,6 +10,7 @@
     <meta name="keywords"
         content="PIR плиты купить, пир плиты контакты, PIR плиты доставка, купить PIR плиты в Москве, PIR плиты цена, заказать PIR плиты, PIR плиты оптом, теплоизоляционные плиты ПИР контакты, PIR плиты производитель, PIR плиты продажа, PIR плиты Технониколь, PIR плиты Pirro, PIR плиты для кровли, PIR плиты для стен, PIR плиты для балкона, PIR плиты для сауны, PIR плиты для лоджий.">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/mobile-app.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -20,6 +21,9 @@
 <body>
     <!-- Шапка -->
     <%- include('partials/header') %>
+
+    <!-- Декоративный разделитель -->
+    <div class="page-separator"></div>
 
     <!-- Основной контент -->
     <main>
@@ -201,9 +205,32 @@
     <%- include('partials/promo-modal') %>
 
     <style>
+        /* Разделитель между шапкой и контентом */
+        .page-separator {
+            height: 8px;
+            background: linear-gradient(90deg, #ff6b35, #ffd700, #ff6b35);
+            box-shadow: 0 4px 15px rgba(255,107,53,0.4);
+            position: fixed;
+            top: 120px;
+            left: 0;
+            right: 0;
+            z-index: 998;
+        }
+
+        .page-separator::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.03), transparent);
+            pointer-events: none;
+        }
+
         /* Hero секция */
         .contacts-hero {
-            padding: 120px 0 60px;
+            padding: 140px 0 60px;
             background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
             text-align: center;
             position: relative;

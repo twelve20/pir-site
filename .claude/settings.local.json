@@ -11,7 +11,12 @@
       "Bash(git clean:*)",
       "Bash(dir:*)",
       "Bash(if exist \"public\\nul\" del \"public\\nul\")",
-      "Bash(del \"views\\partials\\cases.ejs\")"
+      "Bash(del \"views\\partials\\cases.ejs\")",
+      "Bash(npm start)",
+      "Bash(curl:*)",
+      "Bash(timeout /t 3 /nobreak)",
+      "Bash(nul)",
+      "Bash(taskkill //F //IM node.exe 2)"
     ],
     "deny": [],
     "ask": []

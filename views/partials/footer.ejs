@@ -147,20 +147,22 @@
 
     <style>
         .footer {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            color: #ecf0f1;
+            background: linear-gradient(135deg, #0070c0 0%, #005aa0 100%);
+            color: #ffffff;
             padding: 60px 0 20px;
             position: relative;
+            box-shadow: 0 -4px 20px rgba(0,112,192,0.2);
         }
-        
+
         .footer::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #0070c0, #ff6b35, #0070c0);
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b35, #ffd700, #ff6b35);
+            box-shadow: 0 2px 10px rgba(255,107,53,0.5);
         }
         
         .footer-content {
@@ -190,7 +192,7 @@
         
         .brand-subtitle {
             font-size: 18px;
-            color: #bdc3c7;
+            color: rgba(255, 255, 255, 0.85);
             margin: 0;
             font-weight: 500;
         }
@@ -211,12 +213,18 @@
             font-size: 24px;
             width: 50px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
         
         .contact-details {
@@ -227,20 +235,23 @@
         
         .contact-label {
             font-size: 14px;
-            color: #95a5a6;
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        
+
         .contact-link {
             font-size: 16px;
             color: #ffffff;
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
-        
+
         .contact-link:hover {
-            color: #0070c0;
+            color: #ffd700;
+            transform: translateX(5px);
         }
         
         .contact-text {
@@ -269,19 +280,20 @@
         }
         
         .nav-link {
-            color: #bdc3c7;
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
             transition: all 0.3s ease;
             padding: 8px 0;
             border-bottom: 1px solid transparent;
+            display: inline-block;
         }
-        
+
         .nav-link:hover {
-            color: #ffffff;
-            border-bottom-color: #0070c0;
-            transform: translateX(5px);
+            color: #ffd700;
+            border-bottom-color: #ffd700;
+            transform: translateX(8px);
         }
         
         .social-section {
@@ -300,17 +312,17 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #bdc3c7;
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             font-size: 15px;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
             padding: 10px 0;
         }
-        
+
         .social-link:hover {
-            color: #ffffff;
-            transform: translateX(5px);
+            color: #ffd700;
+            transform: translateX(8px);
         }
         
         .social-icon {
@@ -322,23 +334,24 @@
             justify-content: space-between;
             align-items: flex-start;
             padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .footer-info {
             flex: 1;
         }
-        
+
         .copyright {
             font-size: 16px;
             color: #ffffff;
-            font-weight: 600;
+            font-weight: 700;
             margin: 0 0 8px 0;
+            letter-spacing: 0.3px;
         }
-        
+
         .legal-info {
             font-size: 14px;
-            color: #95a5a6;
+            color: rgba(255, 255, 255, 0.7);
             margin: 0;
             max-width: 500px;
             line-height: 1.5;
@@ -359,27 +372,31 @@
             align-items: center;
             gap: 8px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
             min-width: 100px;
             transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .badge:hover {
-            background: rgba(0, 112, 192, 0.2);
-            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border-color: rgba(255, 255, 255, 0.4);
         }
-        
+
         .badge-icon {
-            font-size: 20px;
+            font-size: 24px;
         }
-        
+
         .badge-text {
             font-size: 12px;
-            color: #bdc3c7;
-            font-weight: 600;
+            color: #ffffff;
+            font-weight: 700;
             text-align: center;
             line-height: 1.2;
+            letter-spacing: 0.3px;
         }
         
         @media (max-width: 1024px) {
@@ -488,13 +505,14 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    background: linear-gradient(135deg, #0070c0 0%, #005aa0 100%);
     color: #fff;
     padding: 20px;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 -4px 20px rgba(0,112,192,0.3);
     z-index: 10000;
     transform: translateY(100%);
     transition: transform 0.3s ease-in-out;
+    border-top: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .cookie-notice.show {
@@ -521,26 +539,28 @@
 }
 
 .cookie-notice__text strong {
-    color: #3498db;
+    color: #ffd700;
 }
 
 .cookie-notice__button {
-    background: #3498db;
-    color: white;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #005aa0;
     border: none;
     padding: 12px 30px;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     transition: all 0.3s ease;
     white-space: nowrap;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255,215,0,0.3);
 }
 
 .cookie-notice__button:hover {
-    background: #2980b9;
+    background: linear-gradient(135deg, #ffed4e, #ffd700);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+    box-shadow: 0 6px 20px rgba(255,215,0,0.4);
 }
 
 @media (max-width: 768px) {

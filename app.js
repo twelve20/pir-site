@@ -156,6 +156,17 @@ app.get('/', (req, res) => {
     });
 });
 
+// Роут для страницы каталога
+app.get('/catalog', (req, res) => {
+    res.render('catalog', {
+        specialProducts,
+        regularProducts,
+        pirrogroupProducts,
+        technonicolProducts,
+        installationProducts
+    });
+});
+
 app.get('/blog', (req, res) => {
     // Статические данные для блога
     const articles = [

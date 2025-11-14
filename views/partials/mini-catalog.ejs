@@ -233,8 +233,8 @@
 
 <style>
     .mini-catalog {
-        padding: 40px 0 80px 0;
-        background-color: #f8f9fa;
+        padding: 60px 0;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     }
 
     .category-section {
@@ -242,95 +242,110 @@
     }
 
     .category-title {
-        font-size: 28px;
-        font-weight: 600;
-        color: #333;
+        font-size: 32px;
+        font-weight: 800;
+        color: #0070c0;
         margin-bottom: 30px;
-        padding-left: 20px;
-        border-left: 4px solid #0070c0;
+        padding-left: 25px;
+        border-left: 5px solid #ff6b35;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
     .section-title {
-        font-size: 36px;
-        font-weight: 700;
-        color: #333;
+        font-size: 48px;
+        font-weight: 800;
+        color: #0070c0;
         text-align: center;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
         position: relative;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 4px rgba(0,112,192,0.1);
     }
-    
+
     .section-title::after {
         content: '';
         position: absolute;
-        bottom: -12px;
+        bottom: -15px;
         left: 50%;
         transform: translateX(-50%);
-        width: 60px;
-        height: 4px;
-        background: linear-gradient(90deg, #0070c0, #ff6b35);
-        border-radius: 2px;
+        width: 100px;
+        height: 5px;
+        background: linear-gradient(90deg, #ff6b35, #ffd700, #ff6b35);
+        border-radius: 3px;
+        box-shadow: 0 2px 8px rgba(255,107,53,0.4);
     }
-    
+
     .section-subtitle {
-        font-size: 18px;
-        color: #666;
+        font-size: 20px;
+        color: #555;
         text-align: center;
         margin-bottom: 60px;
-        max-width: 600px;
+        max-width: 700px;
         margin-left: auto;
         margin-right: auto;
+        font-weight: 500;
     }
-    
+
     .catalog-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 30px;
         margin-bottom: 80px;
     }
-    
+
     .product-card {
         background: white;
-        border-radius: 12px;
+        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-        border: 1px solid #e0e0e0;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: none;
     }
-    
+
     .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-        border-color: #0070c0;
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0,112,192,0.2);
     }
-    
+
     .product-image {
-        height: 200px;
+        height: 280px;
         overflow: hidden;
         position: relative;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
     }
-    
+
     .product-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.3s ease;
+        transition: transform 0.5s ease;
     }
-    
+
     .product-card:hover .product-image img {
-        transform: scale(1.05);
+        transform: scale(1.1);
     }
     
     .promo-badge {
         position: absolute;
         top: 15px;
         right: 15px;
-        background: #e30613;
+        background: linear-gradient(135deg, #ff6b35, #e55a2e);
         color: white;
-        padding: 6px 12px;
+        padding: 8px 16px;
         border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 13px;
+        font-weight: 700;
         z-index: 2;
+        text-transform: uppercase;
+        box-shadow: 0 4px 12px rgba(255,107,53,0.4);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
     }
 
     .technonicol-badge {
@@ -339,12 +354,12 @@
         left: 15px;
         background: linear-gradient(135deg, #0070c0, #005aa0);
         color: white;
-        padding: 6px 12px;
+        padding: 8px 16px;
         border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 13px;
+        font-weight: 700;
         z-index: 2;
-        box-shadow: 0 3px 10px rgba(0,112,192,0.3);
+        box-shadow: 0 4px 12px rgba(0,112,192,0.4);
     }
 
     .pirrogroup-badge {
@@ -353,12 +368,12 @@
         left: 15px;
         background: linear-gradient(135deg, #ff6b35, #e55a2e);
         color: white;
-        padding: 6px 12px;
+        padding: 8px 16px;
         border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 13px;
+        font-weight: 700;
         z-index: 2;
-        box-shadow: 0 3px 10px rgba(255,107,53,0.3);
+        box-shadow: 0 4px 12px rgba(255,107,53,0.4);
     }
 
     .product-image-hover img {
@@ -381,154 +396,168 @@
     .product-content {
         padding: 25px;
     }
-    
+
     .product-title {
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 700;
         color: #333;
-        margin-bottom: 12px;
-        min-height: 44px;
-        line-height: 1.3;
+        margin-bottom: 15px;
+        min-height: 50px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
-    
+
     .product-description {
         font-size: 14px;
         color: #666;
-        line-height: 1.5;
+        line-height: 1.6;
         margin-bottom: 20px;
         min-height: 42px;
     }
-    
+
     .product-features {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
-    
+
     .feature {
         background: #f0f8ff;
         color: #0070c0;
-        padding: 4px 8px;
-        border-radius: 12px;
+        padding: 6px 12px;
+        border-radius: 8px;
         font-size: 12px;
-        font-weight: 500;
-        border: 1px solid rgba(0,112,192,0.2);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
     }
     
     .product-footer {
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
         padding-top: 20px;
-        border-top: 1px solid #f0f0f0;
+        border-top: 2px solid #f0f0f0;
     }
-    
+
     .price-section {
         display: flex;
         flex-direction: column;
+        gap: 5px;
     }
-    
+
     .current-price {
-        font-size: 20px;
-        font-weight: 700;
-        color: #333;
+        font-size: 28px;
+        font-weight: 800;
+        color: #0070c0;
     }
-    
+
     .old-price {
-        font-size: 14px;
+        font-size: 16px;
         text-decoration: line-through;
         color: #999;
-        margin-bottom: 4px;
+        font-weight: 500;
     }
-    
+
     .product-actions {
         display: flex;
         flex-direction: column;
         gap: 8px;
     }
-    
+
     .btn-details, .btn-order {
         border: none;
         cursor: pointer;
-        font-size: 13px;
-        font-weight: 600;
-        padding: 8px 16px;
-        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 12px 20px;
+        border-radius: 12px;
         transition: all 0.3s ease;
         text-align: center;
-        min-width: 100px;
+        min-width: 110px;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
-        position: relative;
-        overflow: hidden;
+        letter-spacing: 0.3px;
     }
 
     .btn-details {
-        background: #f8f9fa;
-        color: #666;
-        border: 1px solid #e0e0e0;
+        background: white;
+        color: #0070c0;
+        border: 2px solid #0070c0;
         text-decoration: none;
     }
 
     .btn-order {
-        background: #ff6b35;
+        background: linear-gradient(135deg, #0070c0, #005aa0);
         color: white;
+        box-shadow: 0 4px 15px rgba(0,112,192,0.25);
     }
 
     .btn-details:hover {
-        background: #e9ecef;
-        color: #0070c0;
-        border-color: #0070c0;
+        background: #0070c0;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,112,192,0.3);
     }
 
     .btn-order:hover {
-        background: #e55a2e;
-        transform: translateY(-1px);
-        box-shadow: 0 3px 10px rgba(255,107,53,0.3);
+        background: linear-gradient(135deg, #005aa0, #004080);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,112,192,0.35);
     }
     
     .catalog-cta {
         text-align: center;
         background: white;
-        padding: 50px 40px;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        border: 1px solid #e0e0e0;
+        padding: 60px 40px;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        border: none;
     }
-    
+
     .catalog-cta h3 {
-        font-size: 24px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 12px;
+        font-size: 32px;
+        font-weight: 800;
+        color: #0070c0;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
-    
+
     .catalog-cta p {
-        font-size: 16px;
+        font-size: 18px;
         color: #666;
-        margin-bottom: 30px;
-        line-height: 1.5;
+        margin-bottom: 35px;
+        line-height: 1.6;
+        font-weight: 500;
     }
-    
+
     .cta-button {
-        background: #ff6b35;
+        background: linear-gradient(135deg, #ff6b35, #e55a2e);
         color: white;
         border: none;
-        padding: 15px 30px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
+        padding: 18px 40px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: 700;
         cursor: pointer;
         transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(255,107,53,0.3);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
     }
-    
+
     .cta-button:hover {
-        background: #e55a2e;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+        background: linear-gradient(135deg, #e55a2e, #d54a1e);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(255,107,53,0.4);
     }
     
     @media (max-width: 1024px) {
@@ -540,16 +569,20 @@
     
     @media (max-width: 768px) {
         .mini-catalog {
-            padding: 60px 0;
+            padding: 40px 0 100px;
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 32px;
         }
 
         .section-subtitle {
             font-size: 16px;
             margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 24px;
         }
 
         .catalog-grid {
@@ -558,8 +591,21 @@
             margin-bottom: 60px;
         }
 
+        .product-image {
+            height: 240px;
+        }
+
         .product-content {
             padding: 20px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            min-height: 45px;
+        }
+
+        .current-price {
+            font-size: 24px;
         }
 
         .catalog-cta {
@@ -567,7 +613,48 @@
         }
 
         .catalog-cta h3 {
+            font-size: 24px;
+        }
+
+        .catalog-cta p {
+            font-size: 16px;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .section-title {
+            font-size: 26px;
+        }
+
+        .category-title {
             font-size: 20px;
+        }
+
+        .product-image {
+            height: 200px;
+        }
+
+        .product-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .btn-details, .btn-order {
+            width: 100%;
+        }
+
+        .catalog-cta h3 {
+            font-size: 20px;
+        }
+
+        .cta-button {
+            padding: 14px 24px;
+            font-size: 14px;
         }
     }
 </style>
